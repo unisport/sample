@@ -24,5 +24,4 @@ Remember to document (why, not how)
 Extend to be a reusable module, that also accepts a URL
 	
 	import mymodule
-	mymodule('http://localhost/data.json', price='dsc', kid='True', display=['name', 'price'], count=10)
 
