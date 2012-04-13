@@ -21,7 +21,8 @@ Remember to document (why, not how)
 **
 
 ####Bonus:
-Extend the script to accept a url
+Extend to be a reusable module, that also accepts a URL
 	
-	python myscript.py http://localhost/data.json price=dsc kid=True display=[name, price] count=10
+	import mymodule
+	mymodule('http://localhost/data.json', price='dsc', kid='True', display=['name', 'price'], count=10)
 
