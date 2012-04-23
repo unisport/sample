@@ -1,4 +1,4 @@
-Write a simple python webservice that returns the objects in data.json  
+Write a simple python webservice that returns the objects in data.json as json objects.
 
 
 **/products/**  
