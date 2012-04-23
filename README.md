@@ -1,27 +1,21 @@
 Write a simple python webservice that returns the objects in data.json  
 
- **
- /products/  
- **  
 
- should return the first 10 objects ordered by price=desc
+**/products/**  
+
+
+should return the first 10 objects ordered by price=desc
  
-** 
-/products/?page=2
-**
+**/products/?page=2**
  
  The products should be paginated where **page** in the url above should return the next 10 objects  
 
- **
- /products/id/ 
- **
+ **/products/id/**
  
 should return the individual product
  
-** 
-_Remember to test_   
-_Remember to document (why, not how)_
-**
+**_Remember to test_**   
+**_Remember to document (why, not how)_**
 
 ####Bonus:
  extend the service so the products can also be created, edited and deleted.
