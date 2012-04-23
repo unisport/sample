@@ -1,27 +1,30 @@
-###Fork me and send back a pull request 
+Write a simple python webservice that returns the objects in data.json  
 
-Write a commandline script that takes a file system path as the first argument and one or more keywords arguments. 
+ **
+ /products/  
+ **  
+
+ should return the first 10 objects ordered by price=desc
  
-####Arguments
-
-1.  Required: count=integer
-2.  Optional Boolean keywords: women, kid 
-3.  Optinal keyword: display which takes an array of field names, to be printed out (default is only name)
-4.  Optional keyword: price=asc, price=desc  
-
-**Usage**:
-  
+** 
+/products/?page=2
+**
  
-        python myscript.py data.json price=dsc kid=True display=[name, price, size]  count=10
-        
-        python myscript.py data.json women=True display=[name, color] count=5
-    
-**Remember to test  
-Remember to document (why, not how)
+ The products should be paginated where **page** in the url above should return the next 10 objects  
+
+ **
+ /products/id/ 
+ **
+ 
+should return the individual product
+ 
+** 
+_Remember to test_   
+_Remember to document (why, not how)_
 **
 
 ####Bonus:
-Extend to be a reusable module, that also accepts a URL
-	
-	import mymodule
+ extend the service so the products can also be created, edited and deleted.
 
+
+_You are welcome to use any thirdparty python web framework that you are familier with._
