@@ -21,4 +21,4 @@ should return the individual product
  extend the service so the products can also be created, edited and deleted.
 
 
-_You are welcome to use any thirdparty python web framework that you are familier with._
+_You are welcome to use any thirdparty python web framework that you are familiar with._
