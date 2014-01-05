@@ -1,6 +1,6 @@
 _Fork this project and send us a pull request_
 
-Write a simple python webservice that returns the objects that manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+Write a simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
 
 
 **/products/**  
