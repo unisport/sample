@@ -8,8 +8,8 @@ cgitb.enable()
 print("Content-Type: text/xml;charset=utf-8")
 print("")
 
-import unittest
 import cgi
+import unittest
 
 # ##################################################################################################################
 # #
@@ -76,6 +76,15 @@ def XMLSerialize(goodsListDictionary,about):
 
 # ##################################################################################################################
 # #
+# # Error output XML serializer
+# #
+# ##################################################################################################################
+def XMLSerializeError(errorMessage):
+    print('<?xml version="1.0" encoding="utf-8"?>')
+    print('<error>{0}</error>'.format(errorMessage))
+
+# ##################################################################################################################
+# #
 # # Read the goods that has to be sorted and extracted
 # # keep them in a dictionary. Should have been a list of objects though. Read
 # # from a database
@@ -86,7 +95,7 @@ goods = {"latest": [{"kids": "1", "name": "Nike - Spilletr\u00f8je Classic III B
 form = cgi.FieldStorage()
 
 if  not 'method' in form:
-    print('missing querystring parameter method')
+    XMLSerializeError('missing querystring parameter method')
 
 elif form['method'].value == 'ListOfGoodsSorted':
     # ##################################################################################################################
@@ -209,11 +218,8 @@ elif form['method'].value == 'GoodWrite':
     # #     parameters: (xml good)
     # #
     # ##################################################################################################################
-    print('not implemented')
+    XMLSerializeError('not implemented')
 
 else:
-    print('unknown method called')
-    print(form['method'].value)
-
-
+    XMLSerializeError('unknown method [{0}] called'.format(form['method'].value))
 
