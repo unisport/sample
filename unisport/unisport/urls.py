@@ -13,4 +13,3 @@ urlpatterns = patterns('',
     url(r'^products/kids/$', 'products.views.kids'),
     url(r'^products/(?P<page>\d+)$', 'products.views.paginate'),
     url(r'^products/(?P<id>\d+)/$', 'products.views.getitem'))
-)
