@@ -1,0 +1,20 @@
+{% extends 'products/index.html' %}
+{% load paginator_widget %}
+{% load sort_widget %}
+{% block contents %}
+<div class="uni_content">
+<table class="uni_backend_table">
+{% sort_widget sort_params sort_key sort_dir "products.views.sizes_list" extra_args %}
+{% for size in sizes.object_list %}
+<tr>
+<td>{{ size.title }}</td>
+<td><a href="{% url 'products.views.edit_size' size.pk %}">edit</a></td>
+<td><a href="{% url 'products.views.delete_size' size.pk %}">delete</a></td>
+</tr>
+{% endfor %}
+</table>
+            {% if sizes %}
+                    {% paginator_widget "products.views.sizes_list" sizes.number sizes.paginator.num_pages items %}
+            {% endif %}
+</div>
+{% endblock %}

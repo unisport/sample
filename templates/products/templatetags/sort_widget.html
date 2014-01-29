@@ -1,0 +1,34 @@
+{% load static %}
+<thead>
+<tr>
+    {% for item in sort_menu %}
+    {% if item.sort %}
+    <th class="uni_table_sort_link_conteiner" style="width:{{ item.width }}px">
+        {% if item.sort.active %}
+            {% if item.sort.active == "asc" %}
+                <a class="uni_table_sort_link uni_table_active_link" href="{{ item.url }}">
+            {% else %}
+                <a class="uni_table_sort_link uni_table_second_active_link" href="{{ item.url }}">
+            {% endif %}
+        {% else %}
+            <a class="uni_table_sort_link first_color" href="{{ item.url }}">
+        {% endif %}
+            {% if item.title %}
+                <span>{{ item.title }}</span>
+            {% else %}
+                <img height="1" width="1" alt="#" src="{% static 'css/images/empty.png' %}"  />
+            {% endif %}
+        </a>
+    </th>
+    {% else %}
+    <th style="width:{{ item.width }}px" {% if item.colspan %}colspan="{{ item.colspan }}" {% endif %}>
+        {% if item.title %}
+            <span>{{ item.title }}</span>
+        {% else %}
+            <img height="1" width="1" alt="#" src="{% static 'css/images/empty.png' %}"  />
+        {% endif %}
+    </th>
+    {% endif %}
+    {% endfor %}
+</tr>
+</thead>

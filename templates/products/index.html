@@ -1,0 +1,21 @@
+{% load static %}
+{% load main_menu %}
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8" />
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    {% block head %}
+{% endblock %}
+</head>
+<body>
+<div id="uni_centering">
+{% block menu %}
+    {% main_menu %}
+{% endblock %}
+{% block contents %}
+{% endblock %}
+</div>
+</body>
+</html>
