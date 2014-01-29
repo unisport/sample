@@ -1,0 +1,19 @@
+{% extends 'products/index.html' %}
+
+{% block contents %}
+<div class="uni_content">
+{# Set form action  #}
+{% if size_id %}
+    <form method="post" action="{% url 'products.views.edit_size' size_id %}">
+{% else %}
+    <form method="post" action="{% url 'products.views.edit_size' %}">
+{% endif %}
+    {% csrf_token %}
+    <table>
+{# Print form as table #}
+{{ form.as_table }}
+    </table>
+<input type="submit" value="Gem"/>
+        </form>
+</div>
+{% endblock %}

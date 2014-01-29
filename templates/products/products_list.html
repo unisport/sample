@@ -1,0 +1,23 @@
+{% extends 'products/index.html' %}
+{% load paginator_widget %}
+{% load sort_widget %}
+{% block contents %}
+<div class="uni_content">
+<table class="uni_backend_table">
+{% sort_widget sort_params sort_key sort_dir "products.views.products_list" extra_args %}
+{% for product in products.object_list %}
+<tr>
+<td>{{ product.name }}</td>
+<td>{{ product.price|floatformat:"2" }}</td>
+<td>{% for size in product.sizes.all %}{{ size.title }}{% if not forloop.last %}<br />{% endif %}{% endfor %}</td>
+<td class="uni_border_left">{% if product.from_json %}<a href="{% url 'products.views.view_product' product.pk %}" target="_blank">View original json</a>{% endif %}</td>
+<td><a href="{% url 'products.views.edit_product' product.pk %}">edit</a></td>
+<td><a href="{% url 'products.views.delete_product' product.pk %}">delete</a></td>
+</tr>
+{% endfor %}
+</table>
+            {% if products %}
+                    {% paginator_widget "products.views.products_list" products.number products.paginator.num_pages items %}
+            {% endif %}
+</div>
+{% endblock %}

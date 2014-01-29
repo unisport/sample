@@ -1,0 +1,41 @@
+{% load static %}
+{% if pages_total > 1 %}
+<div class="uni_pagination uni_mlr_22">
+
+    <a class="uni_pagination_button uni_pagination_prev_fors" href="{{ first }}"><<
+        <img height="1" width="1" alt="#" src="{% static 'css/images/empty.png' %}" />
+    </a>
+    {% if prev %}
+    <a class="uni_pagination_button uni_pagination_prev" href="{{ prev }}"><
+        <img height="1" width="1" alt="#" src="{% static 'css/images/empty.png' %}" />
+    </a>
+    {% endif %}
+    {% for number, link, active in paginator %}
+        {% if link %}
+            <a class="uni_pagination_link{% if active %} uni_pagination_actove_link{% endif %}" href="{{ link }}">{{ number }}</a>
+        {% else %}
+            <span class="uni_pagination_link">{{ number }}</span>
+        {% endif %}
+    {% endfor %}
+    {% if next %}
+    <a class="uni_pagination_button uni_pagination_next" href="{{ next }}">>
+        <img height="1" width="1" alt="#" src="{% static 'css/images/empty.png' %}" />
+    </a>
+    {% endif %}
+    <a class="uni_pagination_button uni_pagination_next_fors" href="{{ last }}">>>
+        <img height="1" width="1" alt="#" src="{% static 'css/images/empty.png' %}" />
+    </a>
+{% if qty_selector_enabled %}
+    <select onChange="update_page(this);" name="js_uni_dropdown_pagination" class="js_uni_dropdown_pagination uni_dropdown_pagination_select">
+    {% for qty, link, active in qty_selector %}
+        <option value="{{ link }}" {% if active %}selected="selected"{% endif %} title="{% static 'css/images/empty.png' %}">{{ qty }}</option>
+    {% endfor %}
+    </select>
+    <script type="text/javascript">
+        function update_page(element){
+            window.location = element.value;
+        }
+    </script>
+{% endif %}
+</div>
+{% endif %}

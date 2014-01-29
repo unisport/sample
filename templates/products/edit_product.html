@@ -1,0 +1,17 @@
+{% extends 'products/index.html' %}
+
+{% block contents %}
+<div class="uni_content">
+{% if product_id %}
+    <form method="post" action="{% url 'products.views.edit_product' product_id %}">
+{% else %}
+    <form method="post" action="{% url 'products.views.edit_product' %}">
+{% endif %}
+    {% csrf_token %}
+    <table>
+{{ form.as_table }}
+    </table>
+<input type="submit" value="Gem"/>
+        </form>
+</div>
+{% endblock %}

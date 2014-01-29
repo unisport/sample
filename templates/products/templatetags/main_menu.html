@@ -1,0 +1,27 @@
+<div class="uni_content">
+<table class="uni_menu_table">
+<tr>
+    <td>
+        <a href="{% url 'products.views.products_list' %}">Products list</a>
+    </td>
+    <td>
+        <a href="{% url 'products.views.sizes_list' %}">Sizes list</a>
+    </td>
+    <td>
+        <a href="{% url 'products.views.edit_product' %}">Add a product</a>
+    </td>
+    <td>
+        <a href="{% url 'products.views.edit_size' %}">Add a size</a>
+    </td>
+    <td>
+        <a href="{% url 'products.views.main_page' %}" target="_blank">Visit /products/</a>
+    </td>
+    <td>
+        <a href="{% url 'products.views.main_page' %}?page=2" target="_blank">Visit /products/?page=2</a>
+    </td>
+    <td>
+        <a href="{% url 'products.views.main_page' 'kids' %}" target="_blank">Visit /products/kids/</a>
+    </td>
+</tr>
+</table>
+</div>

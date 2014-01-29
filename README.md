@@ -1,33 +1,15 @@
-_Fork this project and send us a pull request_
+This version uses Python 2.6 and Django 1.5.1
 
-Write a simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+**1. manage.py syncdb**
+**2. manage.py build_db** - This builds the DB with items from JSON
 
+Visit **/products/product-list/** for a list of products from the DB. There are also links to product json, editing and deleting.
 
-**/products/**  
+You can also visit the links given in the assignment description:
 
+/products/
+/products/?page=2
+/products/kids/
+/products/id/
 
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
-
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
-
- **/products/id/**
- 
-should return the individual product.
-
-
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
-
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
-
-
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
-
+You can add parameter "items" to /products/?page= calls, to get a specific amount of items returned (5, 10, 14 etc.)
