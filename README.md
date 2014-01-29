@@ -1,7 +1,7 @@
 This version uses Python 2.6 and Django 1.5.1
 
-**1. manage.py syncdb ** <br/>
-**2. manage.py build_db** - This builds the DB with items from JSON
+**1. manage.py syncdb <br/>
+2. manage.py build_db** - This builds the DB with items from JSON
 
 Visit **/products/product-list/** for a list of products from the DB. There are also links to product json, editing and deleting.
 
