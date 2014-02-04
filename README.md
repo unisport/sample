@@ -1,33 +1,25 @@
-_Fork this project and send us a pull request_
-
-Write a simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
-
+Sample solution for given requirements
+data for project read directly from [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
 
 **/products/**  
-
-
-should return the first 10 objects ordered with the cheapest first.
+Returns the first 10 objects ordered with the cheapest first.
  
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
+**/products/kids/** 
+This sample solution has been made, so it tries matching the given string to a data paramter.
+Returns only the data where to paramter is 1. (Works for women, kids, adult-kids)
 
-**/products/?page=2**
- 
+**/products/?page=2** 
  The products should be paginated where **page** in the url above should return the next 10 objects  
+And so it does.
 
  **/products/id/**
- 
-should return the individual product.
+Returns the individual product.
 
 
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
+The bonus questions have not been completed, as the data source was static.
+The data could've been made local, editable or otherwise able to handle new input.
+But has not been a priority, due to the time contraints.
 
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
+This was made using Django 1.5.4 and Python 2.7.5
 
-
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
-
+Error messages left on on purpose.
