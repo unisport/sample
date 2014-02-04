@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Detaljer</title>
+</head>
+<body>
+
+{% if object %}
+	<table>
+		{% for key, value in object.items %}
+		<tr>
+			<td>{{key}}</td>
+			<td>{{value}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+	<img src="{{ object.img_url }}">
+
+	<table>
+		<tr>
+			<td></td>
+			<td>Kids</td>
+			<td>Women</td>
+			<td>Kid-adult</td>
+		</tr>
+		<tr>
+			<td>Available</td>
+			<td>{% if object.kids %}No{% else %}Yes{% endif %}</td>
+			<td>{% if object.women %}No{% else %}Yes{% endif %}</td>
+			<td>{% if object.kid_adult %}No{% else %}Yes{% endif %}</td>
+		</tr>
+	</table>
+	<p>Sizes: </p>
+{% else %}
+    <p>Product not found</p>
+{% endif %}
+
+
+</body>
+</html>
