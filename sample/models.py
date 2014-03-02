@@ -6,7 +6,8 @@ db = SQLAlchemy()
 
 class Item(db.Model):
   __tablename__ = 'item'
-  id          = db.Column(db.Integer, primary_key=True)
+  iid         = db.Column(db.Integer, primary_key=True, autoincrement=True)
+  id          = db.Column(db.Integer)
   kids        = db.Column(db.Boolean)
   kid_adult   = db.Column(db.Boolean)
   women       = db.Column(db.Boolean)
@@ -34,8 +35,7 @@ class Item(db.Model):
                delivery, 
                price_old, 
                price):
-    self.id = id 
-    self.kids = kids
+    self.id = int(id)
     self.kid_adult = kid_adult
     self.women = women
     self.package = package
@@ -43,7 +43,7 @@ class Item(db.Model):
     self.name = name
     self.url = url
     self.img_url = img_url
-    self.sizes = sizes, 
+    self.sizes = sizes
     self.delivery = delivery
     self.price_old = price_old
     self.price = price
