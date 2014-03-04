@@ -50,3 +50,7 @@ class Item(db.Model):
 
   def __repr__(self):
     return '<Item %r>' % self.name
+
+  @classmethod
+  def by_id(cls, itemId):
+    return cls.query.filter_by(iid=itemId).first()

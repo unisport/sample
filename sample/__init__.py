@@ -24,3 +24,5 @@ db.init_app(app)
 
 migrate = Migrate(app, db)
 manager = Manager(app)
+
+from sample import models, routes
