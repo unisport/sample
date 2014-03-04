@@ -22,12 +22,18 @@ class SampleTestCase(unittest.TestCase):
     os.system("python manage.py db upgrade --directory=test_migrations")
     os.system("python manage.py seed")
 
+    self.app = sample.app.test_client()
+
   def tearDown(self):
     try:
       os.remove('/tmp/sample.db')
       shutil.rmtree(self.basedir + '/test_migrations')
     except OSError:
       pass
+
+  def test_get_by_id(self):
+    rv = self.app.get('/products/2/')
+    assert bytes("puma-spilletroje-vencida-hvidbla-born-tilbud", 'UTF-8') in rv.data
 
 if __name__ == '__main__':
   unittest.main()
