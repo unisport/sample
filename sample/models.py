@@ -36,8 +36,9 @@ class Item(db.Model):
                price_old, 
                price):
     self.id = int(id)
-    self.kid_adult = kid_adult
-    self.women = women
+    self.kids = int(kids)
+    self.kid_adult = int(kid_adult)
+    self.women = int(women)
     self.package = package
     self.free_porto = free_porto
     self.name = name
