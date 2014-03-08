@@ -34,12 +34,21 @@ class SampleTestCase(unittest.TestCase):
   def test_get_by_id(self):
     rv = self.app.get('/products/2/')
     rv2 = self.app.get('/products/50/')
+
     assert bytes("puma-spilletroje-vencida-hvidbla-born-tilbud", 'UTF-8') in rv.data
     assert bytes('No item found', 'UTF-8') in rv2.data
 
   def test_get_by_gender(self):
     rv = self.app.get('/products/kids/')
+    rv2 = self.app.get('/products/kid_adult/')
+    rv3 = self.app.get('/products/women/')
+    rv4 = self.app.get('/products/some_invalid_route/')
 
+    assert bytes('kids : True', 'UTF-8') in rv.data
+    assert bytes('kids : False', 'UTF-8') not in rv.data
+    assert bytes('No items found', 'UTF-8') in rv2.data
+    assert bytes('No items found', 'UTF-8') in rv3.data
+    assert bytes('Not valid', 'UTF-8') in rv4.data
 
 if __name__ == '__main__':
   unittest.main()
