@@ -55,3 +55,14 @@ class Item(db.Model):
   @classmethod
   def by_id(cls, itemId):
     return cls.query.filter_by(iid=itemId).first()
+
+  @classmethod
+  def by_gender(cls, gender):
+    if gender == 'kids':
+      return cls.query.filter_by(kids=1).all()
+    elif gender is 'kid_adult':
+      return cls.query.filter_by(kid_adult=True).all()
+    elif gender is 'women':
+      return cls.query.filter_by(women=True).all()
+    else:
+      return None
