@@ -50,6 +50,28 @@ class SampleTestCase(unittest.TestCase):
     assert bytes('No items found', 'UTF-8') in rv3.data
     assert bytes('Not valid', 'UTF-8') in rv4.data
 
+  def test_products(self):
+    import re
+    rv = self.app.get('/products/')
+    rv2 = self.app.get('/products/page/2')
+    rv3 = self.app.get('/products/page/3')
+    rv4 = self.app.get('/products/page/4')
+    print(rv4.data)
+    
+    assert len(re.findall(bytes('iid', 'UTF-8'), rv.data)) == 10
+    assert bytes('iid : 11', 'UTF-8') not in rv.data
+    assert bytes('iid : 1', 'UTF-8') in rv.data
+
+    assert len(re.findall(bytes('iid', 'UTF-8'), rv2.data)) == 10
+    assert bytes('iid : 21', 'UTF-8') not in rv2.data
+    assert bytes('iid : 9', 'UTF-8') not in rv2.data
+    assert bytes('iid : 11', 'UTF-8') in rv2.data
+
+    assert len(re.findall(bytes('iid', 'UTF-8'), rv3.data)) == 10
+    assert bytes('iid : 19', 'UTF-8') not in rv3.data
+    assert bytes('iid : 21', 'UTF-8') in rv3.data
+
+    assert bytes('No items found', 'UTF-8') in rv4.data
 if __name__ == '__main__':
   unittest.main()
 
