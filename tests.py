@@ -44,6 +44,10 @@ class SampleTestCase(unittest.TestCase):
     rv3 = self.app.get('/products/women/')
     rv4 = self.app.get('/products/some_invalid_route/')
 
+    prices = rv.data.split(bytes('price : ', 'UTF-8'))
+    prices = [float(price.split(bytes('<br>', 'UTF-8'))[0]) for price in prices[1:]]
+
+    assert prices == sorted(prices)
     assert bytes('kids : True', 'UTF-8') in rv.data
     assert bytes('kids : False', 'UTF-8') not in rv.data
     assert bytes('No items found', 'UTF-8') in rv2.data
@@ -56,20 +60,25 @@ class SampleTestCase(unittest.TestCase):
     rv2 = self.app.get('/products/page/2')
     rv3 = self.app.get('/products/page/3')
     rv4 = self.app.get('/products/page/4')
-    print(rv4.data)
-    
-    assert len(re.findall(bytes('iid', 'UTF-8'), rv.data)) == 10
-    assert bytes('iid : 11', 'UTF-8') not in rv.data
-    assert bytes('iid : 1', 'UTF-8') in rv.data
 
+    prices = rv.data.split(bytes('price : ', 'UTF-8'))
+    prices = [float(price.split(bytes('<br>', 'UTF-8'))[0]) for price in prices[1:]]
+
+    prices2 = rv.data.split(bytes('price : ', 'UTF-8'))
+    prices2  = [float(price.split(bytes('<br>', 'UTF-8'))[0]) for price in prices2[1:]]
+    
+    prices3 = rv.data.split(bytes('price : ', 'UTF-8'))
+    prices3 = [float(price.split(bytes('<br>', 'UTF-8'))[0]) for price in prices3[1:]]
+
+    assert prices == sorted(prices)
+    assert len(re.findall(bytes('iid', 'UTF-8'), rv.data)) == 10
+
+    assert prices2 == sorted(prices2)
     assert len(re.findall(bytes('iid', 'UTF-8'), rv2.data)) == 10
     assert bytes('iid : 21', 'UTF-8') not in rv2.data
-    assert bytes('iid : 9', 'UTF-8') not in rv2.data
-    assert bytes('iid : 11', 'UTF-8') in rv2.data
 
+    assert prices3 == sorted(prices3)
     assert len(re.findall(bytes('iid', 'UTF-8'), rv3.data)) == 10
-    assert bytes('iid : 19', 'UTF-8') not in rv3.data
-    assert bytes('iid : 21', 'UTF-8') in rv3.data
 
     assert bytes('No items found', 'UTF-8') in rv4.data
 if __name__ == '__main__':

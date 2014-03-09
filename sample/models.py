@@ -46,8 +46,8 @@ class Item(db.Model):
     self.img_url = img_url
     self.sizes = sizes
     self.delivery = delivery
-    self.price_old = price_old
-    self.price = price
+    self.price_old = float(price_old.replace(',', '.'))
+    self.price = float(price.replace(',','.'))
 
   def __repr__(self):
     return '<Item %r>' % self.name
@@ -57,7 +57,7 @@ class Item(db.Model):
     if isinstance(page, int):
       lower = (page - 1) * 10
       upper = lower + 10
-      return cls.query.all()[lower:upper]
+      return cls.query.order_by(cls.price).all()[lower:upper]
 
   @classmethod
   def by_id(cls, itemId):
@@ -66,10 +66,10 @@ class Item(db.Model):
   @classmethod
   def by_gender(cls, gender):
     if gender == 'kids':
-      return cls.query.filter_by(kids=1).all()
+      return cls.query.filter_by(kids=1).order_by(cls.price).all()
     elif gender is 'kid_adult':
-      return cls.query.filter_by(kid_adult=True).all()
+      return cls.query.filter_by(kid_adult=True).order_by(cls.price).all()
     elif gender is 'women':
-      return cls.query.filter_by(women=True).all()
+      return cls.query.filter_by(women=True).order_by(cls.price).all()
     else:
       return None
