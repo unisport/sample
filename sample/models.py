@@ -53,6 +53,13 @@ class Item(db.Model):
     return '<Item %r>' % self.name
 
   @classmethod
+  def by_page(cls, page):
+    if isinstance(page, int):
+      lower = (page - 1) * 10
+      upper = lower + 10
+      return cls.query.all()[lower:upper]
+
+  @classmethod
   def by_id(cls, itemId):
     return cls.query.filter_by(iid=itemId).first()
 
