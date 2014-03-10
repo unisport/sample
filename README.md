@@ -1,33 +1,48 @@
-_Fork this project and send us a pull request_
+A simple python webservice in Flask that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/). The webservice is tested with Python 3.3.4
 
-Write a simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+####Setup:
 
+1. Create a virtualenv e.g.:
 
-**/products/**  
+        mkvirtualenv sample
 
+2. Install necessary requirements with pip:
 
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
+        pip install -r requirements
 
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
+3. Run tests:
 
- **/products/id/**
- 
-should return the individual product.
+        python tests.py
 
+4. Sync the database:
 
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
+        python manage.py db init
+        python manage.py db upgrade
+        python manage.py db migrate
+        python manage.py seed
 
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
+5. Run the server:
+
+        python manage.py runserver
 
 
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
+####Usage
+1. Returns the 10 cheapest items
 
+        GET
+        /products/
+
+2. Return the products where kids=1 ordered with the cheapest first
+
+        GET
+        /products/kids/
+
+3. Paginated where **page** in the url returns the next 10 objects  
+
+        GET
+        /products/page/2
+
+4. Return the individual product
+    
+        GET 
+        /products/id/
