@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table style="text-align:left";>
+	<thead>
+		<tr><th style="width: 50px;">ID</th>
+			<th style="width: 350px;">Name</th>
+			<th style="width: 80px;">Price</th>
+			<th style="width: 150px;">Product ID</th>
+		</tr>
+	</thead>
+	<tbody style="width: 350px;">
+{% for Product in list %}
+		<tr>
+			<td>
+				{{ Product.id}}
+			</td>
+			<td>
+				<a href="/id/{{ Product.id}}">{{ Product.name }}</a>
+			</td>
+			<td>
+				{{ Product.price}}
+			</td>
+			<td>
+				{{ Product.productID}}
+			</td>
+		</tr>
+{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

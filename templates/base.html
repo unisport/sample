@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Webdesign</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+<div id="header"><h1>Unitbets webapp</h1></div>
+<div id="options"><h3>Welcome to the small app i have designed</h3>
+<h4>Here is a list of the options available for you:</h4>
+<ul>
+	<li><h5>root</h5> - will show you the list in the order i received it from the API</li>
+	<li><h5>products/?</h5> - ? indicates page number. Shows 10 items from the list ordered by price. No argument will give the full list instead of 10 items</li>
+	<li><h5>/products/kids/?</h5>- ? indicates page number. Show 10 items from the list that has kids = 1 ordered by price. No argument will give the full list instead of 10 items </li>
+	<li><h5>/products/id/?</h5> - ? indicates id number or productID can be found by both id's. Show the items you have searched for. No argument will raise 404 </li>
+	<li><h5>/admin</h5> - Use the SuperAdmin user/pass you created the database with for an administrative platform, allowing you to manage the list </li>
+</ul>
+
+
+
+</div>
+
+
+<div id="content"><h2>Content:</h2>
+
+{% block content %}
+	
+	
+
+{% endblock %}
+
+</div>
+
+
+</body>
+</html>

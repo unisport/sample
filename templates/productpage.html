@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	{% if Product %}		
+			
+	<ul>
+		<li>
+			<p>kids: {{ Product.kids }}</p>
+		</li>
+		<li>
+			<p>Name: {{ Product.name}}</p>
+		</li>
+		<li>
+			<p>sizes: {{ Product.sizes}}</p>
+		</li>
+		<li>
+			<p>kid_adult: {{ Product.kid_adult}} </p>
+		</li>
+		<li>
+			<p>free_porto: {{ Product.free_porto}}</p>
+		</li>
+		<li>
+			<p>price: {{ Product.price}}</p>
+		</li>
+		<li>
+			<p>package: {{ Product.package}}</p>
+		</li>
+		<li>
+			<p>url: {{ Product.url}}</p>
+		</li>
+		<li>
+			<p>price_old: {{ Product.price_old}}</p>
+		</li>
+		<li>
+			<p>img_url: {{ Product.img_url}}</p>
+		</li>
+		<li>
+			<p>productID: {{ Product.productID}}</p>
+		</li>
+		<li>
+			<p>women: {{ Product.women}}</p>
+		</li>
+	
+	</ul>
+	{% else %}
+		<h2>The id your are looking for gave no results</h2>
+
+	{% endif %}
+{% endblock %}
