@@ -28,7 +28,7 @@ def import_json_data(j_data):
             res['created'].append(p)
         else:
             res['updated'].append(p)
-    
+
     return res
 
 

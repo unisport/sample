@@ -11,7 +11,7 @@ from django.test.utils import override_settings
 
 from django_dynamic_fixture import G
 
-from product.models import Product, Size
+from product.models import Product
 from product.utils import json_to_product
 
 
@@ -67,7 +67,7 @@ class ViewTestCase(TestCase):
         json_data = json.loads(response.content)
         json_pids = [p['id'] for p in json_data[domain]]
 
-        self.assertTrue(all([x == y for x,y in zip(json_pids, expected)]))
+        self.assertTrue(all([x == y for x, y in zip(json_pids, expected)]))
 
     def test_products_view(self):
         """
@@ -77,7 +77,6 @@ class ViewTestCase(TestCase):
         pids = Product.objects.all().order_by('price').values_list('pid', flat=True)[:10]
 
         self._test_response_by_ids(response, 'cheapest', pids)
-
 
     def test_products_kids_view(self):
         """

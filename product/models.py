@@ -7,7 +7,7 @@ class Product(models.Model):
     """
     Product model
 
-    Note: 
+    Note:
         from Unisport API, it seems all fields are not blank
         id is the primary key in this service while pid is the ID from Unisport
     """
@@ -40,7 +40,7 @@ class Product(models.Model):
     def as_json(self):
         """
         Returns exactly the same json string as Unisport does for a product
-        Note, the sequence of `sizes` cannot be guaranteed 
+        Note, the sequence of `sizes` cannot be guaranteed
         """
         json = {}
 

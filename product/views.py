@@ -3,7 +3,7 @@
 import json
 
 from django.conf import settings
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 
@@ -12,6 +12,7 @@ from .models import Product
 
 def _json_response(data):
     return HttpResponse(json.dumps(data), content_type='application/json')
+
 
 def products(request):
     """
