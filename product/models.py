@@ -21,6 +21,8 @@ class Product(models.Model):
     kids = models.IntegerField()
     women = models.IntegerField()
 
+    sizes = models.ManyToManyField('product.Size')
+
 
 class Size(models.Model):
     name = models.CharField(max_length=128)
