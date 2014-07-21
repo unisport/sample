@@ -18,10 +18,18 @@ from product.utils import json_to_product
 class UtilsTestCase(TestCase):
 
     def setUp(self):
+        """
+        We keep a copy of sample json in repo
+        because we do not want to our tests are depend on Internet connection
+        """
         curr = os.path.dirname(os.path.dirname(__file__))
         self.data = json.load(open(os.path.join(curr, 'sample.json'), 'r'))
 
     def test_json_to_product(self):
+        """
+        Creates one product by importing json
+        the second time we import the same json, it'd only to update product
+        """
         p_data = self.data['latest'][0]
         product, created = json_to_product(p_data)
 
@@ -50,33 +58,32 @@ class ViewTestCase(TestCase):
 
         self.client = Client()
 
+    def _test_response_by_ids(self, response, domain, expected):
+        self.assertEqual(response.status_code, 200)
+
+        json_data = json.loads(response.content)
+        json_pids = [p['id'] for p in json_data[domain]]
+
+        self.assertTrue(all([x == y for x,y in zip(json_pids, expected)]))
+
     def test_products_view(self):
         """
         /products returns the first 10 objects ordered with the cheapest first
         """
         response = self.client.get(reverse('product.views.products'))
-        self.assertEqual(response.status_code, 200)
-
-        json_data = json.loads(response.content)
-        json_pids = [p['id'] for p in json_data['cheapest']]
-
         pids = Product.objects.all().order_by('price').values_list('pid', flat=True)[:10]
 
-        self.assertTrue(all([x == y for x,y in zip(json_pids, pids)]))
+        self._test_response_by_ids(response, 'cheapest', pids)
+
 
     def test_products_kids_view(self):
         """
         /products/kids returns the first 10 objects where kids=1 ordered with the cheapest first
         """
         response = self.client.get(reverse('product.views.kids'))
-        self.assertEqual(response.status_code, 200)
-
-        json_data = json.loads(response.content)
-        json_pids = [p['id'] for p in json_data['cheapest']]
-
         pids = Product.objects.filter(kids=1).order_by('price').values_list('pid', flat=True)[:10]
 
-        self.assertTrue(all([x == y for x,y in zip(json_pids, pids)]))
+        self._test_response_by_ids(response, 'cheapest', pids)
 
     @override_settings(PRODUCTS_PER_PAGE=2)
     def test_products_view_with_paginator(self):
@@ -84,15 +91,10 @@ class ViewTestCase(TestCase):
         /products/?page=2 returns the next 10 objects ordered with the cheapest first
         """
         response = self.client.get(reverse('product.views.products') + '?page=2')
-        self.assertEqual(response.status_code, 200)
-
-        json_data = json.loads(response.content)
-        json_pids = [p['id'] for p in json_data['cheapest']]
-
         pids = Product.objects.all().order_by('price').values_list('pid', flat=True)\
             [settings.PRODUCTS_PER_PAGE:settings.PRODUCTS_PER_PAGE*2]
 
-        self.assertTrue(all([x == y for x,y in zip(json_pids, pids)]))
+        self._test_response_by_ids(response, 'cheapest', pids)
 
     def test_single_view(self):
         """
