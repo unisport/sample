@@ -59,3 +59,6 @@ class Product(models.Model):
 
 class Size(models.Model):
     name = models.CharField(max_length=128)
+
+    def __unicode__(self):
+        return u'{0}'.format(self.name)
