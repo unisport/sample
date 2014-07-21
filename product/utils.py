@@ -22,7 +22,6 @@ def import_json_data(j_data):
     """
     res = {'created': [], 'updated': []}
     for p_data in j_data['latest']:
-        print p_data
         p, created = json_to_product(p_data)
 
         if created:
@@ -37,6 +36,8 @@ def json_to_product(j_data):
     """
     Import single Product
     """
+    j_data = j_data.copy()
+
     sizes = j_data.pop('sizes', '')
     delivery = j_data.pop('delivery', '')
 
@@ -56,7 +57,7 @@ def json_to_product(j_data):
     j_data['price_old'] = _convert_price(j_data['price_old'])
 
     # import product
-    p, created = Product.objects.get_or_create(p_id=j_data['id'], defaults=j_data)
+    p, created = Product.objects.get_or_create(pid=j_data['id'], defaults=j_data)
 
     # Complete Product -- Size relation
     if sizes:

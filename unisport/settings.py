@@ -81,3 +81,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Paginator settings
+PRODUCTS_PER_PAGE = 10
