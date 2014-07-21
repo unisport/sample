@@ -1,3 +1,32 @@
+Installation
+------------
+First to install required packages
+
+.. code-block:: bash
+
+   $ pip install -r requirements.txt
+
+Then prepare db and do a init importing from Unisport
+
+.. code-block:: bash
+
+   $ ./manage.py syncdb
+	 $ ./manage.py import_products
+
+* This project is written with python 2.7. There is no guarantee it works with other python versions.
+* If you are fond of `Virtualenv <https://pypi.python.org/pypi/virtualenv>`_ , please prepare the environment  
+yourself. It's not part of this README.
+
+Tips
+-------
+
+* _`import_products` command can be run as many times as you want. It create products which do not exist and update
+existing products._
+* It's recommanded to create super user when running `./manage.py syncdb`, because this project uses Django admin.
+
+Requirements
+---------------
+
 _Fork this project and send us a pull request_
 
 Write a simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
@@ -30,4 +59,3 @@ should return the individual product.
 
 
 _You are welcome to use any thirdparty python web framework or library that you are familiar with._  
-
