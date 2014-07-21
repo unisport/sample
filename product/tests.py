@@ -45,8 +45,11 @@ class UtilsTestCase(TestCase):
 
         # if we import this again
         # no new product should be created
+        # but to update product
+        p_data['name'] = 'test'
         product, created = json_to_product(p_data)
 
+        self.assertEqual(product.name, 'test')
         self.assertFalse(created)
 
 

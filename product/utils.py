@@ -59,6 +59,12 @@ def json_to_product(j_data):
     # import product
     p, created = Product.objects.get_or_create(pid=j_data['id'], defaults=j_data)
 
+    # to update product if it exists
+    if not created:
+        for key in j_data:
+            setattr(p, key, j_data[key])
+        p.save()
+
     # Complete Product -- Size relation
     if sizes:
         sizes = sizes.split(',')
