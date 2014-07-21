@@ -34,7 +34,7 @@ class Product(models.Model):
         return u'id:{0} {1}'.format(self.pid, self.name)
 
     @property
-    def delievery(self):
+    def delivery(self):
         return u'{0}-{1} dage'.format(self.min_delivery_day, self.max_delivery_day)
 
     def as_json(self):
