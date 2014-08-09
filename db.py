@@ -63,15 +63,42 @@ def setup():
         # id now int
         DATA[product['id']] = product
 
-
-def get_items_by_price(n_items=None, offset=0):
-    """ get n_items elemenent at any offset """
-    sort_prod = sorted(DATA.values(), key=lambda x: x['price'])
-    if n_items:
-        return sort_prod[offset:offset+n_items]
-    else:
-        return sort_prod
-
 def get_product(pid):
     """ return product by product id """
     return DATA[pid]
+
+def del_product(pid):
+    """ delete product """
+    del DATA[pid]
+
+def get_all_products():
+    """ return all products """
+    return DATA.values()
+    
+def get_all_matching_products(**kwargs):
+    """ search db for matching key-vals (AND match) """
+    res = []
+    for prod in get_all_products():
+        for field, search_val in kwargs.items():
+            if prod[field] != search_val:
+                break
+        else:
+            res.append(prod)
+    return res
+
+def sort_by(lst, field):
+    """ helper function to sort by field """
+    return sorted(lst, key=lambda x: x[field])
+
+def pick_items(lst, n_items=None, offset=0):
+    """ helper function to pick n items from offset in array """
+    if n_items:
+        return lst[offset:offset+n_items]
+    else:
+        return lst[offset:]
+
+def get_items_by_price(n_items=None, offset=0):
+    """ get n_items elemenent at any offset """
+    return pick_items(sort_by(get_all_products(), 'price'), n_items, offset)
+
+
