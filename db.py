@@ -30,7 +30,7 @@ def to_float(val):
 
 def to_bool(val):
     """ json string to py bool """
-    if val == u'1' or val == u'True':
+    if val == u'1' or val == u'True' or val == u'true':
         return True
     else:
         return False
@@ -56,18 +56,3 @@ for o in DATA_PRE:
         if f:
             o[k] = f(o[k])
     DATA[o['id']] = o
-
-
-if __name__ == "__main__":
-    # minimal testing
-    assert to_bool('2') == False
-    assert to_bool('1') == True
-    assert to_bool('0') == False
-    assert to_float('346.45') == 346.45
-    assert to_float('30') == 30.0
-
-    product = DATA.values()[0]
-    assert isinstance(product['id'], int)
-    assert isinstance(product['price'], float)
-    assert isinstance(product['price'], float)
-    assert product['price'] == 149.00
