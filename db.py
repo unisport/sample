@@ -23,10 +23,12 @@ __author__ = "Jakob Goldbach"
 import urllib2
 import json
 
+# our dict of products by product_id for fast lookup
+DATA = {}
 
 def to_float(val):
-    """ dk locale to python - breaks with thousand seperator"""
-    return float(val.replace(',', '.'))
+    """ dk locale to python """
+    return float(val.replace('.', '').replace(',', '.'))
 
 def to_bool(val):
     """ json string to py bool """
@@ -35,24 +37,41 @@ def to_bool(val):
     else:
         return False
 
-# function map for casting to types
-CONV = {'price':      to_float,
-        'price_old':  to_float,
-        'id':         int,
-        'package':    to_bool,
-        'free_porto': to_bool,
-        'kids':       to_bool,
-        'women':      to_bool,
-        'kid_adult':  to_bool, }
+def convert_types(obj):
+    """ convert product fields to right types """
+    conv = {'price':      to_float,
+            'price_old':  to_float,
+            'id':         int,
+            'package':    to_bool,
+            'free_porto': to_bool,
+            'kids':       to_bool,
+            'women':      to_bool,
+            'kid_adult':  to_bool, }
+    for k in obj.keys():
+        f_cast = conv.get(k, None)
+        if f_cast:
+            obj[k] = f_cast(obj[k])
+    return obj
 
-DATA_PRE = json.loads(
-    urllib2.urlopen('http://unisport.dk/api/sample').read())['latest']
-# our in-memory "backend" database
-DATA = {}
-# cast keys to right type and save under product id
-for o in DATA_PRE:
-    for k in o.keys():
-        f = CONV.get(k, None)
-        if f:
-            o[k] = f(o[k])
-    DATA[o['id']] = o
+
+def setup():
+    """ initialize data from unisport """
+    raw_list = json.loads(
+        urllib2.urlopen('http://unisport.dk/api/sample').read())['latest']
+    for product in raw_list:
+        product = convert_types(product)
+        # id now int
+        DATA[product['id']] = product
+
+
+def get_items_by_price(n_items=None, offset=0):
+    """ get n_items elemenent at any offset """
+    sort_prod = sorted(DATA.values(), key=lambda x: x['price'])
+    if n_items:
+        return sort_prod[offset:offset+n_items]
+    else:
+        return sort_prod
+
+def get_product(pid):
+    """ return product by product id """
+    return DATA[pid]

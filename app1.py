@@ -27,18 +27,12 @@ import flask
 import json
 
 # our dict of products.
-from db import DATA
+import db
+
+db.setup()
 
 app = flask.Flask(__name__)
 
-# workhorse of this app: get n elements at any offset ordered by price
-def get_items_by_price(n_items=None, offset=0):
-    """ get n_items elemenent at any offset """
-    sort_prod = sorted(DATA.values(), key=lambda x: x['price'])
-    if n_items:
-        return sort_prod[offset:offset+n_items]
-    else:
-        return sort_prod
 
 # also supports /products/?count=20&page=4
 @app.route('/products/')
@@ -50,18 +44,18 @@ def products():
     page -= 1
     count = int(flask.request.args.get('count', '10'))
     # this is wrong if we add/remove products while user is paginating
-    return json.dumps(get_items_by_price(count, count*page))
+    return json.dumps(db.get_items_by_price(count, count*page))
 
 @app.route('/products/kids')
 def kids():
     """ return kids stuff """
-    return json.dumps(filter(lambda x: x['kids'], get_items_by_price()))
+    return json.dumps(filter(lambda x: x['kids'], db.get_items_by_price()))
 
 @app.route('/products/<int:pid>/')
 def by_id(pid):
     """ lookup by product id """
     # in list to be consistent with other methods
-    return json.dumps([DATA.get(pid, "No such product id %d" % pid)])
+    return json.dumps([db.get_product(pid)])
 
 
 if __name__ == '__main__':
