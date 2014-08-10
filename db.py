@@ -1,20 +1,12 @@
-""" Load data and cast values to Python types
+""" Our database engine. 
 
-data will a dict with product id as key and product as value.
-Each product is a dict with values cast to meaningful types
+DATA is a dict of product with product_id as key.
 
-Notes:
+Raw data from unisport.dk is imported and converted from DK locale
+and bool/int/float strings to python ditto types.
 
-First version of our main data structure was a list of products
-as this it how it came from sample api.
-
-I realized I had to casting to do when I saw prices was in DK locale.
-I wrote a simple testcase under __main__ which I find useful as a minimal
-testing "framework". Decided to cast a few others to bool (kids in particular)
-and then product id to int.
-
-When I had to get product by id I changed into a dict of products
-with id as key (which I should have done up front)
+Interface supports insert, delete, update and serching. See tests.py
+for examples.
 
 """
 
@@ -101,4 +93,12 @@ def get_items_by_price(n_items=None, offset=0):
     """ get n_items elemenent at any offset """
     return pick_items(sort_by(get_all_products(), 'price'), n_items, offset)
 
+def insert(json_data):
+    DATA[json_data['id']] = json_data
+    return DATA[json_data['id']]
 
+def update(pid, json_data):
+    prod = get_product(pid)
+    prod.update(json_data)
+    DATA[pid] = prod
+    return prod
