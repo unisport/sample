@@ -72,6 +72,8 @@ def get_all_matching_products(**kwargs):
     res = []
     for prod in get_all_products():
         for field, search_val in kwargs.items():
+            if not field in prod:
+                break
             if prod[field] != search_val:
                 break
         else:
