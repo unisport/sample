@@ -1,4 +1,4 @@
-""" Our database engine. 
+""" Our database engine.
 
 DATA is a dict of product with product_id as key.
 
@@ -66,7 +66,7 @@ def del_product(pid):
 def get_all_products():
     """ return all products """
     return DATA.values()
-    
+
 def get_all_matching_products(**kwargs):
     """ search db for matching key-vals (AND match) """
     res = []
@@ -94,10 +94,12 @@ def get_items_by_price(n_items=None, offset=0):
     return pick_items(sort_by(get_all_products(), 'price'), n_items, offset)
 
 def insert(json_data):
+    """ insert dict by product id to database """
     DATA[json_data['id']] = json_data
     return DATA[json_data['id']]
 
 def update(pid, json_data):
+    """ update keys from submitted data to database """
     prod = get_product(pid)
     prod.update(json_data)
     DATA[pid] = prod
