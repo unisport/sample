@@ -10,7 +10,7 @@ curl localhost:5000/products/kids/?count=4&page=2
 curl localhost:5000/products/103889/ -X PUT -d '{"free_porto": true}' 
 curl localhost:5000/products/free_porto/
 curl localhost:5000/products/ -X POST -H 'Content-Type: application/json'  -d '{"id": 8, "price": 25.0, "name": "Good stuff"}' 
-curl localhost:5000/product/103896/ -X delete -v
-curl localhost:5000/product/103896/ 
+curl localhost:5000/products/103896/ -X delete -v
+curl localhost:5000/products/103896/ 
 
 
