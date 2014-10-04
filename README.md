@@ -31,3 +31,12 @@ should return the individual product.
 
 _You are welcome to use any thirdparty python web framework or library that you are familiar with._  
 
+
+####Installation:
+pip install -r requirements.txt
+
+#### Run:
+python run.py 
+
+it should start service on localhost:5000
+
