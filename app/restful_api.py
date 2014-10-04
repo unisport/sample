@@ -1,7 +1,10 @@
+from app.data_storage import StreamDataStorage
+from app.models import Product
 from data_source import StreamDataSource
 from flask import request, jsonify
 import os
-from usecases import get_kids_products_sorted_by_price, get_products_paginated, get_product_by_id
+from usecases import get_kids_products_sorted_by_price, get_products_paginated, get_product_by_id, delete_product, \
+    update_product, create_product
 from flask_app import app
 from flask.ext import restful
 
@@ -69,19 +72,45 @@ class ProductId(restful.Resource):
         return jsonify(res.__dict__)
 
     def delete(self, product_id):
-        "remove"
-        data_source = StreamDataSource.file_stream_factory(DATA_FILE_PATH)
+        """remove"""
+        stream = open(DATA_FILE_PATH, "r+")
 
-        res = delete_product(product_id)
-        pass
+        data_source = StreamDataSource(stream)
+        data_storage = StreamDataStorage(stream)
+
+        delete_product(data_source.get_data(), data_storage, product_id)
+
+        return {
+            "status": "DELETED"
+        }
 
     def put(self, product_id):
-        "create"
-        pass
+        """create"""
+        stream = open(DATA_FILE_PATH, "r+")
+
+        data_source = StreamDataSource(stream)
+        data_storage = StreamDataStorage(stream)
+
+        product = Product(id=product_id, **request.args)
+
+        res = create_product(data_source.get_data(), data_storage, product)
+
+        return {
+            "status": "CREATED"
+        }
 
     def post(self, product_id):
-        "update"
-        pass
+        """update"""
+        data_source = StreamDataSource.file_stream_factory(DATA_FILE_PATH)
+        data_storage = StreamDataStorage.file_stream_factory(DATA_FILE_PATH)
+
+        product = Product(id=product_id, **request.args)
+
+        update_product(data_source.get_data(), data_storage, product)
+
+        return {
+            "status": "UPDATED"
+        }
 
 
 rest.add_resource(Products, '/products/')

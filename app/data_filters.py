@@ -35,14 +35,19 @@ class SortingFilter(BaseFilter):
 
 
 class KeyValueFilter(BaseFilter):
-    def __init__(self, key, value):
+    def __init__(self, key, value, inverse=False):
         self.key = key
         self.value = value
+        self.inverse = inverse
 
     def apply(self, data):
         for item in data:
-            if getattr(item, self.key) == self.value:
-                yield item
+            if self.inverse:
+                if getattr(item, self.key) != self.value:
+                    yield item
+            else:
+                if getattr(item, self.key) == self.value:
+                    yield item
 
 
 class CompositeFilter(BaseFilter):

@@ -72,6 +72,18 @@ class TestKeyValueFilter(TestCase):
         self.assertTrue(type(res), types.GeneratorType)
         self.assertEqual(list(res), [doc3, doc4])
 
+    def test_inverse(self):
+        doc1 = Product(title="Nike Boots", kids="0")
+        doc2 = Product(title="Adidas Boots", kids="0")
+        doc3 = Product(title="Loli t-shirt", kids="1")
+        doc4 = Product(title="Mickey Mouse Cap", kids="1")
+        doc5 = Product(title="Puma T-Shirt", kids="0")
+
+        res = KeyValueFilter(key='kids', value="1", inverse=True).apply(item for item in [doc1, doc2, doc3, doc4, doc5])
+
+        self.assertTrue(type(res), types.GeneratorType)
+        self.assertEqual(list(res), [doc1, doc2, doc5])
+
 
 class TestCompositeFilter(TestCase):
 
