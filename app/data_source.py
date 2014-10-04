@@ -1,7 +1,6 @@
 import json
 import urllib2
 from app.models import Document
-import os
 
 
 class DataSource(object):
@@ -24,15 +23,13 @@ class StreamDataSource(DataSource):
             yield Document(**item)
 
     @staticmethod
-    def unisport_url_stream_factory():
+    def url_stream_factory(url):
         return StreamDataSource(
-            urllib2.urlopen('http://www.unisport.dk/api/sample/')
+            urllib2.urlopen(url)
         )
 
     @staticmethod
-    def file_stream_factory():
+    def file_stream_factory(file_path):
         return StreamDataSource(
-            open("{path}/data.json".format(
-                path=os.path.dirname(os.path.realpath(__file__))
-            ))
+            open(file_path)
         )
