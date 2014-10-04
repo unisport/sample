@@ -1,5 +1,6 @@
 import itertools
 from app.data_filters import KeyValueFilter, CompositeFilter, SortingFilter, PaginationFilter
+from app.exceptions import SuchProductAlreadyExists
 
 
 def get_product_by_id(data, product_id):
@@ -40,6 +41,10 @@ def update_product(data, data_storage, product):
 
 
 def create_product(data, data_storage, product):
+    data = list(data)  # to use data from generator twice for checking ID and for operation %(
+    res = KeyValueFilter(key="id", value=product.id).apply(data)
+    if len(list(res)) > 0:
+        raise SuchProductAlreadyExists
     res = itertools.chain(data, (product,))
     data_storage.save_data(res)
 

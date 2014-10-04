@@ -27,9 +27,3 @@ class StreamDataSource(DataSource):
         return StreamDataSource(
             urllib2.urlopen(url)
         )
-
-    @staticmethod
-    def file_stream_factory(file_path):
-        return StreamDataSource(
-            open(file_path)
-        )

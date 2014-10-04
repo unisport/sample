@@ -13,6 +13,7 @@ class StreamDataStorage(DataStorage):
         self.write_stream = write_stream
 
     def save_data(self, data):
+        data = list(data)
         self.write_stream.seek(0)
         self.write_stream.truncate(0)
         self.write_stream.write(
