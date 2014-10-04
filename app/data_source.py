@@ -1,6 +1,6 @@
 import json
 import urllib2
-from app.models import Document
+from app.models import Product
 
 
 class DataSource(object):
@@ -20,7 +20,7 @@ class StreamDataSource(DataSource):
         data = json.loads(json_data)
 
         for item in data["latest"]:
-            yield Document(**item)
+            yield Product(**item)
 
     @staticmethod
     def url_stream_factory(url):

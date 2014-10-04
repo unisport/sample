@@ -24,3 +24,9 @@ def get_products_paginated(data, page_num, per_page=10):
     ).apply(
         data
     )
+
+
+def delete_product(data_source, product_id):
+    pass
+
+

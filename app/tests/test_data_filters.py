@@ -1,4 +1,4 @@
-from app.models import Document
+from app.models import Product
 import types
 from unittest import TestCase
 from app.data_filters import PaginationFilter, SortingFilter, KeyValueFilter, CompositeFilter
@@ -30,10 +30,10 @@ class TestSortingFilter(TestCase):
 
     def test_asc(self):
 
-        doc1 = Document(value=1)
-        doc2 = Document(value=2)
-        doc4 = Document(value=4)
-        doc5 = Document(value=5)
+        doc1 = Product(value=1)
+        doc2 = Product(value=2)
+        doc4 = Product(value=4)
+        doc5 = Product(value=5)
 
         res = SortingFilter(SortingFilter.ASC, 'value').apply(
             [doc5, doc2, doc4, doc1]
@@ -44,10 +44,10 @@ class TestSortingFilter(TestCase):
 
     def test_desc(self):
 
-        doc1 = Document(value=1)
-        doc2 = Document(value=2)
-        doc4 = Document(value=4)
-        doc5 = Document(value=5)
+        doc1 = Product(value=1)
+        doc2 = Product(value=2)
+        doc4 = Product(value=4)
+        doc5 = Product(value=5)
 
         res = SortingFilter(SortingFilter.DESC, 'value').apply(
             [doc5, doc2, doc4, doc1]
@@ -61,11 +61,11 @@ class TestKeyValueFilter(TestCase):
 
     def test_basic(self):
 
-        doc1 = Document(title="Nike Boots", kids="0")
-        doc2 = Document(title="Adidas Boots", kids="0")
-        doc3 = Document(title="Loli t-shirt", kids="1")
-        doc4 = Document(title="Mickey Mouse Cap", kids="1")
-        doc5 = Document(title="Puma T-Shirt", kids="0")
+        doc1 = Product(title="Nike Boots", kids="0")
+        doc2 = Product(title="Adidas Boots", kids="0")
+        doc3 = Product(title="Loli t-shirt", kids="1")
+        doc4 = Product(title="Mickey Mouse Cap", kids="1")
+        doc5 = Product(title="Puma T-Shirt", kids="0")
 
         res = KeyValueFilter(key='kids', value="1").apply(item for item in [doc1, doc2, doc3, doc4, doc5])
 
@@ -77,12 +77,12 @@ class TestCompositeFilter(TestCase):
 
     def test_basic(self):
 
-        doc1 = Document(title="Nike Boots", kids="0", id="4")
-        doc2 = Document(title="Adidas Boots", kids="0", id="2")
-        doc3 = Document(title="Loli t-shirt", kids="1", id="6")
-        doc4 = Document(title="Mickey Mouse Cap", kids="1", id="5")
-        doc5 = Document(title="Puma T-Shirt", kids="0", id="3")
-        doc6 = Document(title="Puma T-Shirt", kids="0", id="1")
+        doc1 = Product(title="Nike Boots", kids="0", id="4")
+        doc2 = Product(title="Adidas Boots", kids="0", id="2")
+        doc3 = Product(title="Loli t-shirt", kids="1", id="6")
+        doc4 = Product(title="Mickey Mouse Cap", kids="1", id="5")
+        doc5 = Product(title="Puma T-Shirt", kids="0", id="3")
+        doc6 = Product(title="Puma T-Shirt", kids="0", id="1")
 
         composite_filter = CompositeFilter(
             KeyValueFilter(key='kids', value="0"),

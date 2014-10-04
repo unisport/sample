@@ -68,6 +68,21 @@ class ProductId(restful.Resource):
 
         return jsonify(res.__dict__)
 
+    def delete(self, product_id):
+        "remove"
+        data_source = StreamDataSource.file_stream_factory(DATA_FILE_PATH)
+
+        res = delete_product(product_id)
+        pass
+
+    def put(self, product_id):
+        "create"
+        pass
+
+    def post(self, product_id):
+        "update"
+        pass
+
 
 rest.add_resource(Products, '/products/')
 rest.add_resource(ProductId, '/products/<product_id>/')

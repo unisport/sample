@@ -1,4 +1,4 @@
-class Document(object):
+class Product(object):
 
     def __init__(self, **kwargs):
         """Constructor assigns all parameters as properties, as it seems to be large amount of
