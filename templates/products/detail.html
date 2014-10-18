@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ product.name }}</h2>
+
+    <div>
+        <img src="{{ product.img_url }}" alt="True" />
+    </div>
+
+    <div>
+        <b>Delivery:</b> {{ product.delivery }}
+    </div>
+
+    <div>
+        <b>Sizes:</b> {{ product.sizes.all|join:", " }}
+    </div>
+
+    <div>
+        <b>Price:</b> {{ product.price|floatformat:2 }}
+    </div>
+
+{% endblock %}

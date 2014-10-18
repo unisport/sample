@@ -2,3 +2,27 @@
 
 {% block breadcrumbs %}
 {% endblock %}
+
+{% block nav-global %}
+    <style>
+        #header div {
+            font-size: 16px;
+        }
+        #header div a {
+            display: inline-block;
+            border-right: 1px solid white;
+            padding: 5px 10px 5px 5px;
+        }
+        #header div a:first-child {
+            padding: 5px 10px 5px 15px;
+        }
+        #header div a:last-child {
+            border-right: none;
+        }
+    </style>
+    <div style="font-size: 16px;">
+        <a href="{% url 'product_list' %}">All Products</a>
+        <a href="{% url 'kid_product_list' %}">Products for Kids</a>
+        <a href="{% url 'import_products' %}">Import Test Data</a>
+    </div>
+{% endblock %}

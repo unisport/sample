@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
@@ -20,6 +21,15 @@ class Product(models.Model):
 
     sizes = models.ManyToManyField('ProductSize')
 
+    def get_absolute_url(self):
+        return reverse('product_detail', args=(self.pk, ))
+
+    def __unicode__(self):
+        return self.name
+
 
 class ProductSize(models.Model):
     name = models.CharField(max_length=64, db_index=True)
+
+    def __unicode__(self):
+        return self.name
