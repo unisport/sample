@@ -19,10 +19,56 @@
         #header div a:last-child {
             border-right: none;
         }
+
+
+        .paginator {
+            margin: 5px 0px;
+        }
+
+
+        .product_details .buy_product {
+            color: #999;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .product_details .buy_product:hover {
+            color: #5B80B2;
+        }
+
+        .object-tools {
+            float: left !important;
+            margin-top: 30px !important;
+        }
+        .object-tools a:first-child {
+            margin-right: 10px;
+        }
+
+        form fieldset {
+            padding: 10px;
+        }
+        form .form-row {
+            padding: 5px 0px;
+        }
+        form label {
+            display: inline-block;
+            width: 100px;
+        }
+        form input[type="text"] {
+            width: 200px;
+        }
+        form input[type="number"] {
+            width: 75px;
+        }
+
+        table {
+            width: 100%;
+        }
     </style>
-    <div style="font-size: 16px;">
+    
+    <div>
         <a href="{% url 'product_list' %}">All Products</a>
         <a href="{% url 'kid_product_list' %}">Products for Kids</a>
+        <a href="{% url 'add_product' %}">Add Product</a>
         <a href="{% url 'import_products' %}">Import Test Data</a>
     </div>
 {% endblock %}

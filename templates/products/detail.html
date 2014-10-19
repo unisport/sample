@@ -1,22 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>{{ product.name }}</h2>
+    <div class="product_details">
+        <h2>{{ product.name }}</h2>
 
-    <div>
-        <img src="{{ product.img_url }}" alt="True" />
+        {% if product.img_url %}
+            <p><img src="{{ product.img_url }}" alt=""/></p>
+        {% endif %}
+
+        <p><b>Delivery:</b> {{ product.delivery }}</p>
+
+        <p><b>Sizes:</b> {{ product.sizes.all|join:", " }}</p>
+
+        <p><b>Price:</b> {{ product.price|floatformat:2 }}</p>
+
+        <p><a class="buy_product" href="{{ product.url }}" target="_blank">Buy</a></p>
+
+        {% if product %}
+        <div class="object-tools">
+            <a href="{% url 'change_product' product.pk %}">Change Product</a>
+            <a href="{% url 'delete_product' product.pk %}">Delete Product</a>
+        </div>
+        {% endif %}
     </div>
-
-    <div>
-        <b>Delivery:</b> {{ product.delivery }}
-    </div>
-
-    <div>
-        <b>Sizes:</b> {{ product.sizes.all|join:", " }}
-    </div>
-
-    <div>
-        <b>Price:</b> {{ product.price|floatformat:2 }}
-    </div>
-
 {% endblock %}

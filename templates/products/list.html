@@ -2,86 +2,49 @@
 {% load cycle from future %}
 
 {% block content %}
-<style>
-    table {
-        width: 100%;
-    }
-</style>
+    <div id="content">
+        <h2>Product List</h2>
 
-<div id="content">
+        <div class="paginator">
+            {% if products.has_previous %}
+                <a href="?page={{ products.previous_page_number }}">&lt;</a>
+            {% endif %}
 
-    <h2>Product List</h2>
+            <span class="current">
+                Page {{ products.number }} of {{ products.paginator.num_pages }}
+            </span>
 
-    <div class="paginator">
-        {% if products.has_previous %}
-            <a href="?page={{ products.previous_page_number }}">&lt;</a>
-        {% endif %}
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}">&gt;</a>
+            {% endif %}
+        </div>
 
-        <span class="current">
-            Page {{ products.number }} of {{ products.paginator.num_pages }}
-        </span>
-
-        {% if products.has_next %}
-            <a href="?page={{ products.next_page_number }}">&gt;</a>
-        {% endif %}
-    </div>
-
-    <div class="module">
-
-        <div class="results">
+        <div class="module">
             <table id="result_list">
-            <thead>
-            <tr>
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Name</th>
+                        <th>Delivery</th>
+                        <th>Sizes</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
 
-            <th scope="col" >
-            <div class="text">ID</a></div>
-            <div class="clear"></div>
-            </th>
-
-            <th scope="col" >
-            <div class="text">Name</a></div>
-            <div class="clear"></div>
-            </th>
-
-            <th scope="col" >
-            <div class="text">Delivery</a></div>
-            <div class="clear"></div>
-            </th>
-
-            <th scope="col" >
-            <div class="text">Sizes</a></div>
-            <div class="clear"></div>
-            </th>
-
-            <th scope="col" >
-            <div class="text">Price</a></div>
-            <div class="clear"></div>
-            </th>
-
-            <th scope="col" >
-            <div class="text">Image</a></div>
-            <div class="clear"></div>
-            </th>
-
-            </tr>
-            </thead>
-            <tbody>
-
-            {% for product in products %}
-            <tr class="{% cycle 'row1' 'row2' %}">
-                <th><a href="{{ product.get_absolute_url }}">{{ product.product_id }}</a></th>
-                <td>{{ product.name }}</td>
-                <td>{{ product.delivery }}</td>
-                <td>{{ product.sizes.all|join:", " }}</td>
-                <td>{{ product.price|floatformat:2 }}</td>
-                <td><img src="{{ product.img_url }}" alt="True" /></td>
-            </tr>
-            {% endfor %}
-
-            </tbody>
+                <tbody>
+                    {% for product in products %}
+                        <tr class="{% cycle 'row1' 'row2' %}">
+                            <td><a href="{{ product.get_absolute_url }}">{{ product.product_id }}</a></td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.delivery }}</td>
+                            <td>{{ product.sizes.all|join:", " }}</td>
+                            <td>{{ product.price|floatformat:2 }}</td>
+                            <td><img src="{{ product.img_url }}" alt="" /></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
-</div>
-
 {% endblock %}

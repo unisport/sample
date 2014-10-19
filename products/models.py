@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.core.validators import URLValidator
 from django.db import models
 
 
@@ -6,18 +7,22 @@ class Product(models.Model):
     product_id = models.PositiveIntegerField()
     name = models.CharField(max_length=256)
 
-    kids = models.IntegerField()
-    kid_adult = models.IntegerField()
-    women = models.IntegerField()
-    package = models.IntegerField()
+    """
+    It would be more user-friendly if the fields "kids", "kid_adult", "women", "package" were boolean.
+    But there was nothing said about this in the task..
+    """
+    kids = models.IntegerField(default=0)
+    kid_adult = models.IntegerField(default=0)
+    women = models.IntegerField(default=0)
+    package = models.IntegerField(default=0)
 
     free_porto = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=12, decimal_places=2)
-    price_old = models.DecimalField(max_digits=12, decimal_places=2)
+    price_old = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     delivery = models.CharField(max_length=64)
 
-    url = models.CharField(max_length=512)
-    img_url = models.CharField(max_length=512, null=True, blank=True)
+    url = models.CharField(max_length=512, validators=[URLValidator(), ])
+    img_url = models.CharField(max_length=512, null=True, blank=True, validators=[URLValidator(), ])
 
     sizes = models.ManyToManyField('ProductSize')
 

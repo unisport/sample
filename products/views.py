@@ -1,14 +1,14 @@
 import json
 
 from annoying.decorators import render_to
-from annoying.functions import get_object_or_None
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 
 import requests
 
+from . import forms
 from . import models
 
 API = 'http://www.unisport.dk/api/sample/'
@@ -60,5 +60,45 @@ def product_list(request, **kwargs):
 
 @render_to('products/detail.html')
 def product_detail(request, pk):
+    return {'product': get_object_or_404(models.Product, pk=pk)}
 
-    return {'product': get_object_or_None(models.Product, pk=pk)}
+@render_to('products/form.html')
+def add_product(request):
+
+    if request.method == 'POST':
+        form = forms.ProductForm(request.POST)
+
+        if form.is_valid():
+            instance = form.save()
+            return redirect(instance.get_absolute_url())
+    else:
+        form = forms.ProductForm()
+
+    return {'form': form}
+
+@render_to('products/form.html')
+def change_product(request, pk=None):
+
+    instance = get_object_or_404(models.Product, pk=pk) if pk else None
+
+    if request.method == 'POST':
+        form = forms.ProductForm(request.POST, instance=instance)
+
+        if form.is_valid():
+            instance = form.save()
+            return redirect(instance.get_absolute_url())
+    elif pk:
+        instance = get_object_or_404(models.Product, pk=pk)
+        form = forms.ProductForm(instance=instance)
+    else:
+        form = forms.ProductForm()
+
+    return {'form': form}
+
+def delete_product(request, pk=None):
+
+    instance = get_object_or_404(models.Product, pk=pk)
+    instance.delete()
+
+    messages.info(request, 'Product was successfully deleted')
+    return redirect(reverse('product_list'))
