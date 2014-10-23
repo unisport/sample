@@ -17,8 +17,8 @@ class Size(models.Model):
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=16, decimal_places=2, default=0)
-    price_old = models.DecimalField(max_digits=16, decimal_places=2, default=0)
+    price = models.CharField(max_length=16)
+    price_old = models.CharField(max_length=16)
 
     package = models.CharField(max_length=1, default="0")
     delivery = models.CharField(max_length=1, default="0")
