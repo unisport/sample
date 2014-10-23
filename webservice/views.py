@@ -14,8 +14,6 @@ class ItemList(generics.ListCreateAPIView):
     model = Item
     serializer_class = ItemSerializer
 
-    paginate_by = 10
-
 
 class ItemListKids(ItemList):
     def get_queryset(self):

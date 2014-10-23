@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from rest_framework.test import APIClient, APITestCase
 
 from models import Item
+import settings
 
 
 class ItemListViewTest(APITestCase):
@@ -16,7 +17,7 @@ class ItemListViewTest(APITestCase):
     def test_get_items_list(self):
         response = self.client.get(reverse('products'))
         items = response.data['results']
-        self.assertEqual(len(items), 10)
+        self.assertEqual(len(items), settings.REST_FRAMEWORK['PAGINATE_BY'])
         self.assertEqual(list(sorted(items, key=lambda item: item['price'])), items)
 
     def test_pagination(self):
@@ -48,7 +49,7 @@ class ItemSingleViewTest(APITestCase):
     def test_update_item(self):
         data = dict(name='Updated name')
         response = self.client.patch(reverse('item_single', args=(self.item_id,)), data=data)
-        self.assertEqual(response.data['name'], data)
+        self.assertEqual(response.data['name'], data['name'])
 
 
 class ItemKidsListTest(APITestCase):
