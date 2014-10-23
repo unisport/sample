@@ -2,6 +2,10 @@ from django.core.validators import URLValidator
 from django.db import models
 
 
+class SourceSettings(models.Model):
+    use_local = models.BooleanField(default=False)
+
+
 class Size(models.Model):
     size = models.CharField(max_length=16)
 

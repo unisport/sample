@@ -1,24 +1,15 @@
 __author__ = 'Sergey Smirnov <smirnoffs@gmail.com>'
 
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(__file__)
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'f036r-#k3$oi=r!%a25jqqigpx)yur8259fdlixvdhvvav=c65'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
 
-# Application definition
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -27,6 +18,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'products',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -42,10 +34,6 @@ ROOT_URLCONF = 'urls'
 
 WSGI_APPLICATION = 'wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -53,21 +41,6 @@ DATABASES = {
     }
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-#
-# USE_I18N = True
-#
-# USE_L10N = True
-#
-# USE_TZ = True
-#
-#
-# # Static files (CSS, JavaScript, Images)
-# # https://docs.djangoproject.com/en/1.6/howto/static-files/
-#
 STATIC_URL = '/static/'
