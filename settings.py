@@ -1,15 +1,20 @@
 __author__ = 'Sergey Smirnov <smirnoffs@gmail.com>'
 
 import os
+
 BASE_DIR = os.path.dirname(__file__)
 
 SECRET_KEY = 'f036r-#k3$oi=r!%a25jqqigpx)yur8259fdlixvdhvvav=c65'
 DEBUG = True
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'), )
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
+
 ALLOWED_HOSTS = []
-
-
 
 INSTALLED_APPS = (
     'django.contrib.admin',
