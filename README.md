@@ -1,3 +1,11 @@
+For tests run **_python manage.py test_**
+
+It's possible to use remote data set or local data set. To change a source change value of use_local 
+in 'products_sourcesettings' table.
+
+Before using local data set import it in django admin site. There is a link for data import in the header of admin page.
+
+
 _Fork this project and send us a pull request_
 
 Write a simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
