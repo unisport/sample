@@ -3,11 +3,12 @@ from django.db import models
 
 
 class SourceSettings(models.Model):
-    use_local = models.BooleanField(default=False)
+    name = models.CharField(max_length=16, null=False, unique=True)
+    value = models.BooleanField(default=False)
 
 
 class Size(models.Model):
-    size = models.CharField(max_length=16)
+    size = models.CharField(max_length=16, unique=True)
 
     def __unicode__(self):
         return self.size
@@ -24,7 +25,7 @@ class Product(models.Model):
     free_porto = models.IntegerField(default=0)
     kids = models.IntegerField(default=0)
     kid_adult = models.IntegerField(default=0)
-    woman = models.IntegerField(default=0)
+    women = models.IntegerField(default=0)
 
     sizes = models.ManyToManyField(Size)
 
@@ -33,3 +34,5 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
