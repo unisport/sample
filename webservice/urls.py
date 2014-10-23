@@ -1,12 +1,14 @@
-from django.conf.urls import patterns, include, url
+__author__ = 'azhukov'
 
-from django.contrib import admin
-admin.autodiscover()
+from django.conf.urls import patterns,  url
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'webservice.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+import views
 
-    url(r'^admin/', include(admin.site.urls)),
+urlpatterns = patterns(
+    '',
+    url(r'products/$', views.ItemList.as_view(), name='products'),
+    url(r'products/kids/$', views.ItemListKids.as_view(), name='products_kids'),
+    url(r'products/(?P<id>[0-9]+)/$', views.ItemSingle.as_view(), name='item_single'),
+
 )
+
