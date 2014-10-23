@@ -8,7 +8,6 @@ import settings
 
 
 class ItemListViewTest(APITestCase):
-
     def setUp(self):
         self.client = APIClient()
         self.url = reverse('products')
@@ -23,10 +22,10 @@ class ItemListViewTest(APITestCase):
     def test_pagination(self):
         response = self.client.get(reverse('products'), data={'page': 2})
         items = response.data['results']
-        print self.all_items
+        items_per_page = settings.REST_FRAMEWORK['PAGINATE_BY']
         self.assertEqual(
             [item['id'] for item in items],
-            [item.id for item in self.all_items[10:20]]
+            [item.id for item in self.all_items[items_per_page:items_per_page + 10]]
         )
 
     def test_create_item(self):
@@ -53,7 +52,6 @@ class ItemSingleViewTest(APITestCase):
 
 
 class ItemKidsListTest(APITestCase):
-
     def setUp(self):
         self.client = APIClient()
 
