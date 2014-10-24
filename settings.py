@@ -10,8 +10,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = (os.path.dirname(__file__))
-print BASE_DIR
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -85,9 +85,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 FIXTURES_DIR_NAME = 'fixtures'
-
-REST_FRAMEWORK = {
-    'PAGINATE_BY': 10,                 # Default to 10
-    'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
-    'MAX_PAGINATE_BY': 100             # Maximum limit allowed when using `?page_size=xxx`.
-}
