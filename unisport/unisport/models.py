@@ -11,7 +11,8 @@ class Product(models.Model):
     url = models.CharField(max_length=255)
     img_url = models.CharField(max_length=255)
 
-    # I am assuming these fields are actually boolean.
+    # I am assuming these fields are actually boolean but are kept as int's due
+    # to legacy reasons.
     kids = models.BooleanField()
     kid_adult = models.BooleanField()
     women = models.BooleanField()

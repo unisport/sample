@@ -15,8 +15,14 @@ urlpatterns = patterns('',
         name='product_list'
     ),
     url(
+        r'^products/kids/$',
+        views.ProductListView.as_view(template_name='product_list.html'),
+        {'kids': True},
+        name='product_list_kids'
+    ),
+    url(
         r'^products/(?P<product_id>\d+)$',
-        views.ProductView.as_view(template_name='product.html'),
+        views.ProductDetailView.as_view(template_name='product.html'),
         name='product'
     ),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

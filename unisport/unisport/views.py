@@ -5,11 +5,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from unisport import models
 
 
-class ProductView(TemplateView):
+class ProductDetailView(TemplateView):
     """Single product view page."""
 
+    # This view could be replaced with a DetailView if it wasn't using a fake id.
     def get_context_data(self, product_id=None):
-        context = super(ProductView, self).get_context_data()
+        context = super(ProductDetailView, self).get_context_data()
 
         context.update({
             'product': get_object_or_404(models.Product, fake_id=product_id)
@@ -21,14 +22,17 @@ class ProductView(TemplateView):
 class ProductListView(TemplateView):
     """Product list view page."""
 
-    items_per_page = 10
 
-    def get_context_data(self):
+    def get_context_data(self, kids=False):
         context = super(ProductListView, self).get_context_data()
 
+        items_per_page = self.request.GET.get('items', 10)
         page = self.request.GET.get('page')
         product_list = models.Product.objects.all().order_by('price')
-        paginator = Paginator(product_list, self.items_per_page)
+        if kids:
+            product_list = product_list.filter(kids=True)
+
+        paginator = Paginator(product_list, items_per_page)
         try:
             products = paginator.page(page)
         except PageNotAnInteger:
