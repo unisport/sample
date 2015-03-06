@@ -18,20 +18,20 @@ class ProductDetailView(TestCase):
         """Browsing a non-existent product id returns 404."""
 
         response = self.client.get(
-            reverse('product', kwargs={'product_id': 123456})
+            reverse('product', kwargs={'pk': 40})
         )
         self.assertEqual(response.status_code, 404)
 
     def test_valid_get(self):
         """A valid GET request returns 200 and a single product as the context."""
 
-        expected_fake_id = 131971
+        expected_pk = 10
         response = self.client.get(
-            reverse('product', kwargs={'product_id': expected_fake_id})
+            reverse('product', kwargs={'pk': expected_pk})
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'product.html')
-        self.assertEqual(response.context['product'].fake_id, expected_fake_id)
+        self.assertEqual(response.context['product'].pk, expected_pk)
 
 
 class ProductListView(TestCase):

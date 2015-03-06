@@ -8,18 +8,8 @@ from django.core.urlresolvers import reverse_lazy
 from unisport import models
 
 
-class ProductDetailView(TemplateView):
-    """Single product view page."""
-
-    # This view could be replaced with a DetailView if it wasn't using a fake id.
-    def get_context_data(self, product_id=None):
-        context = super(ProductDetailView, self).get_context_data()
-
-        context.update({
-            'product': get_object_or_404(models.Product, fake_id=product_id)
-        })
-
-        return context
+class ProductDetailView(DetailView):
+    model = models.Product
 
 
 class ProductListView(TemplateView):
