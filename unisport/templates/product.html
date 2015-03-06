@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+    <a href="{{ product.url }}"><h1>{{ product.name }}</h1></a>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <a href="{{ product.url }}"><img src="{{ product.img_url }}" /></a>
+    </div>
+    <div class="col-sm-10">
+      Price: {{ product.price }}<br>
+      Sizes: {{ product.sizes }}<br>
+      Delivery: {{ product.delivery }}<br>
+    </div>
+  </div>
+
+{% endblock %}
