@@ -1,33 +1,35 @@
-_Fork this project and send us a pull request_
+Getting started:
 
-Write a simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+    # Install needed python packages.
+    pip install -r requirements.txt
 
+    # Create database and tables.
+    python manage syncdb
 
-**/products/**  
+    # Sync database with the data from the API sample.
+    python manage.py syncdata
 
+    # Start the Django server.
+    python manage.py runserver
 
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
+Usage:
 
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
+    # List all products, 10 products per page
+    # and sorted by price with cheapest first.
+    GET /products/
 
- **/products/id/**
- 
-should return the individual product.
+    # List products for kids, 10 products per page
+    # and sorted by price with cheapest first.
+    GET /products/kids/
 
+    # Show the details for one product.
+    GET /products/<pk>/
 
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
+    # Delete the product with pk `<pk>`.
+    GET /products/<pk>/delete/
 
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
+    # Update data for the product with pk `<pk>`.
+    GET /products/<pk>/update/
 
-
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
-
+    # Create a new product.
+    GET /products/create/
