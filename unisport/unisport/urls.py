@@ -26,13 +26,18 @@ urlpatterns = patterns('',
         name='product_delete'
     ),
     url(
+        r'^products/(?P<pk>\d+)/update/$',
+        views.ProductUpdateView.as_view(template_name='product_update.html'),
+        name='product_update'
+    ),
+    url(
         r'^products/create/$',
         views.ProductCreateView.as_view(template_name='product_create.html'),
         name='product_create'
     ),
     url(
         r'^products/(?P<pk>\d+)$',
-        views.ProductDetailView.as_view(template_name='product.html'),
+        views.ProductDetailView.as_view(template_name='product_detail.html'),
         name='product'
     ),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

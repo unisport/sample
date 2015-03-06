@@ -18,6 +18,9 @@
         Price: {{ product.price }}<br>
         Sizes: {{ product.sizes }}<br>
         Delivery: {{ product.delivery }}<br><br>
+        <a href="{% url 'product_update' pk=product.pk %}">
+            <button class="btn btn-primary">Edit</button>
+        </a>
         <a href="{% url 'product_delete' pk=product.pk %}">
             <button class="btn btn-primary">Delete</button>
         </a>
