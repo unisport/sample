@@ -10,6 +10,11 @@ import views
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
     url(
+        r'^products/$',
+        views.ProductListView.as_view(template_name='product_list.html'),
+        name='product_list'
+    ),
+    url(
         r'^products/(?P<product_id>\d+)$',
         views.ProductView.as_view(template_name='product.html'),
         name='product'
