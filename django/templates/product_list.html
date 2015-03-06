@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+
+  <h1>Product list</h1>
+  <a href="{% url 'product_create' %}">
+    <button class="btn btn-primary">Create new</button>
+  </a>
+  {% for product in products %}
+    <div class="row margin">
+      <h4><a href="{% url 'product' pk=product.pk %}">{{ product.name }}</a></h4><br>
+      <div class="col-sm-3">
+        <a href="{% url 'product' pk=product.pk %}"><img src="{{ product.img_url }}" /></a>
+      </div>
+      <div class="col-sm-9">
+        Price: {{ product.price }}<br>
+        Sizes: {{ product.sizes }}<br>
+        Delivery: {{ product.delivery }}<br><br>
+        <a href="{% url 'product_update' pk=product.pk %}">
+            <button class="btn btn-primary">Edit</button>
+        </a>
+        <a href="{% url 'product_delete' pk=product.pk %}">
+            <button class="btn btn-primary">Delete</button>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+
+  {% if products.has_other_pages %}
+    <div class="row text-center">
+      <ul class="pagination">
+          {% if products.has_previous %}
+            <li>
+              <a href="?page={{ products.previous_page_number }}">&laquo;</a>
+            </li>
+          {% endif %}
+          {% for page_number in products.paginator.page_range %}
+            <li class="{% if page_number == products.number %}active{% endif %}">
+              <a href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+          {% endfor %}
+          {% if products.has_next %}
+            <li>
+              <a href="?page={{ products.next_page_number }}">&raquo;</a>
+            </li>
+          {% endif %}
+      </ul>
+    </div>
+  {% endif %}
+
+{% endblock %}
