@@ -4,9 +4,17 @@
 
 {% block content %}
 
-<form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm" />
-</form>
+    <div class="row">
+        <h2>Confirm delete</h2>
+    </div>
+
+    <div class="row">
+        <form action="" method="post">{% csrf_token %}
+            <p>
+                <strong>Are you sure you want to delete "{{ object.name }}"?</strong>
+            </p>
+            <input class="btn btn-primary" type="submit" value="Confirm" />
+        </form>
+    </div>
 
 {% endblock %}

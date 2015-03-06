@@ -5,16 +5,19 @@
 {% block content %}
 
   <h1>Product list</h1>
+  <a href="{% url 'product_create' %}">
+    <button class="btn btn-primary">Create new</button>
+  </a>
   {% for product in products %}
     <div class="row margin">
+      <h4><a href="{% url 'product' pk=product.pk %}">{{ product.name }}</a></h4><br>
       <div class="col-sm-3">
         <a href="{% url 'product' pk=product.pk %}"><img src="{{ product.img_url }}" /></a>
       </div>
       <div class="col-sm-9">
-        <a href="{% url 'product' pk=product.pk %}">{{ product.name }}</a><br>
         Price: {{ product.price }}<br>
         Sizes: {{ product.sizes }}<br>
-        Delivery: {{ product.delivery }}<br>
+        Delivery: {{ product.delivery }}<br><br>
         <a href="{% url 'product_delete' pk=product.pk %}">
             <button class="btn btn-primary">Delete</button>
         </a>

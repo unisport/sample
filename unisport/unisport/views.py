@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, DeleteView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse_lazy
 
-from unisport import models
+from unisport import models, forms
 
 
 class ProductDetailView(DetailView):
@@ -42,4 +42,9 @@ class ProductListView(TemplateView):
 
 class ProductDeleteView(DeleteView):
     model = models.Product
+    success_url = reverse_lazy('product_list')
+
+
+class ProductCreateView(CreateView):
+    form_class = forms.ProductCreateForm
     success_url = reverse_lazy('product_list')

@@ -26,6 +26,11 @@ urlpatterns = patterns('',
         name='product_delete'
     ),
     url(
+        r'^products/create/$',
+        views.ProductCreateView.as_view(template_name='product_create.html'),
+        name='product_create'
+    ),
+    url(
         r'^products/(?P<pk>\d+)$',
         views.ProductDetailView.as_view(template_name='product.html'),
         name='product'
