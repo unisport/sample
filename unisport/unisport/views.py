@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, DeleteView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.urlresolvers import reverse_lazy
 
 from unisport import models
 
@@ -45,3 +48,8 @@ class ProductListView(TemplateView):
         })
 
         return context
+
+
+class ProductDeleteView(DeleteView):
+    model = models.Product
+    success_url = reverse_lazy('product_list')

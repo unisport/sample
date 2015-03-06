@@ -21,7 +21,12 @@ urlpatterns = patterns('',
         name='product_list_kids'
     ),
     url(
-        r'^products/(?P<product_id>\d+)$',
+        r'^products/(?P<pk>\d+)/delete/$',
+        views.ProductDeleteView.as_view(template_name='product_delete.html'),
+        name='product_delete'
+    ),
+    url(
+        r'^products/(?P<pk>\d+)$',
         views.ProductDetailView.as_view(template_name='product.html'),
         name='product'
     ),
