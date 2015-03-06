@@ -8,10 +8,10 @@
   {% for product in products %}
     <div class="row margin">
       <div class="col-sm-3">
-        <a href="{{ product.url }}"><img src="{{ product.img_url }}" /></a>
+        <a href="{% url 'product' product_id=product.fake_id %}"><img src="{{ product.img_url }}" /></a>
       </div>
       <div class="col-sm-9">
-        <a href="{{ product.url }}">{{ product.name }}</a><br>
+        <a href="{% url 'product' product_id=product.fake_id %}">{{ product.name }}</a><br>
         Price: {{ product.price }}<br>
         Sizes: {{ product.sizes }}<br>
         Delivery: {{ product.delivery }}<br>
