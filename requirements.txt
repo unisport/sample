@@ -1,3 +1,4 @@
-django
+urllib3
+psycopg2>=2.6
 ipython
-psycopg2
+django>=1.7.7
