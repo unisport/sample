@@ -39,7 +39,7 @@ class Product(models.Model):
     img_url = models.CharField(max_length=512, validators=[URLValidator, ])
 
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
 
     class Meta:
-        ordering = ('-price', )
+        ordering = ('price', )

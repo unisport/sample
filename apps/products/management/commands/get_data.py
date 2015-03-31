@@ -40,10 +40,19 @@ class Command(BaseCommand):
             sizes = self.get_sizes(item.get('sizes', ''))
             item.update({
                 'price': item.get('price', '0').replace('.', '').replace(',', '.'),
-                'price_old': item.get('price_old', '0').replace('.', '').replace(',', '.')
+                'price_old': item.get('price_old', '0').replace('.', '').replace(',', '.'),
+                'free_porto': json.loads(item.get('free_porto').lower()),
             })
             item.pop('sizes', None)
-            product, created = Product.objects.update_or_create(**item)
+            try:
+                product = Product.objects.get(id=item.get('id'))
+            except Product.DoesNotExist:
+                product = Product(**item)
+                product.save()
+            else:
+                for key, value in item.iteritems():
+                    setattr(product, key, value)
+                product.save()
             product.sizes.clear()
             for size in sizes:
                 product.sizes.add(size)

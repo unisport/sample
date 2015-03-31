@@ -2,3 +2,4 @@ urllib3
 psycopg2>=2.6
 ipython
 django>=1.7.7
+fake-factory>=0.4.2
