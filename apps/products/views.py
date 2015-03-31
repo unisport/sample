@@ -11,6 +11,20 @@ __all__ = ('ProductViewHandler', )
 
 
 class ProductViewHandler(JSONResponseMixin, View):
+    """
+    Product View
+    operations:
+    - get first 10 items products:
+        GET /products/
+    - get product:
+        GET /products/<product_id>/
+    - create one product:
+        POST /products/
+    - update one product:
+        PATCH /products/<product_id>/
+    - delete one product:
+        DELETE /products/<product_id>/
+    """
     ITEM_PER_PAGE = 10
 
     def get(self, request, *args, **kwargs):
