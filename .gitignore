@@ -1,1 +1,15 @@
 .DS_Store
+
+# Byte-compiled
+__pycache__/
+*.py[cod]
+
+# IDE files
+.idea/
+
+# Logs files
+logs/
+*.log
+
+# Local settings
+local_settings.py
