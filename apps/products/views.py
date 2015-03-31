@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import division, print_function, unicode_literals
 
-import json
-
-from django.shortcuts import render
+from django.http import HttpResponse, Http404
 from django.views.generic import View
 
 from utils.mixin import JSONResponseMixin
@@ -38,6 +36,60 @@ class ProductViewHandler(JSONResponseMixin, View):
                     'page': next_page,
                     'path': self.request.path
                 })
+
+        return self.render_to_response(self.context)
+
+    def post(self, request, *args, **kwargs):
+        request_data = self.decode_json_request()
+        if isinstance(request_data, HttpResponse):
+            return request_data
+
+        try:
+            product = Product.objects.create(**request_data)
+            self.context['data'] = self._get_product_json(product)
+        except Exception as err:
+            self.context['status'] = False
+            self.context['errors'] = err.message
+
+        return self.render_to_response(self.context)
+
+    def patch(self, request, *args, **kwargs):
+        request_data = self.decode_json_request()
+        if isinstance(request_data, HttpResponse):
+            return request_data
+        product_id = kwargs.get('product_id')
+        if not product_id:
+            return Http404
+
+        try:
+            Product.objects.filter(id=product_id).update(**request_data)
+        except Product.DoesNotExist as err:
+            self.context['status'] = False
+            self.context['errors'] = err.message
+        except Exception as err:
+            self.context['status'] = False
+            self.context['errors'] = err.message
+        else:
+            product = Product.objects.get(id=product_id)
+            self.context['data'] = self._get_product_json(product)
+
+        return self.render_to_response(self.context)
+
+    def delete(self, request, *args, **kwargs):
+        product_id = kwargs.get('product_id')
+        if not product_id:
+            return Http404
+
+        try:
+            product = Product.objects.get(id=product_id)
+            self.context['data'] = self._get_product_json(product)
+            product.delete()
+        except Product.DoesNotExist as err:
+            self.context['status'] = False
+            self.context['errors'] = err.message
+        except Exception as err:
+            self.context['status'] = False
+            self.context['errors'] = err.message
 
         return self.render_to_response(self.context)
 

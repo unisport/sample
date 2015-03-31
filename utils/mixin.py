@@ -35,3 +35,19 @@ class JSONResponseMixin(object):
         Convert the context dictionary into a JSON object
         """
         return json.dumps(context, default=encoder, encoding='utf-8')
+
+    def decode_json_request(self):
+        """
+        Decode json request body
+        """
+        try:
+            request_data = json.loads(self.request.body)
+        except ValueError as err:
+            self.context.update({
+                'result': False,
+                'errors': err.message
+            })
+            if hasattr(self, 'render_to_response'):
+                return self.render_to_response(self.context)
+        else:
+            return request_data
