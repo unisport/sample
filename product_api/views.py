@@ -1,20 +1,26 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import generics, pagination
 from product_api.models import Product
 from product_api.serializers import ProductSerializer
 
 
-@api_view(['GET'])
-def product_list(request):
+class SrandardResultsSetPagination(pagination.PageNumberPagination):
+        page_size = 10
+        page_size_query_param = 'page_size'
+        max_page_size = 100
+
+
+class ProductList(generics.ListAPIView):
     """
     List products.
 
     Return the first 10 products ordered with the cheapest first.
+    Allow page number pagination.
     """
-    if request.method == 'GET':
-        products = Product.objects.order_by('price')[:10]
-        serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
+    queryset = Product.objects.order_by('price')
+    serializer_class = ProductSerializer
+    pagination_class = SrandardResultsSetPagination
 
 
 @api_view(['GET'])
