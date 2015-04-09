@@ -1,68 +1,54 @@
-<div class="badges">
-    <a href="http://travis-ci.org/olmar/sample_for_unisport">
-        <img src="https://travis-ci.org/olmar/sample_for_unisport.svg?branch=master">
-    </a>
-    <a href="https://pypi.python.org/pypi/sample_for_unisport">
-        <img src="https://pypip.in/version/sample_for_unisport/badge.svg">
-    </a>
-</div>
-
----
-
-# sample_for_unisport
-
-Your project description goes here
-
----
+# Sample webservice for Unisport
 
 ## Overview
 
-Your project description goes here
+Simple python webservice that returns the objects & manipuates the data found
+here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+
 
 ## Requirements
 
-* Python (2.7, 3.3, 3.4)
-* Django (1.6, 1.7)
+* Python 2.7
+* Django 1.8
+* Django REST Framework 3.1.1
 
 ## Installation
 
 Install using `pip`...
 
 ```bash
-$ pip install sample_for_unisport
-```
-
-## Example
-
-TODO: Write example.
-
-## Testing
-
-Install testing requirements.
-
-```bash
 $ pip install -r requirements.txt
 ```
 
-Run with runtests.
+## Endpoints
 
-```bash
-$ ./runtests.py
-```
+**/products/**
 
-You can also use the excellent [tox](http://tox.readthedocs.org/en/latest/) testing tool to run the tests against all supported versions of Python and Django. Install tox globally, and then simply run:
+
+should return the first 10 objects ordered with the cheapest first.
+
+**/products/kids/**
+
+should return the products where kids=1 ordered with the cheapest first
+
+**/products/?page=2**
+
+ The products should be paginated where **page** in the url above should return the next 10 objects
+
+ **/products/id/**
+
+should return the individual product.
+
+
+## Testing
+
+You can also use the excellent [tox](http://tox.readthedocs.org/en/latest/) testing tool to run the tests. Simply run:
 
 ```bash
 $ tox
 ```
 
 ## Documentation
-
-To build the documentation, you'll need to install `mkdocs`.
-
-```bash
-$ pip install mkdocs
-```
 
 To preview the documentation:
 

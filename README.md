@@ -42,19 +42,13 @@ should return the individual product.
 
 ## Testing
 
-You can also use the excellent [tox](http://tox.readthedocs.org/en/latest/) testing tool to run the tests against all supported versions of Python and Django. Install tox globally, and then simply run:
+You can also use the excellent [tox](http://tox.readthedocs.org/en/latest/) testing tool to run the tests. Simply run:
 
 ```bash
 $ tox
 ```
 
 ## Documentation
-
-To build the documentation, you'll need to install `mkdocs`.
-
-```bash
-$ pip install mkdocs
-```
 
 To preview the documentation:
 
