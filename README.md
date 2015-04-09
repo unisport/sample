@@ -20,6 +20,14 @@ Install using `pip`...
 $ pip install -r requirements.txt
 ```
 
+## Importing data
+
+To import data from Unisport API use custom `import` command...
+
+```bash
+$ python manage.py import
+```
+
 ## Endpoints
 
 **/products/**
