@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
+
 class ProductTests(APITestCase):
     fixtures = ['products.json']
 
@@ -28,7 +29,6 @@ class ProductTests(APITestCase):
         # We know that this price is the cheapest.
         self.assertEqual(response.data['results'][0]['price'], u'49.00')
         self.assertEqual(response.data['results'][0]['id'], 52)
-
 
     def test_list_products_paging(self):
         """
@@ -89,4 +89,3 @@ class ProductTests(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected)
-

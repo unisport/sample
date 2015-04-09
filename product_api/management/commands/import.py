@@ -1,8 +1,7 @@
 import requests
 import json
 
-from django.core.management.base import BaseCommand, CommandError
-from product_api.models import Product
+from django.core.management.base import BaseCommand
 from product_api.serializers import ProductSerializer
 
 
@@ -10,7 +9,7 @@ class Command(BaseCommand):
     help = 'Imports the products from Unisport Sample API.'
 
     def handle(self, *args, **options):
-        api_url ='http://www.unisport.dk/api/sample/'
+        api_url = 'http://www.unisport.dk/api/sample/'
         api_response = requests.get(api_url)
 
         if api_response.status_code == 200:

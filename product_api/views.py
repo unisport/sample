@@ -6,9 +6,12 @@ from product_api.serializers import ProductSerializer
 
 
 class SrandardResultsSetPagination(pagination.PageNumberPagination):
-        page_size = 10
-        page_size_query_param = 'page_size'
-        max_page_size = 100
+    """
+    Pagination for products.
+    """
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 
 class ProductList(generics.ListAPIView):
