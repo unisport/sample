@@ -2,6 +2,7 @@ import requests
 import json
 
 from django.core.management.base import BaseCommand
+from django.conf import settings
 from product_api.serializers import ProductSerializer
 
 
@@ -9,13 +10,13 @@ class Command(BaseCommand):
     help = 'Imports the products from Unisport Sample API.'
 
     def handle(self, *args, **options):
-        api_url = 'http://www.unisport.dk/api/sample/'
-        api_response = requests.get(api_url)
+
+        api_response = requests.get(settings.API_URL)
 
         if api_response.status_code == 200:
             data = json.loads(api_response.text)['latest']
 
-        # All duplicates will be overwritten.
+        # Duplicates will not be overwritten since we are using AutoField.
         for item in data:
 
             # Initial price and price_old are in German locale.
