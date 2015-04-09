@@ -1,10 +1,11 @@
 # Minimum Django and REST framework version
-Django>=1.8
-djangorestframework>=3.1.1
-requests>=2.6.0
+Django==1.8
+djangorestframework==3.1.1
+requests==2.6.0
 
 # Test requirements
 mock==1.0.1
+tox==1.9
 
 # MkDocs for documentation previews/deploys
 mkdocs==0.11.1
