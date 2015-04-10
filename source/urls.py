@@ -5,6 +5,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^api/', include('unisample.api.product.urls')),
+
     url(r'^', include('unisample.website.main.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
