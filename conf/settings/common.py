@@ -125,7 +125,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 
     # Our context processors
-    'unisample.main.context_processors.add_formats',
+    'unisample.website.main.context_processors.add_formats',
 )
 
 ROOT_URLCONF = 'source.urls'
@@ -157,7 +157,7 @@ INSTALLED_APPS = (
     # External apps
 
     # Our apps
-    'unisample.main',
+    'unisample.website.main',
 
 )
 
