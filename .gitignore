@@ -1,1 +1,11 @@
-.DS_Store
+*.py[co]
+*.db
+
+/.idea/
+
+/var/
+
+/conf/*.*
+!/conf/__init__.py
+!/conf/wsgi.py
+/conf/settings/local.py
