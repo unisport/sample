@@ -1,6 +1,6 @@
 from django.views.generic import View
+from unisample.api.api_common.helpers import StatusResponse
 from unisample.api.product.serializers import ProductSerializer
-from unisample.api.product.helpers import StatusResponse
 from unisample.api.product.services.product_service import ProductService
 
 

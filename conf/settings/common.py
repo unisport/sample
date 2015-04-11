@@ -157,6 +157,7 @@ INSTALLED_APPS = (
     # External apps
 
     # Our apps
+    'unisample.api.api_common',
     'unisample.api.product',
     'unisample.website.main',
 
