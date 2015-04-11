@@ -5,3 +5,6 @@ class ProductService(object):
 
     def get_cheapest(self):
         return Product.objects.order_by('-price')
+
+    def get_kids_products(self):
+        return self.get_cheapest().filter(kids=1)
