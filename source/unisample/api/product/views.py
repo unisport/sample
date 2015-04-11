@@ -1,7 +1,10 @@
 from django.http.response import Http404
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 from unisample.api.api_common.helpers import StatusResponse
 from unisample.api.api_common.views import PaginatingMixin
+from unisample.api.product.models import Product
+from unisample.api.product.plain_models import ProductData
 from unisample.api.product.serializers import ProductSerializer
 from unisample.api.product.services.product_service import ProductService
 
@@ -64,3 +67,59 @@ class ProductDetailAjaxView(View):
         return StatusResponse.ok(product=product)
 
 product_detail_ajax = ProductDetailAjaxView.as_view()
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+class ProductAddAjaxView(View):
+    product_service = ProductService()
+
+    def post(self, request, *args, **kwargs):
+        product_data = ProductData(**request.POST.dict())
+
+        try:
+            product = self.product_service.create_product(request.user, product_data)
+        except Exception as e:
+            return StatusResponse.fail(e.message)
+
+        return StatusResponse.ok(product_pk=product.pk)
+
+product_add_ajax = csrf_exempt(ProductAddAjaxView.as_view())
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+class ProductEditAjaxView(View):
+    product_service = ProductService()
+
+    def post(self, request, *args, **kwargs):
+        product_data = ProductData(**request.POST.dict())
+        product_data.pk = kwargs.get('product_pk')
+
+        try:
+             self.product_service.update_product(request.user, product_data)
+        except Product.DoesNotExist:
+            raise Http404
+        except Exception as e:
+            return StatusResponse.fail(e.message)
+
+        return StatusResponse.ok('Product successfully updated')
+
+product_edit_ajax = csrf_exempt(ProductEditAjaxView.as_view())
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+class ProductDeleteAjaxView(View):
+    product_service = ProductService()
+
+    def post(self, request, *args, **kwargs):
+        product_pk = kwargs.get('product_pk')
+
+        try:
+             self.product_service.delete_product(request.user, product_pk)
+        except Product.DoesNotExist:
+            raise Http404
+        except Exception as e:
+            return StatusResponse.fail(e.message)
+
+        return StatusResponse.ok('Product successfully deleted')
+
+product_delete_ajax = csrf_exempt(ProductDeleteAjaxView.as_view())

@@ -3,3 +3,6 @@ Pillow==2.8.1
 
 # web server
 gunicorn==18.0
+
+# Misc
+requests==2.6.0

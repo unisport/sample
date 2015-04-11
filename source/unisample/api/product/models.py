@@ -18,10 +18,9 @@ class Product(models.Model):
     delivery   = models.CharField(max_length=64)     # For now just string
     free_porto = models.BooleanField(default=False)
     package    = models.IntegerField()
-
     sizes      = models.CharField(max_length=255)    # For now just string
 
-    url = models.URLField()
+    url     = models.URLField()
     img_url = models.URLField()
 
     def save(self, *args, **kwargs):
