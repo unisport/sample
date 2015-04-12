@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
 import os
 import urllib2
 import json
+p = os.path
 
-# Init django context
+
+# -- Init django context -- --
+
+sys.path.append(p.abspath(p.join(p.dirname(__file__), '..')))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'conf.settings'
 import django
 django.setup()

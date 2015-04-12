@@ -4,8 +4,8 @@ from unisample.api.product.utils import generate_item_permanent_id
 
 
 class Product(models.Model):
-    _permanent_id = models.CharField(max_length=32) # id used for customer support
-
+    _permanent_id = models.CharField(max_length=32) # id used for customer support, also to not rely on db primary key,
+                                                    # as it could be changed after export/import data
     name = models.CharField(max_length=255)
 
     price     = models.DecimalField(max_digits=8, decimal_places=2)

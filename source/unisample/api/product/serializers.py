@@ -1,6 +1,9 @@
 from django.core.serializers.python import Serializer
 
 class ProductSerializer(Serializer):
+    '''
+    Convert django model instance to a simple dict
+    '''
 
     def get_dump_object(self, obj):
         self._current['pk'] = obj.pk

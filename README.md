@@ -1,17 +1,24 @@
-Skeleton for django project
-===========================
+UniSample
+=========
 
-Typical django project structure polished by years.
+Simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+
 
 Setup guide
 -----------
 
 1. Init python virtualenv:
 
-    Install pillow dependencies
+   Install pillow dependencies:
 
-    - OS X   `$ brew install libjpeg libpng libtiff webp freetype little-cms2 openjpeg`
-    - Ubuntu `$ ...`
+   - OS X   `$ brew install libjpeg libpng libtiff webp freetype little-cms2 openjpeg`
+   - Ubuntu `$ ...`
+    
+   Install Fabric (command-line tool for systems administration tasks):
+    
+   `$ pip install fabric`
+   
+   Init environment:
 
    `$ fab init_virtualenv`
 
@@ -26,6 +33,8 @@ Setup guide
 4. Init database:
 
     `$ python manage.py migrate`
+
+    `$ python scripts/import_external_data.py`
 
 5. Run site:
 

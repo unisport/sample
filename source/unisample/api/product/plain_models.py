@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 class ProductData(object):
+    '''
+    Universal container to collect all product-related data, that stored in different db tables
+    '''
 
     def __init__(self,
          name=None, pk=None, permanent_id=None,
