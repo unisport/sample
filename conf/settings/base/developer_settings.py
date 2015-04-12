@@ -1,0 +1,2 @@
+
+DEBUG = TEMPLATE_DEBUG = True

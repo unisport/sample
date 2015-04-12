@@ -1,33 +1,41 @@
-_Fork this project and send us a pull request_
+UniSample
+=========
 
-Write a simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
-
-
-**/products/**  
+Simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
 
 
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
+Setup guide
+-----------
 
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
+1. Init python virtualenv:
 
- **/products/id/**
- 
-should return the individual product.
+   Install pillow dependencies:
 
+   - OS X   `$ brew install libjpeg libpng libtiff webp freetype little-cms2 openjpeg`
+   - Ubuntu `$ ...`
+    
+   Install Fabric (command-line tool for systems administration tasks):
+    
+   `$ pip install fabric`
+   
+   Init environment:
 
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
+   `$ fab init_virtualenv`
 
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
+2. Copy sample file contains settings for this intallation and fill it:
 
+    `$ cp conf/settings/local.py.sample conf/settings/local.py`
 
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
+3. Activate virtualenv:
 
+    `$ . var/virtualenv/UniSample/bin/activate`
+
+4. Init database:
+
+    `$ python manage.py migrate`
+
+    `$ python scripts/import_external_data.py`
+
+5. Run site:
+
+    `$ python manage.py runserver`
