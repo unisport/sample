@@ -1,5 +1,11 @@
 from django.db import models
 
+
+class ProductQuerySet(models.query.QuerySet):
+    def order_by_price(self):
+        return self.order_by('price')
+
+
 class Product(models.Model):
 
     name = models.CharField(max_length=256, unique=True)
@@ -18,9 +24,25 @@ class Product(models.Model):
     url = models.URLField()
     img_url = models.URLField()
 
+    objects = ProductQuerySet.as_manager()
+
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"
 
     def __unicode__(self):
         return self.name
+
+    # convert model instance to a dictionary
+    # boolean fields are represented as '1' or '0'
+    # all values are strings
+    def to_dict(self):
+        d = {}
+        for field in self._meta.fields:
+            value = getattr(self, field.name)
+            if isinstance(field, models.BooleanField):
+                value = '1' if value else '0'
+            elif not isinstance(field, models.CharField):
+                value = str(value)
+            d[field.name] = value
+        return d
