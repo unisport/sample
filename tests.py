@@ -16,6 +16,7 @@ class APITests(TestCase):
 
     def setUp(self):
         self.list_url = '/products/'
+        self.kids_url = '/products/kids/'
 
     def test_list_products(self):
         response = self.client.get(self.list_url)
@@ -51,3 +52,9 @@ class APITests(TestCase):
         # test 4th page
         response = self.client.get(self.list_url,{'page': 4})
         self.assertEqual(response.status_code, 404)
+
+    def test_product_kids(self):
+        response = self.client.get(self.kids_url)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertEqual(len(content), 0)

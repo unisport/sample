@@ -5,6 +5,8 @@ class ProductQuerySet(models.query.QuerySet):
     def order_by_price(self):
         return self.order_by('price')
 
+    def kids(self):
+        return self.filter(kids=1)
 
 class Product(models.Model):
 

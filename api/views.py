@@ -24,3 +24,8 @@ class ProductList(View):
 
         return JsonResponse(serialized_data, safe=False)
 
+class ProductKids(View):
+    def get(self, request):
+        kids_products = Product.objects.kids().order_by_price()
+        serialized_data = [product.to_dict() for product in kids_products]
+        return JsonResponse(serialized_data, safe=False)
