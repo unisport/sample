@@ -29,3 +29,12 @@ class ProductKids(View):
         kids_products = Product.objects.kids().order_by_price()
         serialized_data = [product.to_dict() for product in kids_products]
         return JsonResponse(serialized_data, safe=False)
+
+class ProductDetail(View):
+    def get(self, request, pk):
+        try:
+            product = Product.objects.get(pk=pk)
+        except Product.DoesNotExist:
+            raise Http404('Product not found')
+
+        return JsonResponse(product.to_dict())

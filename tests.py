@@ -17,6 +17,7 @@ class APITests(TestCase):
     def setUp(self):
         self.list_url = '/products/'
         self.kids_url = '/products/kids/'
+        self.detail_url = '/products/%d/'
 
     def test_list_products(self):
         response = self.client.get(self.list_url)
@@ -58,3 +59,24 @@ class APITests(TestCase):
         self.assertEqual(response.status_code, 200)
         content = json.loads(response.content)
         self.assertEqual(len(content), 0)
+
+    def test_product_detail(self):
+        response = self.client.get(self.detail_url % 1)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertEqual(content['name'], 'Gavekort')
+        self.assertEqual(content['price'], '0,00')
+        self.assertEqual(content['kids'], '0')
+        self.assertEqual(content['url'], 'http://www.unisport.dk/gavekort/')
+
+        response = self.client.get(self.detail_url % 107)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertEqual(content['delivery'], '1-2 dage')
+        self.assertEqual(content['price_old'], '1.099,00')
+        self.assertEqual(content['kid_adult'], '1')
+        self.assertEqual(content['img_url'], 'http://s3-eu-west-1.amazonaws.com/product-img/107_maxi_0.jpg')
+
+        # product not found
+        response = self.client.get(self.detail_url % 2)
+        self.assertEqual(response.status_code, 404)

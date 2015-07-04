@@ -37,6 +37,7 @@ class Product(models.Model):
 
     # convert model instance to a dictionary
     # boolean fields are represented as '1' or '0'
+    # decimal fields are converted back to danish notation - 1099.00 becomes 1.099,00
     # all values are strings
     def to_dict(self):
         d = {}
@@ -44,7 +45,7 @@ class Product(models.Model):
             value = getattr(self, field.name)
             if isinstance(field, models.BooleanField):
                 value = '1' if value else '0'
-            elif not isinstance(field, models.CharField):
-                value = str(value)
+            elif isinstance(field, models.DecimalField):
+                value = '{0:,}'.format(value).replace('.', '?').replace(',', '.').replace('?', ',')
             d[field.name] = value
         return d
