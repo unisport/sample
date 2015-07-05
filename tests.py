@@ -224,3 +224,28 @@ class APITests(TestCase):
         self.assertEqual(response.status_code, 400)
         content = json.loads(response.content)
         self.assertEqual(content['status'], 'Invalid attribute')
+
+    def test_delete(self):
+        # create new product
+        data = json.dumps({
+            "kids": "1",
+            "name": "F.C. K\u00f8benhavn",
+            "sizes": "X-Large,XX-Large",
+            "kid_adult": "1",
+            "free_porto": "1",
+            "price": "314.0",
+            "package": "1",
+            "delivery": "1-2 dage",
+            "url": "http://www.unisport.dk/fodboldtroejer/fc-kbenhavn-trningstrje-condivo-14-blahvid/121796/",
+            "price_old": "449.0",
+            "img_url": "http://s3-eu-west-1.amazonaws.com/product-img/121796_maxi_0.jpg",
+            "women": "1",
+            "id": 2,
+        })
+        response = self.client.post(self.list_url, data, content_type='application/json')
+        self.assertEqual(Product.objects.filter(name='F.C. K\u00f8benhavn').count(), 1)
+
+        # delete the product
+        response = self.client.delete(self.detail_url % 2)
+        self.assertEqual(response.status_code, 204)
+        self.assertEqual(Product.objects.filter(name='F.C. K\u00f8benhavn').count(), 0)

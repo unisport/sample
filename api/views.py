@@ -98,3 +98,13 @@ class ProductDetail(View):
             return JsonResponse({'status': 'Validation errors', 'errors': e.message_dict}, status=400)
 
         return JsonResponse(product.to_dict())
+
+    def delete(self, request, pk):
+        try:
+            product = Product.objects.get(pk=pk)
+        except Product.DoesNotExist:
+            raise Http404("Product not found")
+
+        product.delete()
+
+        return JsonResponse({}, status=204)
