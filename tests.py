@@ -89,11 +89,11 @@ class APITests(TestCase):
             "sizes": "One Size",
             "kid_adult": "0",
             "free_porto": "0",
-            "price": "0.0",
+            "price": "0,00",
             "package": "0",
             "delivery": "1-2 dage",
             "url": "http://www.unisport.dk/gavekort/",
-            "price_old": "0.0",
+            "price_old": "1.200,0",
             "img_url": "http://s3-eu-west-1.amazonaws.com/product-img/1_maxi_0.jpg",
             "women": "0",
         })
@@ -102,8 +102,17 @@ class APITests(TestCase):
         content = json.loads(response.content)
         self.assertEqual(content['status'], 'Created')
         self.assertEqual(content['product']['name'], 'Test')
-        test_product = Product.objects.filter(name='Test').count()
-        self.assertEqual(test_product, 1)
+        self.assertEqual(content['product']['price'], '0,00')
+        self.assertEqual(content['product']['price_old'], '1.200,00')
+        self.assertEqual(content['product']['kids'], '1')
+        self.assertEqual(content['product']['url'], 'http://www.unisport.dk/gavekort/')
+        test_product = Product.objects.filter(name='Test')
+        self.assertEqual(test_product.count(), 1)
+        self.assertEqual(test_product[0].name, 'Test')
+        self.assertEqual(test_product[0].price, 0.00)
+        self.assertEqual(test_product[0].price_old, 1200.00)
+        self.assertEqual(test_product[0].kids, 1)
+        self.assertEqual(test_product[0].url, 'http://www.unisport.dk/gavekort/')
 
         # invalid data format
         response = self.client.post(self.list_url, '{fsadf/..}', content_type='application/json')
@@ -118,10 +127,10 @@ class APITests(TestCase):
             "sizes": "One Size",
             "kid_adult": "0",
             "free_porto": "0",
-            "price": "0.0",
+            "price": "0,00",
             "package": "0",
             "delivery": "1-2 dage",
-            "price_old": "0.0",
+            "price_old": "0,00",
             "img_url": "http://s3-eu-west-1.amazonaws.com/product-img/1_maxi_0.jpg",
             "women": "0",
         })
@@ -140,16 +149,78 @@ class APITests(TestCase):
             "sizes": "One Size",
             "kid_adult": "0",
             "free_porto": "0",
-            "price": "0.0",
+            "price": "0,00",
             "package": "0",
             "delivery": "1-2 dage",
             "url": "http://www.unisport.dk/gavekort/",
-            "price_old": "0.0",
+            "price_old": "0,00",
             "img_url": "http://s3-eu-west-1.amazonaws.com/product-img/1_maxi_0.jpg",
             "women": "0",
         })
 
         response = self.client.post(self.list_url, data, content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+        content = json.loads(response.content)
+        self.assertEqual(content['status'], 'Invalid attribute')
+
+    def test_put(self):
+        # valid data
+        data = json.dumps({
+            "name": "new name",
+            "kids": "1",
+            "price": "10,00",
+            "url": "http://www.unisport.dk/newname/"
+        })
+        response = self.client.put(self.detail_url % 1, data, content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertEqual(content['name'], 'new name')
+        self.assertEqual(content['kids'], '1')
+        self.assertEqual(content['price'], '10,00')
+        self.assertEqual(content['url'], 'http://www.unisport.dk/newname/')
+        p = Product.objects.get(pk=content['id'])
+        self.assertEqual(p.kids, 1)
+        self.assertEqual(p.name, 'new name')
+        self.assertEqual(p.kids, 1)
+        self.assertEqual(p.price, 10.00)
+        self.assertEqual(p.url, 'http://www.unisport.dk/newname/')
+
+        # invalid data format
+        response = self.client.put(self.detail_url % 1, '{fsadf/..}', content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+        content = json.loads(response.content)
+        self.assertEqual(content['status'], 'Invalid format')
+
+        # data with validation errors
+        data = json.dumps({
+            "kids": "yes",  # only True of False, 1 or 0
+            "name": "Test",
+            "sizes": "One Size",
+            "kid_adult": "0",
+            "free_porto": "0",
+            "price": "price",  # must be a decimal
+            "package": "0",
+            "delivery": "1-2 dage",
+            "price_old": "0,00",
+            "img_url": "http://s3-eu-west-1.amazonaws.com/product-img/1_maxi_0.jpg",
+            "women": "0",
+        })
+        response = self.client.put(self.detail_url % 1, data, content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+        content = json.loads(response.content)
+        self.assertEqual(content['status'], 'Validation errors')
+        self.assertEqual(content['errors']['kids'][0], "'yes' value must be either True or False.")
+        self.assertEqual(content['errors']['price'][0], "'price' value must be a decimal number.")
+
+        # data with invalid attribute
+        data = json.dumps({
+            "kids": "1",
+            "name": "Test2",
+            "description": "Test description",  # no such field on the Product model
+            "sizes": "One Size",
+            "kid_adult": "0",
+        })
+        response = self.client.put(self.detail_url % 1, data, content_type='application/json')
         self.assertEqual(response.status_code, 400)
         content = json.loads(response.content)
         self.assertEqual(content['status'], 'Invalid attribute')

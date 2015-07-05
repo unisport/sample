@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 
 from unisport.settings import PAGINATION_SIZE
 from api.models import Product
+from api.utils import convert_prices_from_danish_notation
 
 import json
 
@@ -40,6 +41,7 @@ class ProductList(View):
         # no errors - save it and return successful response
         # errors - return error response and indicate what is the problem
         try:
+            convert_prices_from_danish_notation(data)
             product = Product(**data)
             product.full_clean()
             product.save()
@@ -63,5 +65,36 @@ class ProductDetail(View):
             product = Product.objects.get(pk=pk)
         except Product.DoesNotExist:
             raise Http404('Product not found')
+
+        return JsonResponse(product.to_dict())
+
+    def put(self, request, pk):
+        try:
+            product = Product.objects.get(pk=pk)
+        except Product.DoesNotExist:
+            raise Http404('Product not found')
+
+        # check if format of the data is valid
+        try:
+            data = json.load(request)
+        except ValueError as e:
+            return JsonResponse({'status': 'Invalid format'}, status=400)
+
+        convert_prices_from_danish_notation(data)
+        # we want to only edit the provided fields
+        for key, value in data.items():
+            setattr(product, key, value)
+
+        # validate the data
+        # no errors - save it and return successful response
+        # errors - return error response and indicate what is the problem
+        try:
+            product.full_clean()
+            # only update newly edited fields
+            product.save(update_fields=data.keys())
+        except ValueError:
+            return JsonResponse({'status': 'Invalid attribute'}, status=400)
+        except ValidationError as e:
+            return JsonResponse({'status': 'Validation errors', 'errors': e.message_dict}, status=400)
 
         return JsonResponse(product.to_dict())

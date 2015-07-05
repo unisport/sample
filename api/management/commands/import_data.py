@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.core.exceptions import ValidationError
 from api.models import Product
+from api.utils import convert_prices_from_danish_notation
 import urllib2
 import json
 
@@ -21,10 +22,7 @@ class Command(BaseCommand):
 
         # import data to the database
         for product in data['products']:
-            # change danish number notation to a pythonic representation, e.g.
-            # 1.099,00 becomes 1099.00
-            product.update(price=product['price'].replace('.', '').replace(',', '.'))
-            product.update(price_old=product['price_old'].replace('.', '').replace(',', '.'))
+            convert_prices_from_danish_notation(product)
 
             # perform model validation on the provided data before saving
             # if there are no exception save the model

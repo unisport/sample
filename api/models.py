@@ -46,6 +46,6 @@ class Product(models.Model):
             if isinstance(field, models.BooleanField):
                 value = '1' if value else '0'
             elif isinstance(field, models.DecimalField):
-                value = '{0:,}'.format(value).replace('.', '?').replace(',', '.').replace('?', ',')
+                value = '{0:,.2f}'.format(value).replace('.', '?').replace(',', '.').replace('?', ',')
             d[field.name] = value
         return d
