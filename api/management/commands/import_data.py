@@ -14,6 +14,7 @@ class Command(BaseCommand):
             page = urllib2.urlopen(data_url)
         except Exception, e:
             print e
+            return
 
         content = page.read()
         data = json.loads(content)
@@ -31,7 +32,7 @@ class Command(BaseCommand):
             # full_clean() validates the model fields and uniqueness
             # it also returns a clean value for each field by converting it to proper python type
             # this means that, e.g.
-            # for BooelanField we can use 0, 1, True, False, 't', 'True', '1', 'f' 'False', '0'
+            # for BooleanField we can use 0, 1, True, False, 't', 'True', '1', 'f' 'False', '0'
             try:
                 product = Product(**product)
                 product.full_clean()
