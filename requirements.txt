@@ -1,0 +1,7 @@
+# Assuming that your application runs in virtual environment you have to install below packages
+pip install requests
+pip install Flask
+pip install sqlalchemy
+pip install flask-paginate
+
+
