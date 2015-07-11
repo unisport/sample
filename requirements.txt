@@ -3,5 +3,3 @@ pip install requests
 pip install Flask
 pip install sqlalchemy
 pip install flask-paginate
-
-
