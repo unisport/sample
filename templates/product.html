@@ -1,0 +1,8 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <table>
+    <tr><td>ID</td><td>NAME</td><td>PRICE</td></tr>
+        <tr><td>{{ product.id }}</td><td>{{ product.name }}</td><td align="right">{{ product.price }}</td></tr>
+    </table>
+{% endblock %}

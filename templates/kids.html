@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <table>
+    <tr><td>ID</td><td>NAME</td><td>KIDS</td></tr>
+    {% for product in products %}
+        <tr><td><a href={% url 'product' product.id %}>{{ product.id }}</a></td><td>{{ product.name }}</td><td align="right">{{ product.kids }}</td></tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
