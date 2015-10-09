@@ -39,8 +39,9 @@ def product(request):
 
         p = Product(**data)
         p.save()
-        return json_response({'id': p.id})
+        return json_response({'id': p.id}, status=201)
 
+    return HttpResponse(status=405)
 
 def detail(request, product_id):
     """ Get detail by product ID or Update/delete if method `POST`
@@ -63,6 +64,7 @@ def detail(request, product_id):
             get_object_or_404(Product, id=product_id).delete()
 
         return json_response({'success': True})
+    return HttpResponse(status=405)
 
 def kids(request):
     """ Get list of products ordered with the cheapest first for kids """
@@ -71,9 +73,9 @@ def kids(request):
 
     return json_response({'result': [to_dict(ins) for ins in inst_list]})
 
-def json_response(data):
+def json_response(data, status=200):
     """ Response json format """
-    return HttpResponse(json.dumps(data), content_type="application/json")
+    return HttpResponse(json.dumps(data), content_type="application/json", status=status)
 
 def to_dict(instance):
     """ Convert model instance to dict """
