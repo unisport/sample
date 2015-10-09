@@ -1,33 +1,13 @@
-_Fork this project and send us a pull request_
+1. for install requirements run command:
+    sudo pip install -r requirements.txt
 
-Write a simple python webservice that returns the objects & manipuates the data found here [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+2. for make test run command:
+    python manage.py test
 
+3. for create DATABASE run command:
+    python manager.py syncdb
+4. for sync BD with end point run command:
+    python sync_end_point.py
 
-**/products/**  
-
-
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
-
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
-
- **/products/id/**
- 
-should return the individual product.
-
-
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
-
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
-
-
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
-
+5. for run server:
+    python manager.py runserver
