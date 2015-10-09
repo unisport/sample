@@ -31,3 +31,13 @@ should return the individual product.
 
 _You are welcome to use any thirdparty python web framework or library that you are familiar with._  
 
+
+####Requirements:
+* Django=1.8.5
+
+####Explanations:
+ Data store in sqlite db. You can create new products or edit\delete existing using admin panel **/admin/**
+
+####default SuperUser:
+* login: **root**
+* password: **qwerty**
