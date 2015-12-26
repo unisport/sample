@@ -1,6 +1,8 @@
-# file extensions
+# Local data store
 .DS_Store
-.pyc
 
-# directories
+# File extensions
+*.pyc
+
+# Directories
 venv
