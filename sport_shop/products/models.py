@@ -23,7 +23,12 @@ class Product(models.Model):
     women = models.BooleanField()
 
     def save(self, *args, **kwargs):
+        """Override of save method, validates/parses object attributes.
+        """
+        # Check if prize or price_old is string, if so
+        # convert punctuation and cast to float
         for attr in ('price', 'price_old'):
             if isinstance(getattr(self, attr), basestring):
-                setattr(self, attr, float(getattr(self, attr).replace('.', '').replace(',', '.')))
+                setattr(self, attr, float(
+                    getattr(self, attr).replace('.', '').replace(',', '.')))
         super(Product, self).save(*args, **kwargs)
