@@ -1,1 +1,6 @@
+# file extensions
 .DS_Store
+.pyc
+
+# directories
+venv
