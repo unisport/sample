@@ -1,5 +1,6 @@
 import json
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase, Client
 
 from management.commands import get_fixtures
@@ -21,6 +22,7 @@ PRODUCT_FIXTURE = {
 }
 API_TOKEN = 'token'
 
+
 class GetFixturesTest(TestCase):
 
     def test_json_format(self):
@@ -40,28 +42,30 @@ class CreateProductTest(TestCase):
         self.api_token = API_TOKEN
         self.new_product = PRODUCT_FIXTURE
         self.client = Client()
-        self.response = self.client.get(
-            'create_product',
+        self.response = self.client.post(
+            '/products/create_product',
             json.dumps({'api_token': self.api_token,
-                        'product': self.new_product
-                        })
+                        'product': self.new_product,
+                        }),
+            content_type="application/json"
         )
+        self.product_id = self.response.json().get('product_id')
+        self.client.post(
+            'products/delete_product',
+            json.dumps({'api_token': self.api_token,
+                        'product_id': self.product_id
+                        }),
+            content_type="application/json")
 
     def tearDown(self):
-        if self.product_id:
-            self.client.get(
-                'delete_product',
-                {'api_token': self.api_token,
-                 'product_id': self.product_id
-                 })
+        pass
 
     def test_return_id(self):
-        self.product_id = self.response.json().get('product_id')
         product = Product.objects.get(id=self.product_id)
         self.assertEqual(self.new_product.get('name'), product.name)
 
-    def test_response_status():
-        self.assertEqual(self.response.status, 200)
+    def test_response_status(self):
+        self.assertEqual(self.response.status_code, 200)
 
 
 class DeleteProductTest(TestCase):
@@ -70,21 +74,30 @@ class DeleteProductTest(TestCase):
         self.api_token = API_TOKEN
         self.new_product = PRODUCT_FIXTURE
         self.client = Client()
-        self.create_response = self.client.get(
-            'create_product',
+        self.create_response = self.client.post(
+            '/products/create_product',
             json.dumps({'api_token': self.api_token,
                         'product': self.new_product,
-                        })
+                        }),
+            content_type="application/json"
         )
         self.product_id = self.create_response.json().get('product_id')
-        self.delete_response = self.client.get(
-            'delete_product',
-            {'api_token': self.api_token,
-             'product_id': self.product_id
-             })
+        self.delete_response = self.client.post(
+            '/products/delete_product',
+            json.dumps({'api_token': self.api_token,
+                        'product_id': self.product_id
+                        }),
+            content_type="application/json"
+        )
 
     def tearDown(self):
         pass
 
     def test_response_status(self):
-        self.assertEqual(self.delete_response.status, 200)
+        self.assertEqual(self.delete_response.status_code, 200)
+
+    def test_id_not_exists(self):
+        with self.assertRaises(ObjectDoesNotExist) as cm:
+            Product.objects.get(id=self.product_id)
+        the_exception = cm.exception
+        self.assertIsInstance(the_exception, ObjectDoesNotExist)
