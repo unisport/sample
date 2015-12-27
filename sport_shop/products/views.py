@@ -52,7 +52,11 @@ def listing_products(request):
 
 @require_http_methods("GET")
 def detail_product(request, product_id):
-    product = Product.objects.get(id=product_id)
+    try:
+        product = Product.objects.get(id=product_id)
+    except ObjectDoesNotExist:
+        template = loader.get_template('products/product_not_exist.html')
+        return HttpResponse(template.render(request))
     context = {'product': product}
     template = loader.get_template('products/detail_product.html')
     return HttpResponse(template.render(context, request))
