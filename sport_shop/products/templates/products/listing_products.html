@@ -16,7 +16,7 @@ Page {{ pages_info.current }} of {{ pages_info.count}}
         <img src="{{ product.img_url|default:'http://placehold.it/320x150' }}" alt="">
         <div class="caption-full">
             <h4 class="pull-right">DKK {{ product.price|floatformat:2 }}</h4>
-            <h4 class="product-name"><a href="#">{{ product.name }}</a></h4>
+            <h4 class="product-name"><a href="{{ product.id }}">{{ product.name }}</a></h4>
             {# <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> #}
         </div>
         <div class="ratings">
