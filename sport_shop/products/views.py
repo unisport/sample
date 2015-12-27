@@ -13,6 +13,20 @@ from .models import Product
 
 @require_http_methods("GET")
 def listing_products(request):
+    """Lists all products sorted by price (ascending).
+
+    Args: request (GET)
+    Request parameters:
+        page (int): Page number (limited amount of products on each page)
+            default is 1.
+        products_per_page (int): Number of products to show on page
+            default is 10.
+    Returns:
+        HTTP response: List of products and page information is included in
+            context when page is rendered. Rendered page has page indicator
+            and navigation buttons to prev/next page if they exist.
+            Page is validated and set to 1 if invalid.
+    """
     # All products ordered by price
     all_products = Product.objects.order_by('price').all()
     # Default pagination is 10 products per page
@@ -52,6 +66,18 @@ def listing_products(request):
 
 @require_http_methods("GET")
 def detail_product(request, product_id):
+    """Detail view of single product.
+
+    Args:
+        request (GET)
+        product_id (int): Product id is expected as suffix in URL.
+
+    Returns:
+        HTTP response: Product id is validated, if invalid, rendered page
+            indicates that product is no longer available. A valid product id
+            is used to get product object, which is included in context when
+            rendering detailed product page.
+    """
     try:
         product = Product.objects.get(id=product_id)
     except ObjectDoesNotExist:
@@ -65,6 +91,23 @@ def detail_product(request, product_id):
 @csrf_exempt
 @require_http_methods("POST")
 def create_product(request):
+    """End point for creating new product.
+
+    Args:
+        request (POST)
+
+    Request content: Expected content is a api token and a product object.
+        in JSON type.
+
+    Returns:
+        HTTP Response: End point requires authentication, if successful,
+            product object is validated and saved.
+
+            Forbidden (403): If not authenticated.
+            Bad Request (400): If product object can't be validated.
+
+            Response with product id as JSON type is returned if successful.
+    """
     # Dummy authentication
     request_data = json.loads(request.body)
     if request_data.get('api_token') != 'token':
@@ -83,6 +126,23 @@ def create_product(request):
 @csrf_exempt
 @require_http_methods("POST")
 def delete_product(request):
+    """End point for deleting product.
+
+    Args:
+        request (POST)
+
+    Request content: Expected content is a api token and a product id.
+        in JSON type.
+
+    Returns:
+        HTTP Response: End point requires authentication, if successful,
+            the product with the given id will be deleted.
+
+            Forbidden (403): If not authenticated.
+            Bad Request (400): No product with matching id.
+
+            Response with product id as JSON type is returned if successful.
+    """
     # Dummy authentication
     request_data = json.loads(request.body)
     if request_data.get('api_token') != 'token':
