@@ -1,7 +1,8 @@
-from selenium import webdriver
-import unittest
+from unittest import TestCase
 
-class ListProductsTest(unittest.TestCase):
+from selenium import webdriver
+
+class ListProductsTest(TestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -15,4 +16,4 @@ class ListProductsTest(unittest.TestCase):
 
     def test_thumbnail_count(self):
         thumbnails = self.browser.find_elements_by_class_name('thumbnail')
-        self.assertEqual(len(thumbnails), 10)
+        self.assertTrue(len(thumbnails)<=10)
