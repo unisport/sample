@@ -51,6 +51,10 @@ body {
     color: #333;
 }
 
+.thumbnail-big img{
+    max-height: 200px;
+}
+
 footer {
     margin: 50px 0;
 }

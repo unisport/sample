@@ -50,6 +50,14 @@ def listing_products(request):
     return HttpResponse(template.render(context, request))
 
 
+@require_http_methods("GET")
+def detail_product(request, product_id):
+    product = Product.objects.get(id=product_id)
+    context = {'product': product}
+    template = loader.get_template('products/detail_product.html')
+    return HttpResponse(template.render(context, request))
+
+
 @csrf_exempt
 @require_http_methods("POST")
 def create_product(request):
