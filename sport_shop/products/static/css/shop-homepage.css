@@ -22,7 +22,7 @@ body {
 }
 
 .caption {
-    height: 180px;
+    height: 130px;
     overflow: hidden;
 }
 
@@ -32,7 +32,7 @@ body {
 
 .thumbnail img {
     /*width: 100%;*/
-    max-height: 150px;
+    max-height: 160px;
 }
 
 .ratings {
@@ -46,6 +46,7 @@ body {
 }
 
 .thumbnail .caption-full {
+    height: 130px;
     padding: 9px;
     color: #333;
 }
