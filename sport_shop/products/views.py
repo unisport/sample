@@ -1,10 +1,17 @@
-from django.http import HttpResponse
+import json
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponseForbidden
 from django.template import loader
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 
 from .models import Product
 
 
+@require_http_methods("GET")
 def listing_products(request):
     # All products ordered by price
     all_products = Product.objects.order_by('price').all()
@@ -41,3 +48,38 @@ def listing_products(request):
         }
     }
     return HttpResponse(template.render(context, request))
+
+
+@csrf_exempt
+@require_http_methods("POST")
+def create_product(request):
+    # Dummy authentication
+    request_data = json.loads(request.body)
+    if request_data.get('api_token') != 'token':
+        return HttpResponseForbidden()
+    new_product = request_data.get('product')
+    product = Product(**new_product)
+    try:
+        product.save()
+    except AttributeError:
+        return HttpResponseBadRequest()
+    response_data = {'product_id': product.id}
+    return HttpResponse(json.dumps(response_data),
+                        content_type="application/json")
+
+
+@csrf_exempt
+@require_http_methods("POST")
+def delete_product(request):
+    # Dummy authentication
+    request_data = json.loads(request.body)
+    if request_data.get('api_token') != 'token':
+        return HttpResponseForbidden()
+    product_id = request_data.get('product_id')
+    try:
+        Product.objects.get(id=product_id).delete()
+    except ObjectDoesNotExist:
+        return HttpResponseBadRequest()
+    response_data = {'product_id': product_id}
+    return HttpResponse(json.dumps(response_data),
+                        content_type="application/json")

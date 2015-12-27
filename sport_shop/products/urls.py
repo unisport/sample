@@ -3,12 +3,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    # ex: /polls/
     url(r'^$', views.listing_products, name='products'),
-    # ex: /polls/5/
-    # url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
-    # ex: /polls/5/results/
-    # url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'),
-    # ex: /polls/5/vote/
-    # url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
+    url(r'create_product', views.create_product, name='create_product'),
+    url(r'delete_product', views.delete_product, name='delete_product'),
 ]
