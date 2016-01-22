@@ -1,0 +1,9 @@
+Django==1.9.1
+argparse==1.2.1
+flake8==2.5.1
+mccabe==0.3.1
+pep8==1.7.0
+pyflakes==1.0.0
+selenium==2.49.2
+simplejson==3.8.1
+wsgiref==0.1.2

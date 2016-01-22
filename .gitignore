@@ -1,1 +1,10 @@
 .DS_Store
+*.sqlite3
+*.pyc
+*.pyo
+.idea
+*~
+git_ignore
+build
+media
+.env
