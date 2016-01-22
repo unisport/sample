@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unisport test task</title>
+</head>
+<body>
+    {% block extra_js %}
+    {% endblock extra_js %}
+    {% block content %}
+    {% endblock content %}
+    <div id="statusMessage"></div>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="{% static 'js/script.js'%}"></script>
+</body>
+</html>

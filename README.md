@@ -31,3 +31,8 @@ should return the individual product.
 
 _You are welcome to use any thirdparty python web framework or library that you are familiar with._  
 
+make test - for test
+make migrate - for load fixtures and migrations, in fixtures stored superuser admin/111
+make run - for run Django dev server
+
+**/products/kids/** - return empty products list for me
