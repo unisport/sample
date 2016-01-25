@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Products</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="container">
+
+
+      <div class="page-header">
+        <h1>Products</h1>
+      </div>
+
+        <table width="80%">
+        {% for product in products %}
+        <tr>
+            <td><img src="{{ product.img_url }}" width="200" height="150"></td>
+            <td><a href="{{ product.url }}">{{ product.name }}</a></br>sizes - {{ product.sizes }}</br>delivery - {{ product.delivery }}</br>id - {{product.id}}</td>
+            <td><strike>$ {{ product.price_old }}</strike></br>$ {{ product.price }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+
+
+
+{% if products.paginator %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if products.has_previous %}
+                <a href="?page={{ products.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ products.number }} of {{ products.paginator.num_pages }}.
+            </span>
+
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+{% endif %}
+        </div>
+</body>
+</html>
