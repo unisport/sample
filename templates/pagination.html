@@ -1,0 +1,23 @@
+<div class="pagination text-center">
+    <span class="step-links">
+        {% if paginate.has_previous %}
+            <a href="?page={{ paginate.previous_page_number }}">
+                <i class="fa fa-chevron-left"></i>
+            </a>
+        {% endif %}
+        {% for linkpage in paginate.paginator.page_range %}
+            {% if linkpage in paginate.paginator.short_page_range %}
+                {% ifequal linkpage paginate.number %}
+                    <span class="current">{{ paginate.number }}</span>
+                {% else %}
+                    <span class="page"><a href="?page={{ linkpage }}">{{ linkpage }}</a></span>
+                {% endifequal %}
+            {% endif %}
+        {% endfor %}
+        {% if paginate.has_next %}
+            <a href="?page={{ paginate.next_page_number }}">
+                <i class="fa fa-chevron-right "></i>
+            </a>
+        {% endif %}
+    </span>
+</div>
