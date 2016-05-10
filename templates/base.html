@@ -1,0 +1,17 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unisport</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <script src="{% static 'js/jquery-2.1.1.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</head>
+<body>
+<a class="btn btn-default" href="{% url 'catalog' %}">Catalog</a> <a class="btn btn-default" href="{% url 'kids' %}">Kids catalog</a>
+<br/>
+{% block content %}{% endblock %}
+</body>
+</html>

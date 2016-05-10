@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="col-lg-12">
+        {% for product in products %}
+            <a href="{{ product.get_absolute_url }}">
+                <img src="{{ product.image }}">
+                <p>{{ product.name }}</p>
+            </a>
+            <p>{{ product.price }} {{ product.currency }}</p>
+        {% endfor %}
+        {% include "pagination.html" with paginate=products %}
+    </div>
+{% endblock %}
