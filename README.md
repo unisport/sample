@@ -1,3 +1,7 @@
+**_For loading data from [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/)_**
+
+_Run command ./manage.py load_data._
+
 _Fork this project and send us a pull request_
 
 Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
