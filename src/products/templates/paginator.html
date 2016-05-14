@@ -1,0 +1,30 @@
+{% if products.has_other_pages %}
+
+<nav>
+  <ul class="pagination">
+    <li>
+
+    {% if products.has_previous %}
+      <a href="{% url 'products_list' %}?page={{products.previous_page_number}}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% endif %}
+
+    {% for p in products.paginator.page_range %}
+    <li {% if products.number == p %} class='active'{% endif %}>
+      <a href="{% url 'products_list' %}?page={{p}}">{{p}}</a></li>
+    {% endfor %}
+
+    {% if products.has_next %}
+    <li>
+      <a href="{% url 'products_list' %}?page={{products.next_page_number}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    {% endif %}
+
+    </li>
+  </ul>
+</nav>
+
+{% endif %}
