@@ -4,3 +4,6 @@ include/
 lib/
 *.pyc
 *.*~
+*.sublime-project
+*.sublime-workspace
+

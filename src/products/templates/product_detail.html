@@ -9,6 +9,9 @@
 <p>-{{size}}</p>
 {% endfor %}
 
-
+<!-- ## -->
+<a href='{% url 'update_product' product.id %}' ><button type="button" class="btn btn-success">Update Product</button><a/>
+<a href='{% url "delete_product" product.id %}' ><button type="button" class="btn btn-danger">Delete Product</button><a/>
+<!-- ## -->
 {% endblock content %}
 
