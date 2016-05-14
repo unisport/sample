@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Products list</h1>
+
+{% for prod in products %}
+<p><a href='{% url 'product_detail' prod.id %}'>{{prod.name}}</a>
+<p> {{prod.price}} {% for size in prod.size_set.all %}{{size}} | {% endfor %}</p>
+{% endfor %}
+
+
+
+
+
+{% endblock content %}
+
+

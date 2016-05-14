@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Product Detail</h1>
+
+<h2>{{product.name}}</h2>
+<p>{{product.price}}</p>
+{% for size in product.size_set.all %}
+<p>-{{size}}</p>
+{% endfor %}
+
+{% endblock content %}
