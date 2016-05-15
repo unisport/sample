@@ -4,10 +4,18 @@
 <h1>Product Detail</h1>
 
 <h2>{{product.name}}</h2>
-<p>{{product.price}}</p>
-{% for size in product.size_set.all %}
-<p>-{{size}}</p>
-{% endfor %}
+<p> Price: {{product.price}}</p>
+{% if product.price != product.price_old %}
+<p>Old Price: {{product.price_old}}</p>
+{% endif %}
+<p>Currency: {{product.currency}}</p>
+<p>Delivery: {{product.delivery}}</p>
+<p>Kids: {{product.kids}}</p>
+<p>Sizes:{% for size in product.size_set.all %}
+ {{size}} || 
+ {% endfor %}
+ <p>
+ <br>
 
 <!-- ## -->
 <a href='{% url 'update_product' product.id %}' ><button type="button" class="btn btn-success">Update Product</button><a/>
