@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <title>Test coverage report: products.views</title>
+    <style type="text/css" media="screen">
+      a
+      {
+        color: #3d707a;
+      }
+      
+      a:hover, a:active
+      {
+        color: #bf7d18;
+      }
+    
+      body 
+      {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        font-size: 13px;
+      }
+      
+      .nav 
+      {
+        font-size: 12px;
+        margin-left: 50px;
+      }
+
+      .ignored
+      {
+        color: #707070;
+      }
+
+      .executed 
+      {
+        color: #3d9900;
+      }
+
+      .missed 
+      {
+        color: red;
+        font-weight: bold;
+      }
+
+      .excluded 
+      {
+        color: #6090f0;
+        font-weight: lighter;
+      }
+    
+      #content-header 
+      {
+        font-size: 12px;
+        padding: 18px 0 18px 50px;
+      }
+
+      #content-header h1 
+      {
+        font-size: 16px;
+        margin: 10px 0 0 0;
+        color: #909090;
+      }
+      
+      #module-name
+      {
+        color: #583707;
+      }
+    
+      #content-header p
+      {
+        font-size: 13px;
+        margin: 0;
+        color: #909090;
+      }
+
+      #content-header .normal 
+      {
+        color: #609030;
+      }
+
+      #content-header .warning 
+      {
+        color: #d0a000;
+      }
+
+      #content-header .critical 
+      {
+        color: red;
+      }
+      
+      #source-listing 
+      {
+        margin-bottom: 24px;
+      }
+
+      #source-listing ol 
+      {
+        padding: 0 0 0 50px;
+        width: 90%;
+        font-family: monospace;
+        list-style-position: outside;
+      }
+
+      #source-listing ol li 
+      {
+        line-height: 18px;
+        font-size: small;
+      }
+        
+      #source-listing ol code 
+      {
+        padding:  0 .001em 0 0; /* Firefox doesn't render empty li's properly */
+        font-size: medium;
+        white-space: pre;
+      }
+   </style>
+  </head>
+
+  <body>
+
+<div class="nav">
+  <a href="products.models.html">products.models</a> &lt;&lt;
+  <a href="../index.html">index</a>
+</div>
+
+<div id="content-header">
+  <h1>
+    <span id="module-name">products.views</span>:
+    42 total statements,
+    <span class="normal">77.1% covered</span>
+  </h1>
+  <p>Generated: Sun 2016-05-15 14:09 UTC</p>
+  <p>Source file: /home/bond/Projects/PythonDjango/unisport/src/products/views.py</p>
+  <p>
+    Stats:
+    <span class="executed">27 executed</span>,
+    <span class="missed">8 missed</span>,
+    <span class="excluded">7 excluded</span>,
+    <span class="ignored">26 ignored</span> 
+  </p> 
+</div>
+
+<div id="source-listing">
+  <ol>
+    <li class="excluded"><code>from django.shortcuts import render</code></li>
+<li class="excluded"><code>from django.core.urlresolvers import reverse</code></li>
+<li class="excluded"><code>from django.http import HttpResponseRedirect</code></li>
+<li class="excluded"><code>from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger</code></li>
+<li class="ignored"><code></code></li>
+<li class="ignored"><code>##</code></li>
+<li class="excluded"><code>from django.views.generic.edit import CreateView, UpdateView, DeleteView</code></li>
+<li class="excluded"><code>from .forms import ProductModelForm</code></li>
+<li class="excluded"><code>from .models import Product</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>def products_list(request):</code></li>
+<li class="executed"><code>	products = Product.objects.all().order_by("price")</code></li>
+<li class="ignored"><code></code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>	paginator = Paginator(products, 5)</code></li>
+<li class="executed"><code>	page = request.GET.get('page')</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>	try:</code></li>
+<li class="executed"><code>		products = paginator.page(page)</code></li>
+<li class="executed"><code>	except PageNotAnInteger:</code></li>
+<li class="executed"><code>		products = paginator.page(1)</code></li>
+<li class="missed"><code>	except EmptyPage:</code></li>
+<li class="missed"><code>		products = paginator.page(paginator.num_pages)</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>	return render(request, 'products_list.html', {"products":products})</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>def products_kids(request):</code></li>
+<li class="missed"><code>	products_kids = Product.objects.all().filter(kids=1).order_by("price")</code></li>
+<li class="ignored"><code></code></li>
+<li class="missed"><code>	return render(request, "products_kids.html", {"products_kids":products_kids})</code></li>
+<li class="ignored"><code></code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>def product_detail(request, pk):</code></li>
+<li class="executed"><code>	try:</code></li>
+<li class="executed"><code>		product = Product.objects.get(id=pk)</code></li>
+<li class="missed"><code>	except:</code></li>
+<li class="missed"><code>		return HttpResponseRedirect(reverse('products_list'))</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>	return render(request, 'product_detail.html', {"product":product})</code></li>
+<li class="ignored"><code></code></li>
+<li class="ignored"><code>#Class Based Views for manipulating information in DB</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>class CreateProduct(CreateView):</code></li>
+<li class="executed"><code>	form_class = ProductModelForm</code></li>
+<li class="executed"><code>	template_name = 'create_product.html'</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>	def form_valid(self, form):</code></li>
+<li class="missed"><code>		Product.objects.create(**form.cleaned_data)</code></li>
+<li class="missed"><code>		return HttpResponseRedirect(reverse('products_list'))</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>class UpdateProduct(UpdateView):</code></li>
+<li class="executed"><code>	model = Product</code></li>
+<li class="executed"><code>	success_url='/products/'</code></li>
+<li class="executed"><code>	form_class = ProductModelForm</code></li>
+<li class="executed"><code>	template_name = 'update_product.html'</code></li>
+<li class="ignored"><code></code></li>
+<li class="ignored"><code></code></li>
+<li class="ignored"><code></code></li>
+<li class="ignored"><code>	# # def post(self, request, *args, **kwargs):</code></li>
+<li class="ignored"><code>	# # 	return super(UpdateProduct, self).post(request, *args, **kwargs)</code></li>
+<li class="ignored"><code></code></li>
+<li class="executed"><code>class DeleteProduct(DeleteView):</code></li>
+<li class="executed"><code>	model = Product</code></li>
+<li class="executed"><code>	template_name = 'confirm_delete_product.html'</code></li>
+<li class="executed"><code>	success_url='/products/'</code></li>
+<li class="ignored"><code></code></li>
+<li class="ignored"><code>	# def get_success_url(self):</code></li>
+<li class="ignored"><code>	# 	return reverse('product_detail', args(self.request.POST.get('id')))</code></li>
+  </ol>
+</div>
+
+<div class="nav">
+  <a href="products.models.html">products.models</a> &lt;&lt;
+  <a href="../index.html">index</a>
+</div>
+
+  </body>
+</html>
+

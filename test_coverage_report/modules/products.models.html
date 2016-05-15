@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <title>Test coverage report: products.models</title>
+    <style type="text/css" media="screen">
+      a
+      {
+        color: #3d707a;
+      }
+      
+      a:hover, a:active
+      {
+        color: #bf7d18;
+      }
+    
+      body 
+      {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        font-size: 13px;
+      }
+      
+      .nav 
+      {
+        font-size: 12px;
+        margin-left: 50px;
+      }
+
+      .ignored
+      {
+        color: #707070;
+      }
+
+      .executed 
+      {
+        color: #3d9900;
+      }
+
+      .missed 
+      {
+        color: red;
+        font-weight: bold;
+      }
+
+      .excluded 
+      {
+        color: #6090f0;
+        font-weight: lighter;
+      }
+    
+      #content-header 
+      {
+        font-size: 12px;
+        padding: 18px 0 18px 50px;
+      }
+
+      #content-header h1 
+      {
+        font-size: 16px;
+        margin: 10px 0 0 0;
+        color: #909090;
+      }
+      
+      #module-name
+      {
+        color: #583707;
+      }
+    
+      #content-header p
+      {
+        font-size: 13px;
+        margin: 0;
+        color: #909090;
+      }
+
+      #content-header .normal 
+      {
+        color: #609030;
+      }
+
+      #content-header .warning 
+      {
+        color: #d0a000;
+      }
+
+      #content-header .critical 
+      {
+        color: red;
+      }
+      
+      #source-listing 
+      {
+        margin-bottom: 24px;
+      }
+
+      #source-listing ol 
+      {
+        padding: 0 0 0 50px;
+        width: 90%;
+        font-family: monospace;
+        list-style-position: outside;
+      }
+
+      #source-listing ol li 
+      {
+        line-height: 18px;
+        font-size: small;
+      }
+        
+      #source-listing ol code 
+      {
+        padding:  0 .001em 0 0; /* Firefox doesn't render empty li's properly */
+        font-size: medium;
+        white-space: pre;
+      }
+   </style>
+  </head>
+
+  <body>
+
+<div class="nav">
+  <a href="products.forms.html">products.forms</a> &lt;&lt;
+  <a href="../index.html">index</a>
+  &gt;&gt; <a href="products.views.html">products.views</a>
+</div>
+
+<div id="content-header">
+  <h1>
+    <span id="module-name">products.models</span>:
+    19 total statements,
+    <span class="critical">0.0% covered</span>
+  </h1>
+  <p>Generated: Sun 2016-05-15 14:09 UTC</p>
+  <p>Source file: /home/bond/Projects/PythonDjango/unisport/src/products/models.py</p>
+  <p>
+    Stats:
+    <span class="executed">0 executed</span>,
+    <span class="missed">14 missed</span>,
+    <span class="excluded">5 excluded</span>,
+    <span class="ignored">8 ignored</span> 
+  </p> 
+</div>
+
+<div id="source-listing">
+  <ol>
+    <li class="excluded"><code>from django.db import models</code></li>
+<li class="ignored"><code></code></li>
+<li class="missed"><code>class Product(models.Model):</code></li>
+<li class="missed"><code>	name = models.CharField(max_length=360, null=False, blank=False)</code></li>
+<li class="missed"><code>	image = models.ImageField(upload_to='products/', null=True, blank=True)</code></li>
+<li class="missed"><code>	currency = models.CharField(max_length=50)</code></li>
+<li class="missed"><code>	delivery = models.CharField(max_length=200)</code></li>
+<li class="missed"><code>	kids = models.IntegerField(null=True, blank=True, default=0)</code></li>
+<li class="missed"><code>	package = models.IntegerField(null=True, blank=True, default=0)</code></li>
+<li class="missed"><code>	kid_adult = models.IntegerField(null=True, blank=True, default=0)</code></li>
+<li class="ignored"><code>	# we can use models.BooleanFields or CharField in such fields</code></li>
+<li class="ignored"><code>	# but it depends wich information in the project we want to store in this fields</code></li>
+<li class="missed"><code>	price = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)</code></li>
+<li class="missed"><code>	price_old = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True )</code></li>
+<li class="missed"><code>	women = models.IntegerField(null=True, blank=True, default=0)</code></li>
+<li class="ignored"><code></code></li>
+<li class="excluded"><code>	def __unicode__(self):</code></li>
+<li class="excluded"><code>		return self.name</code></li>
+<li class="ignored"><code></code></li>
+<li class="ignored"><code></code></li>
+<li class="ignored"><code></code></li>
+<li class="missed"><code>class Size(models.Model):</code></li>
+<li class="missed"><code>	product_size = models.ForeignKey(Product)</code></li>
+<li class="missed"><code>	size = models.CharField(max_length=720, default='One Size')</code></li>
+<li class="ignored"><code></code></li>
+<li class="excluded"><code>	def __unicode__(self):</code></li>
+<li class="excluded"><code>		return self.size</code></li>
+  </ol>
+</div>
+
+<div class="nav">
+  <a href="products.forms.html">products.forms</a> &lt;&lt;
+  <a href="../index.html">index</a>
+  &gt;&gt; <a href="products.views.html">products.views</a>
+</div>
+
+  </body>
+</html>
+
