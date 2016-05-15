@@ -1,33 +1,23 @@
-_Fork this project and send us a pull request_
+_Documentation for test task on https://github.com/unisport/sample_
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+"Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/)."
 
+Service was written on Django 1.8. In requirements.txt there are additional libraries needed for properly service functionality 
 
-**/products/**  
+Service has a little bit different data structure like in the semple. It is because I decided to put product sizes into separete model
+and use Many_To_One models relation
 
+For frontend I used bootstrap with CDN
 
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
+To run tests please use commands
 
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
+../unisport/src$ python manage.py test_coverage products
+HTML test_coverege report is in /unisport/test_coverage_report/
 
- **/products/id/**
- 
-should return the individual product.
+To run selenium tests please use commands
 
-
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
-
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
+../unisport/selenium_tests$ python test_suite.py
+Be shure that web-server is running
 
 
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
 

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Products list</h1>
+
+{% for prod in products %}
+	<h2><a href='{% url 'product_detail' prod.id %}'>{{prod.name}}</a></h2>
+	<p> Price: {{prod.price}}</p>
+	{% if prod.price != prod.price_old %}
+		<p>Old Price: {{prod.price_old}}</p>
+	{% endif %}
+{% endfor %}
+
+{% include 'paginator.html' %}
+
+<a href='{% url 'create_product' %}' ><button type="button" class="btn btn-success">Create Product</button><a>
+
+{% endblock content %}
+
+
