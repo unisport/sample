@@ -9,7 +9,7 @@ class Product(models.Model):
 	package = models.IntegerField(null=True, blank=True, default=0)
 	kid_adult = models.IntegerField(null=True, blank=True, default=0)
 	# we can use models.BooleanFields or CharField in such fields
-	# but it depends wich information in the project we want to store in this fields
+	# it depends wich information in the project we want to store in fields 'kid_adult', 'kids', 'package', 'women'
 	price = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
 	price_old = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True )
 	women = models.IntegerField(null=True, blank=True, default=0)
@@ -17,8 +17,6 @@ class Product(models.Model):
 	def __unicode__(self):
 		return self.name
 	
-
-
 class Size(models.Model):
 	product_size = models.ForeignKey(Product)
 	size = models.CharField(max_length=720, default='One Size')

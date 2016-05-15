@@ -130,14 +130,14 @@
     19 total statements,
     <span class="critical">0.0% covered</span>
   </h1>
-  <p>Generated: Sun 2016-05-15 16:41 UTC</p>
+  <p>Generated: Sun 2016-05-15 19:38 UTC</p>
   <p>Source file: /home/bond/Projects/PythonDjango/unisport/src/products/models.py</p>
   <p>
     Stats:
     <span class="executed">0 executed</span>,
     <span class="missed">14 missed</span>,
     <span class="excluded">5 excluded</span>,
-    <span class="ignored">8 ignored</span> 
+    <span class="ignored">6 ignored</span> 
   </p> 
 </div>
 
@@ -154,15 +154,13 @@
 <li class="missed"><code>	package = models.IntegerField(null=True, blank=True, default=0)</code></li>
 <li class="missed"><code>	kid_adult = models.IntegerField(null=True, blank=True, default=0)</code></li>
 <li class="ignored"><code>	# we can use models.BooleanFields or CharField in such fields</code></li>
-<li class="ignored"><code>	# but it depends wich information in the project we want to store in this fields</code></li>
+<li class="ignored"><code>	# it depends wich information in the project we want to store in fields 'kid_adult', 'kids', 'package', 'women'</code></li>
 <li class="missed"><code>	price = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)</code></li>
 <li class="missed"><code>	price_old = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True )</code></li>
 <li class="missed"><code>	women = models.IntegerField(null=True, blank=True, default=0)</code></li>
 <li class="ignored"><code></code></li>
 <li class="excluded"><code>	def __unicode__(self):</code></li>
 <li class="excluded"><code>		return self.name</code></li>
-<li class="ignored"><code></code></li>
-<li class="ignored"><code></code></li>
 <li class="ignored"><code></code></li>
 <li class="missed"><code>class Size(models.Model):</code></li>
 <li class="missed"><code>	product_size = models.ForeignKey(Product)</code></li>

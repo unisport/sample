@@ -43,11 +43,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Unisport</a>
+          <a class="navbar-brand" href="{% url 'home' %}">Unisport</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'products_list' %}">Products</a></li>
             <li><a href="{% url 'products_kids' %}">Kids</a></li>
             
@@ -72,7 +72,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
+        <p class="text-muted"></p>
       </div>
     </footer>
 
