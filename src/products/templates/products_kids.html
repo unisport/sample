@@ -4,7 +4,9 @@
 <h1>Products list</h1>
 
 {% for prod in products_kids %}
-<p>{{prod.name}} {{prod.price}} {% for size in prod.size_set.all %}{{size}} | {% endfor %}</p>
+<h2>Name: {{prod.name}}</h2> 
+<p>Price: {{prod.price}}</p> 
+{% for size in prod.size_set.all %}{{size}} | {% endfor %}</p>
 {% endfor %}
 
 

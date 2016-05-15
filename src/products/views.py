@@ -12,7 +12,7 @@ def products_list(request):
 	products = Product.objects.all().order_by("price")
 
 
-	paginator = Paginator(products, 5)
+	paginator = Paginator(products, 10)
 	page = request.GET.get('page')
 
 	try:

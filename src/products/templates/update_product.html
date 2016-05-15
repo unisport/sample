@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Create Product</h1>
+<h1>Update Product</h1>
 
 <form action="{% url "update_product" product.id %}" method="post" >
 {% csrf_token %}
