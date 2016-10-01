@@ -1,13 +1,6 @@
-import json
-
 from config import app
 from model.product import Product
 from schema import ProductSchema
-
-
-def _read_data(path):
-    with open(path, 'r') as f:
-        return json.load(f)
 
 
 @app.route('/products')
