@@ -1,4 +1,6 @@
+import flask
 from marshmallow import Schema, fields, pre_load
+from marshmallow.decorators import post_dump
 
 
 class ProductSchema(Schema):
@@ -25,6 +27,6 @@ class ProductSchema(Schema):
         data['price_old'] = data['price_old'].replace(',', '.')
         return data
 
-
-class ProductSchemaDump(Schema):
-    pass
+    @post_dump(pass_many=True)
+    def jsonify(self, data, many):
+        return flask.jsonify(data)
