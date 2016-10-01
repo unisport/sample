@@ -33,7 +33,7 @@ def test_returns_products_for_kids():
 
 
 @create_db
-def test_pagination():
+def test_pagination_on_valid_pages():
     EXPECTED_LENGTH = 10
     for i in range(1, 21):
         product = {'id': i, 'name': 'Some product', 'price': 10 * i}
@@ -50,3 +50,17 @@ def test_pagination():
         assert len(products) == EXPECTED_LENGTH
         for i in range(10):
             assert products[i]['id'] == i + 11
+
+
+@create_db
+def test_pagination_on_invalid_pages():
+    EXPECTED_LENGTH = 10
+    for i in range(1, 21):
+        product = {'id': i, 'name': 'Some product', 'price': 10 * i}
+        add_product(db, **product)
+    with instance.application.app_context():
+        response = instance.get('/products/?page=GARBAGE')
+        products = flask.json.loads(response.data)
+        assert len(products) == EXPECTED_LENGTH
+        for i in range(10):
+            assert products[i]['id'] == i + 1
