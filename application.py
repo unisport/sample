@@ -1,8 +1,9 @@
+import flask
 from flask import request
 
 from config import app
 from model.product import Product
-from schema import ProductSchema, PageSchema, ValidationException
+from schema import ProductSchema, PageSchema, ValidationException, ProductIdSchema
 
 PAGE_SIZE = 10
 
@@ -18,6 +19,16 @@ def products():
         begin = PAGE_SIZE * (page - 1)
         end = PAGE_SIZE * page
         return ProductSchema().dump(items[begin:end], many=True)
+
+
+@app.route('/products/<prod_id>/', methods=['GET'])
+def product(prod_id):
+    try:
+        checked_prod_id = ProductIdSchema().load({'prod_id': prod_id}).data['prod_id']
+        item = Product.query.filter(Product.id == checked_prod_id).one()
+    except (ValidationException, Exception):
+        return flask.jsonify({})
+    return ProductSchema().dump(item).data
 
 
 @app.route('/products/kids', methods=['GET'])

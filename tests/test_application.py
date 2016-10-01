@@ -64,3 +64,35 @@ def test_pagination_on_invalid_pages():
         assert len(products) == EXPECTED_LENGTH
         for i in range(10):
             assert products[i]['id'] == i + 1
+
+
+@create_db
+def test_fetch_product_by_valid_id():
+    product = {'id': 42, 'name': 'Some product', 'price': 10.0}
+    add_product(db, **product)
+    with instance.application.app_context():
+        response = instance.get('/products/42/')
+        product = flask.json.loads(response.data)
+        assert product['id'] == 42
+        assert product['name'] == 'Some product'
+        assert float(product['price']) == 10.0
+
+
+@create_db
+def test_fetch_non_existent_product():
+    product = {'id': 42, 'name': 'Some product', 'price': 10.0}
+    add_product(db, **product)
+    with instance.application.app_context():
+        response = instance.get('/products/100500/')
+        product = flask.json.loads(response.data)
+        assert product == {}
+
+
+@create_db
+def test_fetch_product_with_non_valid_id():
+    product = {'id': 42, 'name': 'Some product', 'price': 10.0}
+    add_product(db, **product)
+    with instance.application.app_context():
+        response = instance.get('/products/GARBAGE/')
+        product = flask.json.loads(response.data)
+        assert product == {}

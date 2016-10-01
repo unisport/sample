@@ -55,3 +55,9 @@ class PageSchema(Schema):
         if 'page' not in data or data['page'] <= 0:
             data.update({'page': 1})
         return data
+
+
+class ProductIdSchema(Schema):
+    __error_handler__ = error_handler
+
+    prod_id = fields.Integer(required=True)
