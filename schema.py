@@ -24,3 +24,7 @@ class ProductSchema(Schema):
         data['price'] = data['price'].replace(',', '.')
         data['price_old'] = data['price_old'].replace(',', '.')
         return data
+
+
+class ProductSchemaDump(Schema):
+    pass

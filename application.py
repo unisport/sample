@@ -1,10 +1,12 @@
 import json
+
 import flask
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from schema import ProductSchema
 from helpers import DecimalJSONEncoder
+from model.product import Product
+from schema import ProductSchema, ProductSchemaDump
 
 app = Flask(__name__)
 app.json_encoder = DecimalJSONEncoder
@@ -21,10 +23,8 @@ def _read_data(path):
 @app.route('/products')
 def products():
     with app.app_context():
-        data = _read_data(app.config['DATABASE'])
-        products = ProductSchema().load(data['products'], many=True).data
-        products = sorted(products, cmp=lambda item1, item2: int(item1['price'] - item2['price']))
-        return flask.jsonify(products[:10])
+        products = Product.query.order_by(Product.price).all()
+        return ProductSchemaDump().dump(products[:10], many=True)
 
 
 @app.route('/products/kids')
