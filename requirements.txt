@@ -16,3 +16,20 @@ pytest==3.0.2
 pytest-runner==2.9
 SQLAlchemy==1.0.15
 Werkzeug==0.11.11
+click==6.6
+Flask==0.11.1
+Flask-SQLAlchemy==2.1
+funcsigs==1.0.2
+itsdangerous==0.24
+Jinja2==2.8
+MarkupSafe==0.23
+marshmallow==2.10.2
+mock==2.0.0
+pbr==1.10.0
+py==1.4.31
+pytest==3.0.3
+pytest-runner==2.9
+-e git+https://github.com/MagnetonBora/sample.git@9b309adcbd4d989f4b46bc74a2c1f8cdd0d3ff8a#egg=Shop
+six==1.10.0
+SQLAlchemy==1.0.15
+Werkzeug==0.11.11
