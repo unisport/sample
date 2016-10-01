@@ -1,13 +1,15 @@
+import flask
 from marshmallow import Schema, fields, pre_load
+from marshmallow.decorators import post_dump
 
 
 class ProductSchema(Schema):
     id = fields.Integer()
     package = fields.Integer()
     women = fields.Integer()
-    price = fields.Decimal()
+    price = fields.Decimal(places=3)
     img_url = fields.Url()
-    price_old = fields.Decimal()
+    price_old = fields.Decimal(places=3)
     online = fields.Integer()
     url = fields.Url()
     delivery = fields.String()
@@ -24,3 +26,7 @@ class ProductSchema(Schema):
         data['price'] = data['price'].replace(',', '.')
         data['price_old'] = data['price_old'].replace(',', '.')
         return data
+
+    @post_dump(pass_many=True)
+    def jsonify(self, data, many):
+        return flask.jsonify(data)
