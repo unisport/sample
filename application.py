@@ -24,5 +24,13 @@ def products():
         return flask.jsonify(products[:10])
 
 
+@app.route('/products/kids')
+def kids():
+    data = _read_data(PATH)
+    products = ProductSchema().load(data['products'], many=True).data
+    products = filter(lambda item: item['kids'] == 1, products)
+    return flask.jsonify(products)
+
+
 if __name__ == '__main__':
     app.run()
