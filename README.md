@@ -1,33 +1,37 @@
-_Fork this project and send us a pull request_
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+This is a fork of unisport sample task.
+A data benchmark can be found [here](http://www.unisport.dk/api/sample/).
 
+To prepare the application you have to do the following steps.
 
-**/products/**  
+First clone this repository.
 
+Create virtual environment `mkvirtualenv sample`
 
-should return the first 10 objects ordered with the cheapest first.
+Run `pip install -r requirements.txt`
+
+Run `python setup.py develop`
+
+Optionally you can run tests `py.test`
+
+Finally, you can start the service `./start.sh`
+
+**IMPORTANT: please note you need to have sqlite3 installed on your system.**
+
+The following endpoints are available now.
+
+**/products/**
+
+Returns the first 10 objects ordered with the cheapest first.
  
 **/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
 
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
+Returns the products where kids=1 ordered with the cheapest first
 
- **/products/id/**
- 
-should return the individual product.
+**/products/?page=2** 
 
+Returns correspondent page of products. Each page has 10 items.   
 
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
+**/products/id/**
 
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
-
-
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
-
+Returns the individual product.
