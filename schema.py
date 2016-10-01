@@ -1,10 +1,6 @@
-import logging
-
 import flask
 from marshmallow import Schema, fields, pre_load
 from marshmallow.decorators import post_dump, post_load
-
-logger = logging.getLogger(__name__)
 
 
 class ValidationException(Exception):
@@ -13,7 +9,6 @@ class ValidationException(Exception):
 
 def error_handler(cls, error, data):
     if error:
-        logger.error(error)
         raise ValidationException
 
 
