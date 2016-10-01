@@ -2,6 +2,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 import flask
+from flask import render_template
 from flask import request
 
 from config import app
@@ -22,7 +23,8 @@ def products():
         items = Product.query.order_by(Product.price).all()
         begin = PAGE_SIZE * (page - 1)
         end = PAGE_SIZE * page
-        return ProductSchema().dump(items[begin:end], many=True)
+        items = ProductSchema().dump(items[begin:end], many=True)
+        return render_template('index.html', items=items)
 
 
 @app.route('/products/<prod_id>/', methods=['GET'])
