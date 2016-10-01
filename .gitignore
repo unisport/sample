@@ -3,3 +3,4 @@ Shop.egg-info
 *.pyc
 __pycache__
 .cache
+*.idea/
