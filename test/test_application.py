@@ -1,5 +1,10 @@
 import flask
 import application
+from tempfile import mkstemp
+
+
+def create_test_db():
+    fd, dbpath = mkstemp()
 
 
 def test_should_fetch_first_10_products_in_asc_order():

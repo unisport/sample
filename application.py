@@ -26,10 +26,12 @@ def products():
 
 @app.route('/products/kids')
 def kids():
-    data = _read_data(PATH)
-    products = ProductSchema().load(data['products'], many=True).data
-    products = filter(lambda item: item['kids'] == 1, products)
-    return flask.jsonify(products)
+    with app.app_context():
+        data = _read_data(PATH)
+        products = ProductSchema().load(data['products'], many=True).data
+        products = filter(lambda item: item['kids'] == 1, products)
+        products = sorted(products, cmp=lambda item1, item2: int(item1['price'] - item2['price']))
+        return flask.jsonify(products)
 
 
 if __name__ == '__main__':
