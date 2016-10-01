@@ -1,6 +1,20 @@
+import logging
+
 import flask
 from marshmallow import Schema, fields, pre_load
-from marshmallow.decorators import post_dump
+from marshmallow.decorators import post_dump, post_load
+
+logger = logging.getLogger(__name__)
+
+
+class ValidationException(Exception):
+    pass
+
+
+def error_handler(cls, error, data):
+    if error:
+        logger.error(error)
+        raise ValidationException
 
 
 class ProductSchema(Schema):
@@ -30,3 +44,14 @@ class ProductSchema(Schema):
     @post_dump(pass_many=True)
     def jsonify(self, data, many):
         return flask.jsonify(data)
+
+
+class PageSchema(Schema):
+    __error_handler__ = error_handler
+    page = fields.Integer(default=1)
+
+    @post_load
+    def default_page(self, data, pass_original=True):
+        if 'page' not in data or data['page'] <= 0:
+            data.update({'page': 1})
+        return data

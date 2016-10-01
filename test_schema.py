@@ -1,5 +1,8 @@
 from decimal import Decimal
-from schema import ProductSchema
+
+import pytest
+
+from schema import ProductSchema, PageSchema, ValidationException
 
 
 def test_deserialization_of_product():
@@ -101,3 +104,28 @@ def test_deserialization_of_multiple_product():
         assert type(product['free_porto']) == int
         assert type(product['image']) == unicode
         assert type(product['package']) == int
+
+
+def test_page_schema_null_page():
+    page = PageSchema().load({'page': 0}).data['page']
+    assert page == 1
+
+
+def test_page_schema_negative_page():
+    page = PageSchema().load({'page': -42}).data['page']
+    assert page == 1
+
+
+def test_page_schema_valid_page():
+    page = PageSchema().load({'page': 100500}).data['page']
+    assert page == 100500
+
+
+def test_page_schema_empty_page():
+    page = PageSchema().load({}).data['page']
+    assert page == 1
+
+
+def test_page_schema_garbage_instead_of_page():
+    with pytest.raises(ValidationException):
+        PageSchema().load({'page': 'GARBAGE'})

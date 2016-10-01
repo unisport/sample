@@ -12,7 +12,7 @@ def test_should_fetch_first_10_products_in_asc_order():
         product = {'id': i, 'name': 'Some product', 'price': 1000 - 5*i}
         add_product(db, **product)
     with instance.application.app_context():
-        response = instance.get('/products')
+        response = instance.get('/products/')
         products = flask.json.loads(response.data)
         assert len(products) == EXPECTED_LENGTH
         assert all(products[i]['price'] <= products[i+1]['price'] for i in range(EXPECTED_LENGTH-1))
@@ -30,3 +30,37 @@ def test_returns_products_for_kids():
         products = flask.json.loads(response.data)
         assert len(products) == EXPECTED_LENGTH
         assert all(products[i]['price'] <= products[i + 1]['price'] for i in range(len(products)-1))
+
+
+@create_db
+def test_pagination_on_valid_pages():
+    EXPECTED_LENGTH = 10
+    for i in range(1, 21):
+        product = {'id': i, 'name': 'Some product', 'price': 10 * i}
+        add_product(db, **product)
+    with instance.application.app_context():
+        response = instance.get('/products/?page=1')
+        products = flask.json.loads(response.data)
+        assert len(products) == EXPECTED_LENGTH
+        for i in range(10):
+            assert products[i]['id'] == i + 1
+
+        response = instance.get('/products/?page=2')
+        products = flask.json.loads(response.data)
+        assert len(products) == EXPECTED_LENGTH
+        for i in range(10):
+            assert products[i]['id'] == i + 11
+
+
+@create_db
+def test_pagination_on_invalid_pages():
+    EXPECTED_LENGTH = 10
+    for i in range(1, 21):
+        product = {'id': i, 'name': 'Some product', 'price': 10 * i}
+        add_product(db, **product)
+    with instance.application.app_context():
+        response = instance.get('/products/?page=GARBAGE')
+        products = flask.json.loads(response.data)
+        assert len(products) == EXPECTED_LENGTH
+        for i in range(10):
+            assert products[i]['id'] == i + 1
