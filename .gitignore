@@ -1,1 +1,5 @@
 .DS_Store
+Shop.egg-info
+*.pyc
+__pycache__
+.cache
