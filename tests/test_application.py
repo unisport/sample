@@ -1,8 +1,8 @@
 import flask
 
 from config import db
-from test.helpers.decorators import create_db, instance
-from test.helpers.utils import add_product
+from tests.helpers.decorators import create_db, instance
+from tests.helpers.utils import add_product
 
 
 @create_db
