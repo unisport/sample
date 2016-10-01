@@ -1,4 +1,4 @@
 from model.product import Product
-from application import db
+from config import db
 
 db.create_all()

@@ -1,5 +1,5 @@
 from decimal import Decimal
-from application import db
+from config import db
 
 
 class Product(db.Model):
