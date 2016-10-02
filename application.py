@@ -38,8 +38,7 @@ def product(prod_id):
     except (ValidationException, Exception):
         app.logger.exception('Someone tries to send non-valid product id: {}'.format(prod_id))
         return redirect('/products/', code=400)
-    item = ProductSchema().dump(item).data
-    return render_template('product.html', item=item)
+    return render_template('product.html', item=ProductSchema().dump(item).data)
 
 
 @app.route('/product/', methods=['GET', 'POST'])
