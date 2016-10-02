@@ -104,7 +104,7 @@ def test_delete_product():
     product = {'id': 42, 'name': 'Some product', 'price': 10.0}
     add_product(db, **product)
     with instance.application.app_context():
-        response = instance.delete('/product/42/delete')
-        assert response.status == '200'
+        response = instance.delete('/product/42/')
+        assert response.status == '200 OK'
         item = Product.query.get(42)
         assert item is None

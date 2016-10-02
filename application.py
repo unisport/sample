@@ -68,7 +68,7 @@ def update_product(prod_id):
     return "200"
 
 
-@app.route('/product/<prod_id>/delete/', methods=['DELETE'])
+@app.route('/product/<prod_id>/', methods=['DELETE'])
 def delete_product(prod_id=None):
     try:
         checked_prod_id = ProductIdSchema().load({'prod_id': prod_id}).data['prod_id']
@@ -77,8 +77,8 @@ def delete_product(prod_id=None):
         db.session.commit()
     except (ValidationException, Exception):
         app.logger.exception('Someone tries to send non-valid product id: {}'.format(prod_id))
-        return "503"
-    return "200"
+        return redirect('/', code=503)
+    return redirect('/', code=200)
 
 
 @app.route('/products/kids/', methods=['GET'])

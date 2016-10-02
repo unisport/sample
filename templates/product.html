@@ -32,7 +32,7 @@
     };
     var delete_item = function(){
         var id = document.getElementById("id").value;
-        var url = "/product/" + id + "/delete/";
+        var url = "/product/" + id + "/";
         $.ajax({
             url: url,
             type: 'DELETE',
