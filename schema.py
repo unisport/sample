@@ -1,6 +1,5 @@
-import flask
 from marshmallow import Schema, fields, pre_load
-from marshmallow.decorators import post_dump, post_load
+from marshmallow.decorators import post_load
 
 
 class ValidationException(Exception):

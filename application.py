@@ -1,7 +1,6 @@
 import logging
 from logging.handlers import RotatingFileHandler
 
-import flask
 from flask import render_template, request, redirect
 
 from config import app, db
@@ -38,7 +37,7 @@ def product(prod_id):
         item = Product.query.filter(Product.id == checked_prod_id).one()
     except (ValidationException, Exception):
         app.logger.exception('Someone tries to send non-valid product id: {}'.format(prod_id))
-        return flask.jsonify({})
+        return redirect('/products/', code=400)
     item = ProductSchema().dump(item).data
     return render_template('product.html', item=item)
 

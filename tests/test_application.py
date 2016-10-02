@@ -1,8 +1,5 @@
 import logging
 
-import flask
-import pytest
-
 from config import db
 from model.product import Product
 from tests.helpers.decorators import create_db, instance
@@ -90,8 +87,7 @@ def test_fetch_non_existent_product():
     add_product(db, **product)
     with instance.application.app_context():
         response = instance.get('/products/100500/')
-        product = flask.json.loads(response.data)
-        assert product == {}
+        assert response.status == '400 BAD REQUEST'
 
 
 @create_db
@@ -100,8 +96,7 @@ def test_fetch_product_with_non_valid_id():
     add_product(db, **product)
     with instance.application.app_context():
         response = instance.get('/products/GARBAGE/')
-        product = flask.json.loads(response.data)
-        assert product == {}
+        assert response.status == '400 BAD REQUEST'
 
 
 @create_db
