@@ -13,20 +13,20 @@ def error_handler(cls, error, data):
 
 class ProductSchema(Schema):
     id = fields.Integer()
-    package = fields.Integer()
-    women = fields.Integer()
+    package = fields.Boolean(default=False)
+    women = fields.Boolean(default=False)
     price = fields.Decimal(places=3)
     img_url = fields.Url()
     price_old = fields.Decimal(places=3)
-    online = fields.Integer()
+    online = fields.Boolean(default=False)
     url = fields.Url()
     delivery = fields.String()
     currency = fields.String()
-    kids = fields.Integer()
+    kids = fields.Boolean(default=False)
     name = fields.String()
     sizes = fields.String()
-    kid_adult = fields.Integer()
-    free_porto = fields.Integer()
+    kid_adult = fields.Boolean(default=False)
+    free_porto = fields.Boolean(default=False)
     image = fields.Url()
 
     @pre_load
