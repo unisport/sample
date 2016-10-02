@@ -1,9 +1,13 @@
+import logging
+
 import flask
 
 from config import db
 from model.product import Product
 from tests.helpers.decorators import create_db, instance
 from tests.helpers.utils import add_product, retrieve_products, retrieve_product
+
+logging.disable(logging.CRITICAL)
 
 
 @create_db

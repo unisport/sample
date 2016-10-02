@@ -1,8 +1,11 @@
+import logging
 from decimal import Decimal
 
 import pytest
 
 from schema import ProductSchema, PageSchema, ValidationException, ProductIdSchema
+
+logging.disable(logging.CRITICAL)
 
 
 def test_deserialization_of_product():
