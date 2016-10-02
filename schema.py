@@ -36,10 +36,6 @@ class ProductSchema(Schema):
         data['price_old'] = data['price_old'].replace(',', '.')
         return data
 
-    @post_dump(pass_many=True)
-    def jsonify(self, data, many):
-        return flask.jsonify(data)
-
 
 class PageSchema(Schema):
     __error_handler__ = error_handler

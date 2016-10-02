@@ -12,6 +12,11 @@ from schema import ProductSchema, PageSchema, ValidationException, ProductIdSche
 PAGE_SIZE = 10
 
 
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+
 @app.route('/products/', methods=['GET'])
 def products():
     with app.app_context():
@@ -23,8 +28,8 @@ def products():
         items = Product.query.order_by(Product.price).all()
         begin = PAGE_SIZE * (page - 1)
         end = PAGE_SIZE * page
-        items = ProductSchema().dump(items[begin:end], many=True)
-        return render_template('index.html', items=items)
+        result = ProductSchema().dump(items[begin:end], many=True).data
+        return render_template('index.html', items=result)
 
 
 @app.route('/products/<prod_id>/', methods=['GET'])
@@ -35,14 +40,14 @@ def product(prod_id):
     except (ValidationException, Exception):
         app.logger.exception('Someone tries to send non-valid product id: {}'.format(prod_id))
         return flask.jsonify({})
-    return ProductSchema().dump(item).data
+    return flask.jsonify(ProductSchema().dump(item).data)
 
 
 @app.route('/products/kids', methods=['GET'])
 def kids():
     with app.app_context():
         items = Product.query.filter(Product.kids == '1').order_by(Product.price).all()
-        return ProductSchema().dump(items, many=True)
+        return flask.jsonify(ProductSchema().dump(items, many=True).data)
 
 
 if __name__ == '__main__':
