@@ -1,6 +1,7 @@
 import flask
 
 from config import db
+from model.product import Product
 from tests.helpers.decorators import create_db, instance
 from tests.helpers.utils import add_product
 
@@ -96,3 +97,14 @@ def test_fetch_product_with_non_valid_id():
         response = instance.get('/products/GARBAGE/')
         product = flask.json.loads(response.data)
         assert product == {}
+
+
+@create_db
+def test_delete_product():
+    product = {'id': 42, 'name': 'Some product', 'price': 10.0}
+    add_product(db, **product)
+    with instance.application.app_context():
+        response = instance.delete('/product/42/delete')
+        assert response.status == '200'
+        item = Product.query.get(42)
+        assert item is None

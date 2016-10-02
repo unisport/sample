@@ -78,7 +78,7 @@ def delete_product(prod_id=None):
     except (ValidationException, Exception):
         app.logger.exception('Someone tries to send non-valid product id: {}'.format(prod_id))
         return "503"
-    return redirect('/', code=200)
+    return "200"
 
 
 @app.route('/products/kids/', methods=['GET'])
