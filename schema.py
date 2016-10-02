@@ -1,6 +1,5 @@
-import flask
 from marshmallow import Schema, fields, pre_load
-from marshmallow.decorators import post_dump, post_load
+from marshmallow.decorators import post_load
 
 
 class ValidationException(Exception):
@@ -32,13 +31,11 @@ class ProductSchema(Schema):
 
     @pre_load
     def format_price(self, data):
-        data['price'] = data['price'].replace(',', '.')
-        data['price_old'] = data['price_old'].replace(',', '.')
+        if 'price' in data:
+            data['price'] = data['price'].replace(',', '.')
+        if 'price_old' in data:
+            data['price_old'] = data['price_old'].replace(',', '.')
         return data
-
-    @post_dump(pass_many=True)
-    def jsonify(self, data, many):
-        return flask.jsonify(data)
 
 
 class PageSchema(Schema):
