@@ -13,10 +13,6 @@ PAGE_SIZE = 10
 
 
 @app.route('/')
-def home():
-    return render_template('index.html')
-
-
 @app.route('/products/', methods=['GET'])
 def products():
     with app.app_context():
@@ -29,7 +25,7 @@ def products():
         begin = PAGE_SIZE * (page - 1)
         end = PAGE_SIZE * page
         result = ProductSchema().dump(items[begin:end], many=True).data
-        return render_template('index.html', items=result)
+        return render_template('products.html', items=result)
 
 
 @app.route('/products/<prod_id>/', methods=['GET'])
@@ -40,14 +36,16 @@ def product(prod_id):
     except (ValidationException, Exception):
         app.logger.exception('Someone tries to send non-valid product id: {}'.format(prod_id))
         return flask.jsonify({})
-    return flask.jsonify(ProductSchema().dump(item).data)
+    item = ProductSchema().dump(item).data
+    return render_template('product.html', item=item)
 
 
-@app.route('/products/kids', methods=['GET'])
+@app.route('/products/kids/', methods=['GET'])
 def kids():
     with app.app_context():
         items = Product.query.filter(Product.kids == '1').order_by(Product.price).all()
-        return flask.jsonify(ProductSchema().dump(items, many=True).data)
+        items = ProductSchema().dump(items, many=True).data
+        return render_template('products.html', items=items)
 
 
 if __name__ == '__main__':
