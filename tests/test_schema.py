@@ -29,22 +29,22 @@ def test_deserialization_of_product():
     }
     product = ProductSchema().load(input_data).data
 
-    assert type(product['women']) == int
+    assert type(product['women']) == bool
     assert type(product['price']) == Decimal
     assert type(product['price_old']) == Decimal
     assert type(product['img_url']) == unicode
-    assert type(product['online']) == int
+    assert type(product['online']) == bool
     assert type(product['url']) == unicode
     assert type(product['delivery']) == unicode
     assert type(product['id']) == int
     assert type(product['currency']) == unicode
-    assert type(product['kids']) == int
+    assert type(product['kids']) == bool
     assert type(product['name']) == unicode
     assert type(product['sizes']) == unicode
-    assert type(product['kid_adult']) == int
-    assert type(product['free_porto']) == int
+    assert type(product['kid_adult']) == bool
+    assert type(product['free_porto']) == bool
     assert type(product['image']) == unicode
-    assert type(product['package']) == int
+    assert type(product['package']) == bool
 
 
 def test_deserialization_of_multiple_product():
@@ -91,22 +91,22 @@ def test_deserialization_of_multiple_product():
 
     assert len(products) == 2
     for product in products:
-        assert type(product['women']) == int
+        assert type(product['women']) == bool
         assert type(product['price']) == Decimal
         assert type(product['price_old']) == Decimal
         assert type(product['img_url']) == unicode
-        assert type(product['online']) == int
+        assert type(product['online']) == bool
         assert type(product['url']) == unicode
         assert type(product['delivery']) == unicode
         assert type(product['id']) == int
         assert type(product['currency']) == unicode
-        assert type(product['kids']) == int
+        assert type(product['kids']) == bool
         assert type(product['name']) == unicode
         assert type(product['sizes']) == unicode
-        assert type(product['kid_adult']) == int
-        assert type(product['free_porto']) == int
+        assert type(product['kid_adult']) == bool
+        assert type(product['free_porto']) == bool
         assert type(product['image']) == unicode
-        assert type(product['package']) == int
+        assert type(product['package']) == bool
 
 
 def test_page_schema_null_page():
