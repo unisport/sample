@@ -45,14 +45,13 @@ def product(prod_id):
 
 @app.route('/product/', methods=['GET', 'POST'])
 def manage_product():
-    if request.method == 'GET':
-        return render_template('create_product.html')
-    elif request.method == 'POST':
+    if request.method == 'POST':
         item = ProductSchema().load(request.form.to_dict()).data
         db.session.add(Product(**item))
         db.session.commit()
         return redirect('/', code=302)
-    return redirect('/', code=405)
+    else:
+        return render_template('create_product.html')
 
 
 @app.route('/update-product/<prod_id>/', methods=['PUT'])
@@ -64,7 +63,7 @@ def update_product(prod_id):
         db.session.commit()
     except (ValidationException, Exception):
         app.logger.exception('Someone tries to send non-valid product id: {}'.format(prod_id))
-        return "503"
+        return redirect('/', code=400)
     return "200"
 
 
@@ -77,7 +76,7 @@ def delete_product(prod_id=None):
         db.session.commit()
     except (ValidationException, Exception):
         app.logger.exception('Someone tries to send non-valid product id: {}'.format(prod_id))
-        return redirect('/', code=503)
+        return redirect('/', code=400)
     return redirect('/', code=200)
 
 

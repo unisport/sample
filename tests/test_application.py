@@ -1,6 +1,7 @@
 import logging
 
 import flask
+import pytest
 
 from config import db
 from model.product import Product
@@ -112,3 +113,54 @@ def test_delete_product():
         assert response.status == '200 OK'
         item = Product.query.get(42)
         assert item is None
+
+
+@create_db
+def test_create_product():
+    data = {'name': 'Some product', 'price': 10.0, 'price_old': 5.0}
+    with instance.application.app_context():
+        response = instance.post('/product/', data=data)
+        assert response.status == '302 FOUND'
+        product = Product.query.filter_by(name='Some product').one()
+        assert product is not None
+
+
+@create_db
+def test_update_product():
+    product = {'id': 42, 'name': 'Some product', 'price': 10.0}
+    add_product(db, **product)
+    with instance.application.app_context():
+        new_data = {'name': 'T-Shirt', 'price': 12.0}
+        response = instance.put('/update-product/42/', data=new_data)
+        assert response.status == '200 OK'
+        product = Product.query.get(42)
+        assert product.name == 'T-Shirt'
+        assert product.price == 12.0
+
+
+@create_db
+def test_update_product_returns_status_400_on_exception():
+    with instance.application.app_context():
+        response = instance.put('/update-product/GARBAGE/', data=None)
+        assert response.status == '400 BAD REQUEST'
+
+
+@create_db
+def test_delete_product_returns_400_on_exception():
+    with instance.application.app_context():
+        response = instance.delete('/product/42/')
+        assert response.status == '400 BAD REQUEST'
+
+
+@create_db
+def test_manage_product_return_200_on_get_request():
+    with instance.application.app_context():
+        response = instance.get('/product/')
+        assert response.status == '200 OK'
+
+
+@create_db
+def test_home_returns_200_on_get_request():
+    with instance.application.app_context():
+        response = instance.get('/')
+        assert response.status == '200 OK'

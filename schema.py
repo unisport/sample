@@ -32,8 +32,10 @@ class ProductSchema(Schema):
 
     @pre_load
     def format_price(self, data):
-        data['price'] = data['price'].replace(',', '.')
-        data['price_old'] = data['price_old'].replace(',', '.')
+        if 'price' in data:
+            data['price'] = data['price'].replace(',', '.')
+        if 'price_old' in data:
+            data['price_old'] = data['price_old'].replace(',', '.')
         return data
 
 
