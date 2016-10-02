@@ -1,19 +1,133 @@
 {% extends "index.html" %}
 {% block body %}
-    <div>{{ item.id }}</div>
-    <div>{{ item.package }}</div>
-    <div>{{ item.women }}</div>
-    <div>{{ item.price }}</div>
-    <div>{{ item.img_url }}</div>
-    <div>{{ item.price_old }}</div>
-    <div>{{ item.online }}</div>
-    <div>{{ item.url }}</div>
-    <div>{{ item.delivery }}</div>
-    <div>{{ item.currency }}</div>
-    <div>{{ item.kids }}</div>
-    <div>{{ item.name }}</div>
-    <div>{{ item.sizes }}</div>
-    <div>{{ item.kid_adult }}</div>
-    <div>{{ item.free_porto }}</div>
-    <div>{{ item.image }}</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-1">
+            id
+        </div>
+        <div class="col-sm-6">
+            {{ item.id }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            package
+        </div>
+        <div class="col-sm-6">
+            {{ item.package }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            women
+        </div>
+        <div class="col-sm-6">
+            {{ item.women }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            price
+        </div>
+        <div class="col-sm-6">
+            {{ item.price }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            img_url
+        </div>
+        <div class="col-sm-6">
+            {{ item.img_url }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            price_old
+        </div>
+        <div class="col-sm-6">
+            {{ item.price_old }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            online
+        </div>
+        <div class="col-sm-6">
+            {{ item.online }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            url
+        </div>
+        <div class="col-sm-6">
+            {{item.url }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            delivery
+        </div>
+        <div class="col-sm-6">
+            {{ item.delivery }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            currency
+        </div>
+        <div class="col-sm-6">
+            {{ item.currency }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            kids
+        </div>
+        <div class="col-sm-6">
+            {{ item.kids }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            name
+        </div>
+        <div class="col-sm-6">
+            {{ item.name }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            sizes
+        </div>
+        <div class="col-sm-6">
+            {{ item.sizes }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            kid_adult
+        </div>
+        <div class="col-sm-6">
+            {{ item.kid_adult }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            free_porto
+        </div>
+        <div class="col-sm-6">
+            {{ item.free_porto }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            image
+        </div>
+        <div class="col-sm-6">
+            {{ item.image }}
+        </div>
+    </div>
+</div>
 {% endblock %}
