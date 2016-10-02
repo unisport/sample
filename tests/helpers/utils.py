@@ -30,7 +30,7 @@ def retrieve_product(html_string):
     input_elements = html.xpath('//input')
     for input_element in input_elements:
         name = input_element.xpath('@name')[0]
-        value = input_element.xpath('@value')[0]
+        value = input_element.xpath('@value|@checked')[0]
         if name == 'id':
             data.update({name: int(value)})
         else:

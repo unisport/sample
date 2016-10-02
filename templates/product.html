@@ -6,21 +6,22 @@
         var url = '/update-product/' + id + '/';
         var payload = {
             "name": document.getElementById("name").value,
-            "package": document.getElementById("package").value,
-            "women": document.getElementById("women").value,
+            "package": document.getElementById("package").checked,
+            "women": document.getElementById("women").checked,
             "price": document.getElementById("price").value,
             "img_url": document.getElementById("img_url").value,
             "price_old": document.getElementById("price_old").value,
-            "online": document.getElementById("online").value,
+            "online": document.getElementById("online").checked,
             "url": document.getElementById("url").value,
             "delivery": document.getElementById("delivery").value,
             "currency": document.getElementById("currency").value,
-            "kids": document.getElementById("kids").value,
+            "kids": document.getElementById("kids").checked,
             "sizes": document.getElementById("sizes").value,
-            "kid_adult": document.getElementById("kid_adult").value,
-            "free_porto": document.getElementById("free_porto").value,
+            "kid_adult": document.getElementById("kid_adult").checked,
+            "free_porto": document.getElementById("free_porto").checked,
             "image": document.getElementById("image").value
         };
+        console.log(payload);
         $.ajax({
             url: url,
             type: 'PUT',
@@ -61,13 +62,13 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="package">Package:</label>
                 <div class="col-sm-4">
-                    <input type="text" id="package" name="package" class="form-control" value="{{ item.package }}">
+                    <input type="checkbox" id="package" name="package" class="form-control" {% if item.package %} checked {% endif %}>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="women">Women:</label>
                 <div class="col-sm-4">
-                    <input type="text" id="women" name="women" class="form-control" value="{{ item.women }}">
+                    <input type="checkbox" id="women" name="women" class="form-control" {% if item.women %} checked {% endif %}>
                 </div>
             </div>
             <div class="form-group">
@@ -91,7 +92,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="online">Online:</label>
                 <div class="col-sm-4">
-                    <input type="text" id="online" name="online" class="form-control" value="{{ item.online }}">
+                    <input type="checkbox" id="online" name="online" class="form-control" {% if item.online %} checked {% endif %}>
                 </div>
             </div>
             <div class="form-group">
@@ -117,7 +118,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="kids">Kids:</label>
                 <div class="col-sm-4">
-                    <input type="text" id="kids" name="kids" class="form-control" value="{{ item.kids }}">
+                    <input type="checkbox" id="kids" name="kids" class="form-control" {% if item.kids %} checked {% endif %}>
                 </div>
             </div>
             <div class="form-group">
@@ -129,13 +130,13 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="kid_adult">Kid_adult:</label>
                 <div class="col-sm-4">
-                    <input type="text" id="kid_adult" name="kid_adult" class="form-control" value="{{ item.kid_adult }}">
+                    <input type="checkbox" id="kid_adult" name="kid_adult" class="form-control" {% if item.kid_adult %} checked{% endif %}>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="free_porto">Free porto:</label>
                 <div class="col-sm-4">
-                    <input type="text" id="free_porto" name="free_porto" class="form-control" value="{{ item.free_porto }}">
+                    <input type="checkbox" id="free_porto" name="free_porto" class="form-control" {% if item.free_porto %} checked {% endif %}>
                 </div>
             </div>
             <div class="form-group">
