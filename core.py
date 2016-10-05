@@ -9,9 +9,11 @@ urls = ('/products/', 'list_products',
 
 app = web.application(urls, globals())
 
+
 class base(object):
     def __init__(self):
         return web.header('Content-Type', 'text/html')
+
 
 class list_products(base):
     def GET(self, **kwargs):
