@@ -1,0 +1,14 @@
+Simple Python Webservice
+
+Routes:
+
+/products/ - returns first 10 products(cheapest first)
+/products/?page={num} - returns another 10 products etc.(cheapest first)
+/products/kids/ - returns all the products with kids parameter = 1(cheapest first)
+/products/{id}/ - returns details of the single product
+
+Requirements:
+web.py - the most lightweight, simple python framework for building webservices
+paste - tool which helps in the tests, give a possibility to create a requests in tests
+requests - I like it more than urllib ;)
+
