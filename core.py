@@ -9,8 +9,11 @@ urls = ('/products/', 'list_products',
 
 app = web.application(urls, globals())
 
+class base(object):
+    def __init__(self):
+        return web.header('Content-Type', 'text/html')
 
-class list_products:
+class list_products(base):
     def GET(self, **kwargs):
         source = web.input(page=None)
         products_count = int(source.page) * 10 if source.page else 10
@@ -22,7 +25,7 @@ class list_products:
         return content
 
 
-class product_kids:
+class product_kids(base):
     def GET(self):
         resp = requests.get('https://www.unisport.dk/api/sample/')
         data = json.loads(resp.content)
@@ -34,7 +37,7 @@ class product_kids:
         return content
 
 
-class get_product:
+class get_product(base):
     def GET(self, p_id):
         resp = requests.get('https://www.unisport.dk/api/sample/')
         data = json.loads(resp.content)
