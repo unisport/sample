@@ -1,7 +1,7 @@
 import lxml
 import lxml.html
 
-from model.product import Product
+from models.product import Product
 
 
 def add_product(db, **kwargs):
@@ -30,7 +30,10 @@ def retrieve_product(html_string):
     input_elements = html.xpath('//input')
     for input_element in input_elements:
         name = input_element.xpath('@name')[0]
-        value = input_element.xpath('@value')[0]
+        if input_element.xpath('boolean(@value)'):
+            value = input_element.xpath('@value')[0]
+        else:
+            value = input_element.xpath('boolean(@checked)')
         if name == 'id':
             data.update({name: int(value)})
         else:

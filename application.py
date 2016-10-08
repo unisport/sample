@@ -4,7 +4,7 @@ from logging.handlers import RotatingFileHandler
 from flask import render_template, request, redirect
 
 from config import app, db
-from model.product import Product
+from models.product import Product
 from schema import ProductSchema, PageSchema, ValidationException, ProductIdSchema
 
 PAGE_SIZE = 10
@@ -17,17 +17,16 @@ def home():
 
 @app.route('/products/', methods=['GET'])
 def products():
-    with app.app_context():
-        try:
-            page = PageSchema().load(request.args).data.get('page', 1)
-        except ValidationException:
-            app.logger.exception('Someone tries to send non-valid page')
-            page = 1
-        items = Product.query.order_by(Product.price).all()
-        begin = PAGE_SIZE * (page - 1)
-        end = PAGE_SIZE * page
-        result = ProductSchema().dump(items[begin:end], many=True).data
-        return render_template('products.html', items=result)
+    try:
+        page = PageSchema().load(request.args).data.get('page', 1)
+    except ValidationException:
+        app.logger.exception('Someone tries to send non-valid page')
+        page = 1
+    items = Product.query.order_by(Product.price).all()
+    begin = PAGE_SIZE * (page - 1)
+    end = PAGE_SIZE * page
+    result = ProductSchema().dump(items[begin:end], many=True).data
+    return render_template('products_list.html', items=result)
 
 
 @app.route('/products/<prod_id>/', methods=['GET'])
@@ -38,8 +37,7 @@ def product(prod_id):
     except (ValidationException, Exception):
         app.logger.exception('Someone tries to send non-valid product id: {}'.format(prod_id))
         return redirect('/products/', code=400)
-    item = ProductSchema().dump(item).data
-    return render_template('product.html', item=item)
+    return render_template('product_details.html', item=ProductSchema().dump(item).data)
 
 
 @app.route('/product/', methods=['GET', 'POST'])
@@ -81,10 +79,9 @@ def delete_product(prod_id=None):
 
 @app.route('/products/kids/', methods=['GET'])
 def kids():
-    with app.app_context():
-        items = Product.query.filter(Product.kids == '1').order_by(Product.price).all()
-        items = ProductSchema().dump(items, many=True).data
-        return render_template('products.html', items=items)
+    items = Product.query.filter(Product.kids == '1').order_by(Product.price).all()
+    items = ProductSchema().dump(items, many=True).data
+    return render_template('products_list.html', items=items)
 
 
 if __name__ == '__main__':

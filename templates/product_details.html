@@ -1,0 +1,108 @@
+{% extends "index.html" %}
+{% block body %}
+<div id="container" class="widget">
+    <h2>{{ item.name }}</h2>
+    <div id="data" class="data-container">
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="id">Id:</label>
+            <div class="col-xs-10">
+                <input id="id" name="id" class="form-control" value="{{ item.id }}" disabled />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="name">Name:</label>
+            <div class="col-xs-10">
+                <input type="text" id="name" name="name" class="form-control" value="{{ item.name }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="price">Price:</label>
+            <div class="col-xs-10">
+                <input type="text" id="price" name="price" class="form-control" value="{{ item.price }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="price_old">Price old:</label>
+            <div class="col-xs-10">
+                <input type="text" id="price_old" name="price_old" class="form-control" value="{{ item.price_old }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="img_url">Image url:</label>
+            <div class="col-xs-10">
+                <input type="text" id="img_url" name="img_url" class="form-control" value="{{ item.img_url }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="url">Url:</label>
+            <div class="col-xs-10">
+                <input type="text" id="url" name="url" class="form-control" value="{{ item.url }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="delivery">Delivery:</label>
+            <div class="col-xs-10">
+                <input type="text" id="delivery" name="delivery" class="form-control" value="{{ item.delivery }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="currency">Currency:</label>
+            <div class="col-xs-10">
+                <input type="text" id="currency" name="currency" class="form-control" value="{{ item.currency }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="sizes">Sizes:</label>
+            <div class="col-xs-10">
+                <input type="text" id="sizes" name="sizes" class="form-control" value="{{ item.sizes }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="image">Image:</label>
+            <div class="col-xs-10">
+                <input type="text" id="image" name="image" class="form-control" value="{{ item.image }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="women">Women:</label>
+            <div class="col-xs-10">
+                <input type="checkbox" id="women" name="women" class="form-control checkbox" {% if item.women %} checked {% endif %} />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="package">Package:</label>
+            <div class="col-xs-10">
+                <input type="checkbox" id="package" name="package" class="form-control checkbox" {% if item.package %} checked {% endif %} />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="online">Online:</label>
+            <div class="col-xs-10">
+                <input type="checkbox" id="online" name="online" class="form-control checkbox" {% if item.online %} checked {% endif %} />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="kid_adult">Kid_adult:</label>
+            <div class="col-xs-10">
+                <input type="checkbox" id="kid_adult" name="kid_adult" class="form-control checkbox" {% if item.kid_adult %} checked{% endif %} />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="free_porto">Free porto:</label>
+            <div class="col-xs-10">
+                <input type="checkbox" id="free_porto" name="free_porto" class="form-control checkbox" {% if item.free_porto %} checked {% endif %} />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="kids">Kids:</label>
+            <div class="col-xs-10">
+                <input type="checkbox" id="kids" name="kids" class="form-control checkbox" {% if item.kids %} checked {% endif %} />
+            </div>
+        </div>
+        <div class="buttons-container">
+            <button class="btn btn-default" onclick="update()">Update</button>
+            <button class="btn btn-default" onclick="delete_item()">Delete</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
