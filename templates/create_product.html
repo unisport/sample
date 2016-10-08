@@ -1,41 +1,8 @@
 {% extends "index.html" %}
 {% block body %}
-<script>
-    var save = function(){
-        var url = '/product/';
-        var data = {
-            "name": $("#name").val(),
-            "package": $("#package").is(':checked'),
-            "women": $("#women").is(':checked'),
-            "price": $("#price").val(),
-            "img_url": $("#img_url").val(),
-            "price_old": $("#price_old").val(),
-            "online": $("#online").is(':checked'),
-            "url": $("#url").val(),
-            "delivery": $("#delivery").val(),
-            "currency": $("#currency").val(),
-            "kids": $("#kids").is(':checked'),
-            "sizes": $("#sizes").val(),
-            "kid_adult": $("#kid_adult").is(':checked'),
-            "free_porto": $("#free_porto").is(':checked'),
-            "image": $("#image").val()
-        };
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: data,
-            success: function(response) {
-                bootbox.alert({size: "small", message: "Success! A new product has been created."});
-            },
-            error: function(response) {
-                bootbox.alert({size: "small", message: "Oops! Something went wrong."});
-            }
-        });
-    };
-</script>
-<div id="panel" style="margin: 0 auto; width: 600px; height: 950px;">
+<div id="panel" class="widget">
     <h2>New product</h2>
-    <div id="data" style="margin-top: 50px;">
+    <div id="data" class="data-container">
         <div class="form-group row">
             <label for="name" class="col-xs-2 col-form-label">Name</label>
             <div class="col-xs-10">
@@ -91,42 +58,42 @@
             </div>
         </div>
         <div class="form-group row">
-            <label style="margin-top: 10px;" class="col-xs-2 col-form-label" for="women">Women</label>
+            <label class="col-xs-2 col-form-label caption" for="women">Women</label>
             <div class="col-xs-10">
-                <input id="women" style="width: 33px;" type="checkbox" name="women" class="form-control" />
+                <input id="women" type="checkbox" name="women" class="form-control checkbox" />
             </div>
         </div>
         <div class="form-group row">
-            <label style="margin-top: 10px;" class="col-xs-2 col-form-label" for="package">Package</label>
+            <label class="col-xs-2 col-form-label caption" for="package">Package</label>
             <div class="col-xs-10">
-                <input id="package" style="width: 33px;" type="checkbox" name="package" class="form-control" />
+                <input id="package" type="checkbox" name="package" class="form-control checkbox" />
             </div>
         </div>
         <div class="form-group row">
-            <label style="margin-top: 10px;" class="col-xs-2 col-form-label" for="online">Online</label>
+            <label class="col-xs-2 col-form-label caption" for="online">Online</label>
             <div class="col-xs-10">
-                <input id="online" style="width: 33px;" type="checkbox" name="online" class="form-control" />
+                <input id="online" type="checkbox" name="online" class="form-control checkbox" />
             </div>
         </div>
         <div class="form-group row">
-            <label style="margin-top: 10px;" class="col-xs-2 col-form-label" for="kid_adult">Kid adult</label>
+            <label class="col-xs-2 col-form-label caption" for="kid_adult">Kid adult</label>
             <div class="col-xs-10">
-                <input id="kid_adult" style="width: 33px;" type="checkbox" name="kid_adult" class="form-control" />
+                <input id="kid_adult" type="checkbox" name="kid_adult" class="form-control checkbox" />
             </div>
         </div>
         <div class="form-group row">
-            <label style="margin-top: 10px;" class="col-xs-2 col-form-label" for="free_porto">Free porto</label>
+            <label class="col-xs-2 col-form-label caption" for="free_porto">Free porto</label>
             <div class="col-xs-10">
-                <input id="free_porto" style="width: 33px;" type="checkbox" name="free_porto" class="form-control" />
+                <input id="free_porto" type="checkbox" name="free_porto" class="form-control checkbox" />
             </div>
         </div>
         <div class="form-group row">
-            <label style="margin-top: 10px;" class="col-xs-2 col-form-label" for="kids">Kids</label>
+            <label class="col-xs-2 col-form-label caption" for="kids">Kids</label>
             <div class="col-xs-10">
-                <input id="kids" style="width: 33px;" type="checkbox" name="kids" class="form-control" />
+                <input id="kids" type="checkbox" name="kids" class="form-control checkbox" />
             </div>
         </div>
-        <div style="margin-top: 50px;">
+        <div class="buttons-container">
             <button class="btn btn-default" onclick="save()">Save</button>
       </div>
     </div>

@@ -1,57 +1,8 @@
 {% extends "index.html" %}
 {% block body %}
-<script>
-    var update = function(){
-        var id = document.getElementById("id").value;
-        var url = '/update-product/' + id + '/';
-        var data = {
-            "id": $("#id").val(),
-            "name": $("#name").val(),
-            "package": $("#package").is(':checked'),
-            "women": $("#women").is(':checked'),
-            "price": $("#price").val(),
-            "img_url": $("#img_url").val(),
-            "price_old": $("#price_old").val(),
-            "online": $("#online").is(':checked'),
-            "url": $("#url").val(),
-            "delivery": $("#delivery").val(),
-            "currency": $("#currency").val(),
-            "kids": $("#kids").is(':checked'),
-            "sizes": $("#sizes").val(),
-            "kid_adult": $("#kid_adult").is(':checked'),
-            "free_porto": $("#free_porto").is(':checked'),
-            "image": $("#image").val()
-        };
-        $.ajax({
-            url: url,
-            type: 'PUT',
-            data: data,
-            success: function(response) {
-                bootbox.alert({size: "small", message: "Success! A new product has been updated."});
-            },
-            error: function(response) {
-                bootbox.alert({size: "small", message: "Oops! Something went wrong."});
-            }
-        });
-    };
-    var delete_item = function(){
-        var id = document.getElementById("id").value;
-        var url = "/product/" + id + "/";
-        $.ajax({
-            url: url,
-            type: 'DELETE',
-            success: function(response) {
-                bootbox.alert({size: "small", message: "Success! A new product has been deleted."});
-            },
-            error: function(response) {
-                bootbox.alert({size: "small", message: "Oops! Something went wrong."});
-            }
-        });
-    };
-</script>
-<div id="container" style="margin: 0 auto; width: 600px; height: 1000px;">
+<div id="container" class="widget">
     <h2>{{ item.name }}</h2>
-    <div id="data" style="margin-top: 50px;">
+    <div id="data" class="data-container">
         <div class="form-group row">
             <label class="col-xs-2 col-form-label" for="id">Id:</label>
             <div class="col-xs-10">
@@ -115,40 +66,40 @@
         <div class="form-group row">
             <label class="col-xs-2 col-form-label" for="women">Women:</label>
             <div class="col-xs-10">
-                <input type="checkbox" style="width: 33px;" id="women" name="women" class="form-control" {% if item.women %} checked {% endif %} />
+                <input type="checkbox" id="women" name="women" class="form-control checkbox" {% if item.women %} checked {% endif %} />
             </div>
         </div>
         <div class="form-group row">
             <label class="col-xs-2 col-form-label" for="package">Package:</label>
             <div class="col-xs-10">
-                <input type="checkbox" style="width: 33px;" id="package" name="package" class="form-control" {% if item.package %} checked {% endif %} />
+                <input type="checkbox" id="package" name="package" class="form-control checkbox" {% if item.package %} checked {% endif %} />
             </div>
         </div>
         <div class="form-group row">
             <label class="col-xs-2 col-form-label" for="online">Online:</label>
             <div class="col-xs-10">
-                <input type="checkbox" style="width: 33px;" id="online" name="online" class="form-control" {% if item.online %} checked {% endif %} />
+                <input type="checkbox" id="online" name="online" class="form-control checkbox" {% if item.online %} checked {% endif %} />
             </div>
         </div>
         <div class="form-group row">
             <label class="col-xs-2 col-form-label" for="kid_adult">Kid_adult:</label>
             <div class="col-xs-10">
-                <input type="checkbox" style="width: 33px;" id="kid_adult" name="kid_adult" class="form-control" {% if item.kid_adult %} checked{% endif %} />
+                <input type="checkbox" id="kid_adult" name="kid_adult" class="form-control checkbox" {% if item.kid_adult %} checked{% endif %} />
             </div>
         </div>
         <div class="form-group row">
             <label class="col-xs-2 col-form-label" for="free_porto">Free porto:</label>
             <div class="col-xs-10">
-                <input type="checkbox" style="width: 33px;" id="free_porto" name="free_porto" class="form-control" {% if item.free_porto %} checked {% endif %} />
+                <input type="checkbox" id="free_porto" name="free_porto" class="form-control checkbox" {% if item.free_porto %} checked {% endif %} />
             </div>
         </div>
         <div class="form-group row">
             <label class="col-xs-2 col-form-label" for="kids">Kids:</label>
             <div class="col-xs-10">
-                <input type="checkbox" style="width: 33px;" id="kids" name="kids" class="form-control" {% if item.kids %} checked {% endif %} />
+                <input type="checkbox" id="kids" name="kids" class="form-control checkbox" {% if item.kids %} checked {% endif %} />
             </div>
         </div>
-        <div id="buttons" style="margin-top: 50px;">
+        <div class="buttons-container">
             <button class="btn btn-default" onclick="update()">Update</button>
             <button class="btn btn-default" onclick="delete_item()">Delete</button>
         </div>
