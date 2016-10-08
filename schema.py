@@ -51,5 +51,4 @@ class PageSchema(Schema):
 
 class ProductIdSchema(Schema):
     __error_handler__ = error_handler
-
     prod_id = fields.Integer(required=True)

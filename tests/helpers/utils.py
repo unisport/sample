@@ -1,7 +1,7 @@
 import lxml
 import lxml.html
 
-from model.product import Product
+from models.product import Product
 
 
 def add_product(db, **kwargs):

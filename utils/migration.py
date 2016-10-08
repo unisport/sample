@@ -1,7 +1,7 @@
 import json
 
 from application import db
-from model.product import Product
+from models.product import Product
 from schema import ProductSchema
 
 

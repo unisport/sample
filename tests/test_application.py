@@ -1,7 +1,7 @@
 import logging
 
 from config import db
-from model.product import Product
+from models.product import Product
 from tests.helpers.decorators import create_db, instance
 from tests.helpers.utils import add_product, retrieve_products, retrieve_product
 
