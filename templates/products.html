@@ -29,10 +29,10 @@
             <td>{{ item.package }}</td>
             <td>{{ item.women }}</td>
             <td>{{ item.price }}</td>
-            <td>{{ item.img_url }}</td>
+            <td><a href="{{ item.img_url }}">{{ item.img_url }}</a></td>
             <td>{{ item.price_old }}</td>
             <td>{{ item.online }}</td>
-            <td>{{ item.url }}</td>
+            <td><a href="{{ item.url }}">{{ item.url }}</a></td>
             <td>{{ item.delivery }}</td>
             <td>{{ item.currency }}</td>
             <td>{{ item.kids }}</td>
@@ -40,7 +40,7 @@
             <td>{{ item.sizes }}</td>
             <td>{{ item.kid_adult }}</td>
             <td>{{ item.free_porto }}</td>
-            <td>{{ item.image }}</td>
+            <td><a href="{{ item.image }}">{{ item.image }}</a></td>
         </tr>
         {% endfor %}
     </tbody>
