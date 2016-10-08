@@ -110,13 +110,13 @@ def test_deserialization_of_multiple_product():
 
 
 def test_page_schema_null_page():
-    page = PageSchema().load({'page': 0}).data['page']
-    assert page == 1
+    with pytest.raises(ValidationException):
+        PageSchema().load({'page': 0})
 
 
 def test_page_schema_negative_page():
-    page = PageSchema().load({'page': -42}).data['page']
-    assert page == 1
+    with pytest.raises(ValidationException):
+        PageSchema().load({'page': -42})
 
 
 def test_page_schema_valid_page():
@@ -142,3 +142,8 @@ def test_prod_id_schema():
 def test_prod_id_schema_id_is_empty():
     with pytest.raises(ValidationException):
         ProductIdSchema().load({})
+
+
+def test_prod_id_schema_id_not_valid():
+    with pytest.raises(ValidationException):
+        ProductIdSchema().load({'prod_id': 'GARBAGE'})

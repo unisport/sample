@@ -40,15 +40,15 @@ class ProductSchema(Schema):
 
 class PageSchema(Schema):
     __error_handler__ = error_handler
-    page = fields.Integer(default=1)
+    page = fields.Integer(default=1, validate=lambda value: value > 0)
 
     @post_load
     def default_page(self, data, pass_original=True):
-        if 'page' not in data or data['page'] <= 0:
+        if 'page' not in data:
             data.update({'page': 1})
         return data
 
 
 class ProductIdSchema(Schema):
     __error_handler__ = error_handler
-    prod_id = fields.Integer(required=True)
+    prod_id = fields.Integer(required=True, validate=lambda value: value > 0)

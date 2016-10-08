@@ -86,6 +86,6 @@ def kids():
 
 if __name__ == '__main__':
     handler = RotatingFileHandler('logging.log', maxBytes=10000, backupCount=1)
-    handler.setLevel(logging.ERROR)
+    app.logger.setLevel(logging.INFO)
     app.logger.addHandler(handler)
     app.run()
