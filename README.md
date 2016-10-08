@@ -1,7 +1,9 @@
 
+**Description**
+
 This is a fork of unisport sample task. A data benchmark can be found [here](http://www.unisport.dk/api/sample/).
 
-**Preparation of application**
+**Preparation of the application**
 
 In order to prepare the application to be able to launch you have to do the following steps.
 
@@ -24,17 +26,13 @@ If you'd like to use fresh db you need to remove `data/products.db` file and run
 The following endpoints are available now.
 
 **/products/**
-
 Returns the first 10 objects ordered with the cheapest first.
  
 **/products/kids/**
-
 Returns the products where kids=1 ordered with the cheapest first
 
 **/products/?page=2** 
-
 Returns correspondent page of products. Each page has 10 items.   
 
 **/products/id/**
-
 Returns the individual product.
