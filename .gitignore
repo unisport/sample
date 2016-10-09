@@ -1,1 +1,12 @@
 .DS_Store
+Shop.egg-info
+*.pyc
+__pycache__
+.cache
+*.idea/
+*.egg-info
+*.eggs
+data/*
+.coverage
+htmlcov
+*.log

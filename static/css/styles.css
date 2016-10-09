@@ -1,0 +1,26 @@
+.widget {
+    margin: 0 auto;
+    width: 600px;
+    height: 1050px;
+}
+
+.data-container {
+    margin-top: 50px;
+}
+
+.checkbox {
+    width: 33px;
+}
+
+.caption {
+    margin-top: 10px;
+}
+
+.buttons-container {
+    margin-top: 50px;
+}
+
+.container {
+    text-align: center;
+    margin-top: 100px;
+}

@@ -1,0 +1,101 @@
+{% extends "index.html" %}
+{% block body %}
+<div id="panel" class="widget">
+    <h2>New product</h2>
+    <div id="data" class="data-container">
+        <div class="form-group row">
+            <label for="name" class="col-xs-2 col-form-label">Name</label>
+            <div class="col-xs-10">
+                <input id="name" class="form-control" type="text" name="name" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="price">Price</label>
+            <div class="col-xs-10">
+                <input id="price" type="text" name="price" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="price_old">Old price</label>
+            <div class="col-xs-10">
+                <input id="price_old" type="text" name="price_old" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="img_url">Image url</label>
+            <div class="col-xs-10">
+                <input id="img_url" type="text" name="img_url" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="url">Url</label>
+            <div class="col-xs-10">
+                <input id="url" type="text" name="url" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="delivery">Delivery</label>
+            <div class="col-xs-10">
+                <input id="delivery" type="text" name="delivery" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="currency">Currency</label>
+            <div class="col-xs-10">
+                <input id="currency" type="text" name="currency" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="sizes">Sizes</label>
+            <div class="col-xs-10">
+                <input id="sizes" type="text" name="sizes" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label" for="image">image</label>
+            <div class="col-xs-10">
+                <input id="image" type="text" name="image" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label caption" for="women">Women</label>
+            <div class="col-xs-10">
+                <input id="women" type="checkbox" name="women" class="form-control checkbox" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label caption" for="package">Package</label>
+            <div class="col-xs-10">
+                <input id="package" type="checkbox" name="package" class="form-control checkbox" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label caption" for="online">Online</label>
+            <div class="col-xs-10">
+                <input id="online" type="checkbox" name="online" class="form-control checkbox" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label caption" for="kid_adult">Kid adult</label>
+            <div class="col-xs-10">
+                <input id="kid_adult" type="checkbox" name="kid_adult" class="form-control checkbox" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label caption" for="free_porto">Free porto</label>
+            <div class="col-xs-10">
+                <input id="free_porto" type="checkbox" name="free_porto" class="form-control checkbox" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label caption" for="kids">Kids</label>
+            <div class="col-xs-10">
+                <input id="kids" type="checkbox" name="kids" class="form-control checkbox" />
+            </div>
+        </div>
+        <div class="buttons-container">
+            <button class="btn btn-default" onclick="save()">Save</button>
+      </div>
+    </div>
+</div>
+{% endblock %}
