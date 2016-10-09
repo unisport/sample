@@ -4,6 +4,7 @@ Shop.egg-info
 __pycache__
 .cache
 *.idea/
+*.egg-info
 *.eggs
 data/*
 .coverage
