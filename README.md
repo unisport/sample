@@ -20,6 +20,7 @@ In order to prepare the application to be able to launch you have to do the foll
 
 By default the products you create or edit via web-page are strored in `data/products.db`. By default in `data` folder you can find the SQLite databse with data from [benchmark](http://www.unisport.dk/api/sample/).
 If you'd like to use fresh db you need to remove `data/products.db` file and run `python createdb.py` to create a database schema.
+If you'd like to fill fresh db with benchmark data go to examples folder and run `python migration.py` to migrate entries from `data.json` to `data/products.db` file.
 
 **Available endpoints**
 
