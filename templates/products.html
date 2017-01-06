@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+    <body>
+		<table class="table table-condensed">
+			<tbody>
+				<thead>
+					<tr>
+                        <th>DateTime</th>
+                        <th>Price</th>
+                        <th>Price old</th>
+						<th>Name</th>
+						<th>Kids</th>
+						<th>Sizes</th>
+						<th>Kid adult</th>
+						<th>Free porto</th>
+                        <th>Package</th>
+                        <th>id</th>
+                        <th>Delivery</th>
+                        <th>Url</th>
+                        <th>Img url</th>
+                        <th>Women</th>
+					</tr>
+				</thead>
+                {% for item in object_list %}
+                    <tr>
+						<td> {{ item.created_date }} </td>
+				        <td> {{ item.price }} </td>
+                        <td> {{ item.price_old }} </td>
+                        <td> {{ item.name }} </td>
+						<td> {{ item.kids }} </td>
+						<td> {{ item.sizes }} </td>
+                        <td> {{ item.kid_adult }} </td>
+                        <td> {{ item.free_porto }} </td>
+                        <td> {{ item.package }} </td>
+                        <td> {{ item.product_id }} </td>
+                        <td> {{ item.delivery }} </td>
+                        <td><a href="{{ item.url }}">{{ item.url }}</a></td>
+                        <td><a href="{{ item.img_url }}">{{ item.img_url }}</a> </td>
+                        <td> {{ item.women }} </td>
+					</tr>
+                {% endfor %}
+                <div>
+                {% if page > 1 %}
+                    <a href="./?page={{ page - 1 }}">Prev</a>
+                {% endif %}
+                {% if page < pagination.get_pages() %}
+                    <a href="./?page={{ page + 1 }}">Next</a>
+                {% endif %}
+                </div>
+			</tbody>
+		</table>
+	</body>
+{% endblock %}

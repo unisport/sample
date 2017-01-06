@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else  %}
+        <title>Products app</title>
+        {% endif %}
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css" media="screen">
+	</head>
+    {% block content %}{% endblock %}
+</html>

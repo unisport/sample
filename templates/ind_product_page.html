@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <body>
+		<table class="table table-condensed">
+			<tbody>
+				<thead>
+					<tr>
+                        <th>DateTime</th>
+                        <th>id</th>
+						<th>Name</th>
+						<th>Kids</th>
+						<th>Sizes</th>
+						<th>Kid adult</th>
+						<th>Free porto</th>
+                        <th>Price</th>
+                        <th>Package</th>
+                        <th>Delivery</th>
+                        <th>Url</th>
+                        <th>Price old</th>
+                        <th>Img url</th>
+                        <th>Women</th>
+					</tr>
+				</thead>
+					<tr>
+						<td> {{ pr.created_date }} </td>
+						<td> {{ pr.product_id }} </td>
+						<td> {{ pr.name }} </td>
+						<td> {{ pr.kids }} </td>
+						<td> {{ pr.sizes }} </td>
+                        <td> {{ pr.kid_adult }} </td>
+                        <td> {{ pr.free_porto }} </td>
+                        <td> {{ pr.price }} </td>
+                        <td> {{ pr.package }} </td>
+                        <td> {{ pr.delivery }} </td>
+                        <td><a href="{{ pr.url }}">{{ pr.url }}</a> </td>
+                        <td> {{ pr.price_old }} </td>
+                        <td><a href="{{ pr.img_url }}">{{ pr.img_url }}</a> </td>
+                        <td> {{ pr.women }} </td>
+					</tr>
+			</tbody>
+		</table>
+	</body>
+{% endblock %}
