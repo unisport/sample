@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% if not products %}
+        no products
+    {% else %}
+        <table>
+            <tr><td>ID</td><td>NAME</td><td>PRICE</td></tr>
+            {% for product in products %}
+                <tr><td><a href={% url 'product' product.id %}>{{ product.id }}</a></td><td>{{ product.name }}</td><td align="right">{{ product.price }}</td></tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{% endblock %}
