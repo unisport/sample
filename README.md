@@ -31,3 +31,17 @@ should return the individual product.
 
 _You are welcome to use any thirdparty python web framework or library that you are familiar with._  
 
+
+####Requirements:
+* Django=1.8.5
+
+####Explanations:
+ Data store in sqlite db. You can create new products or edit\delete existing using admin panel **/admin/**
+ There wasn't any kids='1' objects in default data at this link:
+* [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/) So i change one of them.
+
+ Also You can clean the table and "reload" all default data using **Product.reload_data()** class method provided in products.models
+
+####default SuperUser:
+* login: **root**
+* password: **qwerty**
