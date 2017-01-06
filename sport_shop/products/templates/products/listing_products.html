@@ -1,0 +1,35 @@
+{% extends "products/base_generic.html" %}
+{% block main%}
+<div class="col-md-12">
+Page {{ pages_info.current }} of {{ pages_info.count}}
+{% if pages_info.previous %}
+    <a href="?page={{ pages_info.previous }}">Previous</a>
+{% endif %}
+{% if pages_info.next %}
+    <a href="?page={{ pages_info.next }}">Next</a>
+{% endif %}
+<hr/>
+</div>
+{% for product in products %}
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <img src="{{ product.img_url|default:'http://placehold.it/320x150' }}" alt="">
+        <div class="caption-full">
+            <h4 class="pull-right">DKK {{ product.price|floatformat:2 }}</h4>
+            <h4 class="product-name"><a href="{{ product.id }}">{{ product.name }}</a></h4>
+            {# <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> #}
+        </div>
+        <div class="ratings">
+            <p class="pull-right">15 reviews</p>
+            <p>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+            </p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
