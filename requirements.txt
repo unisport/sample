@@ -1,0 +1,2 @@
+django==1.6.7
+requests==2.4.3
