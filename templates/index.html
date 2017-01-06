@@ -1,0 +1,19 @@
+{% extends 'base.html' %}>
+{% block extra_js %}
+    <script>
+        var loadDataUrl = "{% url 'load_data' %}";
+    </script>
+{% endblock extra_js %}
+
+{% block content %}
+    <ul>
+        <li>
+            <button id="loadButton">Load initial data</button>
+        </li>
+        <li><a href="{% url 'cheapest_10' %}">/products/</a></li>
+        <li><a href="{% url 'cheapest_10' %}?page=2">/products/?page=2</a></li>
+        <li><a href="{% url 'kids_products' %}">/products/kids/</a></li>
+        <li><a href="{% url 'product' 1 %}">/products/1/</a></li>
+        <li><a href="{% url 'admin:test_app_product_changelist' %}">manage products</a></li>
+    </ul>
+{% endblock content %}
