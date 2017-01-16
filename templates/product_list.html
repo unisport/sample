@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+    {% if products.has_prev %}
+        <a href="/products/?page={{products.prev_num}}">Prev page</a>
+    {% endif %}
+
+    {% if products.items %}
+      <ol type="1" class=products start="{{start_number}}">
+      {% for product in products.items %}
+        <li>Price: {{ product.price }} <a href="/products/{{product.id}}">{{ product.name }}</a>,
+      {% endfor %}
+      </ol>
+    {% else %}
+        <em>Unbelievable.  No entries here so far</em>
+    {% endif %}
+
+    {% if products.has_next %}
+        <a href="/products/?page={{products.next_num}}">Next page</a>
+    {% endif %}
+{% endblock %}
