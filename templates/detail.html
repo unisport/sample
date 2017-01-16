@@ -1,0 +1,22 @@
+{% from "_formhelpers.html" import render_field %}
+<form action="/products/{{ id }}" method=post>
+  <dl>
+    {{ render_field(form.currency) }}
+    {{ render_field(form.delivery) }}
+    {{ render_field(form.kids) }}
+    {{ render_field(form.name) }}
+    {{ render_field(form.package) }}
+    {{ render_field(form.kid_adult) }}
+    {{ render_field(form.free_porto) }}
+    {{ render_field(form.image) }}
+    {{ render_field(form.sizes) }}
+    {{ render_field(form.price) }}
+    {{ render_field(form.url) }}
+    {{ render_field(form.online) }}
+    {{ render_field(form.price_old) }}
+    {{ render_field(form.img_url) }}
+    {{ render_field(form.women) }}
+  </dl>
+  <p><input type=submit name=submit value=Update>
+  <p><input type=submit name=submit value=Delete>
+</form>

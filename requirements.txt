@@ -1,0 +1,5 @@
+Flask
+requests
+Flask-WTF
+Flask-SQLAlchemy
+coverage

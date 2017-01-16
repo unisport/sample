@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unisport sample</title>
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% block body %}
+My realization <a href="https://github.com/unisport/sample">this task.</a><br>
+<a href="/products/">/products/ -> Return the first 10 objects ordered with the cheapest first.</a><br>
+<a href="/products/kids/">/products/kids/ -> Return the products where kids=1 ordered with the cheapest first</a><br>
+<a href="/products/?page=2">/products/?page=2 -> Return the next 10 objects ordered with the cheapest first.</a><br>
+<a href="/products/1">/products/1/ -> Return the individual product with id=1.</a><br>
+<a href="/create_product">/create_product -> Create new product.</a><br>
+{% endblock %}
+</body>
+</html>
