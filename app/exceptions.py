@@ -1,0 +1,2 @@
+class SuchProductAlreadyExists(Exception):
+    pass

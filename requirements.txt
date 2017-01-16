@@ -1,0 +1,2 @@
+flask==0.9
+Flask-RESTful==0.2.12

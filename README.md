@@ -31,3 +31,20 @@ should return the individual product.
 
 _You are welcome to use any thirdparty python web framework or library that you are familiar with._  
 
+
+####Installation:
+pip install -r requirements.txt
+
+#### Run:
+python run.py 
+
+it should start service on localhost:5000
+
+### Try it:
+curl -X GET http://localhost:5000/products/
+curl -X GET http://localhost:5000/products/kids/
+curl -X GET http://localhost:5000/products/103897/
+curl -X DELETE http://localhost:5000/products/103897/
+curl -X PUT http://localhost:5000/products/1/?price=12
+curl -X POST http://localhost:5000/products/1/?price=12
+ 
