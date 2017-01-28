@@ -1,7 +1,41 @@
-_Fork this project and send us a pull request_
+# Unisport Sample Products Application
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+A simple python webservice that uses, manipulates and returns the data 
+found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
 
+
+## Tests and linting
+
+Tests and `flake8` could be run in separate envs using `tox`. Install
+`tox` using the following command:
+
+```console
+$ pip install tox
+```
+
+### `tox` usage
+
+Run all configured `tox` environments:
+
+```console
+$ tox
+```
+
+Run only a specific environment:
+
+```console
+$ tox -e flake8
+$ tox -e test
+```
+
+Pass arguments to commands:
+
+```console
+$ tox -e flake8 -- unisport_sample/wsgi.py
+$ tox -e test -- path.to.test_module:TestCase.test_method
+```
+
+## Task requirements
 
 **/products/**  
 
