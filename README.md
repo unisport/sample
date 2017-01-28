@@ -3,6 +3,30 @@
 A simple python webservice that uses, manipulates and returns the data 
 found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
 
+## How to configure and run this application
+
+Install dependencies:
+
+```console
+$ pip install -r requirements.txt
+```
+
+Create a user:
+
+```console
+$ ./manage.py createsuperuser
+```
+
+Start the application:
+
+```console
+$ ./manage.py runserver
+```
+
+Access the application admin site (by default - http://127.0.0.1/admin).
+You can find the `Product` model under the `Products` section of the
+admin site index page. You can view, add, edit and remove products
+using the admin site.
 
 ## Tests and linting
 
