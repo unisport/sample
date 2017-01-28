@@ -23,10 +23,20 @@ Start the application:
 $ ./manage.py runserver
 ```
 
-Access the application admin site (by default - http://127.0.0.1/admin).
+Access the application admin site (by default - http://127.0.0.1:8000/admin).
 You can find the `Product` model under the `Products` section of the
 admin site index page. You can view, add, edit and remove products
 using the admin site.
+
+The following API endpoints return data according to the requirements:
+
+  - http://127.0.0.1:8000/api/v1/products/
+  - http://127.0.0.1:8000/api/v1/products/?page=2
+  - http://127.0.0.1:8000/api/v1/products/kids/
+  - http://127.0.0.1:8000/api/v1/products/1/ <sup>*</sup>
+
+<sup>*</sup> When the product with the given id is not found, response
+will contain an appropriate error message.
 
 ## Tests and linting
 
