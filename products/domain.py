@@ -16,7 +16,7 @@ def get_products_page(page, limit, for_kids=False):
     if for_kids:
         qs = qs.filter(kids=True)
 
-    page_of_results = qs[page - 1:page - 1 + limit]
+    page_of_results = qs[(page - 1) * limit:(page - 1) * limit + limit]
     return list(page_of_results)
 
 
