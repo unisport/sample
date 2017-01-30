@@ -17,6 +17,12 @@ Create a user:
 $ ./manage.py createsuperuser
 ```
 
+Import the data from http://www.unisport.dk/api/sample/:
+
+```console
+$ ./manage.py populate_products
+```
+
 Start the application:
 
 ```console
@@ -37,6 +43,23 @@ The following API endpoints return data according to the requirements:
 
 <sup>*</sup> When the product with the given id is not found, response
 will contain an appropriate error message.
+
+`populate_products` command will not overwrite existing products in the
+database by default. You must call it with `--overwrite-existing` flag
+in order for it to do so:
+
+```console
+$ ./manage.py --overwrite-existing
+```
+
+It is possible to specify an alternative source when populating the 
+products table via the `--source` option. `--source` value must be a URL
+that points to a JSON document that contains a JSON object with 
+`products` property containing an array of products.
+
+```console
+$ ./manage.py --source http://alternative-products.com/products.json
+```
 
 ## Tests and linting
 
