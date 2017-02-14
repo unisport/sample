@@ -3,6 +3,10 @@ import requests
 import json
 from django.conf import settings
 
+# Set system locale to use a value that uses comma decimal seperators.
+
+locale.setlocale(locale.LC_NUMERIC, "en_GB.UTF-8")
+
 class UnisportAPI(object):
 
 	def get_all(self):
@@ -60,15 +64,14 @@ class UniposortEndPoint(object):
 
 	def get_all_kids(self):
 
-		data = self.unisprotapi.get_all()["products"]
+		data = self.__get_all()
 
-		ordered_data = sorted(data, key=lambda k: locale.atof(k["price"]))
-
-		result = [item for item in ordered_data if item["kids"] == "0"]
+		result = [item for item in data if item["kids"] == "0"]
 
 		return result
 
 
-
 	def __get_all(self):
-		return self.unisprotapi.get_all()
+		data = self.unisprotapi.get_all()
+		ordered_data = sorted(data, key=lambda k: locale.atof(k["price"]))
+		return ordered_data
