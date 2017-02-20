@@ -62,16 +62,24 @@ class UniposortEndPoint(object):
 
 		return self.__get_all()
 
-	def get_all_kids(self):
+	def get_all_kids_products(self):
 
 		data = self.__get_all()
-
-		result = [item for item in data if item["kids"] == "0"]
+		result = [item for item in data if item["kids"] == "1"]
 
 		return result
 
+	def get_product(self, product_id):
+
+		data = self.__get_all()
+
+		result = [item for item in data if item["id"] == str(product_id)][0]
+		
+		return result
+
+
 
 	def __get_all(self):
-		data = self.unisprotapi.get_all()
+		data = self.unisprotapi.get_all()["products"]
 		ordered_data = sorted(data, key=lambda k: locale.atof(k["price"]))
 		return ordered_data

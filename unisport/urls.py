@@ -17,8 +17,14 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
 
+api_urlpatterns = [
+    url(r'^products/', include('pyunisport.urls')),
+]
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/', include(api_urlpatterns)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 if settings.DEBUG:
