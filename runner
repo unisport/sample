@@ -1,0 +1,14 @@
+#!/bin/bash
+
+control_c(){
+    echo -en "\n*** stopped running ***\n"
+    exit $?
+}
+
+trap control_c SIGINT
+
+while true; do
+    eval "nosetests tests.py"
+
+    sleep 5
+done
