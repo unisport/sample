@@ -1,7 +1,8 @@
 import unittest
 from nose.tools import *
-
 import logging
+from paste.fixture import TestApp
+import webservice
 
 
 def setup_func():
@@ -12,6 +13,20 @@ def teardown_func():
 
 
 @with_setup(setup_func, teardown_func)
-def test_working():
+def test_products():
+    restApp = TestApp(webservice.app.wsgifunc(*[]))
+    req = restApp.get("/products")
+
     assert_equal("hello kitty", "hello kitty")
 
+
+def test_product_kids():
+    pass
+
+
+def test_product_page():
+    pass
+
+
+def test_product_id():
+    pass

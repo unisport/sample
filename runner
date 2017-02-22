@@ -8,7 +8,7 @@ control_c(){
 trap control_c SIGINT
 
 while true; do
-    eval "nosetests tests.py"
+    eval "nosetests --nologcapture tests.py"
 
     sleep 5
 done
