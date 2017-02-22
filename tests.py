@@ -17,7 +17,7 @@ def test_products():
     restApp = TestApp(webservice.app.wsgifunc(*[]))
     req = restApp.get("/products")
 
-    assert_equal("hello kitty", "hello kitty")
+    assert_equal("Hello, Kitty", req.body)
 
 
 def test_product_kids():
