@@ -13,11 +13,15 @@ def teardown_func():
 
 
 @with_setup(setup_func, teardown_func)
-def test_products():
+def test_hello_kitty():
     restApp = TestApp(webservice.app.wsgifunc(*[]))
-    req = restApp.get("/products")
+    req = restApp.get("/hello_kitty")
 
     assert_equal("Hello, Kitty", req.body)
+
+
+def test_products():
+    pass
 
 
 def test_product_kids():

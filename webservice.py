@@ -1,12 +1,12 @@
 import web
 
 urls = (
-    '/products', 'products'
+    '/hello_kitty', 'bad_kitty'
 )
 
 app = web.application(urls, globals())
 
-class products:
+class bad_kitty:
     def GET(self):
         web.header('Content-Type', 'text/html')
         return 'Hello, Kitty'
