@@ -2,11 +2,13 @@ import web
 from models import *
 import json
 import pdb
+import logging
 
 urls = (
     '/hello_kitty', 'BadKitty',
     '/products/', 'Products',
-    '/product/(.+)/', 'LeProduit'
+    '/product/(.+)/', 'LeProduit',
+    '/products/(.+)', 'ProductPager'
 )
 
 app = web.application(urls, globals())
@@ -21,7 +23,6 @@ class BadKitty:
 class Products:
     def GET(self):
         web.header('Content-Type', 'applicatino/json')
-        # pdb.set_trace()
         products = Product.select().order_by(Product.price.asc())
         product_list = []
         for product in products[0:10]:
@@ -39,6 +40,17 @@ class LeProduit:
 
         web.header('Content-Type', 'application/json')
         return json.dumps(model_to_dict(product))
+
+
+class ProductPager:
+    def GET(self, page):
+        products = Product.select().paginate(int(page), 10)
+        product_list = []
+        for product in products:
+            product_list.append(model_to_dict(product))
+
+        web.header('Content-Type', 'application/json')
+        return json.dumps(product_list)
 
 
 if __name__ == '__main__':
