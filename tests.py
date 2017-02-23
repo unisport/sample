@@ -10,13 +10,16 @@ from models import Product
 def setup_func():
     pass
 
+
 def teardown_func():
     pass
 
 
 @with_setup(setup_func, teardown_func)
 def test_hello_kitty():
-    ''' This is just to ensure things are working '''
+    """
+    This is just to ensure things are working
+    """
     restApp = TestApp(webservice.app.wsgifunc(*[]))
     req = restApp.get("/hello_kitty")
 
@@ -24,7 +27,9 @@ def test_hello_kitty():
 
 
 def test_products():
-    ''' First item in the list has to be cheaper than the last item in the list '''
+    """
+    First item in the list has to be cheaper than the last item in the list
+    """
     restApp = TestApp(webservice.app.wsgifunc(*[]))
     req = restApp.get('/products/')
     products = json.loads(req.body)
@@ -33,12 +38,16 @@ def test_products():
 
 
 def test_product_kids():
-    ''' https://www.unisport.dk/api/sample/ nothings for kids '''
+    """
+    https://www.unisport.dk/api/sample/ nothings for kids
+    """
     pass
 
 
 def test_product_pager():
-    ''' Using ? in modern REST API's... comon '''
+    """
+    Using ? in modern REST API's... comon
+    """
     restApp = TestApp(webservice.app.wsgifunc(*[]))
     req = restApp.get('/products/1')
     product_list = json.loads(req.body)
@@ -47,7 +56,10 @@ def test_product_pager():
 
 
 def test_product_id():
-    ''' Pick a product and use the id as a URL parameter to get the product data '''
+    """
+    Pick a product and use the id as a URL
+    parameter to get the product data
+    """
     product = Product.get()
 
     restApp = TestApp(webservice.app.wsgifunc(*[]))
