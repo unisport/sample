@@ -3,6 +3,8 @@ from nose.tools import *
 import logging
 from paste.fixture import TestApp
 import webservice
+import json
+from models import Product
 
 
 def setup_func():
@@ -21,7 +23,11 @@ def test_hello_kitty():
 
 
 def test_products():
-    pass
+    restApp = TestApp(webservice.app.wsgifunc(*[]))
+    req = restApp.get('/products/')
+    products = json.loads(req.body)
+
+    assert products[0]['price'] > products[9]['price']
 
 
 def test_product_kids():
@@ -33,4 +39,10 @@ def test_product_page():
 
 
 def test_product_id():
-    pass
+    product = Product.get()
+
+    restApp = TestApp(webservice.app.wsgifunc(*[]))
+    req = restApp.get("/product/{0}/".format(product.product_id))
+    product_data = json.loads(req.body)
+
+    assert product.name == product_data['name']
