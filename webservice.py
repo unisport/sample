@@ -22,7 +22,7 @@ class Products:
     def GET(self):
         web.header('Content-Type', 'applicatino/json')
         # pdb.set_trace()
-        products = Product.select().order_by(Product.price.desc())
+        products = Product.select().order_by(Product.price.asc())
         product_list = []
         for product in products[0:10]:
             product_list.append(model_to_dict(product))

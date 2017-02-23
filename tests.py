@@ -27,7 +27,7 @@ def test_products():
     req = restApp.get('/products/')
     products = json.loads(req.body)
 
-    assert products[0]['price'] > products[9]['price']
+    assert products[0]['price'] < products[9]['price']
 
 
 def test_product_kids():
