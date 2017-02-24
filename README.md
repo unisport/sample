@@ -1,33 +1,14 @@
-_Fork this project and send us a pull request_
+**How to setup**
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+1. setup your database, I used sqlite for this
+2. run migrate() from the models file
+3. run the populate, it's reading a flat file version of the sample.json data
+4. run the tests
 
+**Tests run**
 
-**/products/**  
-
-
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
-
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
-
- **/products/id/**
- 
-should return the individual product.
-
-
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
-
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
-
-
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
-
+* Say Hello to the Kitty ... ok
+* Test first item in the list has to be cheaper ... ok
+* Test products for kids sorted by cheapest first ... ok
+* Test paginating products is working ... ok
+* Test that we get product data by product id ... ok
