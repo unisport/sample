@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import web
 from models import *
 import json
@@ -8,7 +9,7 @@ urls = (
     '/hello_kitty', 'BadKitty',
     '/products/', 'Products',
     '/product/(.+)/', 'LeProduit',
-    '/products/(.+)', 'ProductPager'
+    '/products/kids/', 'ProductKids'
 )
 
 app = web.application(urls, globals())
@@ -32,12 +33,33 @@ class Products:
     with the proper Content type
     """
     def GET(self):
-        products = Product.select().order_by(Product.price.asc())
+        data = web.input(page=1)
+        page = int(data.page)
+
+        products = Product.select().order_by(
+                Product.price.asc()).paginate(page, 10)
         product_list = []
         for product in products[0:10]:
             product_list.append(model_to_dict(product))
 
         web.header('Content-Type', 'applicatino/json')
+        return json.dumps(product_list)
+
+
+class ProductKids:
+    """
+    Select all products where kids = True and return
+    these sorted by lowest price first
+    """
+    def GET(self):
+        products = Product.select().where(
+                Product.for_kids == True).order_by(Product.price.asc())
+
+        web.header('Content-Type', 'application/json')
+        product_list = []
+        for product in products:
+            product_list.append(model_to_dict(product))
+
         return json.dumps(product_list)
 
 
@@ -56,21 +78,6 @@ class LeProduit:
 
         web.header('Content-Type', 'application/json')
         return json.dumps(model_to_dict(product))
-
-
-class ProductPager:
-    """
-    Here peewee's built-in paginater is used to get
-    the required number of results, these are then returned as json
-    """
-    def GET(self, page):
-        products = Product.select().paginate(int(page), 10)
-        product_list = []
-        for product in products:
-            product_list.append(model_to_dict(product))
-
-        web.header('Content-Type', 'application/json')
-        return json.dumps(product_list)
 
 
 if __name__ == '__main__':

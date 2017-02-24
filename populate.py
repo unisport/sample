@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*-
 import sys
 import json
 from models import Product
 import codecs
+import urllib2
+import logging
 
 
 def format_price(product):
@@ -38,14 +41,18 @@ def format_id(product):
 def format_name(product):
     """
     Ran into some weird encoding problem, tried to fix it by
-    ensuring correct encoding
+    ensuring correct encoding. But really, ascii in a webservice?
     """
-    return unicode(product['name'].strip(codecs.BOM_UTF8), 'utf-8')
+    return product['name'].encode('utf-8')
 
 
-with open('sample.json') as json_data:
-    products = json.load(json_data)
+try:
+    resp = urllib2.urlopen('http://www.unisport.dk/api/sample/')
+    json_data = json.loads(resp.read())
 
-    for product in products['products']:
-        Product.create(name=product['name'], price=format_price(product),
+    for product in json_data['products']:
+        Product.create(name=format_name(product), price=format_price(product),
             for_kids=kids_true(product), product_id=format_id(product))
+
+except urllib2.URLError, e:
+    logging.warn(e)

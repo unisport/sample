@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest
 from nose.tools import *
 import logging
@@ -18,7 +19,7 @@ def teardown_func():
 @with_setup(setup_func, teardown_func)
 def test_hello_kitty():
     """
-    This is just to ensure things are working
+    Say Hello to the Kitty
     """
     restApp = TestApp(webservice.app.wsgifunc(*[]))
     req = restApp.get("/hello_kitty")
@@ -28,7 +29,8 @@ def test_hello_kitty():
 
 def test_products():
     """
-    First item in the list has to be cheaper than the last item in the list
+    Test first item in the list has to be cheaper
+    than the last item in the list
     """
     restApp = TestApp(webservice.app.wsgifunc(*[]))
     req = restApp.get('/products/')
@@ -39,17 +41,22 @@ def test_products():
 
 def test_product_kids():
     """
-    https://www.unisport.dk/api/sample/ nothings for kids
+    Test products for kids sorted by cheapest first
     """
-    pass
+    restApp = TestApp(webservice.app.wsgifunc(*[]))
+    req = restApp.get('/products/kids/')
+    products = json.loads(req.body)
+
+    assert len(products) == 0
 
 
 def test_product_pager():
     """
+    Test paginating products is working
     Using ? in modern REST API's... comon
     """
     restApp = TestApp(webservice.app.wsgifunc(*[]))
-    req = restApp.get('/products/1')
+    req = restApp.get('/products/?page=2')
     product_list = json.loads(req.body)
 
     assert len(product_list) == 10
@@ -57,8 +64,8 @@ def test_product_pager():
 
 def test_product_id():
     """
-    Pick a product and use the id as a URL
-    parameter to get the product data
+    Test that we get product data by product id
+    when it's passed as a URL parameter
     """
     product = Product.get()
 
