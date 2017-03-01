@@ -1,33 +1,89 @@
-_Fork this project and send us a pull request_
+Coding Challenge
+===================
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+Installation
+----------------
+To install clone the repository and cd into the the  ``sample`` directory.
+
+To install using `virtualenv`
+```sh
+$ virtualenv --no-site-packages ~/.Virtualenv/sampleenv
+$ source ~/.Virtualenv/sampleenv/bin/activate
+```
+To install project requirements:
+```sh
+$ pip install -r requirements/local.pip
+```
+The application runs using ``sqlite3`` database. To use ``postgresql`` :
+
+```sh
+$ pip install psycopg2
+```
+```sh
+$ psql createdb databasename
+```
+And change the the database settings in
+ ``unisport/settings/local.py``
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'databasename',
+        'PORT': 5432,
+        'HOST': 'localhost',
+        'USER': 'your_database_username',
+    }
+}
+
+```
+To set up database run:
+```sh
+$ ./manage.py makemigrations
+$ ./manage.py migrate
+```
+
+Create an admin account.
+```sh
+$ ./manage.py createsuperuser
+```
+
+To run the backend application:
+```sh
+$ ./manage.py runserver_plus
+```
+
+The backend application will be accessible at: http://127.0.0.1:8000/api/products/
+
+To install frontend app dependencies:
+```sh
+$ npm install -g grunt-cli
+$ npm install
+$ bower install
+```
+
+To run the frontend application run in a new terminal window:
+```sh
+$ grunt serve
+```
+
+The application will be accessible at: http://localhost:9000/
 
 
-**/products/**  
+Settings
+------------
 
+When using https://www.unisport.dk/api/sample/
+``DATA_SOURCE = "external"`` in ``unisport/settings/base.py``
+To use database as data source ``DATA_SOURCE = "internal"``
 
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
+To import data from https://www.unisport.dk/api/sample/
+```sh
+$ ./manage.py import_products
+``` 
 
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
+To test the backend application
+```sh
+$ ./manage.py test
+```
 
- **/products/id/**
- 
-should return the individual product.
-
-
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
-
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
-
-
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
-
+To access the admin interface go to  and http://127.0.0.1:8000/admin/ and login with the credentials used to create your superuser account.

@@ -1,0 +1,53 @@
+{
+  "name": "UnisportSample",
+  "version": "0.0.0",
+  "description": "None",
+  "devDependencies": {
+    "connect-modrewrite": "^0.9.0",
+    "grunt": "^0.4.5",
+    "grunt-angular-templates": "^0.5.7",
+    "grunt-autoprefixer": "^2.0.0",
+    "grunt-cdndeps": "^0.2.0",
+    "grunt-cdnify": "^1.0.2",
+    "grunt-concurrent": "^1.0.0",
+    "grunt-connect-proxy": "^0.2.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-compass": "^1.0.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-connect": "^0.9.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-cssmin": "^0.12.0",
+    "grunt-contrib-htmlmin": "^0.4.0",
+    "grunt-contrib-imagemin": "^0.9.2",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-filerev": "^2.1.2",
+    "grunt-google-cdn": "^0.4.3",
+    "grunt-newer": "^1.1.0",
+    "grunt-ng-annotate": "^0.9.2",
+    "grunt-postcss": "^0.8.0",
+    "grunt-svgmin": "^2.0.0",
+    "grunt-usemin": "^3.0.0",
+    "grunt-wiredep": "^1.9.0",
+    "jasmine": "^2.5.2",
+    "jasmine-core": "^2.4.1",
+    "jit-grunt": "^0.9.1",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^1.0.0",
+    "karma": "^0.12.37",
+    "karma-jasmine": "^0.3.8",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "load-grunt-tasks": "^0.4.0",
+    "time-grunt": "^0.3.2",
+    "wiredep": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "Ernest Jumbe",
+  "license": "MIT"
+}
