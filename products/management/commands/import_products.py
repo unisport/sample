@@ -26,10 +26,10 @@ class Command(BaseCommand):
 				free_porto=product["free_porto"],
 				image=product["image"],
 				sizes=product["sizes"],
-				price=product["price"].replace(",", "."),
+				price=product["price"].replace(".", "").replace(",", "."),
 				url=product["url"],
 				online=["online"],
-				price_old=product["price_old"].replace(",", "."),
+				price_old=product["price_old"].replace(".", "").replace(",", "."),
 				currency=["currency"],
 				img_url=["img_url"],
 				women=["women"])
