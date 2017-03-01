@@ -118,8 +118,6 @@ class UniposortEndPoint(object):
             ordered_data: Ordered dictionary of product items.
         """
         data, status = self.unisprotapi.get_all()
-        for i in data["products"]:
-            print i["price_old"]
 
         ordered_data = sorted(data["products"], key=lambda k: k["price"].replace(",", "."))
         return ordered_data
