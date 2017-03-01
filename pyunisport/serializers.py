@@ -9,7 +9,7 @@ class ProductSerializer(serializers.Serializer):
 	sizes = serializers.CharField()
 	kid_adult = serializers.CharField()
 	free_porto = serializers.CharField()
-	image = serializers.ImageField()
+	image = serializers.URLField()
 	package = serializers.CharField()
 	price = serializers.CharField()
 	url = serializers.URLField()
@@ -18,3 +18,4 @@ class ProductSerializer(serializers.Serializer):
 	img_url = serializers.URLField()
 	id = serializers.CharField()
 	women = serializers.CharField()
+	online = serializers.CharField()

@@ -1,0 +1,9 @@
+<div class="row">
+	<div class="col-md-12">
+		<h1>{{vm.title}} <span data-ng-if="vm.products.length > 0"><small>Page: {{vm.current_page}}</small></span></h1>
+		<us-products products="vm.products"></us-products>
+		<div class="pagination-wrapper" data-ng-if="vm.products.length > 0">
+			<ul uib-pagination total-items="vm.count" ng-model="vm.current_page" max-size="vm.page_size" class="pagination-sm" boundary-link-numbers="true" rotate="false" data-ng-change="vm.change_page()" items-per-page="vm.items_per_page" num-pages="vm.total_pages"></ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+<div class="col-md-6 col-sm-12 col-md-offset-3">
+	<a href="{{vm.item.url}}" target="_blank" class="product-link"><h1>{{vm.item.name}}</a> <small><i class="fa fa-external-link" aria-hidden="true"></i></small></h1> 
+	<div class="item-image-wrapper">
+		<img data-ng-src="{{vm.item.image}}" alt="{{vm.item.name}}">
+	</div>
+	<div class="time-info">
+		<div class="item-old-price" data-ng-if="product.price_old !== product.price">
+			<strong>Old Price: </strong> <span>DKK <s>{{vm.item.price_old}}</s></span>
+		</div>
+		<div class="item-price">
+			<strong>Price: </strong> <span>DKK {{vm.item.price}}</span>
+		</div>
+	</div>
+</div>

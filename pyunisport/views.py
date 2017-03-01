@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from .utils import CustomPagination
-from pyunisport import UniposortEndPoint
+from models import UniposortEndPoint
 from .serializers import ProductSerializer
 from rest_framework import generics
 from rest_framework import permissions
