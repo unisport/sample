@@ -50,6 +50,8 @@ class ProductAPITest(APITestCase):
         admin_user = User.objects.get(email='test@test.com')
         admin_user.delete()
 
+        settings.DATA_SOURCE = self.old_resource
+
     def test_product_create(self):
 
         url = reverse('create_product')
