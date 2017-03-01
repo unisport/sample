@@ -78,7 +78,7 @@ To use database as data source ``DATA_SOURCE = "internal"``
 
 To import data from https://www.unisport.dk/api/sample/
 ```sh
-$ ./manage.py import_data
+$ ./manage.py import_products
 ``` 
 
 To test the backend applicatio
