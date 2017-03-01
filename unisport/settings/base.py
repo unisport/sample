@@ -126,3 +126,5 @@ STATICFILES_FINDERS = (
 )
 
 UNISPORT_ENDPOINT = "https://www.unisport.dk/api/sample/"
+
+DATA_SOURCE = "internal"

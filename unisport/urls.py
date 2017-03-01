@@ -17,11 +17,15 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
 
-api_urlpatterns = [
-    url(r'^products/',
-        include('pyunisport.urls')),
-    # url(r'^products/', include('products.urls'))
-]
+if settings.DATA_SOURCE == "external":
+    api_urlpatterns = [
+        url(r'^products/',
+            include('pyunisport.urls')),
+    ]
+else:
+    api_urlpatterns = [
+        url(r'^products/', include('products.urls')),
+    ]
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

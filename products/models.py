@@ -8,6 +8,8 @@ BOOL_CHOICES = (("1", "True"), ("0", "False"))
 
 @python_2_unicode_compatible
 class Product(models.Model):
+	"""Product model that mirrors the unisport sample
+	api data."""
 
 	name = models.CharField(_("name"), max_length=254)
 	is_customizable = models.CharField(

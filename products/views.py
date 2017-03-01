@@ -8,33 +8,45 @@ from .models import Product
 from .serializers import ProductSerializer
 
 class ListProducts(generics.ListAPIView):
+    """List all products from database. Data
+    is paginated."""
+
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = (permissions.AllowAny,)
     pagination_class = CustomPagination
 
 class CreateProduct(generics.CreateAPIView):
-	serializer_class = ProductSerializer
-	permission_classes = (permissions.IsAdminUser,)
+    """View to create product object. Permissions are
+    restricted to only allow Admins to submit data."""
+
+    serializer_class = ProductSerializer
+    permission_classes = (permissions.IsAdminUser,)
 
 class UpdateProduct(generics.UpdateAPIView):
-	serializer_class = ProductSerializer
-	permission_classes = (permissions.IsAdminUser,)
+    """View to update a product object of id 'product_id'.
+    Permissions are restricted to only allow Admins to 
+    submit data."""
 
-	def get_object(self):
-		obj = Product.objects.get(id=self.kwargs["product_id"])
-		return obj
+    serializer_class = ProductSerializer
+    permission_classes = (permissions.IsAdminUser,)
+
+    def get_object(self):
+        obj = Product.objects.get(id=self.kwargs["product_id"])
+        return obj
 
 class GetProduct(generics.RetrieveAPIView):
-	
-	permission_classes = (permissions.AllowAny,)
-	serializer_class = ProductSerializer
+    """View to return a single product object of id 'product_id'."""
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = ProductSerializer
 
-	def get_object(self):
-		obj = Product.objects.get(id=self.kwargs["product_id"])
-		return obj
+    def get_object(self):
+        obj = Product.objects.get(id=self.kwargs["product_id"])
+        return obj
 
 class ListKidsProducts(generics.ListAPIView):
+    """List all kids products from database. Data
+    is paginated."""
     queryset = Product.objects.filter(kids="1")
     serializer_class = ProductSerializer
     permission_classes = (permissions.AllowAny,)
