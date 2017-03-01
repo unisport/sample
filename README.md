@@ -3,6 +3,8 @@ Coding Challenge
 
 Installation
 ----------------
+To install clone the repository and cd into the the  ``sample`` directory.
+
 To install using `virtualenv`
 ```sh
 $ virtualenv --no-site-packages ~/.Virtualenv/sampleenv
@@ -10,7 +12,7 @@ $ source ~/.Virtualenv/sampleenv/bin/activate
 ```
 To install project requirements:
 ```sh
-$ pip install requirements/local.pip
+$ pip install -r requirements/local.pip
 ```
 The application runs using ``sqlite3`` database. To use ``postgresql`` :
 
