@@ -28,10 +28,10 @@ class Command(BaseCommand):
 				sizes=product["sizes"],
 				price=product["price"].replace(".", "").replace(",", "."),
 				url=product["url"],
-				online=["online"],
+				online=product["online"],
 				price_old=product["price_old"].replace(".", "").replace(",", "."),
-				currency=["currency"],
-				img_url=["img_url"],
-				women=["women"])
+				currency=product["currency"],
+				img_url=product["img_url"],
+				women=product["women"])
 
 		self.stdout.write(self.style.SUCCESS("Import successful!"))
