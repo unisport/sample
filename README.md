@@ -85,3 +85,5 @@ To test the backend applicatio
 ```sh
 $ ./manage.py test
 ```
+
+To access the admin interface go to  and http://127.0.0.1:8000/admin/ and login with the credentials used to create your superuser account.
