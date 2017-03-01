@@ -81,7 +81,7 @@ To import data from https://www.unisport.dk/api/sample/
 $ ./manage.py import_products
 ``` 
 
-To test the backend applicatio
+To test the backend application
 ```sh
 $ ./manage.py test
 ```
