@@ -1,5 +1,6 @@
 import requests
 import json
+import decimal
 from django.conf import settings
 
 
@@ -119,5 +120,5 @@ class UniposortEndPoint(object):
         """
         data, status = self.unisprotapi.get_all()
 
-        ordered_data = sorted(data["products"], key=lambda k: k["price"].replace(",", "."))
+        ordered_data = sorted(data["products"], key=lambda k: decimal.Decimal(k["price"].replace(",", ".")))
         return ordered_data
