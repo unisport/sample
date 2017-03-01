@@ -13,11 +13,11 @@ class ProductSerializer(serializers.Serializer):
     image = serializers.URLField()
     package = serializers.CharField()
     price = serializers.DecimalField(
-        max_digits=5, decimal_places=2,
+        max_digits=7, decimal_places=2,
         coerce_to_string=True, localize=True)
     url = serializers.URLField()
     price_old = serializers.DecimalField(
-        max_digits=5, decimal_places=2,
+        max_digits=7, decimal_places=2,
         coerce_to_string=True, localize=True)
     currency = serializers.CharField()
     img_url = serializers.URLField()
