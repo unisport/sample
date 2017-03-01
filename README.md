@@ -61,7 +61,7 @@ $ npm install
 $ bower install
 ```
 
-To run the frontend application:
+To run the frontend application run in a new terminal window:
 ```sh
 $ grunt serve
 ```
