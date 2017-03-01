@@ -5,12 +5,12 @@ DEBUG = True
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-database_dir = os.path.join(BASE_DIR, 'databases')
+database_file = os.path.join(BASE_DIR, 'database.dev')
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': database_dir,
+        'NAME': database_file,
     }
 }
 

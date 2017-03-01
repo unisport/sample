@@ -5,3 +5,4 @@ node_modules/
 .sass-cache
 *.pyc
 .ipynb_checkpoints/
+database.dev
