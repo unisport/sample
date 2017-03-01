@@ -20,7 +20,7 @@ class UnisportAPI(object):
                 requested.
             method (str): The HTTP method to be performed.
         Returns:
-            content: The json content in the request to the
+            response: The json content in the request to the
                 sample end point.
             status_code (int): The status code of the response to
                 the request
@@ -54,7 +54,7 @@ class UnisportAPI(object):
 
         if result and isinstance(result, dict) and result.get("error"):
             raise UnisportAPIError(result)
-        return content, status_code
+        return result, status_code
 
 class UnisportAPIError(Exception):
 

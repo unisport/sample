@@ -78,3 +78,8 @@ To import data from https://www.unisport.dk/api/sample/
 ```sh
 $ ./manage.py import_data
 ``` 
+
+To test the backend applicatio
+```sh
+$ ./manage.py test
+```

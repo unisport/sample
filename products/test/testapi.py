@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from rest_framework import status
@@ -36,9 +37,14 @@ class ProductAPITest(APITestCase):
 
     def setUp(self):
 
+        self.old_resource  = getattr(settings, 'DATA_SOURCE', None)
+
         admin_user = User.objects.create_superuser(
             username='testuser', email='test@test.com', 
             password='test12345')
+
+        settings.DATA_SOURCE = "internal"
+
 
     def tearDown(self):
         admin_user = User.objects.get(email='test@test.com')
