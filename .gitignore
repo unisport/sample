@@ -4,3 +4,4 @@ app/assets/bower_components/*
 node_modules/
 .sass-cache
 *.pyc
+.ipynb_checkpoints/
