@@ -9,7 +9,7 @@
     <h1>sportr</h1>
     {% for item in items %}
         <div style="border: 2px solid black; padding: 10px">
-            <a href={{ item.id }}>
+            <a href="/products/{{ item.id }}">
                 <h3>{{ item.name }}</h3>
             </a>
             <a href="{{ item.url }}">
