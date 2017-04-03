@@ -1,11 +1,14 @@
 Written in Python 3.6
 
-    $ pip install -r requirements.txt
-    $ export FLASK_APP=path/to/app.py
+    $ git clone /url/
+    $ pip3.6 install -r requirements.txt
+    $ cd sportr
+    $ export FLASK_APP=sportr.py
     $ flask run
     # now runs at localhost:5000
 
     # run tests
+    $ cd ..
     $ python3.6 -m unittest discover /tests
 
 ################################
