@@ -18,8 +18,12 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(r.status_code, 200)"""
 
     def test_pagination(self):
-        """r = self.app.get('/products/1111/')
-        self.assertEqual(r.status_code, 200)"""
+        for i in range(10):
+            with sportr.app.test_request_context('/products/?page=%d' % i):
+                    self.assertEqual(sportr.request.path, '/products/')
+                    self.assertEqual(sportr.request.args.get('page', type=int), i)
+        r = self.app.get('/products/?page=2')
+        self.assertEqual(r.status_code, 200)
 
     def test_products_kids(self):
         r = self.app.get('/products/kids/')

@@ -46,7 +46,8 @@ items, id_lookup = manipulate_data(fetch_data(url))
 def products():
     """If page arg *n* is passed (e.g /products/?page=2); return the items from
     n*10 - 10 to n*10. Else return the 10 first items ordered cheapest first."""
-    return render_template('index.html', items=items, title='products')
+    n = request.args.get('page', default=1, type=int)
+    return render_template('index.html', items=items[n*10-10:n*10], title='products')
 
 
 @app.route('/products/kids/')
