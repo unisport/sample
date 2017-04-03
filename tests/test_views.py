@@ -1,5 +1,6 @@
 import unittest
 from sportr import sportr
+from bs4 import BeautifulSoup
 
 
 example_item = {
@@ -24,9 +25,16 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
 
     def test_products_sorting(self):
-        """
-        r = self.app.get('/products/1111/')
-        self.assertEqual(r.status_code, 200)"""
+        r = self.app.get('/products/')
+        soup = BeautifulSoup(r.data, 'lxml')
+        prices = soup.find_all(class_='price')
+        prev = -float('inf')
+        for price in prices:
+            as_float = float(price.text.replace(',', '.'))
+            self.assertGreaterEqual(as_float, prev)
+            prev = as_float
+        self.assertEqual(len(prices), 10)
+        self.assertEqual(r.status_code, 200)
 
     def test_pagination(self):
         for i in range(10):
@@ -41,9 +49,7 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
 
     def test_products_kids_sorting(self):
-        """
-        r = self.app.get('/products/1111/')
-        self.assertEqual(r.status_code, 200)"""
+        raise NotImplementedError()
 
     def test_products_id(self):
         sportr.items.append(example_item)
@@ -52,9 +58,8 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
 
     def test_products_id_invalid(self):
-        """
         r = self.app.get('/products/NOT_A_VALID_ID/')
-        self.assertEqual(r.status_code, 404)"""
+        self.assertEqual(r.status_code, 404)
 
     def test_404(self):
         r = self.app.get('/not/a/valid/path/')

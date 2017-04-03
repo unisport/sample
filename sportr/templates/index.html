@@ -19,7 +19,9 @@
                     height="364"
                     width="364">
             </a>
-            <p>Pris: {{ item.price }} {{ item.currency }}</p>
+            <p>Pris:
+                <span class="price">{{ item.price }}</span>
+                {{ item.currency }}</p>
             <p>Levering: {{ item.delivery }}</p>
             {% if item.sizes %}
                 Størrelse:

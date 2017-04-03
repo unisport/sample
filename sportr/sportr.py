@@ -12,7 +12,7 @@
     :author: Carl Bordum Hansen
 """
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort
 import requests
 
 
@@ -40,14 +40,19 @@ url = 'http://www.unisport.dk/api/sample/'
 # use two data structures
 # sacrifice space for O(1) response at /products/id/
 items, id_lookup = manipulate_data(fetch_data(url))
+sort_by_price = lambda x: float(x['price'].replace(',', '.'))
 
 
 @app.route('/products/')
 def products():
     """If page arg *n* is passed (e.g /products/?page=2); return the items from
     n*10 - 10 to n*10. Else return the 10 first items ordered cheapest first."""
-    n = request.args.get('page', default=1, type=int)
-    return render_template('index.html', items=items[n*10-10:n*10], title='products')
+    n = request.args.get('page', default='no page arg', type=int)
+    if n == 'no page arg':
+        products = sorted(items[:10], key=sort_by_price)
+    else:
+        products = items[n*10-10:n*10]
+    return render_template('index.html', items=products, title='products')
 
 
 @app.route('/products/kids/')
@@ -60,7 +65,11 @@ def kid_products():
     return render_template('index.html', items=kid_items, title='kid products')
 
 
-@app.route('/products/<ID>/')
+@app.route('/products/<string:ID>/')
 def product_by_id(ID):
     """Return the product with id=ID."""
-    return render_template('index.html', items=[items[id_lookup[ID]]], title=ID)
+    try:
+        item = items[id_lookup[ID]]
+    except KeyError:
+        abort(404)
+    return render_template('index.html', items=[item], title=ID)
