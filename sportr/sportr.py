@@ -53,7 +53,11 @@ def products():
 @app.route('/products/kids/')
 def kid_products():
     """Return all items where kids=1 ordered cheapest first."""
-    return 'Kids'
+    kid_items = []
+    for item in items:
+        if item['kids'] == '1':
+            kid_items.append(item)
+    return render_template('index.html', items=kid_items, title='kid products')
 
 
 @app.route('/products/<ID>/')

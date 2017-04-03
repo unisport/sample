@@ -2,6 +2,17 @@ import unittest
 from sportr import sportr
 
 
+example_item = {
+    "is_customizable": "1", "delivery": "1-2 dage", "kids": "0",
+    "name": "St. Pauli Hjemmebaneshorts 2016/17", "sizes": "X-Large, XX-Large, 3XL",
+    "kid_adult": "0", "free_porto": "0",
+    "image": "https://d34aj0jffcqapo.cloudfront.net/product/151107/aedc2441abc7.jpg",
+    "package": "0", "price": "209,00",
+    "url": "https://www.unisport.dk/fodboldtroejer/st-pauli-hjemmebaneshorts-201617/151107/", "online": "1", "price_old": "299,00", "currency": "DKK", "img_url": "https://s3-eu-west-1.amazonaws.com/product-img/151107_maxi_0.jpg",
+    "id": "151107", "women": "0"
+}
+
+
 class TestEndpoints(unittest.TestCase):
     def setUp(self):
         sportr.app.config['TESTING'] = True
@@ -35,7 +46,7 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(r.status_code, 200)"""
 
     def test_products_id(self):
-        sportr.items.append('test')
+        sportr.items.append(example_item)
         sportr.id_lookup['12345678'] = len(sportr.items) - 1
         r = self.app.get('/products/12345678/')
         self.assertEqual(r.status_code, 200)
