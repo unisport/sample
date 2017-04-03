@@ -20,21 +20,26 @@ class TestEndpoints(unittest.TestCase):
         self.app = sportr.app.test_client()
         self.app.testing = True
 
-    def test_products(self):
-        r = self.app.get('/products/')
-        self.assertEqual(r.status_code, 200)
-
-    def test_products_sorting(self):
-        r = self.app.get('/products/')
+    def _is_sorted(self, path):
+        r = self.app.get(path)
         soup = BeautifulSoup(r.data, 'lxml')
         prices = soup.find_all(class_='price')
+        new_prices = []
         prev = -float('inf')
         for price in prices:
             as_float = float(price.text.replace(',', '.'))
             self.assertGreaterEqual(as_float, prev)
             prev = as_float
-        self.assertEqual(len(prices), 10)
+            new_prices.append(as_float)
+        return new_prices
+
+    def test_products(self):
+        r = self.app.get('/products/')
         self.assertEqual(r.status_code, 200)
+
+    def test_products_sorting(self):
+        prices = self._is_sorted('/products/')
+        self.assertEqual(len(prices), 10)
 
     def test_pagination(self):
         for i in range(10):
@@ -49,7 +54,7 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
 
     def test_products_kids_sorting(self):
-        raise NotImplementedError()
+        self._is_sorted('/products/kids/')
 
     def test_products_id(self):
         sportr.items.append(example_item)

@@ -62,6 +62,7 @@ def kid_products():
     for item in items:
         if item['kids'] == '1':
             kid_items.append(item)
+    kid_items = sorted(kid_items, key=sort_by_price)
     return render_template('index.html', items=kid_items, title='kid products')
 
 
