@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>sportr - {{ title }}</title>
+</head>
+
+<body>
+    <h1>sportr</h1>
+    {% for item in items %}
+        <div style="border: 2px solid black; padding: 10px">
+            <a href="/products/{{ item.id }}">
+                <h3>{{ item.name }}</h3>
+            </a>
+            <a href="{{ item.url }}">
+                <img
+                    src="{{ item.image }}"
+                    alt="{{ item.name }}"
+                    height="364"
+                    width="364">
+            </a>
+            <p>Pris:
+                <span class="price">{{ item.price }}</span>
+                {{ item.currency }}</p>
+            <p>Levering: {{ item.delivery }}</p>
+            {% if item.sizes %}
+                Størrelse:
+                <select>
+                        {% for size in item.sizes %}
+                            <option>{{ size }}</option>
+                        {% endfor %}
+                </select>
+            {% endif %}
+        </div>
+    {% endfor %}
+</body>
+</html>
