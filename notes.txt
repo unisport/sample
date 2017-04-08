@@ -12,3 +12,6 @@ Few notes regarding my solution.
 
 4.
   Tested on both Ubuntu and Windows 10, seems to work on both and also seems to run significantly faster on Linux. Might just be a coincidence, don't know.
+ 
+5.
+  Created and tested with python 2.7, don't know if it will work on python 3. Both runserver files assume that a "python" command executed on the current machine will launch python 2.7.
