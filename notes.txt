@@ -1,0 +1,17 @@
+Few notes regarding my solution.
+
+1.
+  I've chosen to return everything in json format, since there was no specification as to what you wanted, and I figured there was no need for html.
+
+2.
+  The data is loaded from the provided unisport api url everytime the server starts. This isn't fast, but I figured the data might change, and since it's a very small amount, I decided it would be okay for this application.
+  For a larger application, it would be much easier to store the data locally, in a database. This would speed up things and make extending the program with features to modify and remove/add data much easier (those features are impossible to do when I don't store the data locally, as I can't modify data on your server).
+
+3.
+  At the time of writing, there were no products where kids=1, so the /products/kids/ function returns an empty list.
+
+4.
+  Tested on both Ubuntu and Windows 10, seems to work on both and also seems to run significantly faster on Linux. Might just be a coincidence, don't know.
+ 
+5.
+  Created and tested with python 2.7, don't know if it will work on python 3. Both runserver files assume that a "python" command executed on the current machine will launch python 2.7.
