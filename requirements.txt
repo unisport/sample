@@ -1,2 +1,2 @@
-#I'm not very demanding, all you need is Flask
 Flask
+requests
