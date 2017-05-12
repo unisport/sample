@@ -1,6 +1,6 @@
 import urllib
 from collections import OrderedDict
-from flask import Flask, json, jsonify, abort, make_response
+from flask import Flask, json, jsonify, abort, make_response, request
 import locale
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
@@ -12,13 +12,36 @@ app.config['JSON_SORT_KEYS'] = False #Avoid ordering keys to maintain source's o
 @app.route('/products/')
 def cheapest_products():
 	data = get_data()['products']
-	products = sorted(data, key=lambda k: currency_to_float(k['price']))
-	result = {}
-	product_list = []
-	for i in range(0, CONST_LIMIT):
-		product_list.append(products[i])
-	result['products'] = product_list
-	return jsonify(result)
+	response = None
+	
+	# /products/?page=n
+	if("page" in request.args):
+		page = request.args.get("page", -1, type=int)
+		start = page * CONST_LIMIT
+		
+		if(start > len(data) or page == -1):
+			abort(404)
+			
+		end = start + CONST_LIMIT
+		if(end > len(data)):
+			end = len(data)
+		product_list = data[start:end]
+		result = {}
+		result["products"] = product_list
+		response = jsonify(result)
+	#/products/
+	else:
+		products = order_by_price(data)
+		result = {}
+		product_list = []
+		
+		for i in range(0, CONST_LIMIT):
+			product_list.append(products[i])
+	
+		result["poducts"] = product_list
+		response = jsonify(result)
+	
+	return response
    
 
 @app.route('/products/kids/')
@@ -28,6 +51,7 @@ def cheapest_products_kids():
 		abort(404)
 		
 	return jsonify(products)
+
 
 
 #Override is needed to return json instead of HTML (Flask's default)
