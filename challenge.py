@@ -27,11 +27,13 @@ def cheapest_products():
 
 @app.route('/products/kids/')
 def cheapest_products_kids():
-	products = order_by_price(get_kid_products()['products'])
-	if(len(products) == 0):
-		abort(404)
-		
-	return jsonify(products)
+	products = get_data()['products']
+	kid_products = [product for product in products if product['kids'] == '1']
+
+	return jsonify({
+		"end-point": "/products/kids/",
+		"products": order_by_price(kid_products)
+	})
 
 @app.route('/products/<int:product_id>/')
 def product_by_id(product_id):
@@ -61,18 +63,6 @@ def product_by_id(product_id):
 def not_found(e):
 	error = { "error": "Not found" }
 	return make_response(jsonify(error), 404)
-
-
-def get_kid_products():
-	data = get_data()['products']
-	product_list = []
-	result = {}
-	for i in range(0, len(data)):
-		if(data[i]["kids"] == "1"):
-			product_list.append(data[i])
-	
-	result["products"] = product_list
-        return result
 
 #Get data sample from Unisport
 def get_data():
