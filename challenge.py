@@ -37,25 +37,13 @@ def cheapest_products_kids():
 
 @app.route('/products/<int:product_id>/')
 def product_by_id(product_id):
-	data = get_data()['products']
-	result = {}
-	product = {}
-	found = False
-	i = 0
-	while (i < len(data) and not found):
-		if(data[i]["id"] == product_id):
-			product = data[i]
-			found = True
-		i += 1
-	
-	if(not found):
-		abort(404)
-	
-	result["product"] = product
-	response = jsonify(result)
-	
-	
-	return response
+	products = get_data()['products']
+	product = [product for product in products if int(product['id']) == product_id][0]
+
+	return jsonify({
+		"end-point": "/products/",
+		"product": product
+	})
 
 
 #Override is needed to return json instead of HTML (Flask's default)
