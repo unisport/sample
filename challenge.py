@@ -38,7 +38,7 @@ def cheapest_products():
 		for i in range(0, CONST_LIMIT):
 			product_list.append(products[i])
 	
-		result["poducts"] = product_list
+		result["products"] = product_list
 		response = jsonify(result)
 	
 	return response
