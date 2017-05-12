@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Unisports Sample Test{% endblock %}</title>
+
+    {% load staticfiles %}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Customized css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+    <!-- The navigation menu bar on top of each page -->
+    <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Manu bar -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topnavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'product:product' %}">Unisports</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="topnavbar">
+            <ul class="nav navbar-nav">
+                <li class="{% block page_active_product %}{% endblock %}">
+                    <a href="{% url 'product:product' %}">Products</a>
+                </li>
+                <li class="{% block page_active_kid %}{% endblock %}">
+                    <a href="{% url 'product:kidsView' %}">Kids</a>
+                </li>
+                <li class="{% block page_active_product_add %}{% endblock %}">
+                    <a href="{% url 'product:product-add' %}">Add product</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+    {% block codeBody %}
+    {% endblock %}
+</body>
+</html>

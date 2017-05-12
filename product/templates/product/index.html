@@ -1,0 +1,78 @@
+<!--  -->
+{% extends 'product/BaseHTML.html' %}
+{% block page_active_product %}active{% endblock %}
+
+{% block codeBody %}
+    {% if all_products %}
+        <h1>List of products sorted from cheapest</h1>
+        <table id="productTable">
+            {% for aProduct in all_products %}
+                <tr>
+                    <td>
+                        <a href="{% url 'product:detail' aProduct.id %}">
+                            <img class="product-img-size" src="{{ aProduct.image }}" alt="No photo provided"/>
+                        </a>
+                    </td>
+
+                    <td class="more-padding-on-right">
+                        <a href="{% url 'product:detail' aProduct.id %}">
+                            {{ aProduct.name }} : {{ aProduct.price }}{{ aProduct.currency }}
+                        </a>
+                    </td>
+
+                    <td class="more-padding-on-right" >
+                        <div style="display: inline">
+                            <a href="{% url 'product:product-update' aProduct.id %}">
+                                <button class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </button>
+                            </a>
+                            <div class="form-group">
+                                <form method="post" action="{% url 'product:product-delete' aProduct.id %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_id" value="{{ aProduct.id }}">
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Pagination section -->
+        <div class="text-center">
+            {% if is_paginated %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="hidden"><span>&laquo;</span></li>
+                    {% endif %}
+
+                    {% for page in paginator.page_range %}
+                        {% if page_obj.number == page %}
+                            <li class="active"><span>{{ page }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ page }}"> {{ page }} </a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="hidden"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+
+    {% else %}
+        <h3>No product is found. The list might be empty</h3>
+    {% endif %}
+{% endblock %}
+
+

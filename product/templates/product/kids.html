@@ -1,0 +1,25 @@
+<!--  -->
+{% extends 'product/BaseHTML.html' %}
+{% block title %}Kid products{% endblock %}
+{% block page_active_kid %}active{% endblock %}
+
+{% block codeBody %}
+    {% if kids_products %}
+        <h1 >List of products for kids: </h1>
+        <ul>
+            {% for aProduct in kids_products %}
+                <li>
+                    <a href="{% url 'product:detail' aProduct.id %}">
+                        <img class="product-img-size" src="{{ aProduct.image }}" alt="No photo provided"/>
+                        </br>
+                        {{ aProduct.name }} : {{ aProduct.price }}{{ aProduct.currency }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>No kids product is found. The list might be empty</h3>
+    {% endif %}
+{% endblock %}
+
+

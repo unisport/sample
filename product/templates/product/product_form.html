@@ -1,0 +1,31 @@
+{% extends 'product/BaseHTML.html' %}
+{% load some_simple_tags %}
+
+{% block title %}{% add_or_update request.get_full_path '0' %} a new product{% endblock %}
+{% block page_active_product_add %}{% add_or_update request.get_full_path '1' %}{% endblock %}
+
+{% block codeBody %}
+    <div class="container-fluid">
+        <p>No UX. For now enter 1 or 0 for Yes or No options</p>
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% include 'product/form-template.html' %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">
+                                        {% add_or_update request.get_full_path '0' %}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

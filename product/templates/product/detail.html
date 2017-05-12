@@ -1,0 +1,35 @@
+<!--  -->
+{% extends 'product/BaseHTML.html' %}
+{% block title %}Product detail{% endblock %}
+
+{% load some_simple_tags %}
+
+{% block codeBody %}
+    {% if product %}
+        <!-- product object is forwarded by views with DetailView class -->
+        <!-- DetailView class copy information from model Product -->
+        <h1>{{ product.name }}:</h1>
+        <div class="">
+            <table class="table table-responsive">
+                <tbody>
+                    <tr>
+                        <td>Price:</td>
+                        <td>{{ product.price }} {{ product.currency }}</td>
+                    </tr>
+
+                    {% for name, value in product.get_fields %}
+                        {% if name != 'name' or name != 'price' or name != 'currency' %}
+                            <tr>
+                                <td>{{ name }}: </td>
+                                <td>{% boolStringCheck value %}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <h3>The entered product is invalid.</h3>
+    {% endif %}
+{% endblock %}
