@@ -4,44 +4,25 @@ from flask import Flask, json, jsonify, abort, make_response, request
 import locale
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
-CONST_LIMIT = 10
+ITEMS_PER_PAGE = 10
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False #Avoid ordering keys to maintain source's order
 
 @app.route('/products/')
 def cheapest_products():
-	data = get_data()['products']
-	response = None
+	page = request.args.get('page', 0, type=int)
+	products = order_by_price(get_data()['products'])
+	start = ITEMS_PER_PAGE * page
+	end = ITEMS_PER_PAGE * (page + 1)
 	
-	# /products/?page=n
-	if("page" in request.args):
-		page = request.args.get("page", -1, type=int)
-		start = page * CONST_LIMIT
-		
-		if(start > len(data) or page == -1):
-			abort(404)
-			
-		end = start + CONST_LIMIT
-		if(end > len(data)):
-			end = len(data)
-		product_list = data[start:end]
-		result = {}
-		result["products"] = product_list
-		response = jsonify(result)
-	#/products/
-	else:
-		products = order_by_price(data)
-		result = {}
-		product_list = []
-		
-		for i in range(0, CONST_LIMIT):
-			product_list.append(products[i])
-	
-		result["products"] = product_list
-		response = jsonify(result)
-	
-	return response
+	return jsonify({
+		"end-point": "/products/",
+		"page": page,
+		"total": len(products),
+		"products": products[start:end]
+	})
+
    
 
 @app.route('/products/kids/')
