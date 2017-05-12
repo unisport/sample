@@ -49,3 +49,5 @@ Django is one of the most popular and powerful web framework and it works based 
 SQLite3 comes along with Django when installed. Due to the specification requirements there is necessarily only one relation (table) in the database.
 Therefore SQLites3 is much more lightweight. 
 
+As running the server "localhost". The main url is: "http://127.0.0.1:8000/products/"
+The local folder has the link: "~\Desktop\Uniwebsite\"
