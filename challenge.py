@@ -1,6 +1,8 @@
 import urllib
 from collections import OrderedDict
 from flask import Flask, json, jsonify, abort, make_response
+import locale
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 CONST_LIMIT = 10
 
@@ -10,7 +12,7 @@ app.config['JSON_SORT_KEYS'] = False #Avoid ordering keys to maintain source's o
 @app.route('/products/')
 def cheapest_products():
 	data = get_data()['products']
-	products = sorted(data, key=lambda k: international_float(k['price']))
+	products = sorted(data, key=lambda k: currency_to_float(k['price']))
 	result = {}
 	product_list = []
 	for i in range(0, CONST_LIMIT):
@@ -52,14 +54,9 @@ def get_data():
 	response = urllib.urlopen(url)
 	return json.loads(response.read(), object_pairs_hook=OrderedDict) #Maintain keys order
 
-#Converts a string that represents a comma decimal into a point decimal
-def international_float(string_number):
-	string_number = string_number.replace('.', '')
-	string_number = string_number.replace(',', '.')
-	number = float(string_number)
-	return number 
-
+def currency_to_float(currency_str):
+	return locale.atof(currency_str)
         
 #Set order to True for descending order. Ascending otherwise.
 def order_by_price(data, order=False):
-	return sorted(data, key=lambda k: international_float(k['price']), reverse=order)
+	return sorted(data, key=lambda k: currency_to_float(k['price']), reverse=order)
