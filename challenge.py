@@ -52,6 +52,27 @@ def cheapest_products_kids():
 		
 	return jsonify(products)
 
+@app.route('/products/<int:product_id>/')
+def product_by_id(product_id):
+	data = get_data()['products']
+	result = {}
+	product = {}
+	found = False
+	i = 0
+	while (i < len(data) and not found):
+		if(data[i]["id"] == product_id):
+			product = data[i]
+			found = True
+		i += 1
+	
+	if(not found):
+		abort(404)
+	
+	result["product"] = product
+	response = jsonify(result)
+	
+	
+	return response
 
 
 #Override is needed to return json instead of HTML (Flask's default)
@@ -74,7 +95,8 @@ def get_kid_products():
 
 #Get data sample from Unisport
 def get_data():
-	url = "https://www.unisport.dk/api/sample/"
+	#url = "https://www.unisport.dk/api/sample/"
+	url = "http://paste.debian.net/plainh/c838890c"
 	response = urllib.urlopen(url)
 	return json.loads(response.read(), object_pairs_hook=OrderedDict) #Maintain keys order
 
