@@ -16,7 +16,7 @@ def cheapest_products():
 	end = ITEMS_PER_PAGE * (page + 1)
 	
 	return jsonify({
-		"end-point": "/products/",
+		"end-point": request.path,
 		"page": page,
 		"total": len(products),
 		"products": products[start:end]
@@ -30,7 +30,7 @@ def cheapest_products_kids():
 	kid_products = [product for product in products if product['kids'] == '1']
 
 	return jsonify({
-		"end-point": "/products/kids/",
+		"end-point": request.path,
 		"products": order_by_price(kid_products)
 	})
 
@@ -41,12 +41,12 @@ def product_by_id(product_id):
 	
 	if product:
 		return jsonify({
-			"end-point": "/products/",
+			"end-point": request.path,
 			"product": product[0]
 		})
 	else:
 		return jsonify({
-			"end-point": "/products/",
+			"end-point": request.path,
 			"product": {}
 		}), 404
 	
