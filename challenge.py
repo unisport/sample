@@ -7,7 +7,6 @@ locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 ITEMS_PER_PAGE = 10
 
 app = Flask(__name__)
-app.config['JSON_SORT_KEYS'] = False #Avoid ordering keys to maintain source's order
 
 @app.route('/products/')
 def cheapest_products():
@@ -57,7 +56,7 @@ def get_data():
 	#url = "https://www.unisport.dk/api/sample/"
 	url = "http://paste.debian.net/plainh/c838890c"
 	response = urllib.urlopen(url)
-	return json.loads(response.read(), object_pairs_hook=OrderedDict) #Maintain keys order
+	return json.loads(response.read())
 
 def currency_to_float(currency_str):
 	return locale.atof(currency_str)
