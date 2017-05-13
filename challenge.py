@@ -5,8 +5,23 @@ import locale
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 ITEMS_PER_PAGE = 10
-
+DB_NAME = 'products.db'
 app = Flask(__name__)
+
+
+
+
+
+def get_db():
+	if not hasattr(g, 'database'):
+		g.database = sqlite3.connect(DB_NAME)
+	return g.database
+
+
+@app.teardown_appcontext
+def close_db(error):
+	if hasattr(g, 'database'):
+		g.database.close()
 
 @app.route('/products/')
 def cheapest_products():
@@ -69,3 +84,6 @@ def currency_to_float(currency_str):
 #Set order to True for descending order. Ascending otherwise.
 def order_by_price(data, order=False):
 	return sorted(data, key=lambda k: currency_to_float(k['price']), reverse=order)
+
+
+

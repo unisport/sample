@@ -18,3 +18,4 @@ CREATE TABLE IF NOT EXISTS products
 	img_url TEXT NOT NULL,
 	women INTEGER NOT NULL 
 );
+
