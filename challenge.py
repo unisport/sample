@@ -51,7 +51,7 @@ def product_by_id(product_id):
 		}), 404
 	
 
-#Override is needed to return json instead of HTML (Flask's default)
+#Override is needed to return JSON instead of HTML (Flask's default)
 @app.errorhandler(404)
 def not_found(e):
 	error = { "error": "Not found" }
@@ -59,8 +59,7 @@ def not_found(e):
 
 #Get data sample from Unisport
 def get_data():
-	#url = "https://www.unisport.dk/api/sample/"
-	url = "http://paste.debian.net/plainh/c838890c"
+	url = "https://www.unisport.dk/api/sample/"
 	response = urllib.urlopen(url)
 	return json.loads(response.read())
 
