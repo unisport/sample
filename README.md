@@ -1,33 +1,31 @@
-_Fork this project and send us a pull request_
+# Unisport Code Challenge
+## Installation
+Working Ubuntu installation process
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+```bash
+$ sudo pip install virtualenv
+$ virtualenv venv
+$ . venv/bin/activate
+$ pip install -r requirements.txt
+$ export FLASK_APP=hello.py
 
+```
 
-**/products/**  
+## Usage
+```bash
+$ . venv/bin/activate (Only if it was deactivated before)
+$ flask run
 
-
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
-
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
-
- **/products/id/**
- 
-should return the individual product.
+```
 
 
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
+## Testing
 
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
+```bash
+$ python -m unittest discover
+```
 
-
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
-
+## Check the code follows PEP 8 convention
+```bash
+$ pep8 *.py
+```
