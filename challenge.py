@@ -23,7 +23,7 @@ def close_db(error):
 	if hasattr(g, 'database'):
 		g.database.close()
 
-@app.route('/products/', methods=['GET'])
+@app.route('/products/')
 def cheapest_products():
 	page = request.args.get('page', 0, type=int)
 	start = ITEMS_PER_PAGE * page
@@ -39,7 +39,7 @@ def cheapest_products():
 	})
    
 
-@app.route('/products/kids/', methods=['GET'])
+@app.route('/products/kids/')
 def cheapest_products_kids():
 
 	products = execute_db('SELECT * FROM products WHERE kids = 1 order by price')
@@ -49,7 +49,7 @@ def cheapest_products_kids():
 		"products": products
 	})
 
-@app.route('/products/<int:product_id>/', methods=['GET'])
+@app.route('/products/<int:product_id>/')
 def product_by_id(product_id):
 	product = execute_db('SELECT * FROM products WHERE id = ?', (product_id,), False)
 	
@@ -101,11 +101,13 @@ def handle_db_result(result):
 	return data
 
 #Get database result ready for jsonify()
-def execute_db(query, values=None, fetchall=True):
+def execute_db(query, values=[], fetchall=True):
 	cursor = get_db().cursor()
-	if values:
-		cursor.execute(query, values)
-	else:
-		cursor.execute(query)
+	cursor.execute(query, values)
 	return handle_db_result(cursor.fetchall()) if fetchall else handle_db_result(cursor.fetchone())
 
+@app.route('/products/', methods=['POST'])
+def create_product():
+	pass
+	#product = request.get_json()['product']
+	#if None not in product.viewvalues():
