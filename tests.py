@@ -6,7 +6,7 @@ locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 ITEMS_PER_PAGE = 10
 ITEM_ID = '1'
-
+INVALID_ID = '5647845'
 
 def load_json(data):
     return json.loads(data)
@@ -44,3 +44,10 @@ class ChallengeTest(unittest.TestCase):
         product = load_json(
             self.app.get('/products/' + ITEM_ID + '/').data)['product']
         self.assertEqual(product['id'], ITEM_ID)
+
+    def test_products_invalid_id(self):
+        product = load_json(self.app.get('/products/' + INVALID_ID + '/').data)['product']
+        self.assertFalse(product)
+        
+        error = load_json(self.app.get('/products/foobarbarfoo/').data)['error']
+        self.assertTrue(error, 'Not found')
