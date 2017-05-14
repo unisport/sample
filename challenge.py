@@ -3,7 +3,7 @@ from collections import OrderedDict
 from flask import Flask, json, jsonify, abort, make_response, request, g
 import sqlite3
 import locale
-locale.setlocale(locale.LC_ALL, 'en_DK.UTF-8')
+locale.setlocale(locale.LC_ALL, 'da_DK.UTF-8')
 
 ITEMS_PER_PAGE = 10
 DB_NAME = 'products.db'
