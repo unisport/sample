@@ -34,13 +34,8 @@ def cheapest_products():
 	cursor = get_db().cursor()
 	cursor.execute('SELECT * FROM products order by price limit ? offset ?', (ITEMS_PER_PAGE, start))
 	
-	result = cursor.fetchall()
-	products = [dict(product) for product in result] 
-	for product in products:
-		product['id'] = str(product['id'])
-		product['price'] = to_currency(product['price'])
-		product['price_old'] = to_currency(product['price_old'])
-		
+	products = handle_db_result(cursor.fetchall())
+	
 	return jsonify({
 		"end-point": request.path,
 		"page": page,
@@ -88,5 +83,22 @@ def get_data():
 	response = urllib.urlopen(url)
 	return json.loads(response.read())
 
+#From point decimal to comma decimal
 def to_currency(value):
 	return locale.currency(value, False)
+
+
+#Prepare database result to be jsonified
+def handle_db_result(result):
+	if(type(result[0]) == list):
+		data = [dict(i) for i in result]
+		for i in data:
+			i['id'] = str(i['id'])
+			i['price'] = to_currency(i['price'])
+			i['price_old'] = to_currency(i['price_old'])
+	else:
+		data = dict(result)
+		data['id'] = str(data['id'])
+		data['price'] = to_currency(data['price'])
+		data['price_old'] = to_currency(data['price_old'])
+	return data
