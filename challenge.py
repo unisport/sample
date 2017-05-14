@@ -23,7 +23,7 @@ def close_db(error):
 	if hasattr(g, 'database'):
 		g.database.close()
 
-@app.route('/products/')
+@app.route('/products/', methods=['GET'])
 def cheapest_products():
 	page = request.args.get('page', 0, type=int)
 	start = ITEMS_PER_PAGE * page
@@ -39,7 +39,7 @@ def cheapest_products():
 	})
    
 
-@app.route('/products/kids/')
+@app.route('/products/kids/', methods=['GET'])
 def cheapest_products_kids():
 
 	products = execute_db('SELECT * FROM products WHERE kids = 1 order by price')
@@ -49,7 +49,7 @@ def cheapest_products_kids():
 		"products": products
 	})
 
-@app.route('/products/<int:product_id>/')
+@app.route('/products/<int:product_id>/', methods=['GET'])
 def product_by_id(product_id):
 	product = execute_db('SELECT * FROM products WHERE id = ?', (product_id,), False)
 	
@@ -86,7 +86,7 @@ def to_currency(value):
 def handle_db_result(result):
 	data = {}
 	
-	if(len(result) > 0):
+	if(result and len(result) > 0):
 		if(type(result[0]) == sqlite3.Row):
 			data = [dict(i) for i in result]
 			for i in data:
@@ -108,3 +108,4 @@ def execute_db(query, values=None, fetchall=True):
 	else:
 		cursor.execute(query)
 	return handle_db_result(cursor.fetchall()) if fetchall else handle_db_result(cursor.fetchone())
+
