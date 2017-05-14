@@ -49,5 +49,8 @@ class ChallengeTest(unittest.TestCase):
         product = load_json(self.app.get('/products/' + INVALID_ID + '/').data)['product']
         self.assertFalse(product)
         
-        error = load_json(self.app.get('/products/foobarbarfoo/').data)['error']
+        response = self.app.get('/products/foobarbarfoo/')
+        self.assertTrue(response.status_code == 404)
+        
+        error = load_json(response.data)['error']
         self.assertTrue(error, 'Not found')
