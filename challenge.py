@@ -11,8 +11,6 @@ app = Flask(__name__)
 
 
 
-
-
 def get_db():
 	if not hasattr(g, 'database'):
 		g.database = sqlite3.connect(DB_NAME)
@@ -31,10 +29,7 @@ def cheapest_products():
 	start = ITEMS_PER_PAGE * page
 	end = ITEMS_PER_PAGE * (page + 1)
 
-	cursor = get_db().cursor()
-	cursor.execute('SELECT * FROM products order by price limit ? offset ?', (ITEMS_PER_PAGE, start))
-	
-	products = handle_db_result(cursor.fetchall())
+	products = execute_db('SELECT * FROM products order by price limit ? offset ?', (ITEMS_PER_PAGE, start))
 	
 	return jsonify({
 		"end-point": request.path,
@@ -46,10 +41,8 @@ def cheapest_products():
 
 @app.route('/products/kids/')
 def cheapest_products_kids():
-	cursor = get_db().cursor()
-	cursor.execute('SELECT * FROM products WHERE kids = 1 order by price')
-	
-	products = handle_db_result(cursor.fetchall())
+
+	products = execute_db('SELECT * FROM products WHERE kids = 1 order by price')
 
 	return jsonify({
 		"end-point": request.path,
@@ -58,10 +51,8 @@ def cheapest_products_kids():
 
 @app.route('/products/<int:product_id>/')
 def product_by_id(product_id):
-	cursor = get_db().cursor()
-	cursor.execute('SELECT * FROM products WHERE id = ?', (product_id,))
-	product = handle_db_result(cursor.fetchone())
-
+	product = execute_db('SELECT * FROM products WHERE id = ?', (product_id,), False)
+	
 	if product:
 		return jsonify({
 			"end-point": request.path,
@@ -94,8 +85,9 @@ def to_currency(value):
 #Prepare database result to be jsonified
 def handle_db_result(result):
 	data = {}
-	if(len(result) > 1):
-		if(type(result[0]) == list):
+	
+	if(len(result) > 0):
+		if(type(result[0]) == sqlite3.Row):
 			data = [dict(i) for i in result]
 			for i in data:
 				i['id'] = str(i['id'])
@@ -107,3 +99,12 @@ def handle_db_result(result):
 			data['price'] = to_currency(data['price'])
 			data['price_old'] = to_currency(data['price_old'])
 	return data
+
+#Get database result ready for jsonify()
+def execute_db(query, values=None, fetchall=True):
+	cursor = get_db().cursor()
+	if values:
+		cursor.execute(query, values)
+	else:
+		cursor.execute(query)
+	return handle_db_result(cursor.fetchall()) if fetchall else handle_db_result(cursor.fetchone())
