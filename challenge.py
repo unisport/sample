@@ -38,8 +38,8 @@ def cheapest_products():
 	products = [dict(product) for product in result] 
 	for product in products:
 		product['id'] = str(product['id'])
-		product['price'] = "{:.2f}".format(product['price'])
-		product['price_old'] = "{:.2f}".format(product['price_old'])
+		product['price'] = to_currency(product['price'])
+		product['price_old'] = to_currency(product['price_old'])
 		
 	return jsonify({
 		"end-point": request.path,
@@ -88,9 +88,5 @@ def get_data():
 	response = urllib.urlopen(url)
 	return json.loads(response.read())
 
-def currency_to_float(currency_str):
-	return locale.atof(currency_str)
-        
-#Set order to True for descending order. Ascending otherwise.
-def order_by_price(data, order=False):
-	return sorted(data, key=lambda k: currency_to_float(k['price']), reverse=order)
+def to_currency(value):
+	return locale.currency(value, False)
