@@ -118,8 +118,3 @@ def execute_db(query, values=[], fetchall=True):
         return handle_db_result(cursor.fetchall())
     else:
         return handle_db_result(cursor.fetchone())
-
-
-@app.route('/products/', methods=['POST'])
-def create_product():
-    pass

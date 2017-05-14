@@ -2,7 +2,7 @@ import unittest
 import challenge
 import json
 import locale
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+locale.setlocale(locale.LC_ALL, 'da_DK.UTF-8')
 
 ITEMS_PER_PAGE = 10
 ITEM_ID = '1'
