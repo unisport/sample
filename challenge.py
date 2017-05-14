@@ -1,9 +1,9 @@
 import urllib
-from collections import OrderedDict
-from flask import Flask, json, jsonify, abort, make_response, request, g
+from flask import Flask, json, jsonify, make_response, request, g
 import sqlite3
 import locale
 locale.setlocale(locale.LC_ALL, 'da_DK.UTF-8')
+
 
 ITEMS_PER_PAGE = 10
 DB_NAME = 'products.db'
@@ -29,7 +29,6 @@ def close_db(error):
 def cheapest_products():
     page = request.args.get('page', 0, type=int)
     start = ITEMS_PER_PAGE * page
-    end = ITEMS_PER_PAGE * (page + 1)
 
     products = execute_db(
         'SELECT * FROM products order by price limit ? offset ?',
