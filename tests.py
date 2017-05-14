@@ -8,6 +8,7 @@ ITEMS_PER_PAGE = 10
 ITEM_ID = '1'
 INVALID_ID = '5647845'
 
+
 def load_json(data):
     return json.loads(data)
 
@@ -46,11 +47,12 @@ class ChallengeTest(unittest.TestCase):
         self.assertEqual(product['id'], ITEM_ID)
 
     def test_products_invalid_id(self):
-        product = load_json(self.app.get('/products/' + INVALID_ID + '/').data)['product']
+        product = load_json(
+            self.app.get('/products/' + INVALID_ID + '/').data)['product']
         self.assertFalse(product)
-        
+
         response = self.app.get('/products/foobarbarfoo/')
         self.assertTrue(response.status_code == 404)
-        
+
         error = load_json(response.data)['error']
         self.assertTrue(error, 'Not found')
