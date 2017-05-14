@@ -46,12 +46,14 @@ def cheapest_products():
 
 @app.route('/products/kids/')
 def cheapest_products_kids():
-	products = get_data()['products']
-	kid_products = [product for product in products if product['kids'] == '1']
+	cursor = get_db().cursor()
+	cursor.execute('SELECT * FROM products WHERE kids = 1 order by price')
+	
+	products = handle_db_result(cursor.fetchall())
 
 	return jsonify({
 		"end-point": request.path,
-		"products": order_by_price(kid_products)
+		"products": products
 	})
 
 @app.route('/products/<int:product_id>/')
@@ -90,15 +92,17 @@ def to_currency(value):
 
 #Prepare database result to be jsonified
 def handle_db_result(result):
-	if(type(result[0]) == list):
-		data = [dict(i) for i in result]
-		for i in data:
-			i['id'] = str(i['id'])
-			i['price'] = to_currency(i['price'])
-			i['price_old'] = to_currency(i['price_old'])
-	else:
-		data = dict(result)
-		data['id'] = str(data['id'])
-		data['price'] = to_currency(data['price'])
-		data['price_old'] = to_currency(data['price_old'])
+	data = []
+	if(len(result) > 1):
+		if(type(result[0]) == list):
+			data = [dict(i) for i in result]
+			for i in data:
+				i['id'] = str(i['id'])
+				i['price'] = to_currency(i['price'])
+				i['price_old'] = to_currency(i['price_old'])
+		else:
+			data = dict(result)
+			data['id'] = str(data['id'])
+			data['price'] = to_currency(data['price'])
+			data['price_old'] = to_currency(data['price_old'])
 	return data
