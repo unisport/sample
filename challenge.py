@@ -1,8 +1,9 @@
 import urllib
 from collections import OrderedDict
-from flask import Flask, json, jsonify, abort, make_response, request
+from flask import Flask, json, jsonify, abort, make_response, request, g
+import sqlite3
 import locale
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+locale.setlocale(locale.LC_ALL, 'en_DK.UTF-8')
 
 ITEMS_PER_PAGE = 10
 DB_NAME = 'products.db'
@@ -15,6 +16,7 @@ app = Flask(__name__)
 def get_db():
 	if not hasattr(g, 'database'):
 		g.database = sqlite3.connect(DB_NAME)
+		g.database.row_factory = sqlite3.Row #Allow columns to be accessed by name
 	return g.database
 
 
@@ -26,17 +28,25 @@ def close_db(error):
 @app.route('/products/')
 def cheapest_products():
 	page = request.args.get('page', 0, type=int)
-	products = order_by_price(get_data()['products'])
 	start = ITEMS_PER_PAGE * page
 	end = ITEMS_PER_PAGE * (page + 1)
+
+	cursor = get_db().cursor()
+	cursor.execute('SELECT * FROM products order by price limit ? offset ?', (ITEMS_PER_PAGE, start))
 	
+	result = cursor.fetchall()
+	products = [dict(product) for product in result] 
+	for product in products:
+		product['id'] = str(product['id'])
+		product['price'] = "{:.2f}".format(product['price'])
+		product['price_old'] = "{:.2f}".format(product['price_old'])
+		
 	return jsonify({
 		"end-point": request.path,
 		"page": page,
 		"total": len(products),
-		"products": products[start:end]
+		"products": products
 	})
-
    
 
 @app.route('/products/kids/')
@@ -84,6 +94,3 @@ def currency_to_float(currency_str):
 #Set order to True for descending order. Ascending otherwise.
 def order_by_price(data, order=False):
 	return sorted(data, key=lambda k: currency_to_float(k['price']), reverse=order)
-
-
-
