@@ -58,13 +58,14 @@ def cheapest_products_kids():
 
 @app.route('/products/<int:product_id>/')
 def product_by_id(product_id):
-	products = get_data()['products']
-	product = [product for product in products if int(product['id']) == product_id]
-	
+	cursor = get_db().cursor()
+	cursor.execute('SELECT * FROM products WHERE id = ?', (product_id,))
+	product = handle_db_result(cursor.fetchone())
+
 	if product:
 		return jsonify({
 			"end-point": request.path,
-			"product": product[0]
+			"product": product
 		})
 	else:
 		return jsonify({
@@ -92,7 +93,7 @@ def to_currency(value):
 
 #Prepare database result to be jsonified
 def handle_db_result(result):
-	data = []
+	data = {}
 	if(len(result) > 1):
 		if(type(result[0]) == list):
 			data = [dict(i) for i in result]
