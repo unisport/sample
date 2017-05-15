@@ -14,18 +14,18 @@ $ sudo update-locale
 
 Once the locale is installed on the system:
 ```bash
-$ sudo pip install virtualenv
+$ sudo apt-get install python-virtualenv
 $ virtualenv venv
 $ . venv/bin/activate
 $ pip install -r requirements.txt
 $ export FLASK_APP=challenge.py
+$ python setup_db.py
 
 ```
 
 ## Usage
 ```bash
 $ . venv/bin/activate # (Only if it was deactivated before)
-$ python setup_db.py
 $ flask run
 
 ```
