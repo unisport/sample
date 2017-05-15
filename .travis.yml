@@ -1,0 +1,11 @@
+before_install:
+  - sudo locale-gen da_DK.UTF-8
+  - sudo update-locale
+
+install: pip install --user -r requirements.txt
+
+script: pep8 *.py && python setup_db.py && python -m unittest discover
+
+branches:
+  only:
+  - master

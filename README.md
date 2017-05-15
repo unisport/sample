@@ -1,33 +1,85 @@
-_Fork this project and send us a pull request_
+# Unisport Code Challenge
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+[![Build Status](https://travis-ci.org/Delape/sample.svg?branch=master)](https://travis-ci.org/Delape/sample)
 
+## Installation
+Working Ubuntu installation process
 
-**/products/**  
+First, check if da_DK.UTF-8 locale is already in the system with:
+```bash
+$ locale -a
+```
+If it is not in the list, do:
+```bash
+$ sudo locale-gen da_DK.UTF-8
+$ sudo update-locale
+```
 
+Once the locale is installed on the system:
+```bash
+$ sudo apt-get install python-virtualenv
+$ virtualenv venv
+$ . venv/bin/activate
+$ pip install -r requirements.txt
+$ export FLASK_APP=challenge.py
+$ python setup_db.py
 
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
+```
 
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
+## Usage
+```bash
+$ . venv/bin/activate # (Only if it was deactivated before)
+$ flask run
 
- **/products/id/**
- 
-should return the individual product.
+```
 
+## Testing
 
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
+```bash
+$ python -m unittest discover
+```
 
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
+## Check the code follows PEP 8 convention
+```bash
+$ pep8 *.py
+```
 
+## Live demo at Heroku
 
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
+[Click here for a demo](https://arcane-ridge-72669.herokuapp.com/products/) running the [heroku branch](https://github.com/Delape/sample/tree/heroku)
 
+This branch does not use SQLite. The reason behind this is because Heroku's filesystem.
+More information can be found on [this article.](https://devcenter.heroku.com/articles/sqlite3)
+
+In a production enviroment I would use PostgreSQL but I decided to use SQLite in this case because it is fair simple to use and it already comes with python.
+
+## API
+
+#### GET Method
+
+##### `/products/`
+
+Returns first 10 products ordered by price (ascending)
+
+##### `/products/?page=n`
+
+Returns paginated content where `n` is the number of the page
+
+##### `/products/id/`
+
+Returns a product by its `id`
+
+##### `/products/kids/`
+
+Returns all products marked for `kids` ordered by price (ascending)
+
+#### DELETE Method
+##### `/products/id/`
+
+Deletes a product by its `id`
+
+#### Example using `curl`
+
+##### `Retrieving the product with id=1`
+
+curl -i https://arcane-ridge-72669.herokuapp.com/products/1/
