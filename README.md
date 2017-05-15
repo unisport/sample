@@ -29,7 +29,6 @@ $ flask run
 
 ```
 
-
 ## Testing
 
 ```bash
@@ -49,3 +48,34 @@ This branch does not use SQLite. The reason behind this is because Heroku's file
 More information can be found on [this article.](https://devcenter.heroku.com/articles/sqlite3)
 
 In a production enviroment I would use PostgreSQL but I decided to use SQLite in this case because it is fair simple to use and it already comes with python.
+
+## API
+
+#### GET Method
+
+##### `/products/`
+
+Returns first 10 products ordered by price (ascending)
+
+##### `/products/?page=n`
+
+Returns paginated content where `n` is the number of the page
+
+##### `/products/id/`
+
+Returns a product by its `id`
+
+##### `/products/kids/`
+
+Returns all products marked for `kids` ordered by price (ascending)
+
+#### DELETE Method
+##### `/products/id/`
+
+Deletes a product by its `id`
+
+#### Example using `curl`
+
+##### `Retrieving the product with id=1`
+
+curl -i https://arcane-ridge-72669.herokuapp.com/products/1/
