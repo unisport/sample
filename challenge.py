@@ -1,4 +1,4 @@
-import urllib
+import urllib, httplib
 from flask import Flask, json, jsonify, make_response, request, g
 import sqlite3
 import locale
@@ -68,14 +68,33 @@ def product_by_id(product_id):
         return jsonify({
             "end-point": request.path,
             "product": {}
-        }), 404
+        }), httplib.NOT_FOUND
+
+
+@app.route('/products/<int:product_id>/', methods=['DELETE'])
+def delete_product_by_id(product_id):
+    cursor = get_db().cursor()
+    cursor.execute('DELETE FROM products where id = ?', (product_id,))
+    result = cursor.rowcount
+    get_db().commit()
+
+    if result == 1:
+        return jsonify({
+            "end-point": request.path,
+            "product": {}
+        }), httplib.NO_CONTENT
+    else:
+        return jsonify({
+            "end-point": request.path,
+            "product": {}
+        }), httplib.NOT_FOUND
 
 
 # Override is needed to return JSON instead of HTML (Flask's default)
-@app.errorhandler(404)
+@app.errorhandler(httplib.NOT_FOUND)
 def not_found(e):
     error = {"error": "Not found"}
-    return make_response(jsonify(error), 404)
+    return make_response(jsonify(error), httplib.NOT_FOUND)
 
 
 # Get data sample from Unisport
@@ -113,7 +132,7 @@ def handle_db_result(result):
 def execute_db(query, values=[], fetchall=True):
     cursor = get_db().cursor()
     cursor.execute(query, values)
-
+    get_db().commit()
     if fetchall:
         return handle_db_result(cursor.fetchall())
     else:
