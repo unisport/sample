@@ -40,3 +40,12 @@ $ python -m unittest discover
 ```bash
 $ pep8 *.py
 ```
+
+## Live demo at Heroku
+
+[Click here for a demo](https://arcane-ridge-72669.herokuapp.com/products/) running the [heroku branch](https://github.com/Delape/sample/tree/heroku)
+
+This branch does not use SQLite. The reason behind this is because Heroku's filesystem.
+More information can be found on [this article.](https://devcenter.heroku.com/articles/sqlite3)
+
+In a production enviroment I would use PostgreSQL but I decided to use SQLite in this case because it is fair simple to use and it already comes with python.

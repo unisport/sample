@@ -1,6 +1,7 @@
 import unittest
 import challenge
 import json
+import httplib
 import locale
 locale.setlocale(locale.LC_ALL, 'da_DK.UTF-8')
 
@@ -52,7 +53,14 @@ class ChallengeTest(unittest.TestCase):
         self.assertFalse(product)
 
         response = self.app.get('/products/foobarbarfoo/')
-        self.assertTrue(response.status_code == 404)
+        self.assertEqual(response.status_code, httplib.NOT_FOUND)
 
         error = load_json(response.data)['error']
-        self.assertTrue(error, 'Not found')
+        self.assertEqual(error, 'Not found')
+
+    def test_products_delete_by_id(self):
+        response = self.app.delete('products/' + ITEM_ID + '/')
+        self.assertEqual(response.status_code, httplib.NO_CONTENT)
+
+        response = self.app.delete('products/' + ITEM_ID + '/')
+        self.assertEqual(response.status_code, httplib.NOT_FOUND)
