@@ -1,0 +1,1 @@
+script: pep8 *.py && python setup_db.py && python -m unittest discover
