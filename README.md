@@ -1,4 +1,7 @@
 # Unisport Code Challenge
+
+[![Build Status](https://travis-ci.org/Delape/sample.svg?branch=master)](https://travis-ci.org/Delape/sample)
+
 ## Installation
 Working Ubuntu installation process
 
