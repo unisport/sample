@@ -18,13 +18,13 @@ $ sudo pip install virtualenv
 $ virtualenv venv
 $ . venv/bin/activate
 $ pip install -r requirements.txt
-$ export FLASK_APP=hello.py
+$ export FLASK_APP=challenge.py
 
 ```
 
 ## Usage
 ```bash
-$ . venv/bin/activate (Only if it was deactivated before)
+$ . venv/bin/activate # (Only if it was deactivated before)
 $ flask run
 
 ```
