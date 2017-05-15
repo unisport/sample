@@ -35,12 +35,15 @@ def cheapest_products():
         'SELECT * FROM products order by price limit ? offset ?',
         (ITEMS_PER_PAGE, start))
 
-    return jsonify({
-        "end-point": request.path,
-        "page": page,
-        "total": len(products),
-        "products": products
-    })
+    if len(products) > 0:
+        return jsonify({
+            "end-point": request.path,
+            "page": page,
+            "total": len(products),
+            "products": products
+        })
+    else:
+        return jsonify([])
 
 
 @app.route('/products/kids/')
@@ -132,9 +135,13 @@ def handle_db_result(result):
 # Get database result ready for jsonify()
 def execute_db(query, values=[], fetchall=True):
     cursor = get_db().cursor()
-    cursor.execute(query, values)
-    get_db().commit()
-    if fetchall:
-        return handle_db_result(cursor.fetchall())
-    else:
-        return handle_db_result(cursor.fetchone())
+    try:
+        cursor.execute(query, values)
+        get_db().commit()
+        if fetchall:
+            return handle_db_result(cursor.fetchall())
+        else:
+            return handle_db_result(cursor.fetchone())
+    except Exception as e:
+        print e
+        return {}
