@@ -25,6 +25,7 @@ $ export FLASK_APP=challenge.py
 ## Usage
 ```bash
 $ . venv/bin/activate # (Only if it was deactivated before)
+$ python setup_db.py
 $ flask run
 
 ```

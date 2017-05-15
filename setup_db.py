@@ -30,7 +30,7 @@ with sqlite3.connect(DB_NAME) as connection:
 
             # All keys have to exist
             cursor.executemany(
-                "INSERT INTO products (id, is_customizable, delivery, kids, \
+                "INSERT OR IGNORE INTO products (id, is_customizable, delivery, kids, \
                     name, sizes, kid_adult, free_porto, image, package, \
                     price, url, online, price_old, currency, img_url, women) \
                     VALUES (:id, :is_customizable, :delivery, :kids, :name, \
