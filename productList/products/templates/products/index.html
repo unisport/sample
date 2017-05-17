@@ -1,0 +1,49 @@
+<!DOCTYPE html/>
+<html>
+  <head>
+    <title>
+      title
+    </title>
+{% load static %}
+    <link rel="stylesheet" href="{% static 'products/style.css' %}" type="text/css" />
+  </head>
+  <body>
+    <nav>
+      {% if jsonData.prev > 0 %}
+      <a href="./?page={{ jsonData.prev }}">
+      <img src="{% static 'products/back_arrow.png'%}" class="navarrow">
+      </a>
+      {% else %}
+      <img src="{% static 'products/back_arrow_grey.png'%}" class="navarrow">
+      {% endif %}
+      <h1>we are @ page {{jsonData.page}} <h1/>
+      {% if jsonData.next > jsonData.page %}
+      <a href="./?page={{ jsonData.next }}">
+      <img src="{% static 'products/forward_arrow.png'%}" class="navarrow">
+      </a>
+      {% else %}
+      <img src="{% static 'products/forward_arrow_grey.png'%}" class="navarrow">
+      {% endif %}
+    </nav>
+
+    <ul>
+      {% if jsonData.products.0.name %}
+      {% for product in jsonData.products %}
+      <a href="./{{product.id}}">
+        <li>
+          <b>{{ product.name }}</b>: <div class="pricetag">{{product.price}}</div><br/>
+          <img src="{{ product.image }}" alt="{{ product.name}}"/>
+        </li>
+      </a>
+      {% endfor %}
+      {% else %}
+      <h2>
+        Sorry, there are no products here. Try looking at a previous page:
+        <a href="./?page={{ jsonData.prev }}">previous page</a> or at page
+        <a href="./?page=1">1</a>
+      </h2>
+      {% endif %}
+    </ul>
+    <br/>
+  </body>
+</html>

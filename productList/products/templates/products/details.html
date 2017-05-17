@@ -1,0 +1,61 @@
+<!DOCTYPE html/>
+<html>
+  <head>
+    <title>
+      sample: {{product.name}}
+    </title>
+{% load static %}
+    <link rel="stylesheet" href="{% static 'products/style.css' %}" type="text/css" />
+  </head>
+  <body>
+    <nav>
+      {% if prev > 0 %}
+      <a href="../{{ prev }}/">
+      <img src="{% static 'products/back_arrow.png'%}" class="navarrow">
+      </a>
+      {% else %}
+      <img src="{% static 'products/back_arrow_grey.png'%}" class="navarrow">
+      {% endif %}
+      <h1>{{product.name}}</h1>
+      {% if next > 0 %}
+      <a href="../{{ next }}/">
+      <img src="{% static 'products/forward_arrow.png'%}" class="navarrow">
+      </a>
+      {% else %}
+      <img src="{% static 'products/forward_arrow_grey.png'%}" class="navarrow">
+      {% endif %}
+    </nav>
+    <table class="detail">
+      <tr>
+        <th>
+          <h2>{{product.name}}<h2/><br/>
+          <div class="productID">id({{id}})</div>
+        </th><th>
+          <img src="{{ product.img_url }}">
+        </th>
+      </tr>
+      <tr>
+        <th>
+        price:
+      </th><th>
+        <div class="pricetag">
+          {{product.price}}
+        </div>
+      </th><tr><th>
+        delivery
+      </th><th>
+        {{product.delivery}}
+      </th></tr>{% if product.kid_adult == "1" %}<tr>
+        <th>
+        <div class="kids">For Kids And Adults</div>
+      </th></tr>{% elif product.kids == "1" %}<tr>
+        <th>
+        <div class="kids">For Kids</div>
+      </th></tr>{% endif %}<tr><th>
+        sizes
+      </th><th>
+        {{product.sizes}}
+      </th></tr>
+    </table>
+  </body>
+</html>
