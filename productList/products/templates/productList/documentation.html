@@ -1,0 +1,165 @@
+<h1>Sample Documentation</h1>
+
+<hr />
+
+<h2>Introduction</h2>
+
+<p>The project was quite rushed due to other assignments @University. Because of
+this I have written an extra section about 'what i would have done'.</p>
+
+<p>I have chosen not to use a database in this <em>sample</em> because it seemed
+unnecessary unless I would do the <strong>Bonus</strong> part.</p>
+
+<p>The default installed apps: admin, auth, contenttypes, sessions, messages,
+statistics and productsConfig are not used.</p>
+
+<h2>Layout of the project</h2>
+
+<p>I've chosen to make the sample as a Django App instead of the root project.
+This is because if I was to add more functionality to the site I could simply
+add another app and add an <code>include('new_app_name')</code> and a regular expression
+to map the new app to another url. I wouldn't expect the '/products'-app to be
+the main functionality of the site.</p>
+
+<p>Mostly all the configuration is default from Django's
+<code>django-admin startproject</code></p>
+
+<h3>templates/ and static/</h3>
+
+<p>The one and only <em>templates/</em> and <em>static/</em> folders i use is inside the
+<code>products</code> app because I was lazy and didn't thought it would be relevant to
+add a special templates and static folder for the root directory of the site.</p>
+
+<p>And it would be a waste of time when i could spend it on more important things
+in the project.</p>
+
+<h2>Functions</h2>
+
+<p>Description of the choices I've made regarding the functions found in
+<strong>products/views.py</strong></p>
+
+<h3>getJsonDataFromServer()</h3>
+
+<p>There isn't much to this function except I use a <code>try-except</code> to catch anything
+thrown by <code>urlopen( ... )</code></p>
+
+<p>The return of this function is Json-dict format because it's easy to read,
+understand and use.</p>
+
+<h3>products_sorted_by_price( items, index, amount )</h3>
+
+<p>This function was originally calling <code>getJsonDataFromServer()</code> but was changed
+to get the items as an arguement because I wanted to use it for the
+<strong>products/kids/</strong> section of the assignment too. This way we don't need to
+sort EVERYTHING before deciding what to keep and not to keep.</p>
+
+<ul>
+<li><code>items</code>  is a list of the items to sort.</li>
+<li><code>index</code>  is from where we want the sorted items.</li>
+<li><code>amount</code> is the quantity of items we want in return. We can just count
+       <code>amount</code> items forward from <code>index</code> in our list to get the return
+       list.</li>
+</ul>
+
+<p>The <code>sorted\_items</code> calls <code>sorted( ... )</code> in which we throw a lambda-function.
+I used these because it makes the code more readable (I think). In the lambda I
+throw the string to a float, because the format is so, and substitude all the
+commas with punctuations. If not, the lambda would throw an error.</p>
+
+<p>The <code>elif</code> on line <strong>34</strong> checks if the function is able to return the given
+quantity. If not, return everything preceding <code>index</code>.</p>
+
+<h3>getProductByID( id )</h3>
+
+<p>Searches all the products for a given <code>ID</code>.
+Looking back it would have been way more efficient to just look through a given
+list if you could map an estimate index from the list of all products.</p>
+
+<p>Throws 404 if it cannot find the given ID in any of the products.</p>
+
+<h3>IndexView</h3>
+
+<p>This is used both for <em>products/</em> and for <em>products/kids</em>. I have made it the
+way that it finds out which it should act like by reading the url from which
+it was accessed.</p>
+
+<h4>get_page_number( self, request )</h4>
+
+<p>I made it so it would only return a number other than 1 if the arguement in
+GET is valid. This way we avoid errors when the user tries to mess with the
+system by trying to enter random stuff in the url.</p>
+
+<h4>get_queryset( self )</h4>
+
+<p>I made it so it runs a check wether or not the product list should only contain
+products with the "kids" or "kid_adult" flag, because the Dumb on
+<em>unisport.com/api/sample</em> didn't contain anything with the "kids" flag set to
+ON.</p>
+
+<p>It fowards the next and previous page number to the template because I didn't
+wanted to spend too much time making template tags to subtract or add page
+number.</p>
+
+<h3>detail( product_id, item_list )</h3>
+
+<p>This was originally used for the detailview for all the products, but because I
+included navigation in the detail-view I had to rewrite it so it would fit
+in the kid-section too.</p>
+
+<p><strong>Site navigation is explained later.</strong></p>
+
+<p>I've made it so it would find the previous ID and next ID of the current item
+in the <code>item_list</code>. This way we can tell the template what to link to in the
+navigation bar.</p>
+
+<h3>product_details and kid_details( request, product_id )</h3>
+
+<p>These functions are basically wrappers for the <code>detail</code> function.</p>
+
+<h2>Site navigation</h2>
+
+<p>I thought it would be intuitive to have a navigation bar in the details view
+too. So what I made was a navigation bar that - instead of navigation through
+pages - navigated through the sorted list represented on the pages.</p>
+
+<h2>Tests</h2>
+
+<p>I used unit tests because it is a good way to test small parts of the app to
+see if everything works and behaves as expected.</p>
+
+<p>The tests are a disaster. I got quite discouraged when the first test I wrote
+would't work because of my implementation of the sorting function. even though
+the test is just a lazy way of counting the returned elements from
+<code>products_sorted_by_price( ... )</code>.
+The smoketest is to make sure the <code>getJsonDataFromServer</code> doesn't throw any
+exceptions.
+The test on the detailsview is to make sure that it returns the proper HTTP
+status codes.</p>
+
+<h2>A better implementation</h2>
+
+<p>If I was given more time to do this I would have made a local database, and a
+button which would update the local from <em>unisport.com/api/sample</em>, such that
+it would not depend on another server.</p>
+
+<p>If I was given a bigger dataset I would have presorted the data by price
+(problematic if we should let the user choose how to sort it). The algorithm I
+would use would be bubblesort, whenever a new product got added to the list
+(since it's best case is <strong>N</strong> (considering a list of the size <strong>N</strong>) when used
+on a nearly sorted list). For first-time sorting I would use mergesort, since
+it has a very stable sorting time on random sorted lists.
+To find a specific product would be easy since I would try to find the specific
+product by a "divide-and-conquor" method, which has the runtime of</p>
+
+<pre><code>O(n) = log2( n ) * n
+</code></pre>
+
+<p>I would also have used a custom model, but hardcoding one matching the data
+from <em>unisport.com/api/sample</em> would have been too time-consuming. The model
+would of course have been used in a generic <code>DetailView class</code>.</p>
+
+<hr />
+
+<p><em>This concludes my solution to your sample-assignment/test</em></p>
+
+<p>Regards, Oscar</p>
