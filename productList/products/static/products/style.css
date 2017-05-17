@@ -1,0 +1,123 @@
+body {
+  background-color: #FAFAFA;
+  color:            #3E3E3F;
+  margin:           0;
+  padding:          0;
+}
+
+nav {
+  width: 100%;
+  margin: 0;
+  padding: auto;
+  border-bottom: 1px solid #777;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #FFF;
+  height: 64px;
+  overflow: hidden;
+  align-content: center;
+}
+
+img {
+  max-width: 256px;
+  min-width: 64px;
+  width:     50%;
+}
+
+h6 {
+  padding: 0px;
+  margin:  0 0 0.5em 0;
+}
+a {
+  text-decoration: none;
+}
+h1 {
+  padding: 1em;
+  display: inline;
+  vertical-align: top;
+  font-size: 12pt;
+  line-height: 2em;
+  max-width: 80%;
+}
+
+ul {
+  padding:         0;
+  margin-bottom:   1.5em;
+  margin-top:      74px;
+  margin-left: auto;
+  margin-right: auto;
+  /*width: 400px;*/
+  width: calc(100% - 10em);
+  max-width: 98%;
+  list-style-type: none;
+}
+
+ul a {
+  color: #232;
+}
+
+li {
+  border:  1px solid #B2F3B2;
+  background-color: #FFF;
+  padding: 1em;
+  max-width: calc(256px + 2em);
+  min-width: calc(64px  + 2em);
+  width:     calc(45%   - 2em);
+  max-height: calc(256px + 2em);
+  min-height: calc(128px + 2em);
+  height:     calc(45% - 2em);
+  vertical-align: top;
+  display: inline-block;
+  margin: 0.25em;
+  font-size: 12pt;
+}
+
+li:hover {
+  box-shadow: 0 0 0.5em rgba(0,255,0,0.5);
+}
+
+.navarrow {
+  width: 16px;
+}
+
+.pricetag {
+  color: #307F3A;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 14pt;
+  text-align: right;
+  display: inline-block;
+}
+
+table.detail {
+  margin: 80px auto 1em;
+  width:  90%;
+}
+table.detail tr th {
+  border: 1px solid #DDD;
+  text-align: right;
+  width: 45%;
+  background-color: #FFF;
+}
+table.detail tr th:nth-child(2) {
+  max-width:  calc(1024px + 2em);
+  min-width:  calc(64px  + 2em);
+  width:      calc(50%   - 2em);
+  max-height: calc(128px + 2em);
+  min-height: calc(64px + 2em);
+  height:     calc(15% - 2em);
+  text-align: left;
+}
+
+.kids {
+  font-size: 14pt;
+  color: #A3B;
+}
+
+.productID {
+  font-weight: 300;
+  font-size: 11pt;
+  color: #DDD;
+}
