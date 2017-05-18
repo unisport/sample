@@ -1,4 +1,4 @@
-import unittest, UnisportApp, json, requests
+import unittest, UnisportApp, json
 
 class UnisportAppTest(unittest.TestCase):
 
