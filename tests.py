@@ -60,14 +60,6 @@ class TestApi(unittest.TestCase):
         self.assertEquals(products, fixture_products)
 
     @mock.patch("productservice.urllib.urlopen")
-    def test_get_products_no_data_should_return_no_products(self, up):
-        up.return_value.read.return_value = self.mock_no_products()
-
-        products = self.load_products("/products/")
-
-        self.assertEquals(len(products), 0)
-
-    @mock.patch("productservice.urllib.urlopen")
     def test_products_should_return_ten_products(self, up):
         up.return_value.read.return_value = self.mock_products("products")
 
