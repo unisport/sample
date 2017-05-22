@@ -15,6 +15,11 @@ class TestApi(unittest.TestCase):
         with open("fixtures/products.json") as data:
             return json.load(data)[name]
 
+    # helper function for kids products
+    def fixture_kids_products(self, name):
+        products = self.load_fixture(name)
+        return [product for product in products if product["kids"] == "1"]
+
     # helper function for loading products from api request
     # based on specified url
     def load_products(self, url):
@@ -78,6 +83,23 @@ class TestApi(unittest.TestCase):
         fixture_products = self.load_fixture("ordered_products")
 
         self.assertEquals(products, fixture_products[:10])
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_kids_products_should_return_ten_kids_products(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        products = self.load_products("/products/kids/")
+
+        self.assertEquals(len(products), 10)
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_kids_products_should_return_kids_products(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        products = self.load_products("/products/kids/")
+        fixture_products = self.fixture_kids_products("ordered_products")
+
+        self.assertEquals(products, fixture_products)
 
 if __name__ == '__main__':
     unittest.main()

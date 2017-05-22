@@ -16,3 +16,9 @@ def get_products_ordered_by_price():
     # convert each price string to float based key value
     # for better sortability
     return sorted(products, key=lambda k: atof(k["price"]))
+
+# fetch all kids products
+def get_kids_products():
+    products = get_products_ordered_by_price()
+
+    return [product for product in products if product["kids"] == "1"]
