@@ -2,7 +2,7 @@ import unittest
 import json
 import productservice
 import mock
-from unisport import app
+from unisport import app, ITEMS_PER_PAGE
 
 
 class TestApi(unittest.TestCase):
@@ -92,6 +92,68 @@ class TestApi(unittest.TestCase):
         fixture_products = self.fixture_kids_products("ordered_products")
 
         self.assertEquals(products, fixture_products)
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_products_page_empty_should_return_first_ten_products(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        products = self.load_products("/products/?page=")
+        fixture_products = self.load_fixture("ordered_products")
+
+        self.assertEquals(products, fixture_products[:ITEMS_PER_PAGE])
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_products_page_0_should_return_first_ten_products(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        products = self.load_products("/products/?page=0")
+        fixture_products = self.load_fixture("ordered_products")
+
+        self.assertEquals(products, fixture_products[:ITEMS_PER_PAGE])
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_products_page_negative_should_return_first_ten_products(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        products = self.load_products("/products/?page=-1")
+        fixture_products = self.load_fixture("ordered_products")
+
+        self.assertEquals(products, fixture_products[:ITEMS_PER_PAGE])
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_products_page_1_should_return_first_ten_products(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        products = self.load_products("/products/?page=1")
+        fixture_products = self.load_fixture("ordered_products")
+
+        self.assertEquals(products, fixture_products[:ITEMS_PER_PAGE])
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_products_page_2_should_return_next_ten_products(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        products = self.load_products("/products/?page=2")
+        fixture_products = self.load_fixture("ordered_products")
+
+        self.assertEquals(products, fixture_products[10:20])
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_products_page_out_of_bounds_should_return_no_products(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        products = self.load_products("/products/?page=4")
+
+        self.assertEquals(len(products), 0)
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_products_page_invalid_should_return_first_ten_products(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        products = self.load_products("/products/?page=a")
+        fixture_products = self.load_fixture("ordered_products")
+
+        self.assertEquals(products, fixture_products[:ITEMS_PER_PAGE])
 
 if __name__ == '__main__':
     unittest.main()
