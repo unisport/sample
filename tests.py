@@ -209,5 +209,44 @@ class TestApi(TestCase):
 
         self.assertEqual(db.session.query(Product).count(), 26)
 
+    def test_update_product_valid_should_return_201(self):
+        product = self.load_fixture("products")[0]
+        product["delivery"] = "2-3 dage"
+
+        response = self.app.test_client().put(
+            "/products/153339/edit",
+            data=dict(product)
+        )
+
+        updated_product = json.loads(response.data)["product"]
+
+        self.assertEqual(response.status_code, 201)
+
+    def test_update_product_should_return_updated_product(self):
+        product = self.load_fixture("products")[0]
+        product["delivery"] = "2-3 dage"
+
+        response = self.app.test_client().put(
+            "/products/153339/edit",
+            data=dict(product)
+        )
+
+        updated_product = json.loads(response.data)["product"]
+
+        self.assertEqual(updated_product["delivery"], "2-3 dage")
+
+    def test_update_product_should_return_the_same_product(self):
+        product = self.load_fixture("products")[0]
+        product["delivery"] = "2-3 dage"
+
+        response = self.app.test_client().put(
+            "/products/153339/edit",
+            data=dict(product)
+        )
+
+        updated_product = json.loads(response.data)["product"]
+
+        self.assertEqual(updated_product["id"], int(product["id"]))
+
 if __name__ == '__main__':
     unittest.main()

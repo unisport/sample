@@ -67,3 +67,10 @@ def create_product():
     product = productservice.create_product(new_product)
 
     return jsonify({"product": product}), 201
+
+
+@app.route("/products/<int:id>/edit", methods=['PATCH', 'PUT'])
+def edit_product(id):
+    updated_product = productservice.update_product(id, request.form)
+
+    return jsonify({"product": updated_product}), 201

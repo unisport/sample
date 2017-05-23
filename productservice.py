@@ -2,6 +2,7 @@ import urllib
 import json
 from models import Product
 from unisport import db
+from seeder import format_price, string_bit_to_boolean
 
 
 # fetch all products
@@ -44,6 +45,30 @@ def get_product(id):
 
 # create new product
 def create_product(product):
+    db.session.add(product)
+    db.session.commit()
+    db.session.rollback()
+
+    return product.as_dict()
+
+
+# create new product
+def update_product(id, data):
+    product = Product.query.get(id)
+
+    product.name = data["name"]
+    product.delivery = data['delivery']
+    product.free_porto = string_bit_to_boolean(data['free_porto'])
+    product.img_url = data['img_url']
+    product.kid_adult = string_bit_to_boolean(data['kid_adult'])
+    product.kids = string_bit_to_boolean(data['kids'])
+    product.package = string_bit_to_boolean(data['package'])
+    product.price = format_price(data['price'])
+    product.price_old = format_price(data['price_old'])
+    product.sizes = data['sizes']
+    product.url = data['url']
+    product.women = string_bit_to_boolean(data['women'])
+
     db.session.add(product)
     db.session.commit()
     db.session.rollback()
