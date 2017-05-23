@@ -11,6 +11,7 @@ def get_products():
 
     return products
 
+
 # fetch all products ordered by price in ascending order
 def get_products_ordered_by_price():
     result = Product.query.order_by(
@@ -18,6 +19,7 @@ def get_products_ordered_by_price():
     ).all()
 
     return [product.as_dict() for product in result]
+
 
 # fetch all kids products
 def get_kids_products():
@@ -29,6 +31,7 @@ def get_kids_products():
 
     return [product.as_dict() for product in result]
 
+
 # fetch a product by the specified id
 def get_product(id):
     product = Product.query.get(id)
@@ -37,6 +40,7 @@ def get_product(id):
         return product
 
     return product.as_dict()
+
 
 # create new product
 def create_product(product):
