@@ -5,8 +5,7 @@ coverage:
 				coverage report -m
 
 lint:
-				pep8 tests.py
-				pep8 unisport.py
+				pep8 *.py
 
 setup:
 				pip install -r requirements.txt
