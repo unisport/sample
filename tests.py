@@ -214,7 +214,7 @@ class TestApi(TestCase):
         product["delivery"] = "2-3 dage"
 
         response = self.app.test_client().put(
-            "/products/153339/edit",
+            "/products/153339/edit/",
             data=dict(product)
         )
 
@@ -227,7 +227,7 @@ class TestApi(TestCase):
         product["delivery"] = "2-3 dage"
 
         response = self.app.test_client().put(
-            "/products/153339/edit",
+            "/products/153339/edit/",
             data=dict(product)
         )
 
@@ -240,7 +240,7 @@ class TestApi(TestCase):
         product["delivery"] = "2-3 dage"
 
         response = self.app.test_client().put(
-            "/products/153339/edit",
+            "/products/153339/edit/",
             data=dict(product)
         )
 
