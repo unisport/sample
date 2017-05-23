@@ -74,3 +74,10 @@ def edit_product(id):
     updated_product = productservice.update_product(id, request.form)
 
     return jsonify({"product": updated_product}), 201
+
+
+@app.route("/products/<int:id>/delete/", methods=['DELETE'])
+def delete_product(id):
+    productservice.delete_product(id)
+
+    return jsonify({'message': 'Product Deleted'}), 200

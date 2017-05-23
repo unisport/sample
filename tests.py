@@ -248,5 +248,22 @@ class TestApi(TestCase):
 
         self.assertEqual(updated_product["id"], int(product["id"]))
 
+    def test_delete_product_after_deletion_product_count_should_be_24(self):
+        response = self.app.test_client().delete("/products/153339/delete/")
+
+        self.assertEqual(db.session.query(Product).count(), 24)
+
+    def test_delete_product_with_id_153339_should_return_200(self):
+        response = self.app.test_client().delete("/products/153339/delete/")
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete_product_with_id_153339_should_not_exist_when_deleted(self):
+        response = self.app.test_client().delete("/products/153339/delete/")
+
+        result = db.session.query(Product).get(153339)
+
+        self.assertEqual(result, None)
+
 if __name__ == '__main__':
     unittest.main()

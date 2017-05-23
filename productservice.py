@@ -74,3 +74,11 @@ def update_product(id, data):
     db.session.rollback()
 
     return product.as_dict()
+
+
+# delete product with the specified id
+def delete_product(id):
+    product = Product.query.get(id)
+
+    db.session.delete(product)
+    db.session.commit()
