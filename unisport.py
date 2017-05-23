@@ -29,3 +29,13 @@ def kids_products():
     products = productservice.get_kids_products()
 
     return jsonify({"products": products})
+
+
+@app.route('/products/<int:id>/')
+def product(id):
+    product = productservice.get_product(id)
+
+    if product is None:
+        return jsonify({'error': 'Product not found'}), 404
+
+    return jsonify({"product": product})

@@ -60,6 +60,22 @@ class TestApi(unittest.TestCase):
         self.assertEquals(products, fixture_products)
 
     @mock.patch("productservice.urllib.urlopen")
+    def test_get_product_unknown_id_should_return_product(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        product = productservice.get_product(2)
+
+        self.assertEqual(product, None)
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_get_product_valid_id_should_return_None(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        product = productservice.get_product(153638)
+
+        self.assertEqual(int(product["id"]), 153638)
+
+    @mock.patch("productservice.urllib.urlopen")
     def test_products_should_return_ten_products(self, up):
         up.return_value.read.return_value = self.mock_products("products")
 
@@ -154,6 +170,30 @@ class TestApi(unittest.TestCase):
         fixture_products = self.load_fixture("ordered_products")
 
         self.assertEquals(products, fixture_products[:ITEMS_PER_PAGE])
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_product_unknown_id_should_return_404(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        response = self.app.get("/products/2/")
+
+        self.assertEqual(response.status_code, 404)
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_product_invalid_id_should_return_404(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        response = self.app.get("/products/i/")
+
+        self.assertEqual(response.status_code, 404)
+
+    @mock.patch("productservice.urllib.urlopen")
+    def test_product_by_valid_id_should_return_product(self, up):
+        up.return_value.read.return_value = self.mock_products("products")
+
+        product = json.loads(self.app.get("/products/153638/").data)["product"]
+
+        self.assertEqual(int(product["id"]), 153638)
 
 if __name__ == '__main__':
     unittest.main()

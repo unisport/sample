@@ -22,3 +22,12 @@ def get_kids_products():
     products = get_products_ordered_by_price()
 
     return [product for product in products if product["kids"] == "1"]
+
+# fetch a product by the specified id
+def get_product(id):
+    products = get_products()
+    iterator = (product for product in products if int(product["id"]) == id)
+
+    product = next(iterator, None)
+
+    return product
