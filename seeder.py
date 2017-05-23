@@ -2,12 +2,14 @@ import urllib
 import json
 import models
 
+
 # fetches sample data
 def fetch_data():
     response = urllib.urlopen("https://www.unisport.dk/api/sample/")
     data = json.loads(response.read())
 
     return data["products"]
+
 
 # convert string based bit value to boolean value
 # for data filtering
@@ -20,6 +22,7 @@ def string_bit_to_boolean(bit):
     except KeyError:
         return False
 
+
 # convert price string to float value
 # for better sortability
 def format_price(price):
@@ -29,6 +32,7 @@ def format_price(price):
         return float(price)
     except KeyError:
         return float("0.00")
+
 
 # populates database with seed data
 def run(db):
