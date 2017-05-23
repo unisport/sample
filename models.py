@@ -23,4 +23,4 @@ class Product(db.Model):
 
     # convert sqlalchemy object to dictionary
     def as_dict(self):
-       return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
