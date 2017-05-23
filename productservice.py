@@ -1,33 +1,37 @@
 import urllib
 import json
-from locale import atof
+from models import Product
 
 # fetch all products
 def get_products():
-    response = urllib.urlopen("https://www.unisport.dk/api/sample/")
-    data = json.loads(response.read())
+    result = Product.query.all()
+    products = [product.as_dict() for product in result]
 
-    return data["products"]
+    return products
 
 # fetch all products ordered by price in ascending order
 def get_products_ordered_by_price():
-    products = get_products()
+    result = Product.query.order_by(
+        Product.price.asc()
+    ).all()
 
-    # convert each price string to float based key value
-    # for better sortability
-    return sorted(products, key=lambda k: atof(k["price"]))
+    return [product.as_dict() for product in result]
 
 # fetch all kids products
 def get_kids_products():
-    products = get_products_ordered_by_price()
+    result = Product.query.filter(
+        Product.kids == 1
+    ).order_by(
+        Product.price.asc()
+    ).all()
 
-    return [product for product in products if product["kids"] == "1"]
+    return [product.as_dict() for product in result]
 
 # fetch a product by the specified id
 def get_product(id):
-    products = get_products()
-    iterator = (product for product in products if int(product["id"]) == id)
+    product = Product.query.get(id)
 
-    product = next(iterator, None)
+    if product is None:
+        return product
 
-    return product
+    return product.as_dict()

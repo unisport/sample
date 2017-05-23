@@ -1,10 +1,13 @@
 import productservice
 from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
 from locale import setlocale, LC_ALL
 from math import ceil
 
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sample.db'
+db = SQLAlchemy(app)
 setlocale(LC_ALL, "")
 ITEMS_PER_PAGE = 10
 
