@@ -49,18 +49,18 @@ def product(id):
 @app.route('/products/create/', methods=["POST"])
 def create_product():
     new_product = models.Product(
-        name = request.form['name'],
-        delivery = string_bit_to_boolean(request.form['delivery']),
-        free_porto = string_bit_to_boolean(request.form['free_porto']),
-        img_url = request.form['img_url'],
-        kid_adult = string_bit_to_boolean(request.form['kid_adult']),
-        kids = string_bit_to_boolean(request.form['kids']),
-        package = string_bit_to_boolean(request.form['package']),
-        price = format_price(request.form['price']),
-        price_old = format_price(request.form['price_old']),
-        sizes = request.form['sizes'],
-        url = request.form['url'],
-        women = string_bit_to_boolean(request.form['women'])
+        name=request.form['name'],
+        delivery=string_bit_to_boolean(request.form['delivery']),
+        free_porto=string_bit_to_boolean(request.form['free_porto']),
+        img_url=request.form['img_url'],
+        kid_adult=string_bit_to_boolean(request.form['kid_adult']),
+        kids=string_bit_to_boolean(request.form['kids']),
+        package=string_bit_to_boolean(request.form['package']),
+        price=format_price(request.form['price']),
+        price_old=format_price(request.form['price_old']),
+        sizes=request.form['sizes'],
+        url=request.form['url'],
+        women=string_bit_to_boolean(request.form['women'])
     )
 
     product = productservice.create_product(new_product)
