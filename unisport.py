@@ -7,7 +7,6 @@ from math import ceil
 from seeder import format_price, string_bit_to_boolean
 
 
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sample.db'
 db = SQLAlchemy(app)
