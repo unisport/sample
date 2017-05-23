@@ -9,6 +9,7 @@ from seeder import format_price, string_bit_to_boolean
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sample.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 setlocale(LC_ALL, "")
 ITEMS_PER_PAGE = 10
