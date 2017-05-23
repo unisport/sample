@@ -5,6 +5,7 @@ import mock
 import seeder
 from unisport import app, ITEMS_PER_PAGE, db
 from flask_testing import TestCase
+from models import Product
 
 
 class TestApi(TestCase):
@@ -187,6 +188,26 @@ class TestApi(TestCase):
         product = json.loads(data)["product"]
 
         self.assertEqual(product["id"], 153638)
+
+    def test_create_product_valid_should_return_201(self):
+        new_product = dict(self.load_fixture("new_product"))
+
+        response = self.app.test_client().post(
+            "/products/create/",
+            data=new_product
+        )
+
+        self.assertEqual(response.status_code, 201)
+
+    def test_create_product_after_creation_products_count_should_be_26(self):
+        new_product = dict(self.load_fixture("new_product"))
+
+        response = self.app.test_client().post(
+            "/products/create/",
+            data=new_product
+        )
+
+        self.assertEqual(db.session.query(Product).count(), 26)
 
 if __name__ == '__main__':
     unittest.main()

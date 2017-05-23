@@ -1,6 +1,8 @@
 import urllib
 import json
 from models import Product
+from unisport import db
+
 
 # fetch all products
 def get_products():
@@ -33,5 +35,13 @@ def get_product(id):
 
     if product is None:
         return product
+
+    return product.as_dict()
+
+# create new product
+def create_product(product):
+    db.session.add(product)
+    db.session.commit()
+    db.session.rollback()
 
     return product.as_dict()

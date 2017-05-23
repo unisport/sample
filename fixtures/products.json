@@ -900,5 +900,23 @@
 		"img_url": "https://s3-eu-west-1.amazonaws.com/product-img/153643_maxi_0.jpg",
 		"id": "153643",
 		"women": "0"
-	}]
+	}],
+	"new_product": {
+		"is_customizable": "0",
+		"delivery": "1-2 dage",
+		"kids": "0",
+		"name": "adidas Tr\u00e6ningsbukser Z.N.E. Road Trip - Bl\u00e5",
+		"sizes": "XX-Large",
+		"kid_adult": "0",
+		"free_porto": "0",
+		"image": "",
+		"package": "0",
+		"price": "499,00",
+		"url": "",
+		"online": "0",
+		"price_old": "899,00",
+		"currency": "DKK",
+		"img_url": "",
+		"women": "0"
+	}
 }
