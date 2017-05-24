@@ -23,7 +23,7 @@ To make sure that the necessary dependencies are installed:
 
 **Running the web service**
 
-First run `` make migrate `` to generate and populate database with data:
+First run `` make migrate `` to generate and populate a database with data:
 
     make migrate
 
