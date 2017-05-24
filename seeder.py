@@ -1,6 +1,6 @@
 import urllib
 import json
-import models
+from models import Product
 
 
 # fetches sample data
@@ -38,7 +38,7 @@ def format_price(price):
 def run(db):
     data = fetch_data()
     for item in data:
-        product = models.Product(
+        product = Product(
             id=int(item["id"]),
             is_customizable=string_bit_to_boolean(item["is_customizable"]),
             delivery=string_bit_to_boolean(item["delivery"]),

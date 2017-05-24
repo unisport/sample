@@ -1,11 +1,8 @@
 import productservice
-import models
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from locale import setlocale, LC_ALL
 from math import ceil
-from seeder import format_price, string_bit_to_boolean
-
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sample.db'
@@ -49,22 +46,7 @@ def product(id):
 
 @app.route('/products/create/', methods=["POST"])
 def create_product():
-    new_product = models.Product(
-        name=request.form['name'],
-        delivery=string_bit_to_boolean(request.form['delivery']),
-        free_porto=string_bit_to_boolean(request.form['free_porto']),
-        img_url=request.form['img_url'],
-        kid_adult=string_bit_to_boolean(request.form['kid_adult']),
-        kids=string_bit_to_boolean(request.form['kids']),
-        package=string_bit_to_boolean(request.form['package']),
-        price=format_price(request.form['price']),
-        price_old=format_price(request.form['price_old']),
-        sizes=request.form['sizes'],
-        url=request.form['url'],
-        women=string_bit_to_boolean(request.form['women'])
-    )
-
-    product = productservice.create_product(new_product)
+    product = productservice.create_product(request.form)
 
     return jsonify({"product": product}), 201
 
