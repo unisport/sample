@@ -1,4 +1,4 @@
-.PHONY: coverage lint setup test
+.PHONY: coverage lint setup migrate test
 
 coverage:
 				coverage run tests.py
@@ -9,6 +9,9 @@ lint:
 
 setup:
 				pip install -r requirements.txt
+
+migrate:
+				python dbmigrator.py
 
 test:
 				python tests.py
