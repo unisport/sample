@@ -76,7 +76,7 @@ def update_product(id, data):
     return product.as_dict()
 
 
-# delete product with the specified id
+# deletes a product with the specified id
 def delete_product(id):
     product = Product.query.get(id)
 
