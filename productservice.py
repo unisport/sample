@@ -52,7 +52,7 @@ def create_product(product):
     return product.as_dict()
 
 
-# create new product
+# updates a product based the specified id
 def update_product(id, data):
     product = Product.query.get(id)
 
