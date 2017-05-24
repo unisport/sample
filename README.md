@@ -1,33 +1,32 @@
-_Fork this project and send us a pull request_
+**Introduction**
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+Entry submission for the Unisport Code Challenge.
 
+Make automation tool was used for tasks like:
 
-**/products/**  
+* Setting up project environment dependencies
+* Migrating data from Unisport sample api to a locale sqlite database
+* Unit testing
+* Validation of source code
+* Code coverage
 
+**How to setup**
 
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
+To make sure that the necessary dependencies are installed:
 
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
-
- **/products/id/**
- 
-should return the individual product.
+    make setup
 
 
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
+**Running the Unit Tests**
 
-####Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
+    make test
 
+**Running the web service**
 
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
+First run `` make migrate `` to generate and populate database with data:
 
+    make migrate
+
+To run a locale instance of the web service:
+
+    make run
