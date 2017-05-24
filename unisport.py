@@ -63,3 +63,6 @@ def delete_product(id):
     productservice.delete_product(id)
 
     return jsonify({'message': 'Product Deleted'}), 200
+
+if __name__ == '__main__':
+    app.run()

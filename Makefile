@@ -1,4 +1,4 @@
-.PHONY: coverage lint setup migrate test
+.PHONY: coverage lint setup migrate run test
 
 coverage:
 				coverage run tests.py
@@ -12,6 +12,9 @@ setup:
 
 migrate:
 				python dbmigrator.py
+
+run:
+				python unisport.py
 
 test:
 				python tests.py
