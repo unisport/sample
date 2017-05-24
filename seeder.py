@@ -41,7 +41,7 @@ def run(db):
         product = Product(
             id=int(item["id"]),
             is_customizable=string_bit_to_boolean(item["is_customizable"]),
-            delivery=string_bit_to_boolean(item["delivery"]),
+            delivery=item["delivery"],
             kids=string_bit_to_boolean(item["kids"]),
             name=item["name"],
             sizes=item["sizes"],
