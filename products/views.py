@@ -1,8 +1,5 @@
-#from __future__ import unicode_literals
-#from django.shortcuts import render
 from django.http import HttpResponse
 import urllib, json, math
-import pprint
 
 product_list = json.loads(urllib.urlopen("http://www.unisport.dk/api/sample/").read())["products"]
 product_list = sorted(product_list, key=lambda k: float(k["price"].replace(",", ".")))
@@ -10,12 +7,11 @@ product_list_kids = [p for p in product_list if p["kids"] == "1"]
 
 # Views
 def products(request, kids=None):
-	
 	if kids == None or kids == "":
 		l = product_list
 		html = header("All products")
 		html += "<h1>All products</h1>"
-		html += "<p><a href=\"/products/kids/\">Click here to see only kids products</a></p>"
+		html += "<p><a href=\"/products/kids/\">Click here to only see kids products</a></p>"
 	else:
 		l = product_list_kids
 		html = header("Kids products")
@@ -37,7 +33,7 @@ def products(request, kids=None):
 	while i < items_per_page and n < len(l):
 		p = l[n]
 		html += "<tr>"
-		html += "<td><a href=\"%s\" title=\"Click here for larger image\"><img src=\"%s\" width=\"100px\" /></a></td>" % (p["img_url"], p["image"])
+		html += "<td><a href=\"%s\" title=\"Click here for larger image\" target=\"_blank\"><img src=\"%s\" width=\"100px\" /></a></td>" % (p["img_url"], p["image"])
 		html += "<td><a href=\"/products/id/%s\">%s</a></td>" % (p["id"], p["name"])
 		html += "<td align=\"right\">%s</td>" % p["price"]
 		html += "<td>%s</td>" % p["currency"]
@@ -58,24 +54,28 @@ def products(request, kids=None):
 	return HttpResponse(html)
 
 def product_id(request, pid=None):
-
-	if pid == None or pid == "":
-		html = header("No product id provided")
-		html += "<p>You have not provided a product id</p>"
+	product = next((p for p in product_list if p["id"] == pid), None)
+	if product == None:
+		html = header("Invalid product id")
+		html += "<p>You have provided an invalid product id</p>"
 		html += "<p><a href=\"/products/\">Back to product list</a></p>"
 	else:
-		product = next((p for p in product_list if p["id"] == pid), None)
-		if product == None:
-			html = header("Incorrect product id provided")
-			html += "<p>You have provided an incorrect product id</p>"
-			html += "<p><a href=\"/products/\">Back to product list</a></p>"
-		else:
-			html = header(product["name"])
-			html += "<p><a href=\"/products/\">Back to product list</a></p>"
-			html += "<h1>%s</h1>" % product["name"]
-			
-			
-			html += "<p>" + pprint.pformat(product).replace("\n", "<br />") + "</p>"
+		html = header(product["name"])
+		html += "<p><a href=\"/products/\">Back to product list</a></p>"
+		html += "<h1>%s</h1>" % product["name"]
+		html += "<a href=\"%s\" title=\"Click here for larger image\" target=\"_blank\"><img src=\"%s\" /></a>" % (product["img_url"], product["image"])
+		html += "<table>"
+		html += "<tr><th>Price:</th><td align=\"right\">%s %s</td></tr>" % (product["price"], product["currency"])
+		if product["price_old"] != "" and product["price"] < product["price_old"]:
+			html += "<tr><th>Old price:</th><td align=\"right\"><s>%s %s</s></td></tr>" % (product["price_old"], product["currency"])
+		html += "<tr><th>Delivery:</th><td>%s</td></tr>" % product["delivery"]
+		html += "<tr><th>Free porto:</th><td>%s</td></tr>" % ("Yes" if product["free_porto"] == "1" else "No")
+		html += "<tr><th>Sizes:</th><td>%s</td></tr>" % product["sizes"].replace(", ", ",<br />")
+		html += "<tr><th>Adult and kid sized:</th><td>%s</td></tr>" % ("Yes" if product["kid_adult"] == "1" else "No")
+		html += "<tr><th>Kid sized:</th><td>%s</td></tr>" % ("Yes" if product["kids"] == "1" else "No")
+		html += "<tr><th>Women sized:</th><td>%s</td></tr>" % ("Yes" if product["women"] == "1" else "No")
+		html += "<tr><th>Customizable:</th><td>%s</td></tr>" % ("Yes" if product["is_customizable"] == "1" else "No")
+		html += "</table>"
 	
 	html += footer()
 	return HttpResponse(html)
