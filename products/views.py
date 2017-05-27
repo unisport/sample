@@ -1,7 +1,7 @@
 #from __future__ import unicode_literals
 #from django.shortcuts import render
 from django.http import HttpResponse
-import urllib, json
+import urllib, json, math
 import pprint
 
 product_list = json.loads(urllib.urlopen("http://www.unisport.dk/api/sample/").read())["products"]
@@ -22,29 +22,37 @@ def products(request, kids=None):
 		html += "<h1>Kids products</h1>"
 		html += "<p><a href=\"/products/\">Click here to see all products</a></p>"
 	
-	items_per_page = 5
-	
 	page = request.GET.get("page")
-	if page == None or not page.isdigit() or int(page) <= 0:
+	if page == None or not page.isdigit() or int(page) < 1:
 		page = 1
-		
-	n = (int(page) - 1) * items_per_page
+	else:
+		page = int(page)
+	
+	items_per_page = 10
+	n = (page - 1) * items_per_page
 	
 	html += "<table>"
-	html += "<tr><th></th><th colspan=\"2\">Price</th></tr>"
+	html += "<tr><th colspan=\"2\">Product</th><th colspan=\"2\">Price</th><th>Delivery</th></tr>"
 	i = 0
 	while i < items_per_page and n < len(l):
 		p = l[n]
 		html += "<tr>"
+		html += "<td><a href=\"%s\" title=\"Click here for larger image\"><img src=\"%s\" width=\"100px\" /></a></td>" % (p["img_url"], p["image"])
 		html += "<td><a href=\"/products/id/%s\">%s</a></td>" % (p["id"], p["name"])
 		html += "<td align=\"right\">%s</td>" % p["price"]
 		html += "<td>%s</td>" % p["currency"]
+		html += "<td>%s</td>" % p["delivery"]
 		html += "</tr>"
 		i += 1
 		n += 1
 	html += "</table>"
 	
-	html += "<p><a href=\"?page=%d\">Previous page</a> <a href=\"?page=%d\">Next page</a></p>" % (int(page) - 1, int(page) + 1)
+	html += "<p>Page %d of %d<br />" % (page, math.ceil(len(l) / float(items_per_page)))
+	if page > 1:
+		html += "<a href=\"?page=%d\">Previous page</a> "  % (page - 1)
+	if n < len(l):
+		html += "<a href=\"?page=%d\">Next page</a>" % (page + 1)
+	html += "</p>"
 	
 	html += footer()
 	return HttpResponse(html)
@@ -57,10 +65,17 @@ def product_id(request, pid=None):
 		html += "<p><a href=\"/products/\">Back to product list</a></p>"
 	else:
 		product = next((p for p in product_list if p["id"] == pid), None)
-		html = header(product["name"])
-		html += "<p><a href=\"/products/\">Back to product list</a></p>"
-		html += "<h1>%s</h1>" % product["name"]
-		html += "<p>" + pprint.pformat(product).replace("\n", "<br />") + "</p>"
+		if product == None:
+			html = header("Incorrect product id provided")
+			html += "<p>You have provided an incorrect product id</p>"
+			html += "<p><a href=\"/products/\">Back to product list</a></p>"
+		else:
+			html = header(product["name"])
+			html += "<p><a href=\"/products/\">Back to product list</a></p>"
+			html += "<h1>%s</h1>" % product["name"]
+			
+			
+			html += "<p>" + pprint.pformat(product).replace("\n", "<br />") + "</p>"
 	
 	html += footer()
 	return HttpResponse(html)
