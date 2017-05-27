@@ -2,6 +2,7 @@
 #from django.shortcuts import render
 from django.http import HttpResponse
 import urllib, json
+import pprint
 
 product_list = json.loads(urllib.urlopen("http://www.unisport.dk/api/sample/").read())["products"]
 product_list = sorted(product_list, key=lambda k: float(k["price"].replace(",", ".")))
@@ -21,22 +22,29 @@ def products(request, kids=None):
 		html += "<h1>Kids products</h1>"
 		html += "<p><a href=\"/products/\">Click here to see all products</a></p>"
 	
-	i = 0
+	items_per_page = 5
+	
+	page = request.GET.get("page")
+	if page == None or not page.isdigit() or int(page) <= 0:
+		page = 1
+		
+	n = (int(page) - 1) * items_per_page
 	
 	html += "<table>"
-	while i < len(l):
-		p = l[i]
+	html += "<tr><th></th><th colspan=\"2\">Price</th></tr>"
+	i = 0
+	while i < items_per_page and n < len(l):
+		p = l[n]
 		html += "<tr>"
 		html += "<td><a href=\"/products/id/%s\">%s</a></td>" % (p["id"], p["name"])
 		html += "<td align=\"right\">%s</td>" % p["price"]
 		html += "<td>%s</td>" % p["currency"]
 		html += "</tr>"
 		i += 1
+		n += 1
 	html += "</table>"
 	
-	page = request.GET.get("page")
-	if page != None and page.isdigit():
-		html += "<br />Page " + str(page)
+	html += "<p><a href=\"?page=%d\">Previous page</a> <a href=\"?page=%d\">Next page</a></p>" % (int(page) - 1, int(page) + 1)
 	
 	html += footer()
 	return HttpResponse(html)
@@ -52,6 +60,7 @@ def product_id(request, pid=None):
 		html = header(product["name"])
 		html += "<p><a href=\"/products/\">Back to product list</a></p>"
 		html += "<h1>%s</h1>" % product["name"]
+		html += "<p>" + pprint.pformat(product).replace("\n", "<br />") + "</p>"
 	
 	html += footer()
 	return HttpResponse(html)
