@@ -30,3 +30,21 @@ pip install Django==1.11.1
 ```
 
 Other ways to get Django installed can be found on their website: https://www.djangoproject.com/download/
+
+## Usage ##
+
+To view the webservice on a local server you can through your command prompt or terminal navigate to the directory containing the manage.py file and input the following command:
+
+```
+python manage.py runserver
+```
+
+This will make it possible to open your browser and access the webservice through the URL http://127.0.0.1:8000/
+
+To run the tests you can again use your command prompt or terminal and again navigate to the same directory as the manage.py file and run the following command:
+
+```
+python manage.py test
+```
+
+Once you have accessed the webservice through your browser you should then be redirected to the /products/ view and from there you can follow the links to either view the kids only products, the inidividual products or the next/previous page of the list.
