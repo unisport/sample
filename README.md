@@ -77,7 +77,15 @@ It has four URL rules:
 
 ### products/views.py ###
 
+In this file the behaviour and appearance of the views are defined. It contains four functions. Two views and two helper functions.
 
+**products(request, kids=None)**
+
+**product_id(request, pid=None)**
+
+**header(title)**
+
+**footer()**
 
 ### products/tests.py ###
 
