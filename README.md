@@ -128,3 +128,14 @@ The third test case tests that the products view will also load when giving the 
 And the fourth test cast tests that the product_id view loads.
 
 ## Conclusion ##
+
+I have made the webservice as the assignment suggested, though without completing any of the bonus tasks.
+
+I have through this project adapted to writing in Python, which I already knew before but have not used much.
+
+I also became invested in using the Django framework and spent a great deal of time looking documentation and tutorials for the framework.
+
+I should note that the HTML used in this project is not up to W3C standards being that it is without a doc type and I have used deprecated HTML tags, but it got the work done without using stylesheets.
+
+All in all I consider this project complete and all the required tasks to have been completed.
+I am quite sure that there are several ways to implement these functions, but I feel that the way I have it is the way that makes the most sense to myself.
