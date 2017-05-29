@@ -2,6 +2,14 @@
 
 ## Introduction ##
 
+This project is the solution to a programming task given to me by Unisport A/S as part of the job interviews.
+
+The project required me to make simple python webservice that lists products using data available at this link: http://www.unisport.dk/api/sample/
+
+The project would have a view of the list of all the products, a list for all the kids project as well as a page system for the two lists and lastly a view of individual products.
+
+To make this webservice I used the Django web framework which provides many useful functions for both testing the webservice and deploying it.
+
 ## Required dependencies ##
 
 This is a list of dependencies required to run the program as well as instructions on how to install them.
@@ -21,3 +29,4 @@ To install Django 1.11.1 open a command prompt or terminal and type:
 pip install Django==1.11.1
 ```
 
+Other ways to get Django installed can be found on their website: https://www.djangoproject.com/download/
