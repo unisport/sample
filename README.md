@@ -77,15 +77,54 @@ It has four URL rules:
 
 ### products/views.py ###
 
-In this file the behaviour and appearance of the views are defined. It contains four functions. Two views and two helper functions.
+In this file the behaviour and appearance of the views are defined.
+It contains four functions. Two views and two helper functions.
 
 **products(request, kids=None)**
 
+This view returns the list of products.
+It has an optional parameter kids which by default is set to None, but if a client requests /products/kids/ the URL dispatcher should call the view with "kids" in the second argument and this is how the view knows if you want the list of all products or the list of kids products.
+
+Before the functions are defiend a global variable is declared and set to the list of products, by getting the products property from the JSON data from the link.
+Afterwards the product list is sorted by its price property.
+Another list of only kids products is also created by taking all products from the previous list that has a property kids equal to "1".
+
+If the kids argument is not set then the page is deduced to be the list of all products and we will use the list of all products.
+Else if the kids argument is set then we will use the list of kids products instead.
+
+The view will also attempt to get the value of the page parameter from the URL.
+If the page parameter is not set or if it is not a number or if it is less than one then the page number is set to one else the page number is set to the value of the page parameter.
+The page number is then used to calculate the index of the first product on the page, by taking the page number minus one and multiplying by the amount of items we want to show per page.
+
+A table is then made to show the list of products for this page.
+The view will then show an amount of products depending on what variable is set in the items_per_page variable up untill the end of whichever list it is showing.
+
+The pages are shown at the bottom with Page # of # and a link to the previous page if you are on a page higher than one and a link to the next page if the current page is not the last page.
+
 **product_id(request, pid=None)**
+
+This view will either show information about a specific product or an error message detailing that the provided id is invalid.
+It is through the optional parameter pid that the product id is provided and if it can find a product from the list with that id then it will show information about it.
+If it can not find a product with the provided id then it will show the error message about an invalid id.
+Also if the product has a price_old property that is not empty and is higher than the price property then it will also be shown, but with a strike through to denote that it is not the actual price.
 
 **header(title)**
 
+This function is a helper function I have created to return the first part of a basic HTML document.
+The function also has a title argument to allow the caller to specify a title for the page.
+
 **footer()**
+
+This function is also a helper function.
+It will return the last part of a basic HTML document.
+It does not have any arugments.
 
 ### products/tests.py ###
 
+The final file that I have created contain four tests for webservice.
+The first test case tests the redirect from the root to /products/.
+The second test case tests that the products view loads.
+The third test case tests that the products view will also load when giving the page parameter in the URL.
+And the fourth test cast tests that the product_id view loads.
+
+## Conclusion ##
