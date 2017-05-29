@@ -66,7 +66,14 @@ There are only two URL rules:
 
 ### products/urls.py ###
 
+This file contains the URL dispatcher for the /products/ URLs.
 
+It has four URL rules:
+
+* The empty rule (which is /products/) will call on the view views.products.
+* The rule (kids) will also call views.products, but because the word kids is in parenthesis it will pass this as the second argument to the view. This rule could also be generalized to a rule like ([a-z]+) which would allow for more categories to be added to the view, but for the current implementation it is enough to only cover one single case.
+* The rule id/ will call on the view views.product_id.
+* The rule id/(\d+)/ also calls on views.product_id, but like with the kids rule this rule will pass the number inside of the parenthesis to the view. \d+ is regex for a number with one or more digits, but I could also have used [0-9]+ to the same effect.
 
 ### products/views.py ###
 
