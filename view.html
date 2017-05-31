@@ -1,0 +1,32 @@
+{{extend 'layout.html'}}
+<h1>Presentation of data</h1>
+<hr/>
+{{ for x in pricesort: }}
+<div class='row'>
+    <div class='col col-lg-4'>
+    <img   src='{{=x.image}}' alt='unisport image' />     
+    </div>
+   
+    <div class='col col-lg-8'>
+        <br/>
+        <br/>
+        <br/>
+             <br/>
+        <p>
+            {{=x.name}}
+        </p>
+         <p>
+           Available Sizes:  <b>{{=x.sizes}}</b>
+        </p>
+         <p>
+           Delivery Time: <b> {{=x.delivery}}</b>
+        </p>
+        
+           
+        <p class='lead'>
+        <b><p>Price:{{=x.price}} {{=x.currency}}</p></b>   
+        </p>
+         
+    </div>
+</div>
+{{ pass }}
