@@ -1,0 +1,26 @@
+{% extends 'sample/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+	<div class="home">
+		<div class=wrapper></div>
+		<div class="home-text">
+			<h2>Description of assignment</h2>
+			<i>Fork this project and send us a pull request</i>
+			<p>Write a simple python webservice that uses, manipuates and returns the data found here: <a href="http://www.unisport.dk/api/sample/">http://www.unisport.dk/api/sample/.</a></p>
+			<b>/products/</b>
+			<p>should return the first 10 objects ordered with the cheapest first.</p>
+			<b>/products/kids/</b>
+			<p>should return the products where kids=1 ordered with the cheapest first</p>
+			<b>/products/?page=2</b>
+			<p>The products should be paginated where <b>page</b> in the url above should return the next 10 objects</p>
+			<b>/products/id/</b>
+			<p>should return the individual product.</p>
+			<b>Remember to test</b><br>
+			<b>Remember to document (why, not how)</b>
+			<p>####Bonus: extend the service so the products can also be created, edited and deleted in a backend of choice.</p>
+			<i>You are welcome to use any thirdparty python web framework or library that you are familiar with.</i>
+		</div>
+		<div class=wrapper></div>
+	</div>
+{% endblock %}

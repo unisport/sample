@@ -1,0 +1,45 @@
+.nav{
+  	float:left;
+  	text-align: center;
+  	list-style: none;
+  	width: 100%;
+}
+
+.nav li{
+	display: inline;
+	padding: 0px 16px;
+}
+
+.nav li a{
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.nav li a:hover{
+	color: black;
+	transition: .4s ease-in-out;
+}
+
+.home{
+	float: left;
+    clear:left;
+    width: 100%;
+    text-align: center;
+    display: table;
+}
+
+.home h2{
+	text-align: center;
+}
+
+.home-text{
+	text-align: left;
+	width: 60%;
+	display: table-cell;
+}
+
+.wrapper{
+	width: 20%;
+	height: 100%;
+	display: table-cell;
+}
