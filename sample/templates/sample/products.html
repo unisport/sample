@@ -1,0 +1,43 @@
+{% extends 'sample/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class = "home">
+	<div class="wrapper"></div>
+	<div class="home-text">
+		<table>
+			<tr>
+				<th>Product</th>
+				<th>Price</th>
+				<th>Delivery</th>
+			</tr>
+			{% for product in products %}
+				<tr>
+					<td>
+						{# This links to products/id #}
+						<a href="/products/id/{{product.id}}">{{product.name}}</a>
+					<td>
+					<td>{{ product.price }} {{ product.currency }}</td>
+					<td>{{ product.delivery }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		<div class="pagination">
+		    <span class="step-links">
+		        {% if products.has_previous %}
+		            <a href="?page={{ products.previous_page_number }}">previous</a>
+		        {% endif %}
+
+		        <span class="current">
+		            Page {{ products.number }} of {{ products.paginator.num_pages }}.
+		        </span>
+
+		        {% if products.has_next %}
+		            <a href="?page={{ products.next_page_number }}">next</a>
+		        {% endif %}
+		    </span>
+		</div>
+	</div>
+	<div class="wrapper"></div>
+</div>
+{% endblock %}

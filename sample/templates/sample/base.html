@@ -1,0 +1,20 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>UniSport</title>
+        <link rel="stylesheet" href="{% static 'css/sample.css' %}">
+    </head>
+    <body>
+    <div class=nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'products' %}">Products</a></li>
+            <li><a href="{% url 'kids' %}">Products/kids</a></li>
+        </ul>
+        <hr>
+    </div>
+    {% block content %}
+    {% endblock %}
+    </body>
+</html>

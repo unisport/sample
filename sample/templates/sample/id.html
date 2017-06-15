@@ -1,0 +1,33 @@
+{% extends 'sample/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class = "home">
+	<div class="wrapper"></div>
+	<div class="home-text">
+		{% if product.name is None %}
+			{# In case the ID is invalid, this is displayed #}
+			<p>There is no product with this ID</p>
+		{% else %}
+			<table>
+				<tr>
+					<th>Product</th>
+					<th>Price</th>
+					<th>Delivery</th>
+				</tr>
+				<tr>
+					<td>{{product.name}}<td>
+					<td>{{ product.price }} {{ product.currency }}</td>
+					<td>{{ product.delivery }}</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="{{product.img_url}}" title="Click here for larger image" target="_blank"><img src="{{product.image}}" width="100px"/></a>
+						</td>
+				</tr>
+			</table>
+		{% endif %}
+	</div>
+	<div class="wrapper"></div>
+</div>
+{% endblock %}
