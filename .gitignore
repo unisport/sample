@@ -2,3 +2,6 @@
 .sqlite3
 .pyc
 myvenv/
+myvenv/*
+myvenv/**
+myvenv/bin/*
