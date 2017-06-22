@@ -2,7 +2,7 @@
 # 21/06/2017
 # This is my first attempt programming in python!!!
 
-# Web Service
+# Web Service Unisport
 # Service runs on http://localhost + url from the urls
 
 # import of the neccessary libraries and modules used in the service
