@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432"
+  web:
+    image: xavifdpcoorp/django_test:postgres_dependant_challenge_django_container
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
