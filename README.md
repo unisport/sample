@@ -1,4 +1,4 @@
-# ![alt text](https://travis-ci.org/vaulor/Docker_test.svg?branch=master)
+# ![alt text](https://travis-ci.org/xavifdp/sample.svg?branch=master)
 # ![alt text](https://unisport-assets.s3.amazonaws.com/styleguide/img/logo.svg "Unisport logo")   Unisport Code Challenge   ![alt text](https://unisport-assets.s3.amazonaws.com/styleguide/img/logo.svg "Unisport logo") 
 
 
