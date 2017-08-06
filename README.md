@@ -42,4 +42,7 @@ As seen in the code I dont use a database. no model object is used in the model.
 
 Django provide an admin, in which you can use to delete, create annd delete in a backend of choice. 
 
-
+Author
+---------
+Adama Camara
+adama_camara@hotmail.dk
