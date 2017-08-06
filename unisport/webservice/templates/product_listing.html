@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        margin: 10px
+    }
+</style>
+<body>
+    {% for foo in product %}
+<table class="table",>
+    <tr><th>Name</th><td>{{foo.name}}</td></tr>
+    <tr><th>Price</th><td>{{foo.price}} {{foo.currency}}</td></tr>
+    {% endfor %}
+</table>
+</body>
+</html>
