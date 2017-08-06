@@ -1,3 +1,6 @@
+"""
+Did no use model function because there was no need to use a database to solve the assignment
+"""
 
 
 class Product:

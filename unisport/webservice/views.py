@@ -1,6 +1,5 @@
-import json
+import urllib.request, json
 from django.http.response import HttpResponse
-import urllib.request
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from webservice.models import Product
@@ -17,7 +16,7 @@ def top_ten_cheapest(request):
             Product(
                 id=x['id'],
                 name=x['name'],
-                price=float(x['price'].replace(",", ".")),  # replacing , with dot because of float
+                price=float(x['price'].replace(',', '.')),  # replacing , with dot because of float
                 currency=x['currency'],
                 kids=x['kids'],
             )
@@ -34,7 +33,7 @@ def kids(request):
                 Product(
                     id=x['id'],
                     name=x['name'],
-                    price=float(x['price'].replace(",", ".")), # replacing , with dot because of float
+                    price=float(x['price'].replace(',', '.')),
                     currency=x['currency'],
                     kids=int(x['kids']),
                     )
@@ -43,7 +42,6 @@ def kids(request):
 
 
 def choose_product(request, id):
-
     products = []
 
     for x in data['products']:
@@ -52,22 +50,19 @@ def choose_product(request, id):
                 Product(
                     id=x['id'],
                     name=x['name'],
-                    price=float(x['price'].replace(",", ".")),  # replacing , with dot because of float
+                    price=float(x['price'].replace(',', '.')),
                     currency=x['currency'],
                     kids=x['kids']
                 )
             )
             return render(request, 'product_listing.html', {'product': products})
-        elif len(products) == 0:
+        elif(len(products)) == 0:
             return HttpResponse('No such product')
 
 
 def paginate(request):
-
     product_list = data['products']
-
     paginator = Paginator(product_list, 10)
-
     page = request.GET.get('page')
     try:
         page = paginator.page(page)
