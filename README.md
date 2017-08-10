@@ -1,5 +1,5 @@
 # Unisport: Sample
-* * * * * * * * * *
+
 _Fork this project and send us a pull request_
 
 Write a simple python webservice that uses, manipuates and returns the data
@@ -27,7 +27,7 @@ _You are welcome to use any thirdparty python web framework or library that you 
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-## Bonus
+### Bonus
 extend the service so the products can also be created, edited and deleted in a backend of choice
 
 
