@@ -25,9 +25,11 @@ should return the individual product.
 **_Remember to test_**   
 **_Remember to document (why, not how)_**
 
-####Bonus:
+#### Bonus:
  extend the service so the products can also be created, edited and deleted in a backend of choice.
 
 
 _You are welcome to use any thirdparty python web framework or library that you are familiar with._  
 
+#### Forking and Pull Requests
+Information on how to work with forks and pull requests can be found here https://help.github.com/categories/collaborating-with-issues-and-pull-requests/
