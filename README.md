@@ -1,3 +1,15 @@
+Simple webservice for Unisport in Python by Anders Friis
+
+3rd party frameworks and libraries used:
+
+Flask (http://flask.pocoo.org/)
+
+Requests (http://docs.python-requests.org/en/master/)
+
+-----------------------------------------------------------
+
+Original Text:
+
 _Fork this project and send us a pull request_
 
 Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
