@@ -1,0 +1,87 @@
+{{extend 'layout.html'}}
+<h1>
+   products where kids=1 and ordered by cheapest first
+</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>is customizable</th>
+            <th>delivery</th>
+            <th>kids</th>
+            <th>name</th>
+            <th>sizes</th>
+            <th>kids adult</th>
+            <th>free porto</th>
+            <th>image</th>
+            <th>package</th>
+            <th>price</th>
+            <th>url</th>
+            <th>online</th>
+            <th>price old</th>
+            <th>currency</th>
+            <th>img url</th>
+            <th>women</th>
+
+        </tr>
+    </thead>
+    <tbody>
+         {{for x in records:}}
+       <tr>
+            <th scope="row"> {{=x.id}}</th>
+            <td>
+                 {{=x.is_customizable}}
+            </td>
+            <td>
+                 {{=x.delivery}}
+            </td>
+            <td>
+                 {{=x.kids}}
+            </td>
+            <td>
+                 {{=x.name}}
+            </td>
+            <td>
+                 {{=x.sizes}}
+            </td>
+            <td>
+                 {{=x.kid_adult}}
+            </td>
+            <td>
+                 {{=x.free_porto}}
+            </td>
+            <td>
+                 {{=x.image}}
+            </td>
+            <td>
+                 {{=x.package}}
+            </td>
+            <td>
+                 {{=x.price}}
+            </td>
+            <td>
+                 {{=x.url}}
+            </td>
+            <td>
+                 {{=x.online_product}}
+            </td>
+            <td>
+                 {{=x.price_old}}
+            </td>
+            <td>
+                 {{=x.currency}}
+            </td>
+            <td>
+                 {{=x.img_url}}
+            </td>
+            <td>
+                 {{=x.women_product}}
+            </td>
+        </tr>
+
+    {{pass }}
+    </tbody>
+</table>
+<div>
+
+    </div>
