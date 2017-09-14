@@ -1,3 +1,10 @@
+# Installation
+1. `git clone https://github.com/nielslerches/sample`
+2. `pip install -r requirements.txt`
+
+---
+# Original README:
+
 _Fork this project and send us a pull request_
 
 Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
