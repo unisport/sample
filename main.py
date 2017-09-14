@@ -1,35 +1,83 @@
-from flask import Flask, jsonify
+"""
+main.py - Unisport Sample webservice
+"""
+
+from re import match
+
+from flask import Flask, jsonify, request
 from requests import get
 from money import Money
-from re import match
 
 app = Flask(__name__)
 
-def parse_money(s, c):
+def paginate(items, page_size):
+    """
+    Paginates a list.
+
+    :param items: the items to paginate.
+    :param page_size: the size of each page.
+    :returns: the paginated items-list, where each page is size of page_size.
+    """
+    pages = []
+    start = 0
+    end = 0
+    for i in range(len(items)):
+        end = i + page_size
+        if i % page_size == 0:
+            page = items[start:end]
+            pages.append(page)
+            start = end
+    return pages
+
+def parse_money(value, currency):
     """
     Parses a money-amount based on its value and currency-type.
-    
-    :param s: the value of the money
-    :param c: the currency-type of the money
-    :returns: Money(s, c)
+
+    :param value: the value of the money-amount
+    :param currency: the currency-type of the money
+    :returns: Money(value, currency)
     """
-    if match(".+(\.|,)00", s):
-        return Money(s[:-3], c)
-    return Money(s, c)
+    if match(r".+(\.|,)00$", value):
+        return Money(value[:-3], currency)
+    return Money(value, currency)
 
 @app.route("/products")
 def products():
+    """
+    :returns: the top 10 cheapest products.
+    """
+    selected_page = request.args.get("page")
     products_list = data["products"]
-    cheapest_products = sorted(products_list, key=lambda p: parse_money(p["price"], p["currency"]))[:10]
+    sorted_products = sorted(products_list, key=lambda p: parse_money(p["price"], p["currency"]))
+    pages = paginate(sorted_products, 10)
 
+    if selected_page is None:
+        cheapest_products = pages[0]
+    else:
+        cheapest_products = pages[int(selected_page) - 1]
+    
     return jsonify(cheapest_products)
 
 @app.route("/products/kids")
 def kids_products():
-    kids_products_list = [p for p in data["products"] if p["kid_adult"] == "1"]
-    cheapest_kids_products = sorted(kids_products_list, key=lambda p: parse_money(p["price"], p["currency"]))
+    """
+    :returns: kids products ordered by price.
+    """
+    selected_page = request.args.get("page")
+    products_list = [p for p in data["products"] if p["kid_adult"] == "1"]
+    sorted_products = sorted(products_list, key=lambda p: parse_money(p["price"], p["currency"]))
+    pages = paginate(sorted_products, 10)
 
-    return jsonify(cheapest_kids_products)
+    if selected_page is None:
+        cheapest_products = pages[0]
+    else:
+        cheapest_products = pages[int(selected_page) - 1]
+    
+    return jsonify(cheapest_products)
+
+@app.route("/products/<id>")
+def product_by_id():
+    return None
 
 if __name__ == "__main__":
     data = get("https://www.unisport.dk/api/sample/").json()
