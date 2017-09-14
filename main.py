@@ -13,7 +13,7 @@ def parse_price(s, c):
 @app.route("/products")
 def products():
     products_list = data["products"]
-    cheapest_products = sorted(products_list[:10], key=lambda p: parse_price(p["price"], p["currency"]))
+    cheapest_products = sorted(products_list, key=lambda p: parse_price(p["price"], p["currency"]))[:10]
 
     return jsonify(cheapest_products)
 
