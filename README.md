@@ -1,6 +1,14 @@
 # Installation
 1. `git clone https://github.com/nielslerches/sample`
-2. `pip install -r requirements.txt`
+2. `cd sample`
+3. macOS & Linux: `. venv/bin/activate`/ Windows: `venv\Scripts\activate`
+4. `pip install -r requirements.txt`
+
+# Running
+1. `cd sample`
+2. macOS & Linux: `. venv/bin/activate` / Windows: `venv\Scripts\activate`
+3. `python main.py`
+The server is now running on `127.0.0.1:5000`
 
 ---
 # Original README:
