@@ -1,7 +1,7 @@
 # Installation
 1. `git clone https://github.com/nielslerches/sample`
 2. `cd sample`
-3. macOS & Linux: `. venv/bin/activate`/ Windows: `venv\Scripts\activate`
+3. macOS & Linux: `. venv/bin/activate` / Windows: `venv\Scripts\activate`
 4. `pip install -r requirements.txt`
 
 # Running
