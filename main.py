@@ -5,14 +5,14 @@ from re import match
 
 app = Flask(__name__)
 
-"""
-Parses a money-amount based on its value and currency-type.
-
-:param s: the value of the money
-:param c: the currency-type of the money
-:returns: Money(s, c)
-"""
 def parse_money(s, c):
+    """
+    Parses a money-amount based on its value and currency-type.
+    
+    :param s: the value of the money
+    :param c: the currency-type of the money
+    :returns: Money(s, c)
+    """
     if match(".+(\.|,)00", s):
         return Money(s[:-3], c)
     return Money(s, c)
