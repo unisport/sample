@@ -4,7 +4,7 @@ main.py - Unisport Sample webservice
 
 from re import match
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort
 from requests import get
 from money import Money
 
@@ -54,6 +54,8 @@ def products():
     if selected_page is None:
         cheapest_products = pages[0]
     else:
+        if int(selected_page) > len(pages):
+            abort(404)
         cheapest_products = pages[int(selected_page) - 1]
     
     return jsonify(cheapest_products)
@@ -71,13 +73,19 @@ def kids_products():
     if selected_page is None:
         cheapest_products = pages[0]
     else:
+        if int(selected_page) > len(pages):
+            abort(404)
         cheapest_products = pages[int(selected_page) - 1]
     
     return jsonify(cheapest_products)
 
 @app.route("/products/<id>")
-def product_by_id():
-    return None
+def product_by_id(id):
+    products_list = data["products"]
+    for p in products_list:
+        if p["id"] == id:
+            return jsonify(p)
+    abort(404)
 
 if __name__ == "__main__":
     data = get("https://www.unisport.dk/api/sample/").json()
