@@ -14,7 +14,7 @@ The server is now running on `127.0.0.1:5000`
 # Unit testing
 1. `cd sample`
 2. macOS & Linux: `. venv/bin/activate` / Windows: `venv\Scripts\activate`
-3. `python -m unittest -v tests.py`
+3. `python tests.py`
 
 ---
 # Original README:
