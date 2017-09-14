@@ -32,6 +32,9 @@ def parse_money(value, currency):
     :param currency: the currency-type of the money
     :returns: Money(value, currency)
     """
-    if match(r".+(\.|,)00$", value):
-        return Money(value[:-3], currency)
+    if match(".+,[0-9]+$", value):
+        return Money(
+            value.replace(".", "").replace(",", "."),
+            currency
+        )
     return Money(value, currency)
