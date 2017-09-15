@@ -2,6 +2,7 @@
 tests.py - Unisport Sample unit testing
 """
 
+import subprocess
 import unittest
 from money import Money
 
@@ -28,7 +29,24 @@ class TestUtilities(unittest.TestCase):
         self.assertEqual(parse_money("0", "CAD"), Money("0", "CAD"))
         self.assertEqual(parse_money("0.15", "CAD"), Money("0.15", "CAD"))
         self.assertEqual(parse_money("0,15", "DKK"), Money("0.15", "DKK"))
+        self.assertEqual(parse_money("10.150,15", "DKK"), Money("10150.15", "DKK"))
+        self.assertEqual(parse_money("10.150.000,15", "DKK"), Money("10150000.15", "DKK"))
+        self.assertEqual(parse_money("10.000.000,15", "DKK"), Money("10000000.15", "DKK"))
+        self.assertEqual(parse_money("10,000,000.15", "USD"), Money("10000000.15", "USD"))
 
+# class TestWebService(unittest.TestCase):
+#     """
+#     Test the webservice
+#     """
+#     def __init__(self):
+#         super()
+#         self.service = subprocess.Popen("exec python main.py", stdout=subprocess.PIPE, shell=True)
+
+#     def __enter__(self):
+#         return self
+
+#     def __exit__(self, exc_type, exc_value, traceback):
+#         self.service.kill()
 
 if __name__ == "__main__":
     unittest.main()

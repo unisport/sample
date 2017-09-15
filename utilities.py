@@ -37,4 +37,4 @@ def parse_money(value, currency):
             value.replace(".", "").replace(",", "."),
             currency
         )
-    return Money(value, currency)
+    return Money(value.replace(",", ""), currency)
