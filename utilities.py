@@ -41,5 +41,5 @@ def parse_money(value, currency):
     return Money(value.replace(",", ""), currency)
 
 def order_dict(dictionary, order):
-    od = OrderedDict([(o, dictionary[o]) for o in order])
+    od = OrderedDict([(o, dictionary[o]) for o in order if o in dictionary.keys()])
     return od
