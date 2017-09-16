@@ -2,8 +2,6 @@ import json
 
 from utilities import parse_money
 
-from pprint import PrettyPrinter
-
 def main():
     with open("products.json", "r", encoding="utf8") as input_file, open("products.sorted.json", "w", encoding="utf8") as output_file:
         data = json.load(input_file)
