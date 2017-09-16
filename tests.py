@@ -34,6 +34,22 @@ class TestUtilities(unittest.TestCase):
         self.assertEqual(parse_money("10.150.000,15", "DKK"), Money("10150000.15", "DKK"))
         self.assertEqual(parse_money("10.000.000,15", "DKK"), Money("10000000.15", "DKK"))
         self.assertEqual(parse_money("10,000,000.15", "USD"), Money("10000000.15", "USD"))
+    
+    def test_order_dict(self):
+        a = {
+            "foo": "bar",
+            "foz": "baz"
+        }
+        b = {
+            "foz": "baz",
+            "foo": "bar"
+        }
+        self.assertNotEqual(str(a), str(b))
+        self.assertEqual(a, b)
+        self.assertEqual(
+            str(order_dict(a, a.keys())),
+            str(order_dict(b, a.keys()))
+        )
 
 class TestWebService(unittest.TestCase):
     """
