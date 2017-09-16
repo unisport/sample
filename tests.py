@@ -61,7 +61,7 @@ class TestWebService(unittest.TestCase):
         }
         self.assertEqual(
             order_dict(get("http://127.0.0.1:5000/products").json()[0], product.keys()),
-            order_dict(product, product.keys())
+            product
         )
 
 if __name__ == "__main__":
