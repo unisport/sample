@@ -7,7 +7,7 @@ import json
 from money import Money
 from requests import get
 
-from utilities import paginate, parse_money
+from utilities import paginate, parse_money, order_dict
 
 class TestUtilities(unittest.TestCase):
     """
@@ -39,10 +39,30 @@ class TestWebService(unittest.TestCase):
     """
     Test the webservice
     """
-    # def test_products(self): # fails, but it's a false negative
-    #     with open("products.sorted.json") as file:
-    #         products = json.load(file)
-    #         self.assertEqual(dict(get("http://127.0.0.1:5000/products").json()[0]), dict(products[0]))
+    def test_products(self):
+        product = {
+            "is_customizable": "0",
+            "delivery": "1-2 dage",
+            "kids": "0",
+            "name": "Select Nål Protection - Sort",
+            "sizes": "One Size",
+            "kid_adult": "0",
+            "free_porto": "0",
+            "image": "https://thumblr-8.unisport.dk/product/157755/8900b1658d61.jpg",
+            "package": "0",
+            "price": "9,00",
+            "url": "https://www.unisport.dk/fodboldudstyr/select-nal-protection-sort/157755/",
+            "online": "1",
+            "price_old": "9,00",
+            "currency": "DKK",
+            "img_url": "https://s3-eu-west-1.amazonaws.com/product-img/157755_maxi_0.jpg",
+            "id": "157755",
+            "women": "0"
+        }
+        self.assertEqual(
+            order_dict(get("http://127.0.0.1:5000/products").json()[0], product.keys()),
+            order_dict(product, product.keys())
+        )
 
 if __name__ == "__main__":
     unittest.main()

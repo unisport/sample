@@ -3,6 +3,7 @@ utilities.py - Unisport Sample webservice
 """
 
 from re import match
+from collections import OrderedDict
 from money import Money
 
 def paginate(items, page_size):
@@ -38,3 +39,7 @@ def parse_money(value, currency):
             currency
         )
     return Money(value.replace(",", ""), currency)
+
+def order_dict(dictionary, order):
+    od = OrderedDict([(o, dictionary[o]) for o in order])
+    return od
