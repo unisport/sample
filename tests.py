@@ -75,10 +75,33 @@ class TestWebService(unittest.TestCase):
             "id": "157755",
             "women": "0"
         }
+        order = [
+            "is_customizable",
+            "delivery",
+            "kids",
+            "name",
+            "sizes",
+            "kid_adult",
+            "free_porto",
+            "image",
+            "package",
+            "price",
+            "url",
+            "online",
+            "price_old",
+            "currency",
+            "img_url",
+            "id",
+            "women"
+        ]
         self.assertEqual(
             order_dict(get("http://127.0.0.1:5000/products").json()[0], product.keys()),
             product
         )
+        # self.assertEqual(
+        #     [order_dict(p, order) for p in get("http://127.0.0.1:5000/products").json()],
+            
+        # )
 
 if __name__ == "__main__":
     unittest.main()
