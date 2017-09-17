@@ -6,7 +6,7 @@ from re import match
 from collections import OrderedDict
 from money import Money
 
-def paginate(items, page_size):
+def paginate(items, size):
     """
     Paginates a list.
 
@@ -14,16 +14,17 @@ def paginate(items, page_size):
     :param page_size: the size of each page.
     :returns: the paginated items-list, where each page is size of page_size.
     """
-    pages = []
-    start = 0
-    end = 0
-    for i in range(len(items)):
-        end = i + page_size
-        if i % page_size == 0:
-            page = items[start:end]
-            pages.append(page)
-            start = end
-    return pages
+    # pages = []
+    # start = 0
+    # end = 0
+    # for i in range(len(items)):
+    #     end = i + page_size
+    #     if i % page_size == 0:
+    #         page = items[start:end]
+    #         pages.append(page)
+    #         start = end
+    # return pages
+    return [items[i:i+size] for i in range(len(items)) if i % size == 0]
 
 def parse_money(value, currency):
     """
