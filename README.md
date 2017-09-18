@@ -15,6 +15,7 @@ The server is now running on `127.0.0.1:5000`
 1. `cd sample`
 2. macOS & Linux: `. venv/bin/activate` / Windows: `venv\Scripts\activate`
 3. `python main.py`
+
 and in another terminal:
 1. `cd sample`
 2. macOS & Linux: `. venv/bin/activate` / Windows: `venv\Scripts\activate`
