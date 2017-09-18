@@ -34,7 +34,7 @@ def kids_products():
     :returns: kids products ordered by price.
     """
     selected_page = request.args.get("page")
-    products_list = [p for p in data["products"] if p["kid_adult"] == "1"]
+    products_list = [p for p in data["products"] if p["kids"] == "1"]
     sorted_products = sorted(products_list, key=lambda p: parse_money(p["price"], p["currency"]))
     pages = paginate(sorted_products, 10)
 

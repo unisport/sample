@@ -98,10 +98,39 @@ class TestWebService(unittest.TestCase):
             order_dict(get("http://127.0.0.1:5000/products").json()[0], product.keys()),
             product
         )
-        # self.assertEqual(
-        #     [order_dict(p, order) for p in get("http://127.0.0.1:5000/products").json()],
-            
-        # )
+        self.assertEqual(
+            len(get("http://127.0.0.1:5000/products?page=1").json()),
+            10
+        )
+        self.assertEqual(
+            get("http://127.0.0.1:5000/products?page=4").status_code,
+            404
+        )
+    
+    def test_kids_products(self):
+        order = [
+            "is_customizable",
+            "delivery",
+            "kids",
+            "name",
+            "sizes",
+            "kid_adult",
+            "free_porto",
+            "image",
+            "package",
+            "price",
+            "url",
+            "online",
+            "price_old",
+            "currency",
+            "img_url",
+            "id",
+            "women"
+        ]
+        self.assertEqual(
+           len(get("http://127.0.0.1:5000/products/kids").json()),
+           4
+        )
 
 if __name__ == "__main__":
     unittest.main()
