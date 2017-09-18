@@ -47,8 +47,7 @@ class TestUtilities(unittest.TestCase):
         self.assertNotEqual(str(a), str(b))
         self.assertEqual(a, b)
         self.assertEqual(
-            str(order_dict(a, a.keys())),
-            str(order_dict(b, a.keys()))
+            str(order_dict(a, a.keys())), str(order_dict(b, a.keys()))
         )
 
 class TestWebService(unittest.TestCase):
@@ -75,61 +74,47 @@ class TestWebService(unittest.TestCase):
             "id": "157755",
             "women": "0"
         }
-        order = [
-            "is_customizable",
-            "delivery",
-            "kids",
-            "name",
-            "sizes",
-            "kid_adult",
-            "free_porto",
-            "image",
-            "package",
-            "price",
-            "url",
-            "online",
-            "price_old",
-            "currency",
-            "img_url",
-            "id",
-            "women"
-        ]
-        self.assertEqual(
-            order_dict(get("http://127.0.0.1:5000/products").json()[0], product.keys()),
-            product
+        self.assertDictEqual(
+            get("http://127.0.0.1:5000/products").json()[0], product
         )
         self.assertEqual(
-            len(get("http://127.0.0.1:5000/products?page=1").json()),
-            10
+            len(get("http://127.0.0.1:5000/products?page=1").json()), 10
         )
         self.assertEqual(
-            get("http://127.0.0.1:5000/products?page=4").status_code,
-            404
+            get("http://127.0.0.1:5000/products?page=4").status_code, 404
         )
     
     def test_kids_products(self):
-        order = [
-            "is_customizable",
-            "delivery",
-            "kids",
-            "name",
-            "sizes",
-            "kid_adult",
-            "free_porto",
-            "image",
-            "package",
-            "price",
-            "url",
-            "online",
-            "price_old",
-            "currency",
-            "img_url",
-            "id",
-            "women"
-        ]
         self.assertEqual(
-           len(get("http://127.0.0.1:5000/products/kids").json()),
-           4
+           len(get("http://127.0.0.1:5000/products/kids").json()), 4
+        )
+    
+    def test_product_by_id(self):
+        a = get("http://127.0.0.1:5000/products/153344").json()
+        b = {
+            "currency": "DKK",
+            "delivery": "1-2 dage",
+            "free_porto": "0",
+            "id": "153344",
+            "image": "https://thumblr-7.unisport.dk/product/153344/7439bfeef274.jpg",
+            "img_url": "https://s3-eu-west-1.amazonaws.com/product-img/153344_maxi_0.jpg",
+            "is_customizable": "1",
+            "kid_adult": "0",
+            "kids": "1",
+            "name": "Fortuna Düsseldorf Hjemmebanetrøje 2016/17 Børn",
+            "online": "1",
+            "package": "0",
+            "price": "137,00",
+            "price_old": "549,00",
+            "sizes": "YL/152 cm",
+            "url": "https://www.unisport.dk/fodboldtroejer/fortuna-dusseldorf-hjemmebanetrje-201617-brn/153344/",
+            "women": "0"
+        }
+        self.assertDictEqual(
+            a, b
+        )
+        self.assertEqual(
+            get("http://127.0.0.1:5000/products/4").status_code, 404
         )
 
 if __name__ == "__main__":
