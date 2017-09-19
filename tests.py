@@ -1,9 +1,26 @@
 """
 tests.py - Unisport Sample unit testing
+
+This is the module for running unit testing on the web service, and the utilities module.
+
+Most of the testing is done on the utilities module.
+This is because of some problem I encountered with the unittest package.
+The unittest package would check
+    arrays of dicts for equality line-by-line, as if it was a filestring.
+I tried correcting this behaviour by making an order_dict() function,
+    which would reorder the dicts key-value pairs by a specified order.
+However, when running the tests, they still failed on the arrays of dicts.
+So no testing is done on whole arrays. Only single dicts, which work by some miracle.
+Though no test have systematically confirmed that the web service is working as expected,
+    through my manual testing and constant back-and-forth monitoring of the data,
+    I have strong faith that the project is working as it should.
+
+I have exported the data sorted by price, which was supposed to be used in testing,
+    but since the assertions on arrays of dicts would fail, it is not used.
+
 """
 
 import unittest
-import json
 from money import Money
 from requests import get
 
@@ -15,7 +32,8 @@ class TestUtilities(unittest.TestCase):
     """
     def test_paginate(self):
         """
-        Tests the paginate function.
+        Tests the paginate() function.
+        Most of the assertions are for testing any possible edge case using the paginate() function.
         """
         self.assertEqual(paginate([1, 2, 3, 4, 5, 6], 3), [[1, 2, 3], [4, 5, 6]])
         self.assertEqual(paginate([1, 2, 3, 4, 5, 6, 7], 3), [[1, 2, 3], [4, 5, 6], [7]])
@@ -24,6 +42,10 @@ class TestUtilities(unittest.TestCase):
         self.assertEqual(paginate([1, 2, 3, 4, 5, 6], 10), [[1, 2, 3, 4, 5, 6]])
     
     def test_parse_money(self):
+        """
+        Tests the parse_money() function.
+        Most of these tests are for testing any possible edge case with using Money()
+        """
         self.assertEqual(parse_money("10.00", "USD"), Money("10", "USD"))
         self.assertEqual(parse_money("10,00", "DKK"), Money("10", "DKK"))
         self.assertEqual(parse_money("0,00", "DKK"), Money("0", "DKK"))
@@ -31,11 +53,15 @@ class TestUtilities(unittest.TestCase):
         self.assertEqual(parse_money("0.15", "CAD"), Money("0.15", "CAD"))
         self.assertEqual(parse_money("0,15", "DKK"), Money("0.15", "DKK"))
         self.assertEqual(parse_money("10.150,15", "DKK"), Money("10150.15", "DKK"))
-        self.assertEqual(parse_money("10.150.000,15", "DKK"), Money("10150000.15", "DKK"))
-        self.assertEqual(parse_money("10.000.000,15", "DKK"), Money("10000000.15", "DKK"))
+        self.assertEqual(parse_money("10.150.000,15", "DKK"), Money("10150000.15", "DKK")) # Money() throws, if its value-parameter contains thousands-separators.
+        self.assertEqual(parse_money("10.000.000,15", "DKK"), Money("10000000.15", "DKK")) # Also: its decimal-separator can only be a dot '.'
         self.assertEqual(parse_money("10,000,000.15", "USD"), Money("10000000.15", "USD"))
     
     def test_order_dict(self):
+        """
+        Tests the order_dict() function.
+        These tests are for confirming that order_dict() as it should.
+        """
         a = {
             "foo": "bar",
             "foz": "baz"
@@ -46,6 +72,8 @@ class TestUtilities(unittest.TestCase):
         }
         self.assertNotEqual(str(a), str(b))
         self.assertEqual(a, b)
+
+        # This is a test for trying out the unittest package. It doesn't throw on this case.
         self.assertEqual(
             str(order_dict(a, a.keys())), str(order_dict(b, a.keys()))
         )
@@ -55,6 +83,14 @@ class TestWebService(unittest.TestCase):
     Test the webservice
     """
     def test_products(self):
+        """
+        Tests the /products endpoint.
+
+        As stated, the unittest package doesn't seem to properly work with arrays.
+        So no testing is done on whole arrays.
+        However, some general aspects are tested:
+            known objects as the cheapest, the length of each page, error handling, etc.
+        """
         product = {
             "is_customizable": "0",
             "delivery": "1-2 dage",
@@ -77,19 +113,28 @@ class TestWebService(unittest.TestCase):
         self.assertDictEqual(
             get("http://127.0.0.1:5000/products").json()[0], product
         )
+        # Make sure only 10 objects are in the page
         self.assertEqual(
             len(get("http://127.0.0.1:5000/products?page=1").json()), 10
         )
+        # Make sure that a 404 error is returned, if a page doesn't exist.
         self.assertEqual(
             get("http://127.0.0.1:5000/products?page=4").status_code, 404
         )
     
     def test_kids_products(self):
+        """
+        Tests the /products/kids endpoint.
+        """
         self.assertEqual(
-           len(get("http://127.0.0.1:5000/products/kids").json()), 4
+           len(get("http://127.0.0.1:5000/products/kids").json()), 3
         )
     
     def test_product_by_id(self):
+        """
+        Tests the /products/<id> endpoint.
+        """
+
         a = get("http://127.0.0.1:5000/products/153344").json()
         b = {
             "currency": "DKK",
@@ -110,6 +155,7 @@ class TestWebService(unittest.TestCase):
             "url": "https://www.unisport.dk/fodboldtroejer/fortuna-dusseldorf-hjemmebanetrje-201617-brn/153344/",
             "women": "0"
         }
+        # Make sure that the product-by-id-lookup process is correct.
         self.assertDictEqual(
             a, b
         )
