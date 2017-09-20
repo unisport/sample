@@ -1,63 +1,54 @@
 """
-tests.py - Unisport Sample unit testing
+other_tests.py
 
-This is the module for running unit testing on the web service, and the utilities module.
+This module is for testing, without using the unittest package.
+There were some complications using the unittest package in regards
+    to arrays of dicts, where it would falsely validate logically equal
+    dicts as inequal. 
 
-Most of the testing is done on the utilities module.
-This is because of some problem I encountered with the unittest package.
-The unittest package would check
-    arrays of dicts for equality line-by-line, as if it was a filestring.
-I tried correcting this behaviour by making an order_dict() function,
-    which would reorder the dicts key-value pairs by a specified order.
-However, when running the tests, they still failed on the arrays of dicts.
-So no testing is done on whole arrays. Only single dicts, which work by some miracle.
-Though no test have systematically confirmed that the web service is working as expected,
-    through my manual testing and constant back-and-forth monitoring of the data,
-    I have strong faith that the project is working as it should.
-
-I have exported the data sorted by price, which was supposed to be used in testing,
-    but since the assertions on arrays of dicts would fail, it is not used.
-
+If any assertion error is thrown, it will print it out. Otherwise no output.
 """
 
-import unittest
-from money import Money
+import json
 from requests import get
 
+from money import Money
 from utilities import paginate, parse_money, order_dict
 
-class TestUtilities(unittest.TestCase):
+def test_utilities():
     """
     Test the utilities.py module.
     """
-    def test_paginate(self):
+    def test_paginate():
         """
         Tests the paginate() function.
         Most of the assertions are for testing any possible edge case using the paginate() function.
         """
-        self.assertEqual(paginate([1, 2, 3, 4, 5, 6], 3), [[1, 2, 3], [4, 5, 6]])
-        self.assertEqual(paginate([1, 2, 3, 4, 5, 6, 7], 3), [[1, 2, 3], [4, 5, 6], [7]])
-        self.assertEqual(paginate([1, 2, 3, 4], 1), [[1], [2], [3], [4]])
-        self.assertEqual(paginate([1, 2, 3, 4, 5, 6], 6), [[1, 2, 3, 4, 5, 6]])
-        self.assertEqual(paginate([1, 2, 3, 4, 5, 6], 10), [[1, 2, 3, 4, 5, 6]])
+        assert paginate([1, 2, 3, 4, 5, 6], 3) == [[1, 2, 3], [4, 5, 6]]
+        assert paginate([1, 2, 3, 4, 5, 6, 7], 3) == [[1, 2, 3], [4, 5, 6], [7]]
+        assert paginate([1, 2, 3, 4], 1) == [[1], [2], [3], [4]]
+        assert paginate([1, 2, 3, 4, 5, 6], 6) == [[1, 2, 3, 4, 5, 6]]
+        assert paginate([1, 2, 3, 4, 5, 6], 10) == [[1, 2, 3, 4, 5, 6]]
     
-    def test_parse_money(self):
+    def test_parse_money():
         """
         Tests the parse_money() function.
         Most of these tests are for testing any possible edge case with using Money()
         """
-        self.assertEqual(parse_money("10.00", "USD"), Money("10", "USD"))
-        self.assertEqual(parse_money("10,00", "DKK"), Money("10", "DKK"))
-        self.assertEqual(parse_money("0,00", "DKK"), Money("0", "DKK"))
-        self.assertEqual(parse_money("0", "CAD"), Money("0", "CAD"))
-        self.assertEqual(parse_money("0.15", "CAD"), Money("0.15", "CAD"))
-        self.assertEqual(parse_money("0,15", "DKK"), Money("0.15", "DKK"))
-        self.assertEqual(parse_money("10.150,15", "DKK"), Money("10150.15", "DKK"))
-        self.assertEqual(parse_money("10.150.000,15", "DKK"), Money("10150000.15", "DKK")) # Money() throws, if its value-parameter contains thousands-separators.
-        self.assertEqual(parse_money("10.000.000,15", "DKK"), Money("10000000.15", "DKK")) # Also: its decimal-separator can only be a dot '.'
-        self.assertEqual(parse_money("10,000,000.15", "USD"), Money("10000000.15", "USD"))
-    
-    def test_order_dict(self):
+        assert parse_money("10.00", "USD") == Money("10", "USD")
+        assert parse_money("10,00", "DKK") == Money("10", "DKK")
+        assert parse_money("0,00", "DKK") == Money("0", "DKK")
+        assert parse_money("0", "CAD") == Money("0", "CAD")
+        assert parse_money("0.15", "CAD") == Money("0.15", "CAD")
+        assert parse_money("0,15", "DKK") == Money("0.15", "DKK")
+        assert parse_money("10.150,15", "DKK") == Money("10150.15", "DKK")
+        # Money() throws, if its value-parameter contains thousands-separators.
+        assert parse_money("10.150.000,15", "DKK") == Money("10150000.15", "DKK")
+        # Also: its decimal-separator can only be a dot '.'
+        assert parse_money("10.000.000,15", "DKK") == Money("10000000.15", "DKK")
+        assert parse_money("10,000,000.15", "USD") == Money("10000000.15", "USD")
+
+    def test_order_dict():
         """
         Tests the order_dict() function.
         These tests are for confirming that order_dict() as it should.
@@ -70,73 +61,102 @@ class TestUtilities(unittest.TestCase):
             "foz": "baz",
             "foo": "bar"
         }
-        self.assertNotEqual(str(a), str(b))
-        self.assertEqual(a, b)
+        assert str(a) != str(b)
+        assert a == b
+        assert str(order_dict(a, a.keys())) == str(order_dict(b, a.keys()))
 
-        # This is a test for trying out the unittest package. It doesn't throw on this case.
-        self.assertEqual(
-            str(order_dict(a, a.keys())), str(order_dict(b, a.keys()))
-        )
+    test_paginate()
+    test_parse_money()
+    test_order_dict()
 
-class TestWebService(unittest.TestCase):
+def test_web_service():
     """
     Test the webservice
     """
-    def test_products(self):
+    def test_products():
         """
         Tests the /products endpoint.
 
-        As stated, the unittest package doesn't seem to properly work with arrays.
-        So no testing is done on whole arrays.
-        However, some general aspects are tested:
-            known objects as the cheapest, the length of each page, error handling, etc.
+        # As stated, the unittest package doesn't seem to properly work with arrays.
+        # So no testing is done on whole arrays.
+        # However, some general aspects are tested:
+        #     known objects as the cheapest, the length of each page, error handling, etc.
+        
+        This way of running assertions actually work compared to the unittest package.
         """
-        product = {
-            "is_customizable": "0",
-            "delivery": "1-2 dage",
-            "kids": "0",
-            "name": "Select Nål Protection - Sort",
-            "sizes": "One Size",
-            "kid_adult": "0",
-            "free_porto": "0",
-            "image": "https://thumblr-8.unisport.dk/product/157755/8900b1658d61.jpg",
-            "package": "0",
-            "price": "9,00",
-            "url": "https://www.unisport.dk/fodboldudstyr/select-nal-protection-sort/157755/",
-            "online": "1",
-            "price_old": "9,00",
-            "currency": "DKK",
-            "img_url": "https://s3-eu-west-1.amazonaws.com/product-img/157755_maxi_0.jpg",
-            "id": "157755",
-            "women": "0"
-        }
-        self.assertDictEqual(
-            get("http://127.0.0.1:5000/products").json()[0], product
-        )
-        # Make sure only 10 objects are in the page
-        self.assertEqual(
-            len(get("http://127.0.0.1:5000/products?page=1").json()), 10
-        )
-        # Make sure that a 404 error is returned, if a page doesn't exist.
-        self.assertEqual(
-            get("http://127.0.0.1:5000/products?page=4").status_code, 404
-        )
-    
-    def test_kids_products(self):
-        """
-        Tests the /products/kids endpoint.
-        """
-        self.assertEqual(
-           len(get("http://127.0.0.1:5000/products/kids").json()), 3
-        )
-    
-    def test_product_by_id(self):
-        """
-        Tests the /products/<id> endpoint.
-        """
+        assert get("http://127.0.0.1:5000/products").json() == products[:10]
+        assert get("http://127.0.0.1:5000/products?page=1").json() == products[:10]
+        assert get(
+            "http://127.0.0.1:5000/products?page=2").json() == products[10:20]
+        assert get(
+            "http://127.0.0.1:5000/products?page=3").json() == products[20:25]
+        assert get("http://127.0.0.1:5000/products?page=4").status_code == 404
 
-        a = get("http://127.0.0.1:5000/products/153344").json()
-        b = {
+
+    def test_kids_products():
+        kids_products = [
+            {
+                "is_customizable": "1",
+                "delivery": "1-2 dage",
+                "kids": "1",
+                "name": "Fortuna Düsseldorf Hjemmebanetrøje 2016/17 Børn",
+                "sizes": "YL/152 cm",
+                "kid_adult": "0",
+                "free_porto": "0",
+                "image": "https://thumblr-7.unisport.dk/product/153344/7439bfeef274.jpg",
+                "package": "0",
+                "price": "137,00",
+                "url": "https://www.unisport.dk/fodboldtroejer/fortuna-dusseldorf-hjemmebanetrje-201617-brn/153344/",
+                "online": "1",
+                "price_old": "549,00",
+                "currency": "DKK",
+                "img_url": "https://s3-eu-west-1.amazonaws.com/product-img/153344_maxi_0.jpg",
+                "id": "153344",
+                "women": "0"
+            },
+            {
+                "is_customizable": "1",
+                "delivery": "1-2 dage",
+                "kids": "1",
+                "name": "Lyon Udebaneshorts 2017/18 Børn",
+                "sizes": "128 cm, 140 cm, 152 cm, 164 cm, 176 cm",
+                "kid_adult": "0",
+                "free_porto": "0",
+                "image": "https://thumblr-0.unisport.dk/product/161439/f0930fdcda2d.jpg",
+                "package": "0",
+                "price": "269,00",
+                "url": "https://www.unisport.dk/fodboldtroejer/lyon-udebaneshorts-201718-brn/161439/",
+                "online": "1",
+                "price_old": "0,00",
+                "currency": "DKK",
+                "img_url": "https://s3-eu-west-1.amazonaws.com/product-img/161439_maxi_0.jpg",
+                "id": "161439",
+                "women": "0"
+            },
+            {
+                "is_customizable": "1",
+                "delivery": "1-2 dage",
+                "kids": "1",
+                "name": "Lyon Hjemmebanesæt 2017/18 Mini-Kit Børn",
+                "sizes": "92cm, 98cm, 104cm, 110cm, 116cm",
+                "kid_adult": "0",
+                "free_porto": "0",
+                "image": "https://thumblr-1.unisport.dk/product/161437/1379174ec063.jpg",
+                "package": "0",
+                "price": "499,00",
+                "url": "https://www.unisport.dk/fodboldtroejer/lyon-hjemmebanest-201718-mini-kit-brn/161437/",
+                "online": "1",
+                "price_old": "0,00",
+                "currency": "DKK",
+                "img_url": "https://s3-eu-west-1.amazonaws.com/product-img/161437_maxi_0.jpg",
+                "id": "161437",
+                "women": "0"
+            }
+        ]
+        assert get("http://127.0.0.1:5000/products/kids").json() == kids_products
+
+    def test_product_by_id():
+        a = {
             "currency": "DKK",
             "delivery": "1-2 dage",
             "free_porto": "0",
@@ -155,13 +175,22 @@ class TestWebService(unittest.TestCase):
             "url": "https://www.unisport.dk/fodboldtroejer/fortuna-dusseldorf-hjemmebanetrje-201617-brn/153344/",
             "women": "0"
         }
-        # Make sure that the product-by-id-lookup process is correct.
-        self.assertDictEqual(
-            a, b
-        )
-        self.assertEqual(
-            get("http://127.0.0.1:5000/products/4").status_code, 404
-        )
+        assert get("http://127.0.0.1:5000/products/153344").json() == a
+        assert get("http://127.0.0.1:5000/products/2").status_code == 404
+
+    test_products()
+    test_kids_products()
+    test_product_by_id()
+
+def main(*tests):
+    """
+    Main function of the testing program.
+    """
+    for test in tests:
+        print(f"Running {test.__name__}")
+        test()
 
 if __name__ == "__main__":
-    unittest.main()
+    with open("products.sorted.json", encoding="utf8") as sorted_products:
+        products = json.load(sorted_products)
+        main(test_utilities, test_web_service)
