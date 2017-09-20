@@ -27,6 +27,10 @@ This way any user of the web service API could create, read, update, and delete 
 This could further be extended to use some kind of frontend framework, which would handle these requests.
 Or you could use XHR. Or even another server, which would serve pages with forms to edit and delete products, etc.
 
+One possibility would be to design the project with Flask blueprints. A blueprint which would point to /,
+which would serve the frontend for easy-to-use editing, etc. of products. Another blueprint for /products,
+which would serve up the web service as made here. Of course with the SQLAlchemy backend in mind.
+
 """
 
 import json
