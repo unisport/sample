@@ -18,6 +18,15 @@ This is done because I believe standard 404 errors should be a part of a standar
 
 I believe the specific requirements of the web service have been met.
 The original repo and said requirements can be found here: https://github.com/unisport/sample
+
+Extra:
+
+If I would have had more time on my hands, I would've implemented a SQLAlchemy model Product(),
+which would serve as a backend connection. I would then make a RESTful implementation of the webservice.
+This way any user of the web service API could create, read, update, and delete products as they would see fit.
+This could further be extended to use some kind of frontend framework, which would handle these requests.
+Or you could use XHR. Or even another server, which would serve pages with forms to edit and delete products, etc.
+
 """
 
 import json
