@@ -90,15 +90,15 @@ def kids_products():
     
     return jsonify(cheapest_products)
 
-@app.route("/products/<id>")
-def product_by_id(id):
+@app.route("/products/<_id>")
+def product_by_id(_id):
     """
-    The /products/<id> endpoint. This is made as per the design request.
+    The /products/<_id> endpoint. This is made as per the design request.
     Will 404, if the requested id is not found.
     """
     products_list = data["products"]
     for p in products_list: # Linearly search the products-list. This is done for simplicity.
-        if p["id"] == id:
+        if p["id"] == _id:
             return jsonify(p)
     abort(404)
 
