@@ -1,5 +1,5 @@
 """
-other_tests.py
+tests.py
 
 This module is for testing, without using the unittest package.
 There were some complications using the unittest package in regards
