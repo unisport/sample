@@ -107,3 +107,6 @@ frontend/node_modules/
 # IDE settings
 .idea/
 
+# Database
+*.sqlite3
+
