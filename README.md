@@ -1,11 +1,9 @@
 # About me
 Name: Alexander Meinhardt Scheurer
 
-Study: Computer science at DIKU
+Study: Datalogi at DIKU
 
-Contact: alexandermscheurer@gmail.com
-
-         +45 41 44 77 54
+Contact: alexandermscheurer@gmail.com and +45 41 44 77 54
 # My "simple" solution
 ## Layout
 This app has been set up with extendability in mind. Therefore I choose to use a NGINX
