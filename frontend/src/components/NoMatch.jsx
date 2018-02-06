@@ -6,11 +6,11 @@ class NoMatch extends Component {
     return (
     	<div>
     		<br />
-    		<h1>Page could not be found</h1>
+    		<h1>Siden kunne ikke findes</h1>
     		<br />
     		<p>
-    			Try using the browsers back function or go to the&nbsp;
-    			<Link to='/'>hompage</Link>
+    			Brug din browsers tilbage funktion eller gå til&nbsp;
+    			<Link to='/'>forsiden</Link>
     		</p>
 	    </div>
     );

@@ -4,15 +4,27 @@ import { Link } from 'react-router-dom';
 class Footer extends Component {
   render() {
     return (
-    	<footer>
+    	<footer style={styles.footer}>
         	<p>
         		Website developed by&nbsp;
-        		<Link to='https://github.com/BeneCollyridam'>
+        		<Link to='https://github.com/BeneCollyridam' style={styles.link}>
         			Alexaxander M. Scheurer
-    			</Link>
+    			  </Link>
         	</p>
       	</footer>
     );
+  }
+}
+
+const styles = {
+  footer: {
+    gridArea: 'footer',
+    background: '#3C3C38',
+    color: 'white',
+    display: 'inline-flex'
+  },
+  link: {
+    color: 'white'
   }
 }
 
