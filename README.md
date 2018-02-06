@@ -1,7 +1,10 @@
 # About me
 Name: Alexander Meinhardt Scheurer
+
 Study: Computer science at DIKU
+
 Contact: alexandermscheurer@gmail.com
+
          +45 41 44 77 54
 # My "simple" solution
 ## Layout
