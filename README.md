@@ -94,7 +94,7 @@ should return the individual product.
 **_Remember to document (why, not how)_**
 
 #### Bonus:
- -[x] extend the service so the products can also be created, edited and deleted in a backend of choice.
+ - [x] extend the service so the products can also be created, edited and deleted in a backend of choice.
 
 
 _You are welcome to use any thirdparty python web framework or library that you are familiar with._
