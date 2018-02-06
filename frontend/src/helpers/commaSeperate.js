@@ -1,4 +1,8 @@
 export default (number=0) => {
+	if(isNaN(number)) {
+		return "Prisen findes ikke"
+	}
+
 	let s = number.toString()
 	let len = s.length
 	if(len === 1) {

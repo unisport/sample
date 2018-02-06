@@ -13,10 +13,10 @@ class Product(models.Model):
     sizes = models.TextField()
     # Price represented in øre to avoid decimal errors
     price = models.PositiveIntegerField(help_text="OBS price is in øre!")
-    discount_type = models.CharField(max_length=20)  # Covers all cases
-    online = models.BooleanField()
     # Same goes for price_old
     price_old = models.PositiveIntegerField()
+    discount_type = models.CharField(max_length=20)  # Covers all cases
+    online = models.BooleanField()
     # According to ISO 4217 all currencies have three letter abbreviations
     currency = models.CharField(max_length=3)
     img_url = models.URLField()

@@ -1,3 +1,8 @@
+# About me
+Name: Alexander Meinhardt Scheurer
+Study: Computer science at DIKU
+Contact: alexandermscheurer@gmail.com
+         +45 41 44 77 54
 # My "simple" solution
 ## Layout
 This app has been set up with extendability in mind. Therefore I choose to use a NGINX
@@ -29,12 +34,37 @@ Programs needed to run the app:
 - Python3 with requirements.txt installed
 - Node.js and npm/yarn for the frontend
 
-Run the setup.py script. If you have chosen the NGINX user to be other than http
-you should change this in the script in line 14 in frontend/package.json.
+### Steps to install
+- Create a virtual environment in Python to have the required packages and install the
+packages listed in requirements.txt with the command `pip install -r requirements.txt`
+- Now run the `setup.py` script - this script needs root permissions to create the www
+folder
+If you have chosen the NGINX user to be other than http you should change this in the
+script in line 14 in frontend/package.json. Notice that this will overwrite your NGINX
+configuration so you should take a backup of your old configuration
+- Change to the frontend folder and run `npm install`
+- Change to the backend folder and run `python manage.py migrate`
+- Import the sample JSON with `python manage.py import_json ../sample.json`
 
-To start the app start your NGINX server, start the Django server on port 8000 and
-run `npm build` in the frontend directory.
+### To start the app
+- Start your NGINX server eg. `systemctl start nginx`
+Start the Django server on port 8000 by running `python mangae.py runserver` in the
+backend directory.
+Finally run `sudo npm build` in the frontend directory
+Root permissions are needed to
 
+### To add products
+
+
+# Improvements
+On the to do list is definetly more tests to be written. I would like to test different
+views in the backend. E.g. testing that each view only returns 10 elements and so on.
+
+I would also like to write more tests for the frontend and maybe even use a library to run
+a browser headless to test the different pages.
+
+The admin interface definetly also needs an upgrade. E.g. making the fields that have the
+same information into checkboxes and generating an ID automatically.
 
 # API
 _Fork this project and send us a pull request_
