@@ -1,8 +1,9 @@
 # About me
 Name: Alexander Meinhardt Scheurer
-Study: Computer science at DIKU
-Contact: alexandermscheurer@gmail.com
-         +45 41 44 77 54
+
+Study: Datalogi at DIKU
+
+Contact: alexandermscheurer@gmail.com and +45 41 44 77 54
 # My "simple" solution
 ## Layout
 This app has been set up with extendability in mind. Therefore I choose to use a NGINX
@@ -94,7 +95,7 @@ should return the individual product.
 **_Remember to document (why, not how)_**
 
 #### Bonus:
- -[x] extend the service so the products can also be created, edited and deleted in a backend of choice.
+ - [x] extend the service so the products can also be created, edited and deleted in a backend of choice.
 
 
 _You are welcome to use any thirdparty python web framework or library that you are familiar with._
