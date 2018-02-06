@@ -110,3 +110,5 @@ frontend/node_modules/
 # Database
 *.sqlite3
 
+# Static files
+backend/backend/static
