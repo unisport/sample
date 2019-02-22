@@ -5,7 +5,6 @@ Write a simple python webservice that uses, manipuates and returns the data foun
 
 **/products/**  
 
-
 should return the first 10 objects ordered with the cheapest first.
  
 **/products/kids/**
@@ -16,7 +15,7 @@ should return the products where kids=1 ordered with the cheapest first
  
  The products should be paginated where **page** in the url above should return the next 10 objects  
 
- **/products/id/**
+**/products/id/**
  
 should return the individual product.
 
