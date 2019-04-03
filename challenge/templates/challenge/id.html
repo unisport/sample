@@ -1,0 +1,21 @@
+{% extends 'challenge\basicTemplate.html' %}
+
+{% block title %}Produkt specifikt id {% endblock %}
+
+{% block content %}
+<h1>Product shown by ID in the URL</h1>
+<table>
+    
+    <tr><td>ID</td><td>Product name</td><td>Product price</td></tr>
+    {% for x in data %}
+    <tr>
+        <td style="padding:3px">{{ x.product_id }}</td><td> {{ x.name }}</td><td>{{ x.price }} {{ x.currency }}</td>
+    </tr>
+    
+    {% empty %}
+        <h2>Sorry, we dont have this product in stock</h2>
+    {% endfor %}
+
+    </table>
+
+{% endblock %}
