@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+</head>
+<body>
+    <h1>{{ product.name|capitalize }}</h1>
+    <p>Price: {{ product.price }}</p>
+    <p><img src="{{  product.image }}"></p>
+
+    <br>
+
+    <h1>Edit product</h1>
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name() }}
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.price.label }}<br>
+            {{ form.price() }}
+            {% for error in form.price.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.image.label }}<br>
+            {{ form.image() }}
+            {% for error in form.image.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <br>
+
+    <h1>Delete product</h1>
+
+    <p><form action="{{ url_for('product_deletion', id=product.id) }}" method="post"><input type="submit" value="Click here to delete the product"></form></p>
+
+    <br>
+
+    <p><a href="{{ url_for('products') }}">Return to products</a></p>
+</body>
+</html>
