@@ -4,13 +4,21 @@ The code is structured into classes, so it is easier to switch between data sour
 
 Files:
   WebserviceUnisportData.py:
+  
     contains: webservice checks the url for variables and routes the request. Return the data as json 
+
   GetData.py:
+
     contains: functions for getting data from Unisport json sample data or other sources of data
+
   SortData.py:
+
     contains: functions for sorting the data fetched from unisport sample data or other sources
+
   ManipulateData.py:
+
     contains: functions to create, update and delete products in unisport sample data
+
 
 
 
