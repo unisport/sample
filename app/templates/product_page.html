@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>{{ product.name|capitalize }}</h1>
-    <p>Price: {{ product.price }}</p>
+    <p>Price: {{ 'DKK%.2f'|format(product.price / 100) }}</p>
     <p><img src="{{  product.image }}"></p>
 
     <br>
