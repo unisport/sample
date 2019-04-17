@@ -34,7 +34,7 @@
 {% for product in products.items %}
 
     <p><a href="{{ url_for('product_page', id=product.id) }}">{{  product.name }}</a></p>
-    <p>{{  product.price }}</p>
+    <p>{{  'DKK%.2f'|format(product.price / 100) }}</p>
 
 {%  endfor %}
 
