@@ -23,9 +23,17 @@
 <br>
 
 {%  if prev_url %}
-    <a href="{{ prev_url }}">Previous page</a> |
+    <a href="{{ prev_url }}">Previous page</a>
 {% endif %}
 
+{% for page in products.iter_pages(2, 2, 2, 2) %}
+    {% if page %}
+        <a href="{{ url_for('products', page=page) }}">{{ page }}</a>
+    {% else %}
+        ...
+    {% endif %}
+{% endfor %}    
+    
 {% if next_url %}
     <a href="{{ next_url }}">Next page</a>
 {% endif %}
