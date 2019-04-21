@@ -23,7 +23,7 @@ def products():
     page = request.args.get('page', 1, type=int)
 
     #Query the DB to get all items (ascending order) and adding SQLAlchemy pagination
-    products = Products.query.order_by(Products.price.asc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
+    products = Products.query.order_by(Products.price.asc()).paginate(page, app.config['PRODUCTS_PER_PAGE'], False)
 
     #Create next or prev links
     next_url = url_for('products', page=products.next_num) if products.has_next else None
