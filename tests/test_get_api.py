@@ -25,7 +25,7 @@ def test_data():
 
     """
     GIVEN i access the data object
-    WHEN i check the datatype for data
+    WHEN i check the datatype of the object data
     THEN list is returned
     """""
 
