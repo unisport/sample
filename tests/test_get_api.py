@@ -1,6 +1,15 @@
 import pytest
 import requests
-from app.get_data_from_api import request_api
+import json
+
+
+def request_api():
+    try:
+        r = requests.get('https://www.unisport.dk/api/sample/')
+        data = json.loads(r.text)['products']
+    except Exception:
+        pass
+    return data
 
 
 #Status_code 200 ok when requesting the API.
@@ -19,8 +28,8 @@ def test_response():
 
 
 #Datatype for the data object
-@pytest.mark.test_api_data
-def test_data():
+@pytest.mark.test_api_list
+def test_data_list():
     data = request_api()
 
     """
@@ -33,8 +42,8 @@ def test_data():
 
 
 #index 0 in data
-@pytest.mark.test_api_data
-def test_data():
+@pytest.mark.test_api_index_zero
+def test_data_index_zero():
     data = request_api()
 
     """
@@ -47,8 +56,8 @@ def test_data():
 
 
 #Are the keys "kid" and "kid_adult" are in the data object.
-@pytest.mark.test_api_data
-def test_data():
+@pytest.mark.test_api_data_kids
+def test_data_kids():
     data = request_api()
 
     """
