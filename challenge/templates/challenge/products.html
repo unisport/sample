@@ -4,22 +4,52 @@
 
 {% block content %}
 <h1>Products sorted by 10 cheapest products</h1>
+- Products with price = zero is removed<br /><br />
 <table>
-    <tr><td>Product name</td><td>Product price</td></tr>
+    <tr id="top_menu">
+        <td>Product name</td><td>Product price</td><td>Product image</td>
+    </tr>
     {% for x in data %}
     <tr>
-        <td style="padding:3px">
+        <td>
             <a href="{{ x.product_id }}/">{{ x.name }}</a>
         </td>
-        <td>{{ x.price }} {{ x.currency }}
-
+        <td>
+            {{ x.price }} {{ x.currency }}
+        </td>
+        <td>
+            <img height=100 src="{{ x.img_url }}">
         </td>
     </tr>
-    
     {% empty %}
-        <h2>Sorry, we dont have this product in stock</h2>
+        <h2>Undskyld, vi har ikke dette/disse produkter på lager.</h2>
     {% endfor %}
+</table>
+<br ><br >
+<table id="zero">
+    {% if data2 %}
+    <tr>
+        <td>
+            <br />
+            Produkter til 0 kroner!
+            <br /> <br />
+        </td>
+    </tr>
+    {% endif %}
+    {% for y in data2 %}
+    <tr>
+        <td>
+            <a href="{{ y.product_id }}/">{{ y.name }}</a>
+        </td>
+        <td>
+            {{ y.price }} {{ y.currency }}
+        </td>
+        <td>
+            <img height=100 src="{{ y.img_url }}">
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 
-    </table>
 
 {% endblock %}
