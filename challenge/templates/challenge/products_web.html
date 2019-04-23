@@ -1,0 +1,35 @@
+{% extends 'challenge\basicTemplate.html' %}
+
+{% block title %}Products sorted{% endblock %}
+
+{% block content %}
+<h1>Products directly from the web sample</h1>
+<br /><br />
+<table>
+    <tr id="top_menu">
+        <td colspan="3">
+            Web Sample data
+        </td>
+    </tr>
+
+    <tr id="top_menu">
+        <td>Product name</td><td>Product price</td><td>Product image</td>
+    </tr>
+    {% for x in data_web.products %}
+    <tr>
+        <td>
+            {{ x.name }}
+        </td>
+        <td>
+            {{ x.price }} {{ x.currency }}
+        </td>
+        <td>
+            <img height=100 src="{{ x.image }}">
+        </td>
+    </tr>
+    {% empty %}
+        <h2>Sorry, we dont have this product in stock </h2>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 {% load staticfiles %}
 
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,31 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <center>
+        <table id="top_menu">
+            <tr>
+                <td>
+                    <a href="{% url 'index' %}">Frontpage</a>
+                </td>
+                <td>
+                    <a href="{% url 'products' %}">10 Cheapest</a>
+                </td>
+                <td>
+                    <a href="{% url 'kids' %}">10 Cheapest kids</a>
+                </td>
+                <td>
+                    <a href="{% url 'paging' %}">Pagination</a>
+                </td>
+                <td>
+                    <a href="{% url 'products_web' %}">Products - Web sample</a>
+                </td>
+                <td
+                    <a href="{% url 'admin:index' %}">Admin</a>
+                </td>
+            </tr>
+        </table>
+    </center>
+
     {% block content %}{% endblock %}    
     
 </body>

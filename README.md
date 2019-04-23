@@ -1,3 +1,7 @@
+
+
+#Update 23-04-2019 - Made some small updates to some of the views, made some house cleaning in the files, and lastly made a new view to show the products directly from the sample page. URL http://localhost:8000/products/products_web/ It is also now possible to access the solution from http://localhost:8000/ (without the challenge)
+
 Unisport code_challenge
 
 Solution to Unisport_code_challenge
@@ -6,8 +10,7 @@ I have choosen to use the Django framework, after a little bit of research it se
 
 Dependencies : - Python 3 (version 3.7.3) - Django 2.1.7 (pip install django)
 
-    Browse to Unisport_code_challenge
-    Run: py manage.py runserver 
+Browse to Unisport_code_challenge Run: py manage.py runserver
 
 You can now browse ot : http://localhost:8000/challenge/ - And access my solution.
 
@@ -17,9 +20,7 @@ Write a simple python webservice that uses, manipulates and returns the data fou
 
 As I found out today, you have changed the data on https://www.unisport.dk/api/sample/, I had to rewrite my import function to use a file with the old data. So if you run import_json.py it will take the data an import into the SQLite DB. (Its already done in these files.)
 
-All the task below is setup through Django, via views and html files. (Templates)
-The code written to receive data from the DB is written in the views.py file. You can find the HTML files in /templates/challenge/ there is a minimum of code in these files.
-The models.py file, have the data structure for the datamodel in Django and the DB.
+All the task below is setup through Django, via views and html files. (Templates) The code written to receive data from the DB is written in the views.py file. You can find the HTML files in /templates/challenge/ there is a minimum of code in these files. The models.py file, have the data structure for the datamodel in Django and the DB.
 
 /products/
 
