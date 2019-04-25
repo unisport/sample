@@ -1,6 +1,6 @@
 _Fork this project and send us a pull request_
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [http://www.unisport.dk/api/sample/](http://www.unisport.dk/api/sample/).
+Write a simple python webservice that uses, manipuates and returns the data found here: [https://www.unisport.dk/api/products/batch/](https://www.unisport.dk/api/products/batch/?list=179249,179838,174351,180011,180020,178429).
 
 
 **/products/**  
