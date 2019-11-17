@@ -1,0 +1,155 @@
+/* Bootstrap override styles */
+
+
+/* Custom styles */
+
+.nike-header {
+    background: url('https://thumblr.uniid.it/base_navigation_item/9/f39975fcc558.jpg');
+    background-size: cover;
+    background-position-y: center;
+    height: 400px;
+}
+
+.nike-header h1 {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.70);
+    color: white;
+    display: inline-block;
+}
+
+.nike-header p {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.70);
+    color: white;
+    display: inline-block;
+}
+
+.adidas-header {
+    background: url('https://thumblr.uniid.it/base_navigation_item/6/1fe79a3aa035.jpg');
+    background-size: cover;
+    background-position-y: center;
+    height: 400px;
+}
+
+.adidas-header h1 {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    color: rgb(0, 0, 0);
+    display: inline-block;
+}
+
+.adidas-header p {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    color: rgb(0, 0, 0);
+    display: inline-block;
+}
+
+.kids-header {
+    background: url('https://thumblr-production.s3.amazonaws.com/base_navigation_item/37/700e3130d290.jpg');
+    background-size: cover;
+    background-position-y: center;
+    height: 400px;
+}
+
+.kids-header h1 {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.70);
+    color: white;
+    display: inline-block;
+}
+
+.kids-header p {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.70);
+    color: white;
+    display: inline-block;
+}
+
+.women-header {
+    background: url('https://thumblr.uniid.it/base_navigation_item/38/fd6de6482438.jpg');
+    background-size: cover;
+    background-position-y: center;
+    height: 400px;
+}
+
+.women-header h1 {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.70);
+    color: white;
+    display: inline-block;
+}
+
+.women-header p {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.70);
+    color: white;
+    display: inline-block;
+}
+
+.product-card {
+    position: relative;
+    max-width: 220px;
+    text-align: center;
+    line-height: 1.33rem;
+    margin-bottom: 60px;
+}
+
+.product-label-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.product-label-discount {
+    background-color: #28a745;
+    color: #fff;
+    padding: 3px 10px;
+    margin-bottom: 3px;
+    display: inline-block;
+}
+
+.product-label-tag {
+    background-color: #000;
+    color: #fff;
+    padding: 3px 10px;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.product-image {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.product-name {
+    padding: 10px 0;
+    font-weight: bold;
+    height: 5rem;
+    overflow: hidden;
+}
+
+.product-price,
+.product-more {
+    padding: 10px 0;
+}
+
+.product-price {
+    color: #28a745;
+    font-size: 1.5rem
+}
+
+
+/* Pagination */
+
+.pagination {
+    margin-top: 20px;
+}
+
+.page-link,
+.page-link:hover {
+    color: #28a745;
+}
