@@ -22,7 +22,7 @@
 
                         {% if product.labels != '' or product.discount != '' %}
                         <div class="product-label-container">
-                            {% if product.discount != '' %}
+                            {% if product.discount > 0 %}
                             <div class="product-label-discount">
                                 -{{ product.discount }}%
                             </div>
