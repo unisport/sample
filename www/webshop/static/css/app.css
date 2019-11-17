@@ -57,6 +57,12 @@
     background-position-y: center;
 }
 
+.outlet-header {
+    background: url('../images/sale.jpg');
+    background-size: cover;
+    background-position-y: center;
+}
+
 .nike-header {
     background: url('https://thumblr.uniid.it/base_navigation_item/9/f39975fcc558.jpg');
     background-size: cover;

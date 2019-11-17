@@ -167,6 +167,37 @@ def product_list_kids(request):
     return render(request, 'webshop/product_list.html', context=context)
 
 
+def product_list_outlet(request):
+    header_text = 'Outlet'
+    header_class = 'outlet-header'
+    lead_text = 'Her finder du gode tilbud - min. 30% rabat'
+
+    products = Product.objects.filter(discount__gte=30).order_by('-discount')
+
+    paginator = Paginator(products, 20)
+    page = request.GET.get('page', 1)
+    product_range = paginator.page(page)
+
+    for product in product_range:
+        # returning product labels as a list
+        if product.labels != '':
+            product.labels = product.labels.split(",")
+
+        # limiting text lenght of product name
+        product.name = product.name[:60] + "..."
+
+        # formatting price from øre to kr with 2 decimals
+        product.price = "{:.2f}".format(product.price / 100)
+
+    context = {
+        'header_text': header_text,
+        'header_class': header_class,
+        'lead_text': lead_text,
+        'products': product_range
+    }
+    return render(request, 'webshop/product_list.html', context=context)
+
+
 def brand_list_nike(request):
     header_text = 'Nike'
     header_class = 'nike-header'
