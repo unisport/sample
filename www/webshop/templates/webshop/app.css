@@ -1,6 +1,23 @@
 /* Bootstrap override styles */
 
 
+/* Pagination */
+
+.pagination {
+    margin-top: 20px;
+}
+
+.page-link,
+.page-link:hover {
+    color: #28a745;
+}
+
+.page-item.active>.page-link {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+
 /* Custom styles */
 
 .nike-header {
@@ -120,16 +137,4 @@
 .product-price,
 .product-more {
     padding: 10px 0;
-}
-
-
-/* Pagination */
-
-.pagination {
-    margin-top: 20px;
-}
-
-.page-link,
-.page-link:hover {
-    color: #28a745;
 }

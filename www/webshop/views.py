@@ -1,6 +1,12 @@
+# code library imports
+import json
+
+# Django imports
 from django.shortcuts import render
 from django.http import HttpResponse
-import json
+from django.core.paginator import Paginator
+
+# project imports
 from .models import Product
 
 
@@ -12,9 +18,13 @@ def index(request):
 def product_list(request):
     header_text = 'Product listing'
     lead_text = 'This is the product lead text'
-    products = Product.objects.all()
 
-    for product in products:
+    products = Product.objects.all()
+    paginator = Paginator(products, 20)
+    page = request.GET.get('page', 1)
+    product_range = paginator.page(page)
+
+    for product in product_range:
         # returning product labels as a list
         if product.labels != '':
             product.labels = product.labels.split(",")
@@ -28,7 +38,152 @@ def product_list(request):
     context = {
         'header_text': header_text,
         'lead_text': lead_text,
-        'products': products
+        'products': product_range
+    }
+    return render(request, 'webshop/product_list.html', context=context)
+
+
+def product_list_men(request):
+    header_text = 'Mænd'
+    lead_text = 'Listen af vores produkter til mænd'
+
+    products = Product.objects.filter(gender__icontains="men's").filter(
+        age__icontains="adults")
+
+    paginator = Paginator(products, 20)
+    page = request.GET.get('page', 1)
+    product_range = paginator.page(page)
+
+    for product in product_range:
+        # returning product labels as a list
+        if product.labels != '':
+            product.labels = product.labels.split(",")
+
+        # limiting text lenght of product name
+        product.name = product.name[:60] + "..."
+
+        # formatting price from øre to kr with 2 decimals
+        product.price = "{:.2f}".format(product.price / 100)
+
+    context = {
+        'header_text': header_text,
+        'lead_text': lead_text,
+        'products': product_range
+    }
+    return render(request, 'webshop/product_list.html', context=context)
+
+
+def product_list_women(request):
+    header_text = 'Kvinder'
+    lead_text = 'Listen af vores produkter til kvinder'
+
+    products = Product.objects.filter(gender__icontains="women").filter(
+        age__icontains="adults")
+
+    paginator = Paginator(products, 20)
+    page = request.GET.get('page', 1)
+    product_range = paginator.page(page)
+
+    for product in product_range:
+        # returning product labels as a list
+        if product.labels != '':
+            product.labels = product.labels.split(",")
+
+        # limiting text lenght of product name
+        product.name = product.name[:60] + "..."
+
+        # formatting price from øre to kr with 2 decimals
+        product.price = "{:.2f}".format(product.price / 100)
+
+    context = {
+        'header_text': header_text,
+        'lead_text': lead_text,
+        'products': product_range
+    }
+    return render(request, 'webshop/product_list.html', context=context)
+
+
+def product_list_kids(request):
+    header_text = 'Børn'
+    lead_text = 'Listen af vores produkter til børn'
+
+    products = Product.objects.filter(age__icontains="kids")
+
+    paginator = Paginator(products, 20)
+    page = request.GET.get('page', 1)
+    product_range = paginator.page(page)
+
+    for product in product_range:
+        # returning product labels as a list
+        if product.labels != '':
+            product.labels = product.labels.split(",")
+
+        # limiting text lenght of product name
+        product.name = product.name[:60] + "..."
+
+        # formatting price from øre to kr with 2 decimals
+        product.price = "{:.2f}".format(product.price / 100)
+
+    context = {
+        'header_text': header_text,
+        'lead_text': lead_text,
+        'products': product_range
+    }
+    return render(request, 'webshop/product_list.html', context=context)
+
+
+def brand_list_nike(request):
+    header_text = 'Nike'
+    lead_text = 'Listen af vores produkter fra Nike'
+
+    products = Product.objects.filter(brand__iexact='Nike')
+    paginator = Paginator(products, 20)
+    page = request.GET.get('page', 1)
+    product_range = paginator.page(page)
+
+    for product in product_range:
+        # returning product labels as a list
+        if product.labels != '':
+            product.labels = product.labels.split(",")
+
+        # limiting text lenght of product name
+        product.name = product.name[:60] + "..."
+
+        # formatting price from øre to kr with 2 decimals
+        product.price = "{:.2f}".format(product.price / 100)
+
+    context = {
+        'header_text': header_text,
+        'lead_text': lead_text,
+        'products': product_range
+    }
+    return render(request, 'webshop/product_list.html', context=context)
+
+
+def brand_list_adidas(request):
+    header_text = 'Adidas'
+    lead_text = 'Listen af vores produkter fra Adidas'
+
+    products = Product.objects.filter(brand__iexact='adidas')
+    paginator = Paginator(products, 20)
+    page = request.GET.get('page', 1)
+    product_range = paginator.page(page)
+
+    for product in product_range:
+        # returning product labels as a list
+        if product.labels != '':
+            product.labels = product.labels.split(",")
+
+        # limiting text lenght of product name
+        product.name = product.name[:60] + "..."
+
+        # formatting price from øre to kr with 2 decimals
+        product.price = "{:.2f}".format(product.price / 100)
+
+    context = {
+        'header_text': header_text,
+        'lead_text': lead_text,
+        'products': product_range
     }
     return render(request, 'webshop/product_list.html', context=context)
 

@@ -16,7 +16,7 @@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-success">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">Unisport</a>
+        <a class="navbar-brand" href="{% url 'index' %}">Unisport</a>
 
         <!-- Toggler/collapsible Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -32,19 +32,19 @@
                         Brands
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Nike</a>
-                        <a class="dropdown-item" href="#">Adidas</a>
+                        <a class="dropdown-item" href="{% url 'brand_list_nike' %}">Nike</a>
+                        <a class="dropdown-item" href="{% url 'brand_list_adidas' %}">Adidas</a>
                     </div>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Mænd</a>
+                    <a class="nav-link" href="{% url 'product_list_men' %}">Mænd</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Kvinder</a>
+                    <a class="nav-link" href="{% url 'product_list_women' %}">Kvinder</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Børn</a>
+                    <a class="nav-link" href="{% url 'product_list_kids' %}">Børn</a>
                 </li>
 
             </ul>
