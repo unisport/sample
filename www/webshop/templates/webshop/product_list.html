@@ -73,7 +73,7 @@
 
                 {% comment %} Creating page buttons {% endcomment %}
                 {% for i in products.paginator.page_range %}
-                    {% if i <= products.number|add:5 and i >= products.number|add:-5 %}
+                    {% if i <= products.number|add:10 and i >= products.number|add:-9 %}
                     {% if products.number == i %}
                         <li class="page-item active">
                             <a href="#" class="page-link" style="background-color: #28a745; border-color: #28a745;">{{ i }}</a>
