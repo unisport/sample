@@ -210,7 +210,7 @@ def product_details(request, pk):
 def import_data(request):
 
     files = []
-    files.append('webshop/products_all.json')
+    files.append('webshop/products_men.json')
     files.append('webshop/products_kids.json')
     files.append('webshop/products_womens.json')
 
@@ -227,6 +227,7 @@ def import_data(request):
             p.image = product['image']
             p.url = product['url']
             p.price = product['price']
+            p.price_old = product['price_old']
             p.currency = product['currency']
             p.discount = product['discount_percentage']
             p.delivery = product['delivery']
