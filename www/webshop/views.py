@@ -17,6 +17,7 @@ def index(request):
 
 def product_list(request):
     header_text = 'Product listing'
+    header_class = ''
     lead_text = 'This is the product lead text'
 
     products = Product.objects.all()
@@ -37,6 +38,7 @@ def product_list(request):
 
     context = {
         'header_text': header_text,
+        'header_class': header_class,
         'lead_text': lead_text,
         'products': product_range
     }
@@ -45,6 +47,7 @@ def product_list(request):
 
 def product_list_men(request):
     header_text = 'Mænd'
+    header_class = 'men-header'
     lead_text = 'Listen af vores produkter til mænd'
 
     products = Product.objects.filter(gender__icontains="men's").filter(
@@ -67,6 +70,7 @@ def product_list_men(request):
 
     context = {
         'header_text': header_text,
+        'header_class': header_class,
         'lead_text': lead_text,
         'products': product_range
     }
@@ -75,6 +79,7 @@ def product_list_men(request):
 
 def product_list_women(request):
     header_text = 'Kvinder'
+    header_class = 'women-header'
     lead_text = 'Listen af vores produkter til kvinder'
 
     products = Product.objects.filter(gender__icontains="women").filter(
@@ -97,6 +102,7 @@ def product_list_women(request):
 
     context = {
         'header_text': header_text,
+        'header_class': header_class,
         'lead_text': lead_text,
         'products': product_range
     }
@@ -105,6 +111,7 @@ def product_list_women(request):
 
 def product_list_kids(request):
     header_text = 'Børn'
+    header_class = 'kids-header'
     lead_text = 'Listen af vores produkter til børn'
 
     products = Product.objects.filter(age__icontains="kids")
@@ -126,6 +133,7 @@ def product_list_kids(request):
 
     context = {
         'header_text': header_text,
+        'header_class': header_class,
         'lead_text': lead_text,
         'products': product_range
     }
@@ -134,6 +142,7 @@ def product_list_kids(request):
 
 def brand_list_nike(request):
     header_text = 'Nike'
+    header_class = 'nike-header'
     lead_text = 'Listen af vores produkter fra Nike'
 
     products = Product.objects.filter(brand__iexact='Nike')
@@ -154,6 +163,7 @@ def brand_list_nike(request):
 
     context = {
         'header_text': header_text,
+        'header_class': header_class,
         'lead_text': lead_text,
         'products': product_range
     }
@@ -162,6 +172,7 @@ def brand_list_nike(request):
 
 def brand_list_adidas(request):
     header_text = 'Adidas'
+    header_class = 'adidas-header'
     lead_text = 'Listen af vores produkter fra Adidas'
 
     products = Product.objects.filter(brand__iexact='adidas')
@@ -182,6 +193,7 @@ def brand_list_adidas(request):
 
     context = {
         'header_text': header_text,
+        'header_class': header_class,
         'lead_text': lead_text,
         'products': product_range
     }

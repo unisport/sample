@@ -3,88 +3,55 @@
 
 /* Custom styles */
 
-.nike-header {
+.product-list-header {
     background: url('https://thumblr.uniid.it/base_navigation_item/9/f39975fcc558.jpg');
     background-size: cover;
     background-position-y: center;
     height: 400px;
 }
 
-.nike-header h1 {
+.product-list-header h1 {
     padding: 10px 20px;
     background: rgba(0, 0, 0, 0.70);
     color: white;
     display: inline-block;
 }
 
-.nike-header p {
+.product-list-header p {
     padding: 10px 20px;
     background: rgba(0, 0, 0, 0.70);
     color: white;
     display: inline-block;
+}
+
+.nike-header {
+    background: url('https://thumblr.uniid.it/base_navigation_item/9/f39975fcc558.jpg');
+    background-size: cover;
+    background-position-y: center;
 }
 
 .adidas-header {
     background: url('https://thumblr.uniid.it/base_navigation_item/6/1fe79a3aa035.jpg');
     background-size: cover;
     background-position-y: center;
-    height: 400px;
 }
 
-.adidas-header h1 {
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.8);
-    color: rgb(0, 0, 0);
-    display: inline-block;
-}
-
-.adidas-header p {
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.8);
-    color: rgb(0, 0, 0);
-    display: inline-block;
+.men-header {
+    background: url('https://thumblr-production.s3.amazonaws.com/base_navigation_item/37/700e3130d290.jpg');
+    background-size: cover;
+    background-position-y: center;
 }
 
 .kids-header {
     background: url('https://thumblr-production.s3.amazonaws.com/base_navigation_item/37/700e3130d290.jpg');
     background-size: cover;
     background-position-y: center;
-    height: 400px;
-}
-
-.kids-header h1 {
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.70);
-    color: white;
-    display: inline-block;
-}
-
-.kids-header p {
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.70);
-    color: white;
-    display: inline-block;
 }
 
 .women-header {
     background: url('https://thumblr.uniid.it/base_navigation_item/38/fd6de6482438.jpg');
     background-size: cover;
     background-position-y: center;
-    height: 400px;
-}
-
-.women-header h1 {
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.70);
-    color: white;
-    display: inline-block;
-}
-
-.women-header p {
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.70);
-    color: white;
-    display: inline-block;
 }
 
 .product-card {
