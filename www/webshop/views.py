@@ -212,7 +212,7 @@ def import_data(request):
     files = []
     files.append('webshop/products_men.json')
     files.append('webshop/products_kids.json')
-    files.append('webshop/products_womens.json')
+    files.append('webshop/products_women.json')
 
     result_msg = ''
     for file_name in files:
