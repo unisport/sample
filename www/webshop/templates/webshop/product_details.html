@@ -3,7 +3,7 @@
     {% block content %}
     <div class="container product-details">
         <div class="row">
-            <div class="col-md-6 details-image">
+            <div class="col-md-4 details-image">
                 <div class="product-label-container">
                     <div class="product-label-discount">
                         -15%
@@ -15,36 +15,39 @@
                 <img src="{{ product.image }}" alt="" class="details-image">
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="details-id">
                     Produktnummer: {{ product.unisport_id }}
                 </div>
                 <div class="details-brand">
-                    {{product.brand}}
+                    Mærke: {{product.brand|title}}
                 </div>
                 <div class="details-name">
                     {{product.name}}
                 </div>
                 <div class="details-price">
-                    <span class="details-price discount">1.667 kr.</span>
-                    <span class="details-price recommended">1.999 kr.</span>
+                {% if product.price == product.price_old %}
+                    {{product.price}}&nbsp;{{product.currency}}
+                {% else %}
+                    <span class="details-price discount">{{product.price}}&nbsp;{{product.currency}}</span>
+                    <span class="details-price recommended">{{product.price_old}}&nbsp;{{product.currency}}</span>
+                {% endif %}
                 </div>
                 <div class="details-sizes form-group row">
                     <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Størrelser:</label>
                     <div class="col-sm-10">
                     <select name="" id="" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" >
-                        <option value="">39</option>
-                        <option value="">40</option>
-                        <option value="">41</option>
-                        <option value="">42</option>
-                        <option value="">43</option>
+                    {% for size in product.sizes %}
+                        <option value="{{ size }}">{{ size }}</option>
+                    {% endfor%}
                     </select>
                     </div>
                 </div>
                 <div class="details-delivery">
-                    Forventet levering: <span class="delivery">1-2 hverdage</span>
+                    Forventet levering: <span class="delivery">{{ product.delivery }}</span>
                 </div>
                 <div class="details-description">
+                    <p>Produktbeskrivelse</p>
                     <ul>
                         <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </li>
                         <li>Laoreet suspendisse interdum consectetur libero id faucibus. Lobortis scelerisque fermentum dui faucibus in ornare. </li>

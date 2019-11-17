@@ -203,6 +203,14 @@ def brand_list_adidas(request):
 def product_details(request, pk):
     # product = Product.objects.get(pk=pk)
     product = get_object_or_404(Product, pk=pk)
+
+    # formatting prices
+    product.price = "{:.2f}".format(product.price / 100)
+    product.price_old = "{:.2f}".format(product.price_old / 100)
+
+    # returning product sizes as a list
+    product.sizes = product.sizes.split(",")
+
     context = {'product': product}
     return render(request, 'webshop/product_details.html', context=context)
 

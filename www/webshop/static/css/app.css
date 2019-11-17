@@ -1,5 +1,15 @@
 /* Bootstrap override styles */
 
+/* Pagination */
+
+.pagination {
+    margin-top: 20px;
+}
+
+.page-link,
+.page-link:hover {
+    color: #28a745;
+}
 
 /* Custom styles */
 
@@ -110,18 +120,6 @@
 }
 
 
-/* Pagination */
-
-.pagination {
-    margin-top: 20px;
-}
-
-.page-link,
-.page-link:hover {
-    color: #28a745;
-}
-
-
 /* product details styles */
 
 .product-details {
@@ -148,6 +146,7 @@
 }
 
 .details-brand {
+    color: #999;
     font-size: 1rem;
     font-weight: bold;
     margin-bottom: 10px;
@@ -160,17 +159,17 @@
 }
 
 .details-price {
-    margin-bottom: 10px;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #666;
 }
 
 .details-price>.discount {
-    font-size: 1.2rem;
     display: inline-block;
     color: red;
 }
 
 .details-price>.recommended {
-    font-size: 1.2rem;
     display: inline-block;
     color: #aaa;
     text-decoration: line-through;
@@ -196,7 +195,7 @@
 }
 
 .details-description {
-    color: #999;
+    color: #666;
 }
 
 .details-description>ul>li {
