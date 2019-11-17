@@ -12,7 +12,34 @@ from .models import Product
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, world. You're at the webshop index.")
+    header_text = 'Unisport.dk'
+    header_class = 'frontpage-header'
+    lead_text = 'Dette er vores mest populære produkter lige nu'
+
+    products = Product.objects.filter(labels__icontains="populær").filter(
+        age__icontains="adults").filter(discount=0)
+    paginator = Paginator(products, 20)
+    page = request.GET.get('page', 1)
+    product_range = paginator.page(page)
+
+    for product in product_range:
+        # returning product labels as a list
+        if product.labels != '':
+            product.labels = product.labels.split(",")
+
+        # limiting text lenght of product name
+        product.name = product.name[:60] + "..."
+
+        # formatting price from øre to kr with 2 decimals
+        product.price = "{:.2f}".format(product.price / 100)
+
+    context = {
+        'header_text': header_text,
+        'header_class': header_class,
+        'lead_text': lead_text,
+        'products': product_range
+    }
+    return render(request, 'webshop/product_list.html', context=context)
 
 
 def product_list(request):

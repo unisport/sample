@@ -51,6 +51,12 @@
     display: inline-block;
 }
 
+.frontpage-header {
+    background: url('https://static.uniid.it/Lslhvu58bu-eb8T3ITm8wxZs73v');
+    background-size: cover;
+    background-position-y: center;
+}
+
 .nike-header {
     background: url('https://thumblr.uniid.it/base_navigation_item/9/f39975fcc558.jpg');
     background-size: cover;
