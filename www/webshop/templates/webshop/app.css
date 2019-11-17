@@ -138,3 +138,49 @@
 .product-more {
     padding: 10px 0;
 }
+
+
+/* product details styles */
+
+.product-details {
+    margin-top: 40px;
+}
+
+.details-id {
+    font-size: 0.7rem;
+    color: #aaa;
+}
+
+.details-image {
+    position: relative;
+    text-align: center;
+    line-height: 1.33rem;
+}
+
+.details-image img {
+    width: 500px;
+    height: auto;
+}
+
+.details-labels-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.details-label {
+    z-index: 2;
+    background-color: #000;
+    color: #fff;
+    padding: 3px 10px;
+}
+
+.details-price-discount {
+    display: inline-block;
+    color: red;
+}
+
+.details-price-recommended {
+    display: inline-block;
+    color: #aaa;
+}

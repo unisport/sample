@@ -2,7 +2,7 @@
 import json
 
 # Django imports
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 
@@ -198,6 +198,13 @@ def brand_list_adidas(request):
         'products': product_range
     }
     return render(request, 'webshop/product_list.html', context=context)
+
+
+def product_details(request, pk):
+    # product = Product.objects.get(pk=pk)
+    product = get_object_or_404(Product, pk=pk)
+    context = {'product': product}
+    return render(request, 'webshop/product_details.html', context=context)
 
 
 def import_data(request):

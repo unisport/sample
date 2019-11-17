@@ -1,0 +1,66 @@
+    {% extends 'webshop/base.html' %}
+    
+    {% block content %}
+    <div class="container product-details">
+        <div class="row">
+            <div class="col-md-6 details-image">
+                <div class="product-label-container">
+                    <div class="product-label-discount">
+                        -15%
+                    </div>
+                    <div class="product-label-tag">
+                        Populær
+                    </div>
+                </div>
+                <img src="{{ product.image }}" alt="" class="details-image">
+            </div>
+            
+            <div class="col-md-6">
+                <div class="details-id">
+                    Produktnummer: {{ product.unisport_id }}
+                </div>
+                <div class="details-brand">
+                    {{product.brand}}
+                </div>
+                <div class="details-name">
+                    {{product.name}}
+                </div>
+                <div class="details-price">
+                    <span class="details-price discount">1.667 kr.</span>
+                    <span class="details-price recommended">1.999 kr.</span>
+                </div>
+                <div class="details-sizes form-group row">
+                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Størrelser:</label>
+                    <div class="col-sm-10">
+                    <select name="" id="" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm" >
+                        <option value="">39</option>
+                        <option value="">40</option>
+                        <option value="">41</option>
+                        <option value="">42</option>
+                        <option value="">43</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="details-delivery">
+                    Forventet levering: <span class="delivery">1-2 hverdage</span>
+                </div>
+                <div class="details-description">
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </li>
+                        <li>Laoreet suspendisse interdum consectetur libero id faucibus. Lobortis scelerisque fermentum dui faucibus in ornare. </li>
+                        <li>Augue mauris augue neque gravida in fermentum et sollicitudin ac. Nisl tincidunt eget nullam non nisi.</li>
+                        <li>Amet risus nullam eget felis eget nunc lobortis. A erat nam at lectus urna duis convallis convallis tellus. </li>
+                        <li>Ut eu sem integer vitae justo eget magna fermentum. Faucibus interdum posuere lorem ipsum dolor. </li>
+                        <li>Volutpat maecenas volutpat blandit aliquam etiam erat velit. Sit amet volutpat consequat mauris nunc congue nisi vitae suscipit. </li>
+                        <li>Cursus in hac habitasse platea dictumst quisque. Lacus laoreet non curabitur gravida arcu. </li>
+                        <li>Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+    {% endblock %}

@@ -11,5 +11,6 @@ urlpatterns = [
     path('products/women', views.product_list_women,
          name='product_list_women'),
     path('products/kids', views.product_list_kids, name='product_list_kids'),
+    path('product/<int:pk>', views.product_details, name='product_details'),
     path('import', views.import_data, name='import_data'),
 ]

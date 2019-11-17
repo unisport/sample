@@ -120,3 +120,85 @@
 .page-link:hover {
     color: #28a745;
 }
+
+
+/* product details styles */
+
+.product-details {
+    margin-top: 40px;
+    line-height: 1.33;
+}
+
+.details-image {
+    position: relative;
+    text-align: center;
+    line-height: 1.33rem;
+    margin-bottom: 20px;
+}
+
+.details-image img {
+    width: 90%;
+    height: auto;
+}
+
+.details-id {
+    font-size: 0.7rem;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.details-brand {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.details-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.details-price {
+    margin-bottom: 10px;
+}
+
+.details-price>.discount {
+    font-size: 1.2rem;
+    display: inline-block;
+    color: red;
+}
+
+.details-price>.recommended {
+    font-size: 1.2rem;
+    display: inline-block;
+    color: #aaa;
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.details-sizes {
+    margin-bottom: 20px;
+}
+
+.details-sizes select {
+    width: 150px;
+}
+
+.details-delivery {
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
+.details-delivery>.delivery {
+    color: rgb(15, 199, 15);
+    display: inline-block;
+}
+
+.details-description {
+    color: #999;
+}
+
+.details-description>ul>li {
+    margin-bottom: 10px;
+}

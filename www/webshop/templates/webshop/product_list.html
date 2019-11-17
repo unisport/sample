@@ -45,7 +45,7 @@
                             {{ product.price }}&nbsp;{{ product.currency }}
                         </div>
                         <div class="product-more">
-                            <a href="#">
+                            <a href="{%url 'product_details' pk=product.pk%}">
                                 <button class="btn btn-success">Se mere</button>
                             </a>
                         </div>
