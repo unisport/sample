@@ -266,6 +266,10 @@ def product_details(request, pk):
     product.price = "{:.2f}".format(product.price / 100)
     product.price_old = "{:.2f}".format(product.price_old / 100)
 
+    # returning product labels as a list
+    if product.labels != '':
+        product.labels = product.labels.split(",")
+
     # returning product sizes as a list
     product.sizes = product.sizes.split(",")
 

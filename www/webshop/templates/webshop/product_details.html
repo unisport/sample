@@ -4,14 +4,22 @@
     <div class="container product-details">
         <div class="row">
             <div class="col-md-4 details-image">
-                <div class="product-label-container">
-                    <div class="product-label-discount">
-                        -15%
+                {% if product.labels != '' or product.discount != '' %}
+                    <div class="product-label-container">
+                        {% if product.discount > 0 %}
+                        <div class="product-label-discount">
+                            -{{ product.discount }}%
+                        </div>
+                        {% endif %}
+
+                        {% for label in product.labels %}
+                        <div class="product-label-tag">
+                            {{ label }}
+                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="product-label-tag">
-                        Populær
-                    </div>
-                </div>
+                {% endif %}
+                <br>
                 <img src="{{ product.image }}" alt="" class="details-image">
             </div>
             
