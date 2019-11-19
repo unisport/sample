@@ -141,7 +141,7 @@ def product_list_kids(request):
     header_class = 'kids-header'
     lead_text = 'Listen af vores produkter til børn'
 
-    products = Product.objects.filter(age__icontains="kids")
+    products = Product.objects.filter(age__icontains="kids").order_by('price')
 
     paginator = Paginator(products, 20)
     page = request.GET.get('page', 1)
