@@ -34,7 +34,7 @@
                     {{product.name}}
                 </div>
                 <div class="details-price">
-                {% if product.price == product.price_old %}
+                {% if product.price >= product.price_old %}
                     {{product.price}}&nbsp;{{product.currency}}
                 {% else %}
                     <span class="details-price discount">{{product.price}}&nbsp;{{product.currency}}</span>
