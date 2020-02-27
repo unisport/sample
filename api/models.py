@@ -1,16 +1,16 @@
 from django.db import models
 from django.contrib.postgres import fields as pg_fields
-# Create your models here.
 
 DEFAULT_CURRENCY = "DKK"
 
 
 class Product(models.Model):
     """Product model."""
+
     id = models.PositiveIntegerField(unique=True, primary_key=True)
     is_customizable = models.BooleanField(default=False)
     relative_url = models.CharField(max_length=255, default="")
-    price = models.CharField(max_length=10, default="0")
+    price = models.PositiveIntegerField(default=0)
     product_main_image = models.URLField(max_length=255)
     attribute_english = pg_fields.JSONField(default=dict)
     discount_type = models.CharField(null=True, max_length=50)
@@ -21,7 +21,7 @@ class Product(models.Model):
     discount_percentage = models.PositiveIntegerField(default=0)
     url = models.URLField(max_length=255)
     product_labels = pg_fields.ArrayField(
-        base_field=models.CharField(max_length=100),
+        base_field=pg_fields.JSONField(default=dict),
         default=list
     )
     online = models.BooleanField(default=True)

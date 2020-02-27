@@ -1,5 +1,10 @@
-import requests
 from api.serializers import ProductSerializer
+from django.db import IntegrityError, transaction
+from api.models import Product
+import requests
+import logging
+
+logger = logging.getLogger('unisport')
 
 
 def import_unisport_data():
@@ -17,6 +22,24 @@ def import_unisport_data():
         url=import_url,
         timeout=5
     )
-    products = response.json().get('products')
 
-    return products[0]
+    def product_generator(products):
+        for product in products:
+            yield product
+    with transaction.atomic():
+        Product.objects.all().delete()
+        for product in product_generator(response.json().get('products')):
+            product_serializer = ProductSerializer(data=product)
+            try:
+                product_serializer.is_valid()
+            except AssertionError as e:
+                logger.info(product_serializer.errors)
+                print(product_serializer.errors)
+                raise AssertionError(e)
+            try:
+                product_serializer.save()
+                logger.info(f"product {product.get('id')} imported")
+            except IntegrityError:
+                logger.error(f"could not import product {product.get('id')}")
+                continue
+        return True

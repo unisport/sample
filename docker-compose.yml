@@ -18,7 +18,7 @@ services:
       - db
 
   db:
-    image: postgres
+    image: postgres:11
     environment:
       - POSTGRES_USER=unisport
       - POSTGRES_DB=unisport
