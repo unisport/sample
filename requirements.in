@@ -1,0 +1,9 @@
+django-cors-headers==3.2.1
+django-extensions
+Django
+djangorestframework
+pip-tools==4.3.0
+python-dateutil
+requests
+stringcase
+psycopg2

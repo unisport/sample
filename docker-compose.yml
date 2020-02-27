@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  api:
+    build: .
+    command: ['python3', 'manage.py', 'runserver', '0.0.0.0:8000']
+    environment:
+      # DJANGO SETTINGS
+      - DEBUG=True
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_HOSTNAME=db
+      - UNISPORT_LOGGER_LEVEL=INFO
+      - POSTGRES_PASSWORD=rootpass
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=unisport
+      - POSTGRES_DB=unisport
+      - POSTGRES_PASSWORD=rootpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+volumes:
+  db-data:
