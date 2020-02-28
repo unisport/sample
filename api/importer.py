@@ -1,3 +1,11 @@
+import django
+import os
+import sys
+project_path = os.path.join(os.path.dirname(__file__), '../')
+sys.path.append(os.path.abspath(project_path))
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "unisport_project.settings")
+django.setup()
+
 from api.serializers import ProductSerializer
 from django.db import IntegrityError, transaction
 from api.models import Product
@@ -41,3 +49,7 @@ def import_unisport_data():
                 logger.error(f"could not import product {product.get('id')}")
                 continue
         return True
+
+
+if __name__ == "__main__":
+    import_unisport_data()
