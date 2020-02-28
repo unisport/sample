@@ -113,3 +113,22 @@ class TestProduct(TestCase):
         self.assertEqual(result.status_code, 204)
         all_products = Product.objects.all()
         self.assertEqual(all_products.count(), 39)
+
+    def test_age_view(self):
+        result = self.c.get(f"{self.product_api}kids/")
+        self.assertEqual(result.status_code, 200)
+        products = result.json().get('results')
+        for product in products:
+            self.assertEqual(
+                product.get('attribute_english').get('age')[0],
+                'Kids'
+            )
+
+        result = self.c.get(f"{self.product_api}adults/")
+        self.assertEqual(result.status_code, 200)
+        products = result.json().get('results')
+        for product in products:
+            self.assertEqual(
+                product.get('attribute_english').get('age')[0],
+                'Adults'
+            )
