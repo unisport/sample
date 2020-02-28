@@ -34,7 +34,6 @@ def import_unisport_data():
                 product_serializer.is_valid()
             except AssertionError as e:
                 logger.info(product_serializer.errors)
-                print(product_serializer.errors)
                 raise AssertionError(e)
             try:
                 product_serializer.save()

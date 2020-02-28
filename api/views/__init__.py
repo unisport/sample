@@ -1,2 +1,3 @@
-from .products import ProductViewSet
-from .products_gender import ProductGenderViewSet
+from .products import ProductView
+from .products_detail import ProductViewDetail
+from .products_age import ProductViewAge
