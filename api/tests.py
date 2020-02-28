@@ -36,7 +36,7 @@ class TestProduct(TestCase):
 
     def test_detail_view(self):
         product_id = 168029
-        result = self.c.get(f"{self.product_api}{product_id}")
+        result = self.c.get(f"{self.product_api}{product_id}/")
         self.assertEqual(result.status_code, 200)
         response_json = result.json()
         self.assertEqual(response_json.get('id'), product_id)
@@ -49,7 +49,7 @@ class TestProduct(TestCase):
         product_data = ProductSerializer(instance=product).data
 
         result = self.c.put(
-            f"{self.product_api}{product_id}",
+            f"{self.product_api}{product_id}/",
             product_data,
             content_type="application/json"
         )
@@ -68,7 +68,7 @@ class TestProduct(TestCase):
             "currency": "USD"
         }
         result = self.c.patch(
-            f"{self.product_api}{product_id}",
+            f"{self.product_api}{product_id}/",
             patch_data,
             content_type="application/json"
         )
@@ -109,7 +109,7 @@ class TestProduct(TestCase):
 
     def test_delete_product(self):
         product_id = 168029
-        result = self.c.delete(f"{self.product_api}{product_id}")
+        result = self.c.delete(f"{self.product_api}{product_id}/")
         self.assertEqual(result.status_code, 204)
         all_products = Product.objects.all()
         self.assertEqual(all_products.count(), 39)

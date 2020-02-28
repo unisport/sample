@@ -20,7 +20,7 @@ class ProductViewAge(
         """Return queryset based on gender."""
         products = self.queryset.filter(
             attribute_english__age__contains=age.capitalize()
-        )
+        ).order_by("price")
         page = self.paginate_queryset(products)
         if page is not None:
             serializer = self.get_serializer(page, many=True)

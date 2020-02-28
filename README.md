@@ -1,35 +1,35 @@
-_Fork this project and send us a pull request_
+# API documentation
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [https://www.unisport.dk/api/products/batch/](https://www.unisport.dk/api/products/batch/?list=179249,179838,174351,180011,180020,178429).
+The project runs on Python/Django and it's using Docker for the infrastructure.
 
+I chose Docker because it keeps the project portable and easy to run/deploy
+I was already familiar with Python and Django so that was my go to.
 
-**/products/**  
+The project also uses Django REST framework as an additional layer to structure the API.
 
+To run the project simply clone the repo and run _docker-compose up_ from a command line.
+After it's done run _docker-compose exec api python api/importer.py_
+This command will get the data from [Unisport's API](https://www.unisport.dk/api/products/batch/) and save it to the database instance.
+Once the data is loaded from the API into the database all the endpoints will work fine.
 
-should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
+I decided to use a database because all the operations are much faster than parsing the data on the fly.
+Postgress is particularly indicated to handle complex structures like JSON and arrays.
 
-**/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
+The API will expose:
 
- **/products/id/**
- 
-should return the individual product.
+**/api/products/**
+Will return all the product's list paginated by 10 items per page, ordered by price (ascending)
 
+**/api/products/?page=<x>**
+Will return the X page number of the product's list
 
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
+**/api/products/<id>**
+Will return a single product based on it's id
 
-#### Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
+**/api/products/<age>**
+Will return a list of products based the _age_ filter: it takes **kids** or **adults** as parameter.
 
+The API will accept all the CRUD operations and it's REST based.
 
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
-
-#### Forking and Pull Requests
-Information on how to work with forks and pull requests can be found here https://help.github.com/categories/collaborating-with-issues-and-pull-requests/
+_GET_ _PATCH_ _DELETE_ _PUT_ will work on **/api/products/<id>**
+_GET_ _POST_ will work on **/api/products/**
