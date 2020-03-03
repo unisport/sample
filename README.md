@@ -20,16 +20,16 @@ The API will expose:
 **/api/products/**
 Will return all the product's list paginated by 10 items per page, ordered by price (ascending)
 
-**/api/products/?page=<x>**
+**/api/products/?page=x**
 Will return the X page number of the product's list
 
-**/api/products/<id>**
+**/api/products/id**
 Will return a single product based on it's id
 
-**/api/products/<age>**
+**/api/products/age**
 Will return a list of products based the _age_ filter: it takes **kids** or **adults** as parameter.
 
 The API will accept all the CRUD operations and it's REST based.
 
-_GET_ _PATCH_ _DELETE_ _PUT_ will work on **/api/products/<id>**
+_GET_ _PATCH_ _DELETE_ _PUT_ will work on **/api/products/id**
 _GET_ _POST_ will work on **/api/products/**
