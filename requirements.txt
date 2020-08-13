@@ -1,0 +1,15 @@
+Flask
+requests
+
+# Better python shell
+ipython
+
+# Helpers
+pylint
+flake8
+
+# Testing + helpers
+pytest
+pytest-cov
+requests-mock
+pytest-flask

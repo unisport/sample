@@ -33,3 +33,12 @@ _You are welcome to use any thirdparty python web framework or library that you 
 
 #### Forking and Pull Requests
 Information on how to work with forks and pull requests can be found here https://help.github.com/categories/collaborating-with-issues-and-pull-requests/
+
+
+#### Run project
+ 1. pyenv virtualenv unisport
+ 2. pyenv activate unisport
+ 3. pip install -r requirement
+ 4. export FLASK_APP=sample/web.py
+ 5. python -m flask run
+ 6. Open http://localhost:5000 in a browser
