@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template, request, url_for
 
-from sample.api import Unisport
+from service.api import Unisport
 
 
 def create_app():

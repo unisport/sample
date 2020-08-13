@@ -1,5 +1,5 @@
 import requests
-from sample.constants import URL
+from service.constants import URL
 
 
 class Unisport:
