@@ -39,6 +39,6 @@ Information on how to work with forks and pull requests can be found here https:
  1. pyenv virtualenv unisport
  2. pyenv activate unisport
  3. pip install -r requirement
- 4. export FLASK_APP=sample/web.py
+ 4. export FLASK_APP=service/web.py
  5. python -m flask run
  6. Open http://localhost:5000 in a browser
