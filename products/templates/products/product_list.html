@@ -1,0 +1,63 @@
+{% extends 'products/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+<h1>{% trans 'Products' %}</h1>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="{% trans 'Previous' %}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-label="{% trans 'Previous' %}" aria-disabled="true">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% endif %}
+
+        {% for page in paginator.page_range %}
+            {% if page == page_obj.number %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">{{page}} <span class="sr-only">(current)</span></a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{page}}">{{page}}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="{% trans 'Next' %}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-label="{% trans 'Next' %}" aria-disabled="true">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div class="list-group">
+    {% for product in object_list %}
+    <a href="{% url 'product-detail' pk=product.pk %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        {{ product.name }}
+        <span class="badge badge-primary badge-pill">{{product.price}}</span>
+    </a>
+    {% empty %}
+    <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
+        aria-disabled="true">{% trans 'No products yet.' %}</a>
+    {% endfor %}
+</div>
+{% endblock %}

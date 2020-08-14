@@ -1,0 +1,7 @@
+django
+django-crispy-forms
+requests
+
+pytest
+pytest-django
+factory_boy

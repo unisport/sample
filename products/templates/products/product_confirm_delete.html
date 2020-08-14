@@ -1,0 +1,11 @@
+{% extends 'products/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    <p>{% trans 'Are you sure you want to delete' %} "{{ object }}"?</p>
+    <button type="submit" class="btn btn-danger">{% trans 'Confirm' %}</button>
+    <a class="btn btn-success" href="{% url 'product-detail' pk=object.pk %}">{% trans 'Cancel' %}</a>
+</form>
+{% endblock %}

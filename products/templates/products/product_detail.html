@@ -1,0 +1,21 @@
+{% extends 'products/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+    <img src="{{object.image}}" alt="{{object.name}}" class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title">{{object.name}}</h5>
+        <p class="card-text">{% trans 'Price' %} : {{object.price}}</p>
+    </div>
+    <div class="card-footer text-muted">
+        <a href="{% url 'product-update' pk=object.pk %}" class="btn btn-primary">{% trans 'Edit' %}</a>
+        <a href="{% url 'product-delete' pk=object.pk %}" class="btn btn-danger">{% trans 'Delete' %}</a>
+    </div>
+</div>
+
+
+
+{% endblock %}
