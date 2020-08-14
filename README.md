@@ -33,3 +33,11 @@ _You are welcome to use any thirdparty python web framework or library that you 
 
 #### Forking and Pull Requests
 Information on how to work with forks and pull requests can be found here https://help.github.com/categories/collaborating-with-issues-and-pull-requests/
+
+
+#### Run project
+ 1. pyenv virtualenv unisport-django
+ 2. pyenv activate unisport-django
+ 3. pip install -r requirement
+ 4. python manage.py runserver
+ 5. Open http://localhost:8000 in a browser
