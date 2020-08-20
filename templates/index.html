@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="section">
+    <div class="container">
+        <h1 class="title is-1">Create product</h1>
+        <form action="." method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="field">
+                    <label class="label">{{ field.label }}</label>
+                    <div class="control">
+                        <input class="input" type="text" name="{{ field.name }}" placeholder="{{ field.label }}">
+                    </div>
+                    {% for error in field.errors %}
+                        <p class="help is-danger">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="field">
+                <div class="control">
+                    <input class="button is-success" type="submit" value="Create" name="create">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <h1 class="title is-1">List of products</h1>
+        <div class="columns is-multiline">
+            {% for product in products %}
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="{{ product.image }}">
+                                {% if product.discount_percentage %}
+                                    <span class="badge is-warning">
+                                        -{{ product.discount_percentage }}%
+                                    </span>
+                                {% endif %}
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-4">{{ product.name }}</p>
+                                    <p class="subtitle is-6">Pris: {{ product.price_dkk }},-</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="." method="POST" class="card-footer">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{ product.id }}">
+                            <input type="submit" class="button card-footer-item" name="delete" value="Delete">
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Page</p>
+                    <p class="title">
+                        <a href="{{ request.meta.host }}?page={{ prev_page  }}">
+                            <i class="fas fa-angle-double-left"></i>
+                        </a>
+                        {{ page }}
+                        <a href="{{ request.meta.host }}?page={{ next_page }}">
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+{% endblock content %}

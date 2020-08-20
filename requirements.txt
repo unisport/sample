@@ -1,0 +1,4 @@
+Django~=3.1
+djangorestframework~=3.11
+django-simple-bulma~=2.0
+requests~=2.24

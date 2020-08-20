@@ -1,35 +1,34 @@
-_Fork this project and send us a pull request_
+### Endpoints
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [https://www.unisport.dk/api/products/batch/](https://www.unisport.dk/api/products/batch/?list=179249,179838,174351,180011,180020,178429).
+**/products/**
 
+This endpoint returns the first 10 objects ordered with the cheapest first.<br>
+A POST request with all relevant product fields will create a new product.
 
-**/products/**  
-
-
-should return the first 10 objects ordered with the cheapest first.
- 
 **/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
+
+This endpoint returns the products where the age group is set as "Kids" ordered with the cheapest first. This is also paginated.
 
 **/products/?page=2**
- 
- The products should be paginated where **page** in the url above should return the next 10 objects  
 
- **/products/id/**
- 
-should return the individual product.
+Returns products 10 through 20, because page size is set to 10. Ordered by cheapest.
 
+**/products/\<int:id>/**
 
- 
-**_Remember to test_**   
-**_Remember to document (why, not how)_**
+A GET request returns the individual product.<br>
+A PUT request with all relevant product fields will update the product.<br>
+A DELETE request will remove the product.
 
-#### Bonus:
- extend the service so the products can also be created, edited and deleted in a backend of choice.
+### Bonus
 
+I created a very primitive frontend that can view the products in store and create new products
 
-_You are welcome to use any thirdparty python web framework or library that you are familiar with._  
+### Set up
 
-#### Forking and Pull Requests
-Information on how to work with forks and pull requests can be found here https://help.github.com/categories/collaborating-with-issues-and-pull-requests/
+- Clone repo
+- `python -m venv env` and activate the environment.
+- `pip install -r requirements.txt`
+- `python manage.py collectstatic`
+- `python manage.py migrate`
+- `python manage.py resetdb`. This command is provided by me, it fetches about 25 products from the API and stores them in the database.
+- `python manage.py runserver`

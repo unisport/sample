@@ -1,1 +1,7 @@
 .DS_Store
+
+db.sqlite3
+
+env/
+static/
+__pycache__/
