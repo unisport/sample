@@ -2,7 +2,6 @@ import requests
 import json 
 # requests -
 
-# /products/?page=2 is not reurning objects (paginated request) since page 1 is
 # current API does not provide pagineted request. By the API in line 8 I provided a list as query
 # parameter and proving the ID of the products
 
