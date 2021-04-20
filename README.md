@@ -1,16 +1,12 @@
 _Fork this project and send us a pull request_
 
-Write a simple python webservice that uses, manipuates and returns the data found here: [https://www.unisport.dk/api/products/batch/](https://www.unisport.dk/api/products/batch/?list=179249,179838,174351,180011,180020,178429).
+Write a simple python webservice that uses, manipuates and returns the data found here: [https://www.unisport.dk/api/products/batch/](https://www.unisport.dk/api/products/batch/?list=200776,213591,200775,197250,213590,200780,209588,217706,205990,212703,197237,205989,211651,213626,217710,200783,213576,202483,200777,203860,198079,189052,205946,209125,200784,190711,201338,201440,206026,213587,172011,209592,193539,173432,200785,201442,203854,213577,200802,197362).
 
 
 **/products/**  
 
 
 should return the first 10 objects ordered with the cheapest first.
- 
-**/products/kids/**
- 
-should return the products where kids=1 ordered with the cheapest first
 
 **/products/?page=2**
  
