@@ -18,7 +18,7 @@ flask run
 
 ## Endpoints
 
-#### /products/
+#### /products
 
 By default returns the first 10 products ordered with the cheapest first.
 For more objects use the *optional* `items` query parameter.
@@ -33,12 +33,12 @@ Pagination returns `next_page_id` and 10 products by default, which can also be 
 E.g.:
 `/products/?page=<PAGE_ID>&items=<NUMBER_OF_ITEMS>`
 
-#### /products/id/
+#### /products/id
 
 Returns individual product.
 
 E.g.:
-`/products/id/product=<ID>`
+`/products/id?product=<ID>`
 
 ## Tests
 
