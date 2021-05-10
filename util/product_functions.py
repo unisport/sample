@@ -65,9 +65,9 @@ def paginate(page: int, items: int = 10):
 
         return jsonify(chunks[page], {'next_page_id': next_page})
     except IndexError:
-        # # If requested page ID index is bigger than exists or/ and
-        # # there are less items than in the client request, the whole product
-        # # array will be returned.
+        # If requested page ID index is bigger than exists or/ and
+        # there are less items than in the client request, the whole product
+        # array will be returned.
         return jsonify(data['products'], {'next_page_id': 'None'})
 
 
