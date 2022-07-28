@@ -48,15 +48,18 @@ def products(request):
         first_object_number_on_current_page = last_object_number_on_current_page - 9
         has_prev_page = True if first_object_number_on_current_page > 1 else False
         has_next_page = True if last_object_number_on_current_page < full_products_list_length else False
-
-        print(full_products_list)
+        products_list_current_page = full_products_list[first_object_number_on_current_page -
+                                                        1:last_object_number_on_current_page]
+        number_of_products_on_current_page = len(products_list_current_page)
+        print(products_list_current_page)
         print(f'List length: {full_products_list_length}')
         print(f'First Object: {first_object_number_on_current_page}')
         print(f'Last Object: {last_object_number_on_current_page}')
         print(f'Has prev page: {has_prev_page}')
         print(f'Has next page: {has_next_page}')
+        print(number_of_products_on_current_page)
 
-    return HttpResponse(f'<h1>Products page</h1>')
+    return HttpResponse(f'<h1>Products list</h1>')
 
 
 def product_detail(request):
