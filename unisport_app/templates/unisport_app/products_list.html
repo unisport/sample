@@ -31,4 +31,13 @@
     </li>
     {% endfor %}
 </ul>
+
+<div>
+    {% if has_prev_page %}
+    <a href="?page={{ prev_page_number }}">&laquo</a>
+    {% endif %}
+    {% if has_next_page %}
+    <a href="?page={{ next_page_number }}" disable>&raquo</a>
+    {% endif %}
+</div>
 {% endblock main %}
