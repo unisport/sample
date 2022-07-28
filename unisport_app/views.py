@@ -1,3 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def products(request):
+    pass
+
+
+def product_detail(request):
+    pass
