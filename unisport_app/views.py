@@ -51,6 +51,7 @@ def products(request):
         products_list_current_page = full_products_list[first_object_number_on_current_page -
                                                         1:last_object_number_on_current_page]
         number_of_products_on_current_page = len(products_list_current_page)
+
         print(products_list_current_page)
         print(f'List length: {full_products_list_length}')
         print(f'First Object: {first_object_number_on_current_page}')
