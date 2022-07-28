@@ -60,7 +60,19 @@ def products(request):
         print(f'Has next page: {has_next_page}')
         print(number_of_products_on_current_page)
 
-    return HttpResponse(f'<h1>Products list</h1>')
+        context = {
+            'products_list_current_page': products_list_current_page,
+            'full_products_list_length': full_products_list_length,
+            'first_object_number_on_current_page': first_object_number_on_current_page,
+            # 'last_object_number_on_current_page': last_object_number_on_current_page,
+            'has_prev_page': has_prev_page,
+            'has_next_page': has_next_page,
+            'number_of_products_on_current_page': number_of_products_on_current_page,
+            'prev_page_number': page_number - 1,
+            'next_page_number': page_number + 1,
+        }
+
+    return render(request, 'unisport_app/products_list.html', context)
 
 
 def product_detail(request):
