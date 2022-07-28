@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 
+base_url = 'https://www.unisport.dk/api/products/batch/?list='
+
+
 def index(request):
     return HttpResponseRedirect('/products')
 
@@ -11,8 +14,10 @@ def products(request):
     """
 
     """
+    # Product IDs:
+    product_id_list = '254169,238156,255396,238179,200777,226546,222413,246169,238180,238169,213591,250042,254170,222410,205989,250278,246181,253890,246679,257119,222652,250036,238692,257120,253156,226547,238099,223462,218285,222190,238422,226099,235148,222255,238950,205990,250279,244233,238819,257543,256607'
     # Data endpoint
-    endpoint = 'https://www.unisport.dk/api/products/batch/?list=254169,238156,255396,238179,200777,226546,222413,246169,238180,238169,213591,250042,254170,222410,205989,250278,246181,253890,246679,257119,222652,250036,238692,257120,253156,226547,238099,223462,218285,222190,238422,226099,235148,222255,238950,205990,250279,244233,238819,257543,256607'
+    products_list_endpoint = f'{base_url}{product_id_list}'
 
     if request.method == 'GET':
         # Convert query string to python dictionary
@@ -27,7 +32,7 @@ def products(request):
             page_number = int(query_string['page'])
 
         # Fetch endpoint
-        response = requests.get(endpoint, timeout=10)
+        response = requests.get(products_list_endpoint, timeout=10)
 
         # Convert response to json object
         json_data = response.json()
@@ -75,5 +80,29 @@ def products(request):
     return render(request, 'unisport_app/products_list.html', context)
 
 
-def product_detail(request):
-    return HttpResponse('<h1>Product detail</h1>')
+def product_detail(request, id):
+    single_product_endpoint = f'{base_url}{id}'
+
+    # Fetch data from endpoint
+    response = requests.get(single_product_endpoint, timeout=10)
+
+    # Convert response to json object
+    json_data = response.json()
+
+    # Product data
+    product_data = json_data['products']
+
+    # Print product data
+    print(product_data)
+
+    # Check if there is a product with ID from URL
+    if not product_data:
+        return HttpResponse('<h1>We could not find the product</h1>')
+
+    product = product_data[0]
+
+    context = {
+        'product': product,
+    }
+
+    return render(request, 'unisport_app/product_detail.html', context)
