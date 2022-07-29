@@ -1,6 +1,8 @@
+import random
 import requests
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.paginator import Paginator
 from .models import Product, Price, Stock, Currency
 
 # Used in both products and product_detail views
@@ -52,7 +54,8 @@ def products(request):
         full_products_list_length = len(full_products_list)
         last_object_number_on_current_page = page_number * 10
         first_object_number_on_current_page = last_object_number_on_current_page - 9
-        has_prev_page = True if first_object_number_on_current_page > 1 else False
+        has_prev_page = True if page_number > 1 else False
+        # has_prev_page = True if first_object_number_on_current_page > 1 else False
         has_next_page = True if last_object_number_on_current_page < full_products_list_length else False
         products_list_current_page = full_products_list[first_object_number_on_current_page -
                                                         1:last_object_number_on_current_page]
@@ -133,7 +136,7 @@ def product_detail(request, id):
     product_instance = Product(unisport_id=unisport_id, name=name, relative_url=relative_url,
                                image=image, delivery=delivery, online=online, is_customizable=is_customizable, is_exclusive=is_exclusive, url=url)
     product_instance.save()
-    print('Product Instance: ', product_instance)
+    #print('Product Instance: ', product_instance)
 
     # for key, price in product['prices'].items():
     #print(f'{key} : {price}')
@@ -146,10 +149,53 @@ def product_detail(request, id):
     recommended_retail_price = product['prices']['recommended_retail_price']
 
     # TODO: Put this inside a try / except
-    price_instance = Price(product_id=Product.objects.get(unisport_id=unisport_id), max_price=max_price, min_price=min_price,
+    price_instance = Price(product_id=product_instance, max_price=max_price, min_price=min_price,
                            currency=Currency.objects.get(currency_code=currency), discount_percentage=discount_percentage, recommended_retail_price=recommended_retail_price)
+    # price_instance = Price(product_id=Product.objects.get(unisport_id=unisport_id), max_price=max_price, min_price=min_price,
+    #                        currency=Currency.objects.get(currency_code=currency), discount_percentage=discount_percentage, recommended_retail_price=recommended_retail_price)
     price_instance.save()
     print('Price Instance: ', price_instance)
+
+    # TODO: Update Stock
+    for item_in_stock in product['stock']:
+        print(item_in_stock)
+        # Product id
+        #product_object = Product.objects.get(unisport_id=unisport_id)
+        price = item_in_stock['price']
+        name = item_in_stock['name']
+        is_marketplace = item_in_stock['is_marketplace']
+        name_short = item_in_stock['name_short']
+        # Stock instance could be stored in a variable further up to
+        stock_instance = Stock(product_id=product_instance, size=name, stock_quantity=random.randint(
+            0, 50), is_marketplace=is_marketplace, name_short=name_short)
+        stock_instance.save()
+        print(stock_instance)
+
+    return render(request, 'unisport_app/product_detail.html', context)
+
+
+def products_from_db(request):
+    # Default ordering?
+    products_list = Product.objects.all()
+    print('## Products list from DB: ', products_list.count())
+
+    pagination = Paginator(products_list, 10)
+    page = request.GET.get('page')
+    product_list_on_current_page = pagination.get_page(page)
+    print('product_list_on_current_page: ', product_list_on_current_page)
+    context = {
+        'product_list_on_current_page': product_list_on_current_page,
+    }
+
+    # return HttpResponse('<h1>Products from DB view</h1>')
+    return render(request, 'unisport_app/products_list_from_db.html', context)
+
+
+def product_from_db_detail(request, id):
+    product = get_object_or_404(Product, unisport_id=id)
+    context = {
+        'product': product,
+    }
 
     return render(request, 'unisport_app/product_detail.html', context)
 
@@ -165,7 +211,18 @@ product = {
     'labels': [{'color': '#ffffff', 'background_color': '#000000', 'name': 'Børn', 'active': True, 'id': 48, 'priority': 7}, {'color': '#ffffff', 'background_color': '#000000', 'name': 'Nyhed', 'active': True, 'id': 10, 'priority': 5}],
     'is_customizable': True,
     'is_exclusive': False,
-    'stock': [{'price': 549, 'name': 'XS: 122-128 cm', 'order_by': 0, 'stock_info': '', 'is_marketplace': False, 'pk': 1855, 'name_short': '6-8 Years'}, {'price': 549, 'name': 'S: 128-137 cm', 'order_by': 1, 'stock_info': '', 'is_marketplace': False, 'pk': 1856, 'name_short': '8-10 Years'}, {'price': 549, 'name': 'M: 137-147 cm', 'order_by': 2, 'stock_info': '', 'is_marketplace': False, 'pk': 1857, 'name_short': '10-12 Years'}, {'price': 549, 'name': 'L: 147-158 cm', 'order_by': 3, 'stock_info': '', 'is_marketplace': False, 'pk': 1858, 'name_short': '12-14 Years'}, {'price': 549, 'name': 'XL: 158-170 cm', 'order_by': 4, 'stock_info': '', 'is_marketplace': False, 'pk': 1859, 'name_short': '14-16 Years'}],
+    'stock': [
+        {'price': 549, 'name': 'XS: 122-128 cm', 'order_by': 0, 'stock_info': '',
+            'is_marketplace': False, 'pk': 1855, 'name_short': '6-8 Years'},
+        {'price': 549, 'name': 'S: 128-137 cm', 'order_by': 1, 'stock_info': '',
+            'is_marketplace': False, 'pk': 1856, 'name_short': '8-10 Years'},
+        {'price': 549, 'name': 'M: 137-147 cm', 'order_by': 2, 'stock_info': '',
+            'is_marketplace': False, 'pk': 1857, 'name_short': '10-12 Years'},
+        {'price': 549, 'name': 'L: 147-158 cm', 'order_by': 3, 'stock_info': '',
+            'is_marketplace': False, 'pk': 1858, 'name_short': '12-14 Years'},
+        {'price': 549, 'name': 'XL: 158-170 cm', 'order_by': 4, 'stock_info': '',
+            'is_marketplace': False, 'pk': 1859, 'name_short': '14-16 Years'}
+    ],
     'currency': 'DKK',
     'url': 'https://www.unisport.dk/fodboldtrojer/paris-saint-germain-hjemmebanetroje-qatar-airways-202223-born/257120/',
     'attributes': {'color': ['Blue'], 'gender': ["Men's"], 'item_type': 'Football shirts', 'players': ['N/A'], 'league': 'N/A', 'teamsport': 'N/A', 'club_national': 'Clubs', 'print_type': 'N/A', 'team': 'Paris Saint Germain', 'shirt_season': '2022/23', 'pricepoint': 'Fan shirts', 'nationality': 'France', 'sleeve': 'Short sleeves', 'segment': 'License', 'kit': 'Home Kits', 'print_color': 'White', 'brand': 'Nike', 'sorting_shirts': 'N/A', 'age': ['Kids'], 'quarter': 'Carry Over'}
