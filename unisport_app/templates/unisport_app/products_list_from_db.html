@@ -1,0 +1,29 @@
+{% extends 'unisport_app/base.html' %}
+
+
+{% block main %}
+<div>
+    {% for product in product_list_on_current_page %}
+    <h4>
+        <span>{{ product.name }}</span>
+        {% for price in product.price %}
+        <span>{{ price.max_price }}</span>
+        {% endfor %}
+    </h4>
+    <img src="{{ product.image }}" alt="{{ product.name }}">
+    {% endfor %}
+    {{ product_list_on_current_page }}
+    <br />
+    {{ product_list_on_current_page.has_previous }}
+    <br />
+    {{ product_list_on_current_page.has_next }}
+    <br />
+    {{ product_list_on_current_page.number }}
+    <br />
+    {{ product_list_on_current_page.paginator.num_pages }}
+    <br />
+    {{ product_list_on_current_page.previous_page_number }}
+    <br />
+    {{ product_list_on_current_page.next_page_number }}
+</div>
+{% endblock main %}
