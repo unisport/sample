@@ -21,6 +21,10 @@ class Product(models.Model):
     def price(self):
         return Price.objects.filter(product_id=self.pk)
 
+    # Set default order to max_price from Price model
+    class Meta:
+        ordering = ['price__max_price']
+
     def __str__(self):
         return f'{self.pk}/{self.unisport_id} - {self.name}'
 
