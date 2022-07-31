@@ -18,6 +18,10 @@ class Product(models.Model):
         return Stock.objects.filter(product_id=self.pk)
 
     @property
+    def sizes_in_stock(self):
+        return [stock_item.size for stock_item in self.stock if stock_item.stock_quantity > 0]
+
+    @property
     def price(self):
         return Price.objects.filter(product_id=self.pk)
 
