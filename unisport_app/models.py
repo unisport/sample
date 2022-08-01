@@ -11,6 +11,9 @@ from django.db import models
         Stock (Stock data about each product in stock. Foreign Key - references Product model)
         Currency (Decided to do a seperate currency model in case of multiple currencies)
         Prices (Seperate Price model to allow each product to have prices in multiple currencies. Foreign Key - references Product model)
+
+        This implementation lacks the fields: labels and attributes from unisport API.
+        Could be added using models.JSONField()
 """
 
 
