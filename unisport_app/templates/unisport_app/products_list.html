@@ -3,43 +3,65 @@
 
 {% block main %}
 <main>
-    <div>
-        <span>{{first_object_number_on_current_page}}</span> -
-        <span>{{first_object_number_on_current_page|add:number_of_products_on_current_page|add:-1}}</span> af
-        <span>{{full_products_list_length}}</span> produkter
-    </div>
-
-    <div>
-        {% if has_prev_page %}
-        <a href="?page={{ prev_page_number }}">&#10094;</a>
-        {% endif %}
-        {% if has_next_page %}
-        <a href="?page={{ next_page_number }}">&#10095;</a>
-        {% endif %}
+    <div class="product-list-controls-wrapper">
+        <div class="product-list-current">
+            <p><span>{{first_object_number_on_current_page}} -
+                    {{first_object_number_on_current_page|add:number_of_products_on_current_page|add:-1}}</span> af
+                {{ full_products_list_length }} Produkter</p>
+        </div>
+        <div class="product-list-pagination-number">
+            <p>
+                Vis:
+                <a href="#">20</a>
+                <a href="#">40</a>
+                <a href="#">200</a>
+            </p>
+        </div>
+        <div class="product-list-sorting">
+            <select name="product-list-sorting">
+                <option value="popular">Populære</option>
+                <option value="newest">Nyeste</option>
+                <option value="biggest-discount">Største rabat</option>
+                <option value="pris-high">Pris (Højeste)</option>
+                <option value="pris-low">Pris (Laveste)</option>
+                <option value="product-name">Produktnavn</option>
+            </select>
+        </div>
+        <button>Filter</button>
     </div>
 
     <ul>
         {% for product in products_list_current_page %}
         <li>
-            <a href="{{product.id}}">
-                <img src={{product.image}} alt={{product.name}}>
-                <p>{{ product.name }}</p>
-                <p>{{ product.prices.max_price }} kr</p>
+            <a href="{{ product.id }}">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+                <p class="list-view-name">{{ product.name }}</p>
+                <p class="list-view-price">{{ product.prices.max_price|floatformat:"-2" }} kr</p>
             </a>
-            <div>
-                SIZE: {% for stock_item in product.stock %} <span>{{ stock_item.name }}</span> {% endfor %}
-            </div>
+            <p class="list-view-size">STØRRELSE:
+                {% if product.stock|length > 4 %} <span>Mange størrelser tilgængelige</span>
+                {% else %}
+                {% for stock_item in product.stock %}
+                <span>{{ stock_item.name_short }}</span> {% endfor %}
+                {% endif %}
+            </p>
         </li>
         {% endfor %}
     </ul>
 
-    <div>
+    <div class="page-controls">
         {% if has_prev_page %}
-        <a href="?page={{ prev_page_number }}">&#10094;</a>
+        <a href="?page={{ prev_page_number }}" class="prev-page-link">&#60;</a>
         {% endif %}
+        <div class="page-selector-wrapper">
+            <select name="page-selector">
+                <option value="1">Side {{ page_number }}/{{ number_of_pages }}</option>
+            </select>
+        </div>
         {% if has_next_page %}
-        <a href="?page={{ next_page_number }}">&#10095;</a>
+        <a href="?page={{ next_page_number }}" class="next-page-link">&#62;</a>
         {% endif %}
     </div>
+
 </main>
 {% endblock main %}
