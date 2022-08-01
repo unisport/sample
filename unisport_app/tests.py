@@ -1,6 +1,7 @@
 import requests
 import random
 from django.test import TestCase
+from django.db import IntegrityError
 from .models import Product, Stock, Price, Currency
 
 # Create your tests here.
@@ -83,7 +84,7 @@ class UnisportTestCase(TestCase):
 
     def test_default_order(self):
         """
-            Test default ordering of Product objects - by price (low to high)
+            Test default ordering of Product objects - by price (low to high).
         """
         full_products_list = Product.objects.all()
         for index, product in enumerate(full_products_list):
@@ -92,3 +93,11 @@ class UnisportTestCase(TestCase):
             else:
                 assert full_products_list[index -
                                           1].price_dkk <= product.price_dkk
+
+    def test_stock_model_unique_constraint(self):
+        first_product_object = Product.objects.all().first()
+        print('** First product object: ', first_product_object)
+        stock_obj_one = Stock.objects.create(
+            product_id=first_product_object, size='Small', stock_quantity=5, is_marketplace=True, name_short='S')
+        self.assertRaises(IntegrityError, Stock.objects.create, product_id=first_product_object,
+                          size='Small', stock_quantity=20, is_marketplace=False, name_short='S')
