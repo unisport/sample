@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
+    {% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'products_from_db' %}
     <link rel="stylesheet" type="text/css" href="{% static 'unisport_app/pages/products_list.css' %}">
+    {% elif request.resolver_match.url_name == 'product_detail' or 'product_from_db_detail' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'unisport_app/pages/product_detail.css' %}">
+    {% endif %}
     <title>Unisport | Products</title>
 </head>
 
