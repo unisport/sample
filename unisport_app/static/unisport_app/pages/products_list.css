@@ -7,9 +7,11 @@ main {
     margin: 2rem auto;
 }
 
+
 .product-list-controls-wrapper {
     display: grid;
-    grid-template-columns: 20% 1fr 20% 20%;
+    /* grid-template-columns: 20% 1fr 20% 20%; */
+    grid-template-columns: repeat(2, 1fr);
     width: 100%;
     height: 3rem;
     border: 1px solid var(--border-light-grey);
@@ -59,6 +61,31 @@ main {
 .product-list-pagination-number a {
     color: black;
 }
+
+.product-list-controls-wrapper > *:last-child,
+.product-list-controls-wrapper > *:nth-child(3){
+    display: none;
+}
+
+/* Controls panel on different screen sizes */
+@media (min-width: 680px) {
+    .product-list-controls-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .product-list-controls-wrapper > *:nth-child(3){
+        display: block;
+    }
+}
+
+@media (min-width: 960px) {
+    .product-list-controls-wrapper {
+        grid-template-columns: 20% 1fr 20% 20%;
+    }
+    .product-list-controls-wrapper > *:last-child {
+        display: block;
+    }
+}
+
 
 ul {
     width: min(100vw, 1200px);
@@ -179,4 +206,4 @@ li img {
     box-shadow: none;
     outline: none;
 }
-/* endblock main ------------------------- */
+
