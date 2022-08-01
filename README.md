@@ -1,5 +1,4 @@
-## Unisport Sample
-## Guidelines to run project
+## Unisport Sample - Guidelines to run project
 
 ### In an activated virtual env run the following commands
 **Install dependencies**
@@ -19,11 +18,16 @@ python manage.py add_unisport_data
 python manage.py runserver
 ```
 
-**Most important files to look for**
+**Most important files**
 - unisport_app/views.py
 - unisport_app/models.py
 - unisport_app/templates/unisport_app/*
 
+**Access backend**
+After running provision script, go to:
+['http://127.0.0.1:8000/admin/'](http://127.0.0.1:8000/admin/)
+Username: unisport
+Password: unisport
 
 
 _Fork this project and send us a pull request_
