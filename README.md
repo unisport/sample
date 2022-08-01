@@ -21,6 +21,7 @@ python manage.py runserver
 **Most important files**
 - unisport_app/views.py
 - unisport_app/models.py
+- unisport_app/tests.py
 - unisport_app/templates/unisport_app/*
 
 **Access backend**
