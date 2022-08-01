@@ -1,0 +1,20 @@
+{% extends 'unisport_app/base.html' %}
+
+
+{% block main %}
+<main>
+    <img src="{{product.image}}" alt="{{product.name}}">
+    <div>
+        <p>Produktnummer: {{ product.unisport_id }}</p>
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.price_dkk|floatformat:"-2" }} kr</p>
+        <select name="size">
+            {% for size in product.sizes_in_stock %}
+            <option value="{{size}}">{{size}}</option>
+            {% endfor %}
+        </select>
+        <button>Tilføj til kurv</button>
+        <p>Forventet leveringstid: {{product.delivery}}</p>
+    </div>
+</main>
+{% endblock main %}
