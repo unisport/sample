@@ -15,8 +15,21 @@ class Command(BaseCommand):
 
     def handle(self, **options):
         print('Adding Unisport data...')
-        product_id_list = '257543,238179,254169,238161'
-        #product_id_list = '225705,246169,238819,222410,222652'
+        # Add currencies
+        currency_dkk_obj, created_dkk = Currency.objects.get_or_create(
+            currency_code='DKK')
+        currency_eur_obj, created_eur = Currency.objects.get_or_create(
+            currency_code='EUR')
+        currency_nok_obj, created_nok = Currency.objects.get_or_create(
+            currency_code='NOK')
+        currency_sek_obj, created_sek = Currency.objects.get_or_create(
+            currency_code='sek')
+
+        print(f'*** DKK - Created: {created_dkk}, {currency_dkk_obj}')
+        print(f'*** DKK - Created: {created_eur}, {currency_eur_obj}')
+        print(f'*** DKK - Created: {created_nok}, {currency_nok_obj}')
+        print(f'*** DKK - Created: {created_sek}, {currency_sek_obj}')
+
         products_list_endpoint = f'{base_url}{product_list}'
 
         # Fetch endpoint
