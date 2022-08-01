@@ -4,16 +4,6 @@ from django.test import TestCase
 from django.db import IntegrityError
 from .models import Product, Stock, Price, Currency
 
-# Create your tests here.
-
-# Test cases
-"""
- * Price ordering product[0].price <= product[1].price
- * Number of product on page <= 10
- * 
- 
-"""
-
 
 class UnisportTestCase(TestCase):
 
@@ -23,15 +13,6 @@ class UnisportTestCase(TestCase):
         currency_eur_obj = Currency.objects.create(currency_code='EUR')
         currency_nok_obj = Currency.objects.create(currency_code='NOK')
         currency_sek_obj = Currency.objects.create(currency_code='SEK')
-
-        # currency_dkk_obj, created_dkk = Currency.objects.get_or_create(
-        #     currency_code='DKK')
-        # currency_eur_obj, created_eur = Currency.objects.get_or_create(
-        #     currency_code='EUR')
-        # currency_nok_obj, created_nok = Currency.objects.get_or_create(
-        #     currency_code='NOK')
-        # currency_sek_obj, created_sek = Currency.objects.get_or_create(
-        #     currency_code='SEK')
 
         # Add test data to db
         base_url = 'https://www.unisport.dk/api/products/batch/?list='
@@ -95,6 +76,9 @@ class UnisportTestCase(TestCase):
                                           1].price_dkk <= product.price_dkk
 
     def test_stock_model_unique_constraint(self):
+        """
+            Test unique constraint on Stock model. Make sure that product_id and size togehter are unique
+        """
         first_product_object = Product.objects.all().first()
         print('** First product object: ', first_product_object)
         stock_obj_one = Stock.objects.create(
