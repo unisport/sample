@@ -1,4 +1,4 @@
-# Unisport Sample
+## Unisport Sample
 ## Guidelines to run project
 
 ### In an activated virtual env run the following commands
@@ -7,13 +7,24 @@
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-**Setting up database and add data**
+**Set up database and add data**
 ```
 python manage.py makemigrations
 python manage.py migrate
 python manage.py provision
 python manage.py add_unisport_data
 ```
+**Start server**
+```
+python manage.py runserver
+```
+
+**Most important files to look for**
+- unisport_app/views.py
+- unisport_app/models.py
+- unisport_app/templates/unisport_app/*
+
+
 
 _Fork this project and send us a pull request_
 
