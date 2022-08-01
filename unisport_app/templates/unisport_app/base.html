@@ -11,21 +11,23 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo-container">
-                <a href="/">unisport</a>
-            </div>
-            <form action="#">
-                <input type="text" placeholder="Hvad søger du?" />
-            </form>
-            <div class="icons-container">
-                <div>&#x2630;</div>
-            </div>
-        </nav>
-    </header>
-    {% block main %}
-    {% endblock main %}
+    <div id="page-container">
+        <header>
+            <nav>
+                <div class="logo-container">
+                    <a href="/">unisport</a>
+                </div>
+                <form action="#">
+                    <input type="text" placeholder="Hvad søger du?" />
+                </form>
+                <div class="icons-container">
+                    <div>&#x2630;</div>
+                </div>
+            </nav>
+        </header>
+        {% block main %}
+        {% endblock main %}
+    </div>
     <footer>Unisport Sample | Jonas Bøgh - Web Development, KEA</footer>
 </body>
 

@@ -22,6 +22,11 @@ body {
     height: 100vh;
 }
 
+#page-container {
+    min-height: calc(100vh - 3rem);
+    position: relative;
+}
+
 /* block header ------------------------- */
 header {
     background-color: var(--unisport-brand-green);
