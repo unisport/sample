@@ -24,10 +24,11 @@ python manage.py runserver
 - unisport_app/templates/unisport_app/*
 
 **Access backend**
-After running provision script, go to:
-['http://127.0.0.1:8000/admin/'](http://127.0.0.1:8000/admin/)
-Username: unisport
-Password: unisport
+- Run provision script
+- Start server
+- Go to: ['http://127.0.0.1:8000/admin/'](http://127.0.0.1:8000/admin/)
+**Username:** unisport
+**Password:** unisport
 
 
 _Fork this project and send us a pull request_
