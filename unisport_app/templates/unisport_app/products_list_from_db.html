@@ -2,28 +2,60 @@
 
 
 {% block main %}
-<div>
-    {% for product in product_list_on_current_page %}
-    <h4>
-        <span>{{ product.name }}</span>
-        {% for price in product.price %}
-        <span>{{ price.max_price }}</span>
+<main>
+    <div class="product-list-controls-wrapper">
+        <div class="product-list-current">
+            <p><span>{{product_list_on_current_page.start_index}} - {{product_list_on_current_page.end_index}}</span> af
+                {{ products_list_count }} Produkter</p>
+        </div>
+        <div class="product-list-pagination-number">
+            <p>
+                Vis:
+                <a href="#">20</a>
+                <a href="#">40</a>
+                <a href="#">200</a>
+            </p>
+        </div>
+        <div class="product-list-sorting">
+            <select name="product-list-sorting">
+                <option value="popular">Populære</option>
+                <option value="newest">Nyeste</option>
+                <option value="biggest-discount">Største rabat</option>
+                <option value="pris-high">Pris (Højeste)</option>
+                <option value="pris-low">Pris (Laveste)</option>
+                <option value="product-name">Produktnavn</option>
+            </select>
+        </div>
+        <button>Filter</button>
+    </div>
+    <ul>
+        {% for product in product_list_on_current_page %}
+        <li>
+            <a href="{{ product.unisport_id }}">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+                <p class="list-view-name">{{ product.name }}</p>
+                <p class="list-view-price">{{ product.price_dkk|floatformat:"-2" }} kr</p>
+            </a>
+            <p class="list-view-size">STØRRELSE:
+                {% if product.sizes_in_stock|length > 4 %} <span>Mange størrelser tilgængelige</span>
+                {% else %} <span>{{ product.sizes_in_stock|join:", " }}</span>
+                {% endif %}
+            </p>
+        </li>
         {% endfor %}
-    </h4>
-    <img src="{{ product.image }}" alt="{{ product.name }}">
-    {% endfor %}
-    {{ product_list_on_current_page }}
-    <br />
-    {{ product_list_on_current_page.has_previous }}
-    <br />
-    {{ product_list_on_current_page.has_next }}
-    <br />
-    {{ product_list_on_current_page.number }}
-    <br />
-    {{ product_list_on_current_page.paginator.num_pages }}
-    <br />
-    {{ product_list_on_current_page.previous_page_number }}
-    <br />
-    {{ product_list_on_current_page.next_page_number }}
-</div>
+    </ul>
+    <div class="page-controls">
+        {% if product_list_on_current_page.has_previous %}
+        <a href="?page={{ product_list_on_current_page.previous_page_number }}" class="prev-page-link">&#60;</a>
+        {% endif %}
+        <div class="page-selector-wrapper">
+            <select name="page-selector">
+                <option value="1">Side {{ product_list_on_current_page.number }}/4</option>
+            </select>
+        </div>
+        {% if product_list_on_current_page.has_next %}
+        <a href="?page={{ product_list_on_current_page.next_page_number }}" class="next-page-link">&#62;</a>
+        {% endif %}
+    </div>
+</main>
 {% endblock main %}

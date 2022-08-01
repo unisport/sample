@@ -5,17 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% comment %} {% load static %} {% endcomment %}
-    {% comment %}
-    <link rel="stylesheet" type="text/css" href="{% static 'products/pages/products.css' %}"> {% endcomment %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'unisport_app/pages/products_list.css' %}">
     <title>Unisport | Products</title>
 </head>
 
 <body>
-    <main>
-        {% block main %}
-        {% endblock main %}
-    </main>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <a href="/">unisport</a>
+            </div>
+            <form action="#">
+                <input type="text" placeholder="Hvad søger du?" />
+            </form>
+            <div class="icons-container">
+                <div>&#x2630;</div>
+            </div>
+        </nav>
+    </header>
+    {% block main %}
+    {% endblock main %}
+    <footer>Unisport Sample | Jonas Bøgh - Web Development, KEA</footer>
 </body>
 
 </html>

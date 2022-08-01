@@ -2,42 +2,44 @@
 
 
 {% block main %}
-<div>
-    <span>{{first_object_number_on_current_page}}</span> -
-    <span>{{first_object_number_on_current_page|add:number_of_products_on_current_page|add:-1}}</span> af
-    <span>{{full_products_list_length}}</span> produkter
-</div>
+<main>
+    <div>
+        <span>{{first_object_number_on_current_page}}</span> -
+        <span>{{first_object_number_on_current_page|add:number_of_products_on_current_page|add:-1}}</span> af
+        <span>{{full_products_list_length}}</span> produkter
+    </div>
 
-<div>
-    {% if has_prev_page %}
-    <a href="?page={{ prev_page_number }}">&#10094;</a>
-    {% endif %}
-    {% if has_next_page %}
-    <a href="?page={{ next_page_number }}">&#10095;</a>
-    {% endif %}
-</div>
+    <div>
+        {% if has_prev_page %}
+        <a href="?page={{ prev_page_number }}">&#10094;</a>
+        {% endif %}
+        {% if has_next_page %}
+        <a href="?page={{ next_page_number }}">&#10095;</a>
+        {% endif %}
+    </div>
 
-<ul>
-    {% for product in products_list_current_page %}
-    <li>
-        <a href="{{product.id}}">
-            <img src={{product.image}} alt={{product.name}}>
-            <p>{{ product.name }}</p>
-            <p>{{ product.prices.max_price }} kr</p>
-        </a>
-        <div>
-            SIZE: {% for stock_item in product.stock %} <span>{{ stock_item.name }}</span> {% endfor %}
-        </div>
-    </li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for product in products_list_current_page %}
+        <li>
+            <a href="{{product.id}}">
+                <img src={{product.image}} alt={{product.name}}>
+                <p>{{ product.name }}</p>
+                <p>{{ product.prices.max_price }} kr</p>
+            </a>
+            <div>
+                SIZE: {% for stock_item in product.stock %} <span>{{ stock_item.name }}</span> {% endfor %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 
-<div>
-    {% if has_prev_page %}
-    <a href="?page={{ prev_page_number }}">&#10094;</a>
-    {% endif %}
-    {% if has_next_page %}
-    <a href="?page={{ next_page_number }}">&#10095;</a>
-    {% endif %}
-</div>
+    <div>
+        {% if has_prev_page %}
+        <a href="?page={{ prev_page_number }}">&#10094;</a>
+        {% endif %}
+        {% if has_next_page %}
+        <a href="?page={{ next_page_number }}">&#10095;</a>
+        {% endif %}
+    </div>
+</main>
 {% endblock main %}
