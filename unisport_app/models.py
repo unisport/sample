@@ -1,4 +1,17 @@
 from django.db import models
+"""
+    Models for backend:
+
+    Add test data by running the following commands:
+        python manage.py provision
+        python manage.py add_unisport_data
+    
+    4 models:
+        Product (Generic product data. )
+        Stock (Stock data about each product in stock. Foreign Key - references Product model)
+        Currency (Decided to do a seperate currency model in case of multiple currencies)
+        Prices (Seperate Price model to allow each product to have prices in multiple currencies. Foreign Key - references Product model)
+"""
 
 
 class Product(models.Model):
@@ -19,7 +32,6 @@ class Product(models.Model):
     @property
     def sizes_in_stock(self):
         return [stock_item.name_short for stock_item in self.stock if stock_item.stock_quantity > 0]
-        # return [stock_item.size for stock_item in self.stock if stock_item.stock_quantity > 0]
 
     @property
     def prices(self):
