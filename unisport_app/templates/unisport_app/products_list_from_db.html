@@ -3,6 +3,14 @@
 
 {% block main %}
 <main>
+    {% if product_list_on_current_page|length == 0 %}
+
+    <p>No products in the database yet - see README guidelines in <a href="https://github.com/jona71e2/sample">GitHub
+            repo</a></p>
+
+
+    {% else %}
+
     <div class="product-list-controls-wrapper">
         <div class="product-list-current">
             <p><span>{{product_list_on_current_page.start_index}} - {{product_list_on_current_page.end_index}}</span> af
@@ -55,5 +63,6 @@
         <a href="?page={{ product_list_on_current_page.next_page_number }}" class="next-page-link">&#62;</a>
         {% endif %}
     </div>
+    {% endif %}
 </main>
 {% endblock main %}
