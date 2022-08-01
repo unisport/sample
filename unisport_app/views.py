@@ -95,9 +95,11 @@ def product_detail(request, id):
         return render(request, 'unisport_app/error.html', context)
 
     product = product_data[0]
+    price = product['prices']['max_price']
 
     context = {
         'product': product,
+        'price': price,
     }
 
     return render(request, 'unisport_app/product_detail.html', context)
