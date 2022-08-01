@@ -1,9 +1,8 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Product(models.Model):
-    unisport_id = models.CharField(max_length=6)
+    unisport_id = models.CharField(max_length=6, unique=True, db_index=True)
     name = models.TextField()  # Or VARCHAR?
     relative_url = models.CharField(max_length=255)
     image = models.URLField()
@@ -19,11 +18,16 @@ class Product(models.Model):
 
     @property
     def sizes_in_stock(self):
-        return [stock_item.size for stock_item in self.stock if stock_item.stock_quantity > 0]
+        return [stock_item.name_short for stock_item in self.stock if stock_item.stock_quantity > 0]
+        # return [stock_item.size for stock_item in self.stock if stock_item.stock_quantity > 0]
 
     @property
-    def price(self):
+    def prices(self):
         return Price.objects.filter(product_id=self.pk)
+
+    @property
+    def price_dkk(self):
+        return Price.objects.get(product_id=self.pk).max_price
 
     # Set default order to max_price from Price model
     class Meta:
