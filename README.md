@@ -1,3 +1,20 @@
+# Unisport Sample
+## Guidelines to run project
+
+### In an activated virtual env run the following commands
+**Install dependencies**
+```
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+**Setting up database and add data**
+```
+python manage.py makemigrations
+python manage.py migrate
+python manage.py provision
+python manage.py add_unisport_data
+```
+
 _Fork this project and send us a pull request_
 
 Write a simple python webservice that uses, manipuates and returns the data found here: [https://www.unisport.dk/api/products/batch/](https://www.unisport.dk/api/products/batch/?list=200776,213591,200775,197250,213590,200780,209588,217706,205990,212703,197237,205989,211651,213626,217710,200783,213576,202483,200777,203860,198079,189052,205946,209125,200784,190711,201338,201440,206026,213587,172011,209592,193539,173432,200785,201442,203854,213577,200802,197362).
