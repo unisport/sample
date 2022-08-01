@@ -5,12 +5,12 @@
 <main>
     <img src="{{product.image}}" alt="{{product.name}}">
     <div>
-        <p>Produktnummer: {{ product.unisport_id }}</p>
+        <p>Produktnummer: {{ product.id }}</p>
         <h1>{{ product.name }}</h1>
-        <p>{{ product.price_dkk|floatformat:"-2" }} kr</p>
+        <p>{{ price|floatformat:"-2" }} kr</p>
         <select name="size">
-            {% for size in product.sizes_in_stock %}
-            <option value="{{size}}">{{size}}</option>
+            {% for size in product.stock %}
+            <option>{{ size.name_short }}</option>
             {% endfor %}
         </select>
         <button>Tilføj til kurv</button>
