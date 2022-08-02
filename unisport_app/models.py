@@ -87,5 +87,9 @@ class Price(models.Model):
     recommended_retail_price = models.DecimalField(
         max_digits=8, decimal_places=2)
 
+    @property
+    def get_current_price(self):
+        return self.max_price - self.max_price * self.discount_percentage / 100
+
     def __str__(self):
         return f'{self.product_id} - {self.currency}: {self.max_price}, Discount: {self.discount_percentage}%'
