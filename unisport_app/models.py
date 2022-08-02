@@ -44,6 +44,10 @@ class Product(models.Model):
     def price_dkk(self):
         return Price.objects.get(product_id=self.pk).max_price
 
+    @property
+    def current_price(self):
+        return Price.objects.get(product_id=self.pk).get_current_price
+
     # Set default order to max_price from Price model
     class Meta:
         ordering = ['price__max_price']
