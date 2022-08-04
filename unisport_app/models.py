@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import F
 """
     Models for backend:
 
@@ -45,8 +46,16 @@ class Product(models.Model):
         return Price.objects.get(product_id=self.pk).max_price
 
     @property
+    def min_price_dkk(self):
+        return Price.objects.get(product_id=self.pk, currency_code='SEK').min_price
+
+    @property
     def current_price(self):
         return Price.objects.get(product_id=self.pk).get_current_price
+
+    @property
+    def get_discount_percentage(self):
+        return Price.objects.get(product_id=self.pk).discount_percentage
 
     # Set default order to max_price from Price model
     class Meta:
@@ -97,3 +106,17 @@ class Price(models.Model):
 
     def __str__(self):
         return f'{self.product_id} - {self.currency}: {self.max_price}, Discount: {self.discount_percentage}%'
+
+
+## Price.objects.annotate(current_price=F('max_price') - F('max_price') * F('discount_percentage') / 100)
+
+# Price objects ordered by calculated current_price - applying discounts:
+
+# low to high
+# order = Price.objects.annotate(current_price=F('max_price') - F('max_price') * F('discount_percentage') / 100).order_by('current_price').order_by('current_price')
+
+# high to low
+# order = Price.objects.annotate(current_price=F('max_price') - F('max_price') * F('discount_percentage') / 100).order_by('current_price').order_by('current_price')
+
+
+### Product.objects.all().annotate(discount_price=F('price__max_price') - F('price__max_price') * F('price__discount_percentage') / 100).order_by('discount_price')
