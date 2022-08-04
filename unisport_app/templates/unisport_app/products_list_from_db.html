@@ -40,7 +40,13 @@
             <a href="{{ product.unisport_id }}">
                 <img src="{{ product.image }}" alt="{{ product.name }}">
                 <p class="list-view-name">{{ product.name }}</p>
-                <p class="list-view-price">{{ product.price_dkk|floatformat:"-2" }} kr</p>
+                <p class="list-view-price">
+                    {% if product.get_discount_percentage %}
+                    <span>SALE:
+                        {{ product.current_price|floatformat:"-2" }} kr</span>
+                    {% else %}
+                    <span>{{ product.current_price|floatformat:"-2" }} kr</span>
+                    {% endif %}</p>
             </a>
             <p class="list-view-size">STØRRELSE:
                 {% if product.sizes_in_stock|length > 4 %} <span>Mange størrelser tilgængelige</span>
