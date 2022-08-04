@@ -1,5 +1,6 @@
 import math
 import requests
+from django.db.models import F
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
@@ -106,9 +107,16 @@ def product_detail(request, id):
 
 
 def products_from_db(request):
-    # Default ordering - by price - is set on Products model (class Meta)
-    products_list = Product.objects.all()
+    # Update - based on discounted price:
+    products_list = Product.objects.all().annotate(discount_price=F('price__max_price') -
+                                                   F('price__max_price') * F('price__discount_percentage') / 100).order_by('discount_price')
     products_list_count = products_list.count()
+
+    # First draft start:
+    # Default ordering - by price - is set on Products model (class Meta)
+    # products_list = Product.objects.all()
+    # products_list_count = products_list.count()
+    # First draft end:
 
     pagination = Paginator(products_list, 10)
     page = request.GET.get('page')
