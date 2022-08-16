@@ -1,5 +1,8 @@
 from django.db import models
 
+#created jsonfields instead of creating seperate databases and using foreign keys
+#because the data is still just as accessible 
+
 class Product(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     prices = models.JSONField(default=dict)
