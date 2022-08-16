@@ -15,7 +15,7 @@ class ApiProductListView(ListAPIView):
     queryset = Product.objects.all().order_by("prices__recommended_retail_price")
     serializer_class = ProductSerializer
     authentication_classes = (SessionAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    
     pagination_class = PageNumberPagination
 
     def post(self, request):
@@ -32,9 +32,9 @@ class ApiProductListView(ListAPIView):
 
         return response
 
-
+#Read, update and delete in this class as they are all id specific
 class ApiProductView(APIView):
-    permission_classes = (IsAuthenticated,)
+    
     authentication_classes = (SessionAuthentication,)
     pagination_class = PageNumberPagination
 
