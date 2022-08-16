@@ -37,4 +37,7 @@ class Tests(unittest.TestCase):
         response = self.client.get(f"/products/{id}/")
         self.assertEqual(response.json().get('id'),id)
 
+    
+
+
 
