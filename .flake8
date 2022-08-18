@@ -1,0 +1,10 @@
+[flake8]
+max-line-length = 88
+extend-ignore = E203
+jobs = 4
+show-source = True
+statistics = True
+exclude =
+    migrations
+    __pycache__
+    manage.py

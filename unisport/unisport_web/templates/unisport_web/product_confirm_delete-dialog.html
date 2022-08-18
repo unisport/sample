@@ -1,0 +1,25 @@
+<div
+    id="dialog_{{dialog_id}}"
+    class="modal hide fade"
+    tabindex="-1"
+    role="dialog"
+    caller-id=""
+    aria-labelledby="confirmModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="modal-message">
+                Continue with delete?
+            </div>
+            <div class="modal-footer">
+                <form method="post" action={% url 'web:product-delete' dialog_id %} id="item-delete-form">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-secondary mr-1" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger" id="confirmButtonModal">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

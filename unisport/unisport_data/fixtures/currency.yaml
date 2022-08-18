@@ -1,0 +1,20 @@
+- model: unisport_data.currency
+  pk: DKK
+  fields:
+    description: Danish Krone
+- model: unisport_data.currency
+  pk: EUR
+  fields:
+    description: Euro
+- model: unisport_data.currency
+  pk: GBP
+  fields:
+    description: British Pound
+- model: unisport_data.currency
+  pk: NOK
+  fields:
+    description: Norwegian Krone
+- model: unisport_data.currency
+  pk: SEK
+  fields:
+    description: Swedish Krona

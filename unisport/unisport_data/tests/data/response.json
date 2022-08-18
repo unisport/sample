@@ -1,0 +1,1003 @@
+{
+  "products": [
+    {
+      "id": "213591",
+      "prices": {
+        "max_price": 1099,
+        "min_price": 1099,
+        "currency": "DKK",
+        "discount_percentage": 45,
+        "recommended_retail_price": 1999
+      },
+      "name": "Nike Mercurial Vapor 14 Elite FG Spectrum - Rød/Sølv",
+      "relative_url": "/fodboldstoevler/nike-mercurial-vapor-14-elite-fg-spectrum-rdslv/213591/",
+      "image": "https://thumblr.uniid.it/product/213591/20f5b6a50639.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [],
+      "is_customizable": true,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 1099,
+          "name": "EU 36/US 4Y",
+          "order_by": 33,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 415,
+          "name_short": "EU 36"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldstoevler/nike-mercurial-vapor-14-elite-fg-spectrum-rdslv/213591/",
+      "attributes": {
+        "boot_collection": "Mercurial Vapor",
+        "boot_benefit": "Speed",
+        "gender": [
+          "Women",
+          "Men's"
+        ],
+        "color": [
+          "Red"
+        ],
+        "players": [
+          "N/A"
+        ],
+        "item_type": "Football boots",
+        "boot_material": "Knit",
+        "brand_collection": "Nike Spectrum",
+        "sort_date": "2021-02-16",
+        "pricepoint": "Pro players choice",
+        "boot_model": "Elite",
+        "boot_with_sock": "Without sock",
+        "segment": "Footwear",
+        "warehouse_customization_color": "White",
+        "position": [
+          "Midfielders",
+          "Strikers",
+          "Wingers"
+        ],
+        "brand": "Nike",
+        "age": [
+          "Adults"
+        ],
+        "boot_surface": [
+          "Grass (FG)"
+        ],
+        "quarter": "Q1"
+      }
+    },
+    {
+      "id": "213590",
+      "prices": {
+        "max_price": 1199,
+        "min_price": 1199,
+        "currency": "DKK",
+        "discount_percentage": 40,
+        "recommended_retail_price": 1999
+      },
+      "name": "Nike Mercurial Vapor 14 Elite FG Black x Prism - Sort/Gul/Rød",
+      "relative_url": "/fodboldstoevler/nike-mercurial-vapor-14-elite-fg-black-x-prism-sortgulrd/213590/",
+      "image": "https://thumblr.uniid.it/product/213590/242000fcf642.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [
+        {
+          "color": "#ffffff",
+          "background_color": "#000000",
+          "name": "Kun medlemmer",
+          "active": true,
+          "id": 100,
+          "priority": 10
+        }
+      ],
+      "is_customizable": true,
+      "is_exclusive": true,
+      "stock": [
+        {
+          "price": 1199,
+          "name": "EU 36/US 4Y",
+          "order_by": 33,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 415,
+          "name_short": "EU 36"
+        },
+        {
+          "price": 1199,
+          "name": "EU 36½/US 4½Y",
+          "order_by": 34,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 416,
+          "name_short": "EU 36½"
+        },
+        {
+          "price": 1199,
+          "name": "EU 38/US 5½Y",
+          "order_by": 36,
+          "stock_info": "Få på lager",
+          "is_marketplace": false,
+          "pk": 418,
+          "name_short": "EU 38"
+        },
+        {
+          "price": 1199,
+          "name": "EU 40/US 7",
+          "order_by": 42,
+          "stock_info": "Få på lager",
+          "is_marketplace": false,
+          "pk": 421,
+          "name_short": "EU 40"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldstoevler/nike-mercurial-vapor-14-elite-fg-black-x-prism-sortgulrd/213590/",
+      "attributes": {
+        "boot_collection": "Mercurial Vapor",
+        "color": [
+          "Black"
+        ],
+        "gender": [
+          "Men's",
+          "Women"
+        ],
+        "boot_benefit": "Speed",
+        "item_type": "Football boots",
+        "players": [
+          "N/A"
+        ],
+        "boot_material": "Knit",
+        "sort_date": "2021-02-15",
+        "brand_collection": "Nike Black x Prism",
+        "pricepoint": "Pro players choice",
+        "boot_model": "Elite",
+        "boot_with_sock": "Without sock",
+        "segment": "Footwear",
+        "warehouse_customization_color": "White",
+        "position": [
+          "Wingers",
+          "Strikers",
+          "Midfielders"
+        ],
+        "brand": "Nike",
+        "boot_surface": [
+          "Grass (FG)"
+        ],
+        "age": [
+          "Adults"
+        ],
+        "quarter": "Q1"
+      }
+    },
+    {
+      "id": "205990",
+      "prices": {
+        "max_price": 899,
+        "min_price": 899,
+        "currency": "DKK",
+        "discount_percentage": 55,
+        "recommended_retail_price": 1999
+      },
+      "name": "Nike Mercurial Vapor 13 Elite FG Daybreak - Orange/Sort/Hvid",
+      "relative_url": "/fodboldstoevler/nike-mercurial-vapor-13-elite-fg-daybreak-orangesorthvid/205990/",
+      "image": "https://thumblr.uniid.it/product/205990/d47e412b5d98.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [],
+      "is_customizable": true,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 899,
+          "name": "EU 36/US 4Y",
+          "order_by": 33,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 415,
+          "name_short": "EU 36"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldstoevler/nike-mercurial-vapor-13-elite-fg-daybreak-orangesorthvid/205990/",
+      "attributes": {
+        "boot_collection": "Mercurial Vapor",
+        "boot_benefit": "Speed",
+        "gender": [
+          "Women",
+          "Men's"
+        ],
+        "color": [
+          "Black"
+        ],
+        "item_type": "Football boots",
+        "players": [
+          "N/A"
+        ],
+        "boot_material": "Knit",
+        "sort_date": "2020-08-01",
+        "brand_collection": "Nike Daybreak",
+        "pricepoint": "Pro players choice",
+        "boot_model": "Elite",
+        "boot_with_sock": "Without sock",
+        "segment": "Footwear",
+        "warehouse_customization_color": "Black",
+        "position": [
+          "Midfielders",
+          "Strikers",
+          "Wingers"
+        ],
+        "brand": "Nike",
+        "boot_surface": [
+          "Grass (FG)"
+        ],
+        "age": [
+          "Adults"
+        ],
+        "quarter": "Q3"
+      }
+    },
+    {
+      "id": "205989",
+      "prices": {
+        "max_price": 999,
+        "min_price": 999,
+        "currency": "DKK",
+        "discount_percentage": 50,
+        "recommended_retail_price": 1999
+      },
+      "name": "Nike Mercurial Vapor 13 Elite FG Black X Chile Red - Sort/Grå/Rød",
+      "relative_url": "/fodboldstoevler/nike-mercurial-vapor-13-elite-fg-black-x-chile-red-sortgrard/205989/",
+      "image": "https://thumblr.uniid.it/product/205989/bca387c72803.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [],
+      "is_customizable": true,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 999,
+          "name": "EU 36/US 4Y",
+          "order_by": 33,
+          "stock_info": "Få på lager",
+          "is_marketplace": false,
+          "pk": 415,
+          "name_short": "EU 36"
+        },
+        {
+          "price": 999,
+          "name": "EU 36½/US 4½Y",
+          "order_by": 34,
+          "stock_info": "Kun 1 tilbage",
+          "is_marketplace": false,
+          "pk": 416,
+          "name_short": "EU 36½"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldstoevler/nike-mercurial-vapor-13-elite-fg-black-x-chile-red-sortgrard/205989/",
+      "attributes": {
+        "boot_collection": "Mercurial Vapor",
+        "boot_benefit": "Speed",
+        "gender": [
+          "Women",
+          "Men's"
+        ],
+        "color": [
+          "Black"
+        ],
+        "players": [
+          "N/A"
+        ],
+        "item_type": "Football boots",
+        "boot_material": "Knit",
+        "brand_collection": "Nike Football Black x Chile Red",
+        "sort_date": "2020-08-01",
+        "pricepoint": "Pro players choice",
+        "boot_model": "Elite",
+        "boot_with_sock": "Without sock",
+        "segment": "Footwear",
+        "warehouse_customization_color": "White",
+        "position": [
+          "Midfielders",
+          "Strikers",
+          "Wingers"
+        ],
+        "brand": "Nike",
+        "boot_surface": [
+          "Grass (FG)"
+        ],
+        "age": [
+          "Adults"
+        ],
+        "quarter": "Q3"
+      }
+    },
+    {
+      "id": "217710",
+      "prices": {
+        "max_price": 1199,
+        "min_price": 1199,
+        "currency": "DKK",
+        "discount_percentage": 40,
+        "recommended_retail_price": 1999
+      },
+      "name": "Nike Mercurial Vapor 14 Elite FG Silver Safari - Hvid/Sort/Sølv/Neon",
+      "relative_url": "/fodboldstoevler/nike-mercurial-vapor-14-elite-fg-silver-safari-hvidsortslvneon/217710/",
+      "image": "https://thumblr.uniid.it/product/217710/2032239ccd25.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [],
+      "is_customizable": true,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 1199,
+          "name": "EU 36/US 4Y",
+          "order_by": 33,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 415,
+          "name_short": "EU 36"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldstoevler/nike-mercurial-vapor-14-elite-fg-silver-safari-hvidsortslvneon/217710/",
+      "attributes": {
+        "boot_collection": "Mercurial Vapor",
+        "color": [
+          "White"
+        ],
+        "gender": [
+          "Men's",
+          "Women"
+        ],
+        "boot_benefit": "Speed",
+        "item_type": "Football boots",
+        "players": [
+          "Cristiano Ronaldo"
+        ],
+        "boot_material": "Knit",
+        "brand_collection": "Nike Mercurial Silver Safari",
+        "sort_date": "2021-04-01",
+        "pricepoint": "Pro players choice",
+        "boot_model": "Elite",
+        "boot_with_sock": "Without sock",
+        "segment": "Footwear",
+        "warehouse_customization_color": "Neon Yellow",
+        "position": [
+          "Wingers",
+          "Strikers",
+          "Midfielders"
+        ],
+        "brand": "Nike",
+        "boot_surface": [
+          "Grass (FG)"
+        ],
+        "age": [
+          "Adults"
+        ],
+        "quarter": "Q1"
+      }
+    },
+    {
+      "id": "200783",
+      "prices": {
+        "max_price": 499,
+        "min_price": 499,
+        "currency": "DKK",
+        "discount_percentage": 0,
+        "recommended_retail_price": 499
+      },
+      "name": "Danmark Målmandstrøje 2021/22",
+      "relative_url": "/fodboldtroejer/danmark-malmandstrje-euro-2020/200783/",
+      "image": "https://thumblr.uniid.it/product/200783/8aa61073b8e7.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [],
+      "is_customizable": true,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 499,
+          "name": "X-Small",
+          "order_by": 7,
+          "stock_info": "Få på lager",
+          "is_marketplace": false,
+          "pk": 162,
+          "name_short": "X-Small"
+        },
+        {
+          "price": 499,
+          "name": "X-Large",
+          "order_by": 11,
+          "stock_info": "Kun 1 tilbage",
+          "is_marketplace": false,
+          "pk": 5,
+          "name_short": "X-Large"
+        },
+        {
+          "price": 499,
+          "name": "4XL",
+          "order_by": 14,
+          "stock_info": "Få på lager",
+          "is_marketplace": false,
+          "pk": 37,
+          "name_short": "4X-Large"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldtroejer/danmark-malmandstrje-euro-2020/200783/",
+      "attributes": {
+        "gender": [
+          "Men's"
+        ],
+        "color": [
+          "Black"
+        ],
+        "players": [
+          "N/A"
+        ],
+        "item_type": "Football shirts",
+        "league": "EURO",
+        "teamsport": "N/A",
+        "club_national": "National",
+        "team": "N/A",
+        "print_type": "N/A",
+        "shirt_season": "2021/22",
+        "pricepoint": "Fan shirts",
+        "nationality": "Denmark",
+        "sleeve": "Short sleeves",
+        "kit": "Goalkeeper Kits",
+        "segment": "License",
+        "print_color": "N/A",
+        "brand": "Hummel",
+        "sorting_shirts": "N/A",
+        "age": [
+          "Adults"
+        ],
+        "quarter": "Carry Over"
+      }
+    },
+    {
+      "id": "200777",
+      "prices": {
+        "max_price": 449,
+        "min_price": 449,
+        "currency": "DKK",
+        "discount_percentage": 0,
+        "recommended_retail_price": 449
+      },
+      "name": "Danmark Hjemmebanetrøje 2021/22 Børn",
+      "relative_url": "/fodboldtroejer/danmark-hjemmebanetrje-euro-2020-brn/200777/",
+      "image": "https://thumblr.uniid.it/product/200777/05cd00af369b.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [
+        {
+          "color": "#ffffff",
+          "background_color": "#000000",
+          "name": "Børn",
+          "active": true,
+          "id": 48,
+          "priority": 7
+        }
+      ],
+      "is_customizable": true,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 449,
+          "name": "116 cm",
+          "order_by": 4,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 316,
+          "name_short": "6-8 Years"
+        },
+        {
+          "price": 449,
+          "name": "128 cm",
+          "order_by": 6,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 296,
+          "name_short": "8-10 Years"
+        },
+        {
+          "price": 449,
+          "name": "140 cm",
+          "order_by": 7,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 317,
+          "name_short": "10-12 Years"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldtroejer/danmark-hjemmebanetrje-euro-2020-brn/200777/",
+      "attributes": {
+        "gender": [
+          "Men's"
+        ],
+        "color": [
+          "Red"
+        ],
+        "players": [
+          "N/A"
+        ],
+        "item_type": "Football shirts",
+        "league": "EURO",
+        "teamsport": "N/A",
+        "club_national": "National",
+        "team": "N/A",
+        "print_type": "N/A",
+        "shirt_season": "2021/22",
+        "pricepoint": "Fan shirts",
+        "nationality": "Denmark",
+        "sleeve": "Short sleeves",
+        "segment": "License",
+        "kit": "Home Kits",
+        "print_color": "N/A",
+        "brand": "Hummel",
+        "sorting_shirts": "N/A",
+        "age": [
+          "Kids"
+        ],
+        "quarter": "Carry Over"
+      }
+    },
+    {
+      "id": "198079",
+      "prices": {
+        "max_price": 149,
+        "min_price": 149,
+        "currency": "DKK",
+        "discount_percentage": 40,
+        "recommended_retail_price": 249
+      },
+      "name": "Nike Træningsbukser Dry Park 20 - Sort/Hvid",
+      "relative_url": "/fodboldudstyr/nike-trningsbukser-dry-park-20-sorthvid/198079/",
+      "image": "https://thumblr.uniid.it/product/198079/27407a3d9914.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [],
+      "is_customizable": false,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 149,
+          "name": "Small",
+          "order_by": 8,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 2,
+          "name_short": "Small"
+        },
+        {
+          "price": 149,
+          "name": "Medium",
+          "order_by": 9,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 3,
+          "name_short": "Medium"
+        },
+        {
+          "price": 149,
+          "name": "Large",
+          "order_by": 10,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 1,
+          "name_short": "Large"
+        },
+        {
+          "price": 149,
+          "name": "X-Large",
+          "order_by": 11,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 5,
+          "name_short": "X-Large"
+        },
+        {
+          "price": 149,
+          "name": "XX-Large",
+          "order_by": 12,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 6,
+          "name_short": "XX-Large"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldudstyr/nike-trningsbukser-dry-park-20-sorthvid/198079/",
+      "attributes": {
+        "apparel_collection": "Nike Park",
+        "color": [
+          "Black"
+        ],
+        "gender": [
+          "Men's"
+        ],
+        "item_type": "Training pants",
+        "league": "N/A",
+        "teamsport": "N/A",
+        "club_national": "N/A",
+        "team": "N/A",
+        "brand_collection": "N/A",
+        "shirt_season": "N/A",
+        "nationality": "N/A",
+        "segment": "Team Sport",
+        "kit": "N/A",
+        "perfect_for": "Performance",
+        "brand": "Nike",
+        "pant_length": "Long",
+        "age": [
+          "Adults"
+        ],
+        "quarter": "Carry Over"
+      }
+    },
+    {
+      "id": "205946",
+      "prices": {
+        "max_price": 699,
+        "min_price": 699,
+        "currency": "DKK",
+        "discount_percentage": 65,
+        "recommended_retail_price": 1999
+      },
+      "name": "Nike Phantom GT Elite FG Daybreak - Hvid/Pink/Sort",
+      "relative_url": "/fodboldstoevler/nike-phantom-gt-elite-fg-daybreak-hvidpinksort/205946/",
+      "image": "https://thumblr.uniid.it/product/205946/7dc63044f1f6.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [],
+      "is_customizable": true,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 699,
+          "name": "EU 36/US 4Y",
+          "order_by": 33,
+          "stock_info": "Kun 1 tilbage",
+          "is_marketplace": false,
+          "pk": 415,
+          "name_short": "EU 36"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldstoevler/nike-phantom-gt-elite-fg-daybreak-hvidpinksort/205946/",
+      "attributes": {
+        "boot_collection": "Phantom GT",
+        "boot_benefit": "Control",
+        "gender": [
+          "Women",
+          "Men's"
+        ],
+        "color": [
+          "White"
+        ],
+        "players": [
+          "N/A"
+        ],
+        "item_type": "Football boots",
+        "boot_material": "Knit",
+        "sort_date": "2020-07-15",
+        "brand_collection": "Nike Daybreak",
+        "pricepoint": "Pro players choice",
+        "boot_model": "Elite",
+        "boot_with_sock": "Without sock",
+        "segment": "Footwear",
+        "warehouse_customization_color": "Black",
+        "position": [
+          "Midfielders",
+          "Strikers",
+          "Wingers"
+        ],
+        "brand": "Nike",
+        "age": [
+          "Adults"
+        ],
+        "boot_surface": [
+          "Grass (FG)"
+        ],
+        "quarter": "Q3"
+      }
+    },
+    {
+      "id": "190711",
+      "prices": {
+        "max_price": 119,
+        "min_price": 119,
+        "currency": "DKK",
+        "discount_percentage": 40,
+        "recommended_retail_price": 199
+      },
+      "name": "Hummel Træningsbukser Core - Sort/Hvid Børn",
+      "relative_url": "/fodboldudstyr/hummel-trningsbukser-core-sorthvid-brn/190711/",
+      "image": "https://thumblr.uniid.it/product/190711/fdf7b91f2e32.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [
+        {
+          "color": "#ffffff",
+          "background_color": "#000000",
+          "name": "Kun medlemmer",
+          "active": true,
+          "id": 100,
+          "priority": 10
+        },
+        {
+          "color": "#ffffff",
+          "background_color": "#000000",
+          "name": "Børn",
+          "active": true,
+          "id": 48,
+          "priority": 7
+        }
+      ],
+      "is_customizable": false,
+      "is_exclusive": true,
+      "stock": [
+        {
+          "price": 119,
+          "name": "116 cm",
+          "order_by": 4,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 316,
+          "name_short": "6-8 Years"
+        },
+        {
+          "price": 119,
+          "name": "164 cm-Small",
+          "order_by": 10,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 2134,
+          "name_short": "164 cm-Small"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldudstyr/hummel-trningsbukser-core-sorthvid-brn/190711/",
+      "attributes": {
+        "apparel_collection": "N/A",
+        "gender": [
+          "Men's"
+        ],
+        "color": [
+          "Black"
+        ],
+        "item_type": "Training pants",
+        "league": "N/A",
+        "teamsport": "N/A",
+        "club_national": "N/A",
+        "team": "N/A",
+        "shirt_season": "N/A",
+        "brand_collection": "N/A",
+        "nationality": "N/A",
+        "kit": "N/A",
+        "segment": "Team Sport",
+        "perfect_for": "Performance",
+        "brand": "Hummel",
+        "pant_length": "Long",
+        "age": [
+          "Kids"
+        ],
+        "quarter": "Q3"
+      }
+    },
+    {
+      "id": "213587",
+      "prices": {
+        "max_price": 1099,
+        "min_price": 1099,
+        "currency": "DKK",
+        "discount_percentage": 45,
+        "recommended_retail_price": 1999
+      },
+      "name": "Nike Phantom GT Elite FG Spectrum - Blå/Sølv/Grøn",
+      "relative_url": "/fodboldstoevler/nike-phantom-gt-elite-fg-spectrum-blaslvgrn/213587/",
+      "image": "https://thumblr.uniid.it/product/213587/34f3f3b4696f.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [],
+      "is_customizable": true,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 1099,
+          "name": "EU 36/US 4Y",
+          "order_by": 33,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 415,
+          "name_short": "EU 36"
+        },
+        {
+          "price": 1099,
+          "name": "EU 36½/US 4½Y",
+          "order_by": 34,
+          "stock_info": "Få på lager",
+          "is_marketplace": false,
+          "pk": 416,
+          "name_short": "EU 36½"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldstoevler/nike-phantom-gt-elite-fg-spectrum-blaslvgrn/213587/",
+      "attributes": {
+        "boot_collection": "Phantom GT",
+        "boot_benefit": "Control",
+        "gender": [
+          "Women",
+          "Men's"
+        ],
+        "color": [
+          "Blue"
+        ],
+        "players": [
+          "N/A"
+        ],
+        "item_type": "Football boots",
+        "boot_material": "Knit",
+        "brand_collection": "Nike Spectrum",
+        "sort_date": "2021-02-16",
+        "pricepoint": "Pro players choice",
+        "boot_model": "Elite",
+        "boot_with_sock": "Without sock",
+        "segment": "Footwear",
+        "warehouse_customization_color": "Black",
+        "position": [
+          "Midfielders",
+          "Strikers",
+          "Wingers"
+        ],
+        "brand": "Nike",
+        "boot_surface": [
+          "Grass (FG)"
+        ],
+        "age": [
+          "Adults"
+        ],
+        "quarter": "Q1"
+      }
+    },
+    {
+      "id": "172011",
+      "prices": {
+        "max_price": 99,
+        "min_price": 99,
+        "currency": "DKK",
+        "discount_percentage": 0,
+        "recommended_retail_price": 99
+      },
+      "name": "Nike Benskinner Guard - Sort/Hvid",
+      "relative_url": "/benskinner/nike-benskinner-guard-sorthvid/172011/",
+      "image": "https://thumblr.uniid.it/product/172011/32e214be15fb.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [],
+      "is_customizable": false,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 99,
+          "name": "Small/140-150cm",
+          "order_by": 7,
+          "stock_info": "Få på lager",
+          "is_marketplace": false,
+          "pk": 1704,
+          "name_short": "Small"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/benskinner/nike-benskinner-guard-sorthvid/172011/",
+      "attributes": {
+        "gender": [
+          "Men's"
+        ],
+        "color": [
+          "Black"
+        ],
+        "item_type": "Shin pads",
+        "league": "N/A",
+        "club_national": "N/A",
+        "team": "N/A",
+        "brand_collection": "Nike Dream Speed 3",
+        "ankle_protection": "Without protection",
+        "nationality": "N/A",
+        "segment": "Equipment",
+        "brand": "Nike",
+        "age": [
+          "Adults",
+          "Kids"
+        ],
+        "quarter": "Q2"
+      }
+    },
+    {
+      "id": "200802",
+      "prices": {
+        "max_price": 399,
+        "min_price": 399,
+        "currency": "DKK",
+        "discount_percentage": 0,
+        "recommended_retail_price": 399
+      },
+      "name": "Danmark Hjemmebanetrøje 2021/22 Mini-Kit Børn",
+      "relative_url": "/fodboldtroejer/danmark-hjemmebanetrje-euro-2020-mini-kit-brn/200802/",
+      "image": "https://thumblr.uniid.it/product/200802/1d7704a81c3d.jpg",
+      "delivery": "1-3 hverdage",
+      "online": true,
+      "labels": [
+        {
+          "color": "#ffffff",
+          "background_color": "#000000",
+          "name": "Børn",
+          "active": true,
+          "id": 48,
+          "priority": 7
+        }
+      ],
+      "is_customizable": true,
+      "is_exclusive": false,
+      "stock": [
+        {
+          "price": 399,
+          "name": "68 cm",
+          "order_by": 0,
+          "stock_info": "",
+          "is_marketplace": false,
+          "pk": 2379,
+          "name_short": "0-2 Years"
+        },
+        {
+          "price": 399,
+          "name": "80 cm",
+          "order_by": 1,
+          "stock_info": "Kun 1 tilbage",
+          "is_marketplace": false,
+          "pk": 2380,
+          "name_short": "0-2 Years"
+        }
+      ],
+      "currency": "DKK",
+      "url": "https://www.unisport.dk/fodboldtroejer/danmark-hjemmebanetrje-euro-2020-mini-kit-brn/200802/",
+      "attributes": {
+        "gender": [
+          "Men's"
+        ],
+        "color": [
+          "Red"
+        ],
+        "players": [
+          "N/A"
+        ],
+        "item_type": "Football shirts",
+        "league": "EURO",
+        "teamsport": "N/A",
+        "club_national": "National",
+        "team": "N/A",
+        "print_type": "N/A",
+        "shirt_season": "2021/22",
+        "pricepoint": "Fan shirts",
+        "nationality": "Denmark",
+        "sleeve": "Short sleeves",
+        "segment": "License",
+        "kit": "Home Kits",
+        "print_color": "N/A",
+        "brand": "Hummel",
+        "sorting_shirts": "Mini-kit",
+        "age": [
+          "Kids"
+        ],
+        "quarter": "Carry Over"
+      }
+    }
+  ]
+}
+

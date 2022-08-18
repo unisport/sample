@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <a href="{{object.url}}" class="link-primary" target="_blank" rel="noopener noreferrer"><h2>{{object.name}}</h2></a>
+    <img src="{{object.image}}" alt="image" class="img-thumbnail">
+
+    <div class="accordion" id="productAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSummary">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Summary
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#productAccordion">
+                <div class="accordion-body">
+                    <div class="mb-3 row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="inputName" value="{{object.name}}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="inputDelivery" class="col-sm-2 col-form-label">Delivery</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="inputDelivery" class="form-control-plaintext" value="{{object.delivery}}">
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <label for="inputOnline" class="form-check-label">Online</label>
+                        <input class="form-check-input" type="checkbox" id="inputOnline" {% if object.online %}checked{% endif %}>
+                    </div>
+                    <div class="form-check">
+                        <label for="inputIsCustomizable" class="form-check-label">Customizable</label>
+                        <input class="form-check-input" type="checkbox" id="inputIsCustomizable" {% if object.is_customizable %}checked{% endif %}>
+
+                    </div>
+                    <div class="form-check">
+                        <label for="inputIsExclusive" class="form-check-label">Exclusive</label>
+                        <input class="form-check-input" type="checkbox" id="inputIsExclusive" {% if object.is_exclusive %}checked{% endif %}>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="inputRelativeURL" class="col-sm-2 form-label">Relative URL</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="inputRelativeURL" class="form-control-plaintext" value="{{object.relative_url}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPrices">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Prices
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingPrices" data-bs-parent="#productAccordion">
+                <div class="accordion-body">
+                    <div class="mb-3 row">
+                        <label for="inputMaxPrice" class="col-sm-2 col-form-label">Max Price</label>
+                        <div class="col-sm-10">
+                            <input
+                                class="form-control-plaintext"
+                                type="text"
+                                id="inputMaxPrice"
+                                value="{{object.max_price|stringformat:".2f"}} {{object.currency.id}}"
+                            >
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="inputMinPrice" class="col-sm-2 col-form-label">Min Price</label>
+                        <div class="col-sm-10">
+                            <input
+                                class="form-control-plaintext"
+                                type="text"
+                                id="inputMinPrice"
+                                value="{{object.min_price|stringformat:".2f"}} {{object.currency.id}}"
+                            >
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="inputDiscountPercentage" class="col-sm-2 col-form-label">Discount <span>&#37;</span></label>
+                        <div class="col-sm-10">
+                            <input
+                                class="form-control-plaintext"
+                                type="text"
+                                id="inputDiscountPercentage"
+                                value="{{object.discount_percentage}}"
+                            >
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="inputRecommendedRetailPrice" class="col-sm-2 col-form-label">Recommended Retail Price</label>
+                        <div class="col-sm-10">
+                            <input
+                                class="form-control-plaintext"
+                                type="text"
+                                id="inputRecommendedRetailPrice"
+                                value="{{object.recommended_retail_price|stringformat:".2f"}} {{object.currency.id}}"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingData">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    Data
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingData" data-bs-parent="#productAccordion">
+                <div class="accordion-body">
+                    <div class="mb-3 row">
+                        <label for="inputLabels" class="col-sm-2 col-form-label">Labels</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="inputLabels" value="{{object.labels}}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="inputAttributes" class="col-sm-2 col-form-label">Attributes</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="inputAttributes" value="{{object.attributes}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id=headingData">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStock" aria-expanded="true" aria-controls="collapseStock">
+                    Stock
+                </button>
+            </h2>
+            <div id="collapseStock" class="accordion-collapse collapse show" aria-labelledby="headingData" data-bs-parent="#productAccordion">
+                <div class="accordion-body">
+                    <div class="container">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Short Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Order By</th>
+                                    <th scope="col">Info</th>
+                                    <th scope="col">Marketplace</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stock in object.stock %}
+                                    <tr>
+                                        <th scope="row">{{stock.name}}</th>
+                                        <td>{{stock.name_short}}</td>
+                                        <td>{{stock.price|stringformat:".2f"}} {{object.currency.id}}</td>
+                                        <td>{{stock.order_by}}</td>
+                                        <td>{{stock.stock_info}}</td>
+                                        <td>{{stock.is_marketplace}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

@@ -1,0 +1,19 @@
+# Ignore everything
+*
+
+# Allow files and directories
+!docker/docker-entrypoint.sh
+!unisport/
+!poetry.lock
+!pyproject.toml
+!README.md
+
+
+# Ignore unnecessary files inside allowed directories
+# This should go after the allowed directories
+**/*~
+**/*.log
+**/.DS_Store
+**/.sqlite3
+**/docker-compose.yaml
+

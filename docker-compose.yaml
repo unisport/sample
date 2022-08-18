@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  web:
+    container_name: web
+    image: ${DOCKER_IMAGE_NAME:-unisport}:${DOCKER_IMAGE_VERSION:-latest}
+    init: true
+    build:
+      args:
+        UNISPORT_PYTHON_VERSION: ${UNISPORT_PYTHON_VERSION:-3.10}
+      context: .
+      dockerfile: docker/Dockerfile
+
+    environment:
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL}
+      - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
+      - DJANGO_SEUPRUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME}
+      - DJANGO_CSRF_TRUSTED_ORIGINS=http://localhost:${NGINX_EXT_PORT:-8000}
+
+    volumes:
+      - static-files:/opt/venv/lib/python3.10/site-packages/unisport/root:rw
+    ports:
+      - 127.0.0.1:${DJANGO_EXT_PORT:-5000}:5000
+
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    volumes:
+      - ./docker/nginx:/etc/nginx/conf.d
+      - static-files:/static
+    depends_on:
+      - web
+    ports:
+      - 127.0.0.1:${NGINX_EXT_PORT:-8000}:80
+
+volumes:
+  static-files:
+
